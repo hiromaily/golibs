@@ -1,0 +1,40 @@
+environment = 0    #0:local vagrant, 1:staging, 2:production
+
+[aws]
+access_key = "XXXXXXXXXXXXX"
+secret_key = "XXXXXXXXXXXXX"
+region = "ap-northeast-1"
+
+[aws.sqs]
+endpoint = "sqs.ap-northeast-1.amazonaws.com"
+queue_name = "queue_messages"
+deadque_name = "deadqueue_messages"
+
+[aws.sqs.msgattr]
+operation_type = "1"
+content_type = "1"
+
+[database]
+dbname = "hiromaily"
+user = "root"
+pass = ""
+
+[mail]
+# your email setting
+address = "xxxxx@gmail.com"
+password = "xxxxx"
+
+timeout = "10s"
+
+[mail.smtp]
+# smtp server
+server = "smtp.gmail.com"
+port = 587
+
+[[mail.content]]
+subject = "[mail]Subject"
+tplfile = "testmail.tpl"
+
+[[mail.content]]
+subject = "[mail]Subject2"
+tplfile = "testmail2.tpl"
