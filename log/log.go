@@ -6,12 +6,21 @@ import (
 )
 
 const (
-	debugStatus uint = iota + 1
-	infoStatus
-	warningStatus
-	errorStatus
-	fatalStatus
+	DEBUG_STATUS uint = iota + 1
+	INFO_STATUS
+	WARNING_STATUS
+	ERROR_STATUS
+	FATAL_STATUS
 )
+
+const (
+	DEBUG_PREFIX   string = "[DEBUG]"
+	INFO_PREFIX    string = "[INFO]"
+	WARNING_PREFIX string = "[WARNING]"
+	ERROR_PREFIX   string = "[ERROR]"
+	FATAL_PREFIX   string = "[FATAL]"
+)
+
 
 /*
 	Ldate         = 1 << iota     // the date in the local time zone: 2009/01/23
@@ -25,21 +34,18 @@ const (
 */
 
 var (
-	logLevel    uint   = 1
-	logFilePath string = ""
+	logLevel     int    = 1
+	logFileLevel int    = 4
+	filePathName string = "/var/log/go/xxxx.log"
 )
 
 type LogObject struct {
 	logger *log.Logger
-	f      *os.File
 }
 
 var (
-	logDebug LogObject = LogObject{}
-	logInfo  LogObject = LogObject{}
-	logWarn  LogObject = LogObject{}
-	logError LogObject = LogObject{}
-	logFatal LogObject = LogObject{}
+	logStdOut  LogObject = LogObject{}
+	logFileOut LogObject = LogObject{}
 )
 
 //for output log file
@@ -52,15 +58,13 @@ func (self *LogObject) openFile(fileName string) {
 	if err != nil {
 		log.Fatal("Error opening file :", err.Error())
 	}
-	self.f = f
-
-	self.logger.SetOutput(self.f)
+	self.logger.SetOutput(f)
 }
 
 //Create New Original Object
-func New(logTitle string, logFmt int, fileName string) (*log.Logger, error) {
-	//e.g. handlelog.New("[JamesTest] ", Ltime|Lshortfile, "jamesdebug.log")
-	logObj := log.New(os.Stderr, logTitle, logFmt)
+func New(prefix string, logFmt int, fileName string) (*log.Logger, error) {
+	//e.g. handlelog.New("[ProjectName] ", Ltime|Lshortfile, "/var/log/jamesdebug.log")
+	logObj := log.New(os.Stderr, prefix, logFmt)
 
 	if fileName != "" {
 		f, err := os.OpenFile(fileName, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
@@ -75,9 +79,15 @@ func New(logTitle string, logFmt int, fileName string) (*log.Logger, error) {
 }
 
 //Initialize base log object using default setting
-func InitLog(level uint, logFmt int, filePath string) {
-	//e.g. handlelog.InitializeDefaultLog(1, 0)
-	logLevel = level //default(info)
+//filePath have to include file name.
+func InitializeLog(level, fileLevel , logFmt int, prefix, fileName string) {
+	logLevel = level
+	logFileLevel = fileLevel
+
+	//Log File Path
+	if fileName == "" {
+		fileName = filePathName
+	}
 
 	//Log Format
 	if logFmt == 0 {
@@ -86,84 +96,128 @@ func InitLog(level uint, logFmt int, filePath string) {
 	}
 
 	//Log Object
-	logDebug.logger = log.New(os.Stderr, "[DEBUG] ", logFmt)
-	logInfo.logger = log.New(os.Stderr, "[INFO]  ", logFmt)
-	logWarn.logger = log.New(os.Stderr, "[WARN]  ", logFmt)
-	logError.logger = log.New(os.Stderr, "[ERROR] ", logFmt)
-	logFatal.logger = log.New(os.Stderr, "[FATAL] ", logFmt)
+	logStdOut.logger = log.New(os.Stderr, prefix, logFmt)
 
-	if filePath != "" {
-		logDebug.openFile(filePath + "debug.log")
-		logInfo.openFile(filePath + "info.log")
-		logWarn.openFile(filePath + "warn.log")
-		logError.openFile(filePath + "error.log")
-		logFatal.openFile(filePath + "fatal.log")
-	}
+	logFileOut.logger = log.New(os.Stderr, prefix, logFmt)
+	logFileOut.openFile(fileName)
 }
 
 //Debug
 func Debug(v ...interface{}) {
-	if logLevel == debugStatus {
-		//logDebug.logger.Printf(": %s", msg)
-		logDebug.logger.Print(v...)
+	//TODO: Sliceの頭にprefixをセットし、渡す必要がある。
+	//nv := []interface{}{DEBUG_PREFIX}
+	//nv = append(nv, v...)
+
+	if logLevel == DEBUG_STATUS {
+		if logFileLevel == DEBUG_STATUS{
+			//file
+			//logFileOut.logger.Print(nv...)
+			logFileOut.logger.Print(DEBUG_PREFIX, v...)
+		}else{
+			logStdOut.logger.Print(DEBUG_PREFIX, v...)
+		}
 	}
 }
 
 func Debugf(format string, v ...interface{}) {
-	if logLevel == debugStatus {
-		//logDebug.logger.Printf(": %s", msg)
-		logDebug.logger.Printf(format, v...)
+	if logLevel == DEBUG_STATUS {
+		if logFileLevel == DEBUG_STATUS{
+			//file
+			logFileOut.logger.Printf(DEBUG_PREFIX + format, v...)
+		}else{
+			logStdOut.logger.Printf(DEBUG_PREFIX + format, v...)
+		}
 	}
 }
 
 //Info
 func Info(v ...interface{}) {
-	if logLevel <= infoStatus {
-		logInfo.logger.Print(v...)
+	if logLevel <= INFO_STATUS {
+		if logFileLevel == INFO_STATUS{
+			//file
+			logFileOut.logger.Print(INFO_PREFIX, v...)
+		}else{
+			logStdOut.logger.Print(INFO_PREFIX, v...)
+		}
 	}
 }
 
 func Infof(format string, v ...interface{}) {
-	if logLevel <= infoStatus {
-		logInfo.logger.Printf(format, v...)
+	if logLevel == INFO_STATUS {
+		if logFileLevel <= INFO_STATUS{
+			//file
+			logFileOut.logger.Printf(INFO_PREFIX + format, v...)
+		}else{
+			logStdOut.logger.Printf(INFO_PREFIX + format, v...)
+		}
 	}
 }
 
 //Warn
 func Warn(v ...interface{}) {
-	if logLevel <= warningStatus {
-		logWarn.logger.Print(v...)
+	if logLevel <= WARNING_STATUS {
+		if logFileLevel == WARNING_STATUS{
+			//file
+			logFileOut.logger.Print(WARNING_PREFIX, v...)
+		}else{
+			logStdOut.logger.Print(WARNING_PREFIX, v...)
+		}
 	}
 }
 
 func Warnf(format string, v ...interface{}) {
-	if logLevel <= warningStatus {
-		logWarn.logger.Printf(format, v...)
+	if logLevel == WARNING_STATUS {
+		if logFileLevel <= WARNING_STATUS{
+			//file
+			logFileOut.logger.Printf(WARNING_PREFIX + format, v...)
+		}else{
+			logStdOut.logger.Printf(WARNING_PREFIX + format, v...)
+		}
 	}
 }
 
 //Error
 func Error(v ...interface{}) {
-	if logLevel <= errorStatus {
-		logError.logger.Print(v...)
+	if logLevel <= ERROR_STATUS {
+		if logFileLevel == ERROR_STATUS{
+			//file
+			logFileOut.logger.Print(ERROR_PREFIX, v...)
+		}else{
+			logStdOut.logger.Print(ERROR_PREFIX, v...)
+		}
 	}
 }
 
 func Errorf(format string, v ...interface{}) {
-	if logLevel <= errorStatus {
-		logError.logger.Printf(format, v...)
+	if logLevel == ERROR_STATUS {
+		if logFileLevel <= ERROR_STATUS{
+			//file
+			logFileOut.logger.Printf(ERROR_PREFIX + format, v...)
+		}else{
+			logStdOut.logger.Printf(ERROR_PREFIX + format, v...)
+		}
 	}
 }
 
 //Fatal
 func Fatal(v ...interface{}) {
-	if logLevel <= fatalStatus {
-		logFatal.logger.Fatal(v...)
+	if logLevel <= FATAL_STATUS {
+		if logFileLevel == FATAL_STATUS{
+			//file
+			logFileOut.logger.Print(FATAL_PREFIX, v...)
+		}else{
+			logStdOut.logger.Print(FATAL_PREFIX, v...)
+		}
 	}
 }
 
 func Fatalf(format string, v ...interface{}) {
-	if logLevel <= fatalStatus {
-		logFatal.logger.Fatalf(format, v...)
+	if logLevel == FATAL_STATUS {
+		if logFileLevel <= FATAL_STATUS{
+			//file
+			logFileOut.logger.Printf(FATAL_PREFIX + format, v...)
+		}else{
+			logStdOut.logger.Printf(FATAL_PREFIX + format, v...)
+		}
 	}
 }
