@@ -1,7 +1,9 @@
 package session
 
+//TODO:work in progress
 import (
 	"fmt"
+	lg "github.com/hiromaily/golibs/log"
 	"net/http"
 	"net/http/cookiejar"
 	"time"
@@ -13,6 +15,7 @@ import (
 func cookieJar() {
 	jar, _ := cookiejar.New(nil)
 	client := http.Client{Jar: jar}
+	lg.Debugf("client: %v", client)
 }
 
 func Set(w http.ResponseWriter) {

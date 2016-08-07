@@ -1,38 +1,66 @@
 package goroutine
 
 import (
-	"fmt"
 	"os"
 	"strconv"
-	"time"
+	"sync"
 )
 
+//TODO: How many goroutine is possible
+
 // Get number of core
-func GetGOMAXPROCS() int{
+func GetGOMAXPROCS() int {
 	if os.Getenv("GOMAXPROCS") != "" {
 		coreNum, _ := strconv.Atoi(os.Getenv("GOMAXPROCS"))
 		return coreNum
 	}
-	//runtime.NumCPU()
+	//fmt.Println(runtime.NumCPU())        //number of logical CPUs
+	//fmt.Println(runtime.GOMAXPROCS(0))   //GOMAXPROCS sets the maximum number of CPUs(Don't need to use)
+	//fmt.Println(runtime.NumGoroutine())  //number of goroutines
 	return 0
 }
 
 // Manage Concurrency
-// 指定した数を並列で実行し、終了したらchannelで通知する
-func Semaphore(paramFunc func(), pool int){
+//  execute func designated number
+func Semaphore(paramFunc func(int), pool int, cnt int, wg *sync.WaitGroup) {
 	chanSemaphore := make(chan bool, pool)
 
-	//TODO:終了の判断ロジックは各々で異なるので、それをどうするか
-	for {
+	for i := 0; i < cnt; i++ {
+		wg.Add(1)
 		chanSemaphore <- true
 
 		//chanSemaphore <- true
-		go func() {
+		go func(cnt int) {
 			defer func() {
 				<-chanSemaphore
+				wg.Done()
 			}()
 			//concurrent func
-			paramFunc()
-		}()
+			paramFunc(cnt)
+		}(i)
 	}
+	wg.Wait()
+}
+
+// Manage Concurrency
+//  execute func with slice data
+func Semaphore2(paramFunc func(int, interface{}), pool int, data []interface{}, wg *sync.WaitGroup) {
+	chanSemaphore := make(chan bool, pool)
+
+	for i, d := range data {
+		wg.Add(1)
+		chanSemaphore <- true
+
+		//chanSemaphore <- true
+		go func(cnt int, one interface{}) {
+			defer func() {
+				<-chanSemaphore
+				wg.Done()
+			}()
+			//concurrent func
+			paramFunc(cnt, one)
+		}(i, d)
+	}
+	//close(chanSemaphore)
+	wg.Wait()
 }

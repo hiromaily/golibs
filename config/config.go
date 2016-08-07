@@ -13,7 +13,9 @@ var conf *Config
 type Config struct {
 	Environment int
 	Aws         AwsConfig
-	Database    DatabaseConfig
+	MySQL       MySQLConfig
+	Redis       RedisConfig
+	Mongo       MongoConfig `toml:"mongodb"`
 	Mail        MailConfig
 }
 
@@ -36,30 +38,41 @@ type MsgAttrConfig struct {
 	ContentType string `toml:"content_type"`
 }
 
-type DatabaseConfig struct {
+type MySQLConfig struct {
+	Host   string `toml:"host"`
+	Port   uint16 `toml:"port"`
+	DbName string `toml:"dbname"`
 	User   string `toml:"user"`
 	Pass   string `toml:"pass"`
-	DbName string `toml:"dbname"`
+}
+
+type RedisConfig struct {
+	Host string `toml:"host"`
+	Port uint16 `toml:"port"`
+}
+
+type MongoConfig struct {
+	Host     string `toml:"host"`
+	Database string `toml:"database"`
 }
 
 type MailConfig struct {
-	Address   string              `toml:"address"`
-	Password  string              `toml:"password"`
-	Timeout   string              `toml:"timeout"`
-	Smtp      SmtpConfig          `toml:"smtp"`
-	Content   []MailContentConfig `toml:"content"`
+	Address  string              `toml:"address"`
+	Password string              `toml:"password"`
+	Timeout  string              `toml:"timeout"`
+	Smtp     SmtpConfig          `toml:"smtp"`
+	Content  []MailContentConfig `toml:"content"`
 }
 
 type SmtpConfig struct {
-	Server  string  `toml:"server"`
-	Port    int     `toml:"port"`
+	Server string `toml:"server"`
+	Port   int    `toml:"port"`
 }
 
 type MailContentConfig struct {
-	Subject  string  `toml:"subject"`
-	Tplfile  string  `toml:"tplfile"`
+	Subject string `toml:"subject"`
+	Tplfile string `toml:"tplfile"`
 }
-
 
 //check validation of config
 func validateConfig(conf *Config, md *toml.MetaData) error {
@@ -71,8 +84,8 @@ func validateConfig(conf *Config, md *toml.MetaData) error {
 		errStrings = append(errStrings, "environment")
 	}
 
-	if !md.IsDefined("database", "user") {
-		errStrings = append(errStrings, "[database] user")
+	if !md.IsDefined("mysql", "user") {
+		errStrings = append(errStrings, "[mysql] user")
 	}
 
 	if len(errStrings) != 0 {
@@ -83,7 +96,11 @@ func validateConfig(conf *Config, md *toml.MetaData) error {
 }
 
 // load configfile
-func loadConfig() (*Config, error) {
+func loadConfig(path string) (*Config, error) {
+	if path != "" {
+		tomlFileName = path
+	}
+
 	d, err := ioutil.ReadFile(tomlFileName)
 	if err != nil {
 		return nil, fmt.Errorf(
@@ -106,11 +123,19 @@ func loadConfig() (*Config, error) {
 	return &config, nil
 }
 
+func New(file string) {
+	var err error
+	conf, err = loadConfig(file)
+	if err != nil {
+		panic(err)
+	}
+}
+
 // singleton architecture
 func GetConfInstance() *Config {
 	var err error
 	if conf == nil {
-		conf, err = loadConfig()
+		conf, err = loadConfig("")
 	}
 	if err != nil {
 		panic(err)
@@ -121,4 +146,8 @@ func GetConfInstance() *Config {
 
 func SetTomlPath(path string) {
 	tomlFileName = path
+}
+
+func ResetConf() {
+	conf = nil
 }

@@ -1,6 +1,7 @@
 package validator
 
 import (
+	"errors"
 	"fmt"
 	"net/url"
 	"reflect"
@@ -17,7 +18,8 @@ var TagMap = map[string]Validator{
 	"nonempty": isNonEmpty,
 	"email":    isEmail,
 	"url":      isURL,
-	"alphanum": isNumber,
+	"number":   isNumber,
+	"alphabet": isAlphabet,
 }
 
 var TagMapCal = map[string]ValidatorCal{
@@ -54,8 +56,19 @@ func isURL(str string) bool {
 }
 
 func isNumber(str string) bool {
-	_, ok := strconv.Atoi(str)
-	return ok == nil
+	_, err := strconv.Atoi(str)
+	return err == nil
+}
+
+func isAlphabet(str string) bool {
+	for i := range str {
+		if str[i] < 'A' || str[i] > 'z' {
+			return false
+		} else if str[i] > 'Z' && str[i] < 'a' {
+			return false
+		}
+	}
+	return true
 }
 
 func isMinOK(str string, num int) bool {
@@ -66,15 +79,36 @@ func isMaxOK(str string, num int) bool {
 	return utf8.RuneCountInString(str) <= num
 }
 
-//str: nonempty,min=3,max=40
-//val: test@test.jp
-func checkValidation(str string, val string) []string {
-	ret := []string{}
+func getErrorMsgFmt(chkItem string, errFmt map[string]string) (string, error) {
+	if _, ok := errFmt[chkItem]; ok {
+		return errFmt[chkItem], nil
+	} else {
+		return "", errors.New("Not found key")
+	}
+}
+
+func ConvertErrorMsg(data map[string][]string, errFmt map[string]string) []string {
+
+	msgs := []string{}
+	for key, val := range data {
+		fmtkey := strings.Split(val[1], "=")
+		strFmt, err := getErrorMsgFmt(fmtkey[0], errFmt)
+		if err == nil {
+			if len(fmtkey) == 1 {
+				msgs = append(msgs, fmt.Sprintf(strFmt, data[key][0]))
+			} else {
+				msgs = append(msgs, fmt.Sprintf(strFmt, fmtkey[1], data[key][0]))
+			}
+		}
+		//In case of error, skip.
+	}
+	return msgs
+}
+
+func checkValidation(str string, val string, disp string) []string {
+	ret := []string{disp}
 	strs := strings.Split(str, ",")
 	for _, v := range strs {
-		//fmt.Println(v)
-		//fmt.Println(TagMap[v])
-
 		//When included「=」on v, divide it.
 		equals := strings.Split(v, "=")
 		var bRet bool
@@ -82,9 +116,10 @@ func checkValidation(str string, val string) []string {
 			num, _ := strconv.Atoi(equals[1])
 			bRet = TagMapCal[equals[0]](val, num)
 			if !bRet {
-				ret = append(ret, equals[0])
+				ret = append(ret, v)
 			}
 		} else {
+			//nonempty
 			bRet = TagMap[v](val)
 			if !bRet {
 				ret = append(ret, v)
@@ -96,38 +131,33 @@ func checkValidation(str string, val string) []string {
 }
 
 //Check validation after extracted tag from struct type.
-func CheckValidation(s interface{}) map[string][]string {
-	//ここではやむを得なく、構造体の値が渡されてくる
+func CheckValidation(s interface{}, brankSkip bool) map[string][]string {
 
 	mRet := make(map[string][]string)
 
-	rt, rv := reflect.TypeOf(s), reflect.ValueOf(s)
-	//fmt.Printf("%v\n", rt)
-	//fmt.Printf("%v\n", rv)
-	//fmt.Printf("%v\n", rt.NumField())
+	val := reflect.ValueOf(s).Elem()
+	for i := 0; i < val.NumField(); i++ {
 
-	//check each field of struct type
-	for i := 0; i < rt.NumField(); i++ {
-		field := rt.Field(i)
-		valid := field.Tag.Get("valid")
-		fld := field.Tag.Get("field")
-		disp := field.Tag.Get("dispName")
+		field := val.Field(i)
+		typeField := val.Type().Field(i)
+		tag := typeField.Tag
 
-		fmt.Printf("[Tag] valid:%s, disp:%s, field:%s\n", valid, disp, fld)
-		//[Tag] valid:nonempty,min=3,max=40, disp name:Eメール
-		fmt.Printf("[Value] %s\n\n", rv.Field(i).Interface())
-		//[Value] aa@jj.jp
+		valid := tag.Get("valid")
+		fld := tag.Get("field")
+		disp := tag.Get("dispName")
 
 		if valid != "" {
 			//When check is required, check specific field
-			val, _ := rv.Field(i).Interface().(string)
-			//Returned value is slice, stored name of error
-			ret := checkValidation(valid, val)
-			if len(ret) != 0 {
-				mRet[fld] = ret
+			val, _ := field.Interface().(string)
+			if !brankSkip || (brankSkip && val != "") {
+				//Returned value is slice, stored name of error
+				ret := checkValidation(valid, val, disp)
+				if len(ret) > 1 {
+					mRet[fld] = ret
+				}
 			}
 		}
 	}
-	//map[string][]string{"pass":[]string{"min"}, "test":[]string{"nonempty"}}
+
 	return mRet
 }

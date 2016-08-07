@@ -1,21 +1,169 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
+###########################################################
+# Variable
+###########################################################
 #export GOTRACEBACK=single
-CURRENTDIR=`pwd`
+#export GOTRACEBACK=all
+#CURRENTDIR=`pwd`
 
+JSONPATH=${GOPATH}/src/github.com/hiromaily/booking-teacher/settings.json
+TOMLPATH=${GOPATH}/src/github.com/hiromaily/golibs/settings.toml
+BOLTPATH=${GOPATH}/src/github.com/hiromaily/golibs/boltdb
 
-#git checkout v0.9.17
-#cd ${GOPATH}/src/github.com/aws/aws-sdk-go
+TEST_MODE=1
+BENCH=0
+COVERAGRE=0
+PROFILE=0
 
+###########################################################
+# Update all package
+###########################################################
+#go get -u -v
 #go get -u -v ./...
+#go get -u -f -v ./...
+
+
+###########################################################
+# Adjust version dependency of projects
+###########################################################
+#cd ${GOPATH}/src/github.com/aws/aws-sdk-go
+#git checkout v0.9.17
+#git checkout master
+
+
+###########################################################
+# go fmt and go vet
+###########################################################
+echo '============== go fmt; go vet; =============='
 go fmt ./...
 go vet ./...
+EXIT_STATUS=$?
+if [ $EXIT_STATUS -gt 0 ]; then
+    exit $EXIT_STATUS
+fi
+
+# when there is vendor directory under project for management package dependency
 #go vet `go list ./... | grep -v '/vendor/'`
 
 
-#build
-go build -o ./dblab/handledb ./dblab/handledb.go
+###########################################################
+# go lint
+###########################################################
+# it's too strict
+#golint ./...
 
 
-#run
-#./db/handledb -mode 3 -toml ${CURRENTDIR}/settings.toml
+###########################################################
+# go install
+###########################################################
+echo '============== go install; =============='
+#go install -a -v ./...
+go install -v ./...
+EXIT_STATUS=$?
+
+if [ $EXIT_STATUS -gt 0 ]; then
+    exit $EXIT_STATUS
+fi
+
+
+###########################################################
+# go test
+###########################################################
+if [ $TEST_MODE -eq 1 ]; then
+    echo '============== test =============='
+    #go test -v cipher/encryption/encryption_test.go
+    #go test -v cipher/hash/hash_test.go
+    #go test -v compress/compress_test.go
+    #go test -v config/config_test.go -fp ${TOMLPATH}
+
+    #go test -v db/boltdb/boltdb_test.go -fp ${BOLTPATH}
+    #go test -v db/cassandra/cassandra_test.go
+    #go test -v db/gorm/gorm_test.go
+    #go test -v db/gorp/gorp_test.go
+    #go test -v db/mongodb/mongodb_test.go -fp ${JSONPATH}
+    #go test -v db/mysql/mysql_test.go
+    #go test -v db/redis/redis_test.go
+
+    #go test -v defaultdata/defaultdata_test.go
+    #go test -v draw/draw_test.go
+    #go test -v exec/exec_test.go
+    #go test -v flag/flag_test.go -iv 1 -sv abcde
+    #go test -v -race goroutine/goroutine_test.go
+    #go test -v heroku/heroku_test.go
+    #go test -v http/http_test.go
+    #go test -v json/json_test.go -fp ${JSONPATH}
+    #go test -v mails/mails_test.go -fp ${TOMLPATH}
+    #go test -v os/os_test.go
+    #go test -v reflects/reflects_test.go
+    #go test -v runtimes/runtimes_test.go
+    #go test -v serial/serial_test.go
+    #go test -v times/times_test.go
+    #go test -v tmpl/tmpl_test.go
+    go test -v validator/validator_test.go
+fi
+
+###########################################################
+# go test benchmark
+###########################################################
+if [ $BENCH -eq 1 ]; then
+    echo '============== benchmark =============='
+
+    #cd cast/;go test -bench=. -benchmem -bc ${BENCH};cd ../;
+
+    #cd flag/;go test -bench=. -benchmem -bc ${BENCH} -iv 1 -sv abcde;cd ../;
+
+    #cd join/;go test -bench . -benchmem -bc ${BENCH};cd ../;
+    #cd join/;go test -bench=. -benchmem -bc ${BENCH};cd ../;
+
+    #cd serial/;go test -bench . -benchmem -bc ${BENCH};cd ../;
+    #cd serial/;go test -bench=. -benchmem -bc ${BENCH};cd ../;
+
+    #cd db/mysql/;go test -bench=. -benchmem -bc ${BENCH};cd ../;
+
+    #cd db/redis/;go test -bench=. -benchmem -bc ${BENCH};cd ../;
+
+    #cd db/boltdb/;go test -bench=. -benchmem -bc ${BENCH} -fp ${BOLTPATH};cd ../;
+fi
+
+###########################################################
+# go coverage
+###########################################################
+if [ $COVERAGRE -eq 1 ]; then
+    echo '============== coverage =============='
+
+    #how to use it
+    #go tool cover
+
+    #it doesn't work below
+    #go test -coverprofile=cover.out -v cipher/hash/hash_test.go
+    #instead of it, exec below
+    #cd cipher/hash/;go test -coverprofile=cover.out;cd ../../;
+
+    #check result on the web
+    #go tool cover -html=cipher/hash/cover.out
+fi
+
+###########################################################
+# go profile
+###########################################################
+if [ $PROFILE -eq 1 ]; then
+    echo '============== profile =============='
+
+    #serial
+    #cd serial/;go test -run=NONE -bench=BenchmarkSerializeStruct -cpuprofile=cpu.log .;cd ../;
+    #cd serial/;go tool pprof -text -nodecount=10 ./serial.test cpu.log;
+fi
+
+
+###########################################################
+# cross-compile for linux
+###########################################################
+#GOOS=linux go install -v ./...
+
+
+###########################################################
+# godoc
+###########################################################
+#godoc -http :8000
+#http://localhost:8000/pkg/

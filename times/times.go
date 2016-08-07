@@ -5,11 +5,6 @@ import (
 	"time"
 )
 
-type Timer struct {
-	Start time.Time
-	End   time.Time
-}
-
 //format
 const (
 	// 日付のフォーマット
@@ -27,7 +22,7 @@ const (
 var JAPANESE_WEEKDAYS = []string{"日", "月", "火", "水", "木", "金", "土"}
 
 //Formatter Date
-func GetFormatDate(strDate string, addWeek bool) string{
+func GetFormatDate(strDate string, format string, addWeek bool) string {
 	//2016-05-13 16:52:49
 	//To time object
 	t, _ := time.Parse("2006-01-02 15:04:05", strDate)
@@ -37,33 +32,43 @@ func GetFormatDate(strDate string, addWeek bool) string{
 
 	//Format
 	var baseFormat string
-	if addWeek{
-		baseFormat = fmt.Sprintf(FORMAT_A_WEEK, JAPANESE_WEEKDAYS[t.Weekday()])
-	}else{
-		baseFormat = FORMAT_A
+	if addWeek {
+		if format != "" {
+			baseFormat = fmt.Sprintf(format, JAPANESE_WEEKDAYS[t.Weekday()])
+		} else {
+			baseFormat = fmt.Sprintf(FORMAT_A_WEEK, JAPANESE_WEEKDAYS[t.Weekday()])
+		}
+	} else {
+		if format != "" {
+			baseFormat = format
+		} else {
+			baseFormat = FORMAT_A
+		}
 	}
 
 	return t.Format(baseFormat)
 }
 
 //Formatter Time
-func GetFormatTime(strTime string) string {
+func GetFormatTime(strTime string, format string) string {
 	t, _ := time.Parse("2006-01-02 15:04:05", strTime)
 
 	//t.Hour()
 	//t.Minute()
 	//t.Second()
 
-	return t.Format("15:04")
+	if format != "" {
+		return t.Format(format)
+	} else {
+		return t.Format("15:04")
+	}
+
 }
 
 //Timer
-func NewTimer() *time.Time{
-	return &Timer{Start:time.Now(), End:nil}
-}
-
-func (self *Timer) EndTime(){
-	self.End = time.Now()
-	//elapsed time
-	fmt.Println(self.End.Sub(self.Start))
+//Caller: defer Track(time.Now(), "parseFile()")
+//https://medium.com/@2xb/execution-time-tracking-in-golang-9379aebfe20e#.ffxgxejim
+func Track(start time.Time, name string) {
+	elapsed := time.Since(start)
+	fmt.Printf("%s took %s\n", name, elapsed)
 }

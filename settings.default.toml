@@ -14,10 +14,20 @@ deadque_name = "deadqueue_messages"
 operation_type = "1"
 content_type = "1"
 
-[database]
+[mysql]
+host = "localhost"
+port = 3306
 dbname = "hiromaily"
 user = "root"
 pass = ""
+
+[redis]
+host = "localhost"
+port = 6379
+
+[mongodb]
+host = "localhost"
+database = "hiromaily"
 
 [mail]
 # your email setting

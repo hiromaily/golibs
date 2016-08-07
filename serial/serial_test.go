@@ -1,0 +1,328 @@
+package serial_test
+
+import (
+	"encoding/hex"
+	"flag"
+	lg "github.com/hiromaily/golibs/log"
+	. "github.com/hiromaily/golibs/serial"
+	"os"
+	"testing"
+)
+
+var (
+	benchFlg = flag.Int("bc", 0, "Normal Test or Bench Test")
+	//benchFlg2 = flag.String("test.bench", "", "text.bench")
+	// flag redefined: test.bench
+)
+
+type User struct {
+	Id   int
+	Name string
+}
+
+func setup() {
+	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[SERIAL_TEST]", "/var/log/go/test.log")
+	if *benchFlg == 0 {
+	}
+
+	//lg.Debugf("test.bench: %s", benchFlg2)
+}
+
+func teardown() {
+	if *benchFlg == 0 {
+	}
+}
+
+// Initialize
+func TestMain(m *testing.M) {
+	flag.Parse()
+
+	//TODO: According to argument, it switch to user or not.
+	//TODO: For bench or not bench
+	setup()
+
+	code := m.Run()
+	//ok := testing.RunTests()
+
+	teardown()
+
+	// 終了
+	os.Exit(code)
+}
+
+//-----------------------------------------------------------------------------
+// Gob
+//-----------------------------------------------------------------------------
+//1.struct
+func TestSerializeStruct(t *testing.T) {
+	t.Skip("skipping TestSerializeStruct")
+
+	u := User{Id: 10, Name: "harry dayo"}
+	result, err := ToGOB64(u)
+	if err != nil {
+		t.Errorf("TestSerializeStruct error: %s", err)
+	}
+	if result != "Iv+BAwEBBFVzZXIB/4IAAQIBAklkAQQAAQROYW1lAQwAAAAR/4IBFAEKaGFycnkgZGF5bwA=" {
+		t.Errorf("TestSerializeStruct result: %+v", result)
+	}
+}
+
+func TestDeSerializeStruct(t *testing.T) {
+	t.Skip("skipping TestDeSerializeStruct")
+
+	u := User{}
+	err := FromGOB64("Iv+BAwEBBFVzZXIB/4IAAQIBAklkAQQAAQROYW1lAQwAAAAR/4IBFAEKaGFycnkgZGF5bwA=", &u)
+	if err != nil {
+		t.Errorf("TestDeSerializeStruct error: %s", err)
+	}
+	if u.Id != 10 {
+		t.Errorf("TestDeSerializeStruct result: %+v", u)
+	}
+}
+
+//2.map (map is not stable.)
+//Iteration order is not guaranteed
+//https://blog.golang.org/go-maps-in-action
+func TestSerializeMap(t *testing.T) {
+	t.Skip("skipping TestSerializeMap")
+
+	m := map[string]int{"apple": 150, "banana": 300, "lemon": 300}
+	//when using map, result is not stable.
+	result, err := ToGOB64(m)
+	if err != nil {
+		t.Errorf("TestSerializeMap error: %s", err)
+	}
+	if result != "Dv+DBAEC/4QAAQwBBAAAIP+EAAMFYXBwbGX+ASwGYmFuYW5h/gJYBWxlbW9u/gJY" {
+		//if result != "Dv+DBAEC/4QAAQwBBAAAIP+EAAMGYmFuYW5h/gJYBWxlbW9u/gJYBWFwcGxl/gEs" {
+		t.Errorf("TestSerializeMap result: %#v", result)
+	}
+}
+
+//
+func TestDeSerializeMap(t *testing.T) {
+	t.Skip("skipping TestDeSerializeMap")
+
+	m := map[string]int{}
+	//FromGOB64("Dv+DBAEC/4QAAQwBBAAAIP+EAAMFYXBwbGX+ASwGYmFuYW5h/gJYBWxlbW9u/gJY", &u)
+	err := FromGOB64("Dv+DBAEC/4QAAQwBBAAAIP+EAAMGYmFuYW5h/gJYBWxlbW9u/gJYBWFwcGxl/gEs", &m)
+	if err != nil {
+		t.Errorf("TestDeSerializeMap error: %s", err)
+	}
+	if m["apple"] != 150 {
+		t.Errorf("TestDeSerializeMap result: %#v", m)
+	}
+}
+
+//Iteration order is not guaranteed
+//https://blog.golang.org/go-maps-in-action
+//TODO:how can map order be guaranteed.
+func TestSerializeMap2(t *testing.T) {
+	t.Skip("skipping TestSerializeMap")
+
+	m := map[string]int{"apple": 150, "banana": 300, "lemon": 300}
+	//when using map, result is not stable.
+	//TODO:convert map data to something others type.
+	result, err := ToGOB64(m)
+	if err != nil {
+		t.Errorf("TestSerializeMap error: %s", err)
+	}
+	if result != "Dv+DBAEC/4QAAQwBBAAAIP+EAAMFYXBwbGX+ASwGYmFuYW5h/gJYBWxlbW9u/gJY" {
+		//if result != "Dv+DBAEC/4QAAQwBBAAAIP+EAAMGYmFuYW5h/gJYBWxlbW9u/gJYBWFwcGxl/gEs" {
+		t.Errorf("TestSerializeMap result: %#v", result)
+	}
+}
+
+//interface x slice
+func TestSerializeInterfaces(t *testing.T) {
+	t.Skip("skipping TestSerializeInterfaces")
+
+	inf := []interface{}{1, "abcde", true}
+	result, err := ToGOB64(inf)
+	if err != nil {
+		t.Errorf("TestSerializeInterfaces error: %s", err)
+	}
+	if result != "DP+BAgEC/4IAARAAACX/ggADA2ludAQCAAIGc3RyaW5nDAcABWFiY2RlBGJvb2wCAgAB" {
+		t.Errorf("TestSerializeInterfaces result: %+v", result)
+	}
+}
+
+func TestDeSerializeInterfaces(t *testing.T) {
+	t.Skip("skipping TestDeSerializeInterfaces")
+
+	inf := []interface{}{}
+	err := FromGOB64("DP+BAgEC/4IAARAAACX/ggADA2ludAQCAAIGc3RyaW5nDAcABWFiY2RlBGJvb2wCAgAB", &inf)
+	if err != nil {
+		t.Errorf("TestDeSerializeInterfaces error: %s", err)
+	}
+	if inf[0] != 1 || inf[1] != "abcde" || inf[2] != true {
+		t.Errorf("TestDeSerializeInterfaces result: %+v", inf)
+	}
+}
+
+// map[string]interface{} x slice
+func TestSerializeMapInterface(t *testing.T) {
+	t.Skip("skipping TestSerializeMapInterface")
+	//if *benchFlg == 1 {
+	//	t.Skip("skipping TestSerializeMapInterface")
+	//}
+
+	//[]map[string]interface{}
+	args := make([]map[string]interface{}, 3)
+	args[0] = map[string]interface{}{"field1": 10, "field2": "somethings", "field3": true}
+	args[1] = map[string]interface{}{"field1": 15, "field2": "testdata", "field3": false}
+	args[2] = map[string]interface{}{"field1": 30, "field2": "vvvvvvvv", "field3": true}
+	result, err := ToGOB64(args)
+	if err != nil {
+		t.Errorf("TestSerializeMapInterface error: %s", err)
+	}
+	if result != "Df+FAgEC/4YAAf+EAAAO/4MEAQL/hAABDAEQAAD/tP+GAAMDBmZpZWxkMQNpbnQEAgAUBmZpZWxkMgZzdHJpbmcMDAAKc29tZXRoaW5ncwZmaWVsZDMEYm9vbAICAAEDBmZpZWxkMQNpbnQEAgAeBmZpZWxkMgZzdHJpbmcMCgAIdGVzdGRhdGEGZmllbGQzBGJvb2wCAgAAAwZmaWVsZDEDaW50BAIAPAZmaWVsZDIGc3RyaW5nDAoACHZ2dnZ2dnZ2BmZpZWxkMwRib29sAgIAAQ==" &&
+		result != "Df+DAgEC/4QAAf+CAAAO/4EEAQL/ggABDAEQAAD/tP+EAAMDBmZpZWxkMQNpbnQEAgAUBmZpZWxkMgZzdHJpbmcMDAAKc29tZXRoaW5ncwZmaWVsZDMEYm9vbAICAAEDBmZpZWxkMQNpbnQEAgAeBmZpZWxkMgZzdHJpbmcMCgAIdGVzdGRhdGEGZmllbGQzBGJvb2wCAgAAAwZmaWVsZDEDaW50BAIAPAZmaWVsZDIGc3RyaW5nDAoACHZ2dnZ2dnZ2BmZpZWxkMwRib29sAgIAAQ==" &&
+		result != "Df+DAgEC/4QAAf+CAAAO/4EEAQL/ggABDAEQAAD/tP+EAAMDBmZpZWxkMwRib29sAgIAAQZmaWVsZDEDaW50BAIAFAZmaWVsZDIGc3RyaW5nDAwACnNvbWV0aGluZ3MDBmZpZWxkMQNpbnQEAgAeBmZpZWxkMgZzdHJpbmcMCgAIdGVzdGRhdGEGZmllbGQzBGJvb2wCAgAAAwZmaWVsZDEDaW50BAIAPAZmaWVsZDIGc3RyaW5nDAoACHZ2dnZ2dnZ2BmZpZWxkMwRib29sAgIAAQ==" {
+		t.Errorf("TestSerializeMapInterface result: %#v", result)
+	}
+}
+
+func TestDeSerializeMapInterface(t *testing.T) {
+	t.Skip("skipping TestDeSerializeInterfaces")
+	//if *benchFlg == 1 {
+	//	t.Skip("skipping TestDeSerializeInterfaces")
+	//}
+
+	//TODO:check make is required or not.
+	//args := make([]map[string]interface{}, 3)
+	args := []map[string]interface{}{}
+	err := FromGOB64("Df+FAgEC/4YAAf+EAAAO/4MEAQL/hAABDAEQAAD/tP+GAAMDBmZpZWxkMQNpbnQEAgAUBmZpZWxkMgZzdHJpbmcMDAAKc29tZXRoaW5ncwZmaWVsZDMEYm9vbAICAAEDBmZpZWxkMQNpbnQEAgAeBmZpZWxkMgZzdHJpbmcMCgAIdGVzdGRhdGEGZmllbGQzBGJvb2wCAgAAAwZmaWVsZDEDaW50BAIAPAZmaWVsZDIGc3RyaW5nDAoACHZ2dnZ2dnZ2BmZpZWxkMwRib29sAgIAAQ==", &args)
+	if err != nil {
+		t.Errorf("TestDeSerializeMapInterface error: %s", err)
+	}
+	if args[0]["field1"] != 10 || args[0]["field2"] != "somethings" || args[0]["field3"] != true {
+		t.Errorf("TestDeSerializeInterfaces result: %+v", args)
+	}
+	if args[1]["field1"] != 15 || args[1]["field2"] != "testdata" || args[1]["field3"] != false {
+		t.Errorf("TestDeSerializeInterfaces result: %+v", args)
+	}
+}
+
+//-----------------------------------------------------------------------------
+//github.com/ugorji/go/codec
+//-----------------------------------------------------------------------------
+func TestEncodeStruct(t *testing.T) {
+	//t.Skip("skipping TestEncodeStruct")
+	//*
+	u := User{Id: 10, Name: "harry dayo"}
+	byteData := CodecEncode(u)
+
+	//if fmt.Sprintf("%x", byteData) != "82a249640aa44e616d65aa6861727279206461796f" {
+	if hex.EncodeToString(byteData) != "82a249640aa44e616d65aa6861727279206461796f" {
+		t.Errorf("TestEncodeStruct result: %x", byteData)
+	}
+}
+
+func TestDcodeStruct(t *testing.T) {
+	//t.Skip("skipping TestDcodeStruct")
+
+	u := User{}
+	_ = CodecDecode("82a249640aa44e616d65aa6861727279206461796f", &u)
+	if u.Id != 10 {
+		t.Errorf("TestDcodeStruct result: %+v", u)
+	}
+}
+
+//Iteration order is not guaranteed
+//https://blog.golang.org/go-maps-in-action
+func TestEncodeMap(t *testing.T) {
+	t.Skip("skipping TestEncodeMap")
+	//*
+	m := map[string]int{"apple": 150, "banana": 300, "lemon": 300}
+	byteData := CodecEncode(m)
+
+	if hex.EncodeToString(byteData) != "83a56170706c65cc96a662616e616e61cd012ca56c656d6f6ecd012c" {
+		t.Errorf("TestEncodeMap result: %x", byteData)
+	}
+}
+
+func TestDcodeMap(t *testing.T) {
+	t.Skip("skipping TestDcodeMap")
+
+	m := map[string]int{}
+	_ = CodecDecode("83a56170706c65cc96a662616e616e61cd012ca56c656d6f6ecd012c", &m)
+
+	if m["apple"] != 150 {
+		t.Errorf("TestDcodeMap result: %+v", m)
+	}
+}
+
+//-----------------------------------------------------------------------------
+//Bench
+//-----------------------------------------------------------------------------
+func BenchmarkSerializeStruct(b *testing.B) {
+	//b.Skip("skipping BenchmarkSerializeStruct")
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		u := User{Id: 10, Name: "harry dayo"}
+		ToGOB64(u)
+	}
+	b.StopTimer()
+	//4774 ns/op
+}
+
+func BenchmarkDeSerializeStruct(b *testing.B) {
+	//b.Skip("skipping BenchmarkDeSerializeStruct")
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		u := User{}
+		FromGOB64("Iv+BAwEBBFVzZXIB/4IAAQIBAklkAQQAAQROYW1lAQwAAAAR/4IBFAEKaGFycnkgZGF5bwA=", &u)
+	}
+	b.StopTimer()
+	//33301 ns/op
+}
+
+func BenchmarkSerializeMap(b *testing.B) {
+	//b.Skip("skipping BenchmarkSerializeMap")
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		m := map[string]int{"apple": 150, "banana": 300, "lemon": 300}
+		ToGOB64(m)
+	}
+	b.StopTimer()
+	//5021 ns/op
+}
+
+func BenchmarkDeSerializeMap(b *testing.B) {
+	//b.Skip("skipping BenchmarkDeSerializeMap")
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		m := map[string]int{}
+		FromGOB64("Dv+DBAEC/4QAAQwBBAAAIP+EAAMGYmFuYW5h/gJYBWxlbW9u/gJYBWFwcGxl/gEs", &m)
+	}
+	b.StopTimer()
+	//33445 ns/op
+}
+
+func BenchmarkEncodeStruct(b *testing.B) {
+	//b.Skip("skipping BenchmarkEncodeStruct")
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		u := User{Id: 10, Name: "harry dayo"}
+		hex.EncodeToString(CodecEncode(u))
+	}
+	b.StopTimer()
+	//2259 ns/op
+}
+
+func BenchmarkDcodeStruct(b *testing.B) {
+	//b.Skip("skipping BenchmarkDcodeStruct")
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		u := User{}
+		CodecDecode("82a249640aa44e616d65aa6861727279206461796f", &u)
+	}
+	b.StopTimer()
+	//2654 ns/op
+}
