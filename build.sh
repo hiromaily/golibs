@@ -88,6 +88,7 @@ if [ $TEST_MODE -eq 1 ]; then
     #go test -v defaultdata/defaultdata_test.go
     #go test -v draw/draw_test.go
     #go test -v exec/exec_test.go
+    go test -v -race files/files_test.go
     #go test -v flag/flag_test.go -iv 1 -sv abcde
     #go test -v -race goroutine/goroutine_test.go
     #go test -v heroku/heroku_test.go
@@ -96,11 +97,12 @@ if [ $TEST_MODE -eq 1 ]; then
     #go test -v mails/mails_test.go -fp ${TOMLPATH}
     #go test -v os/os_test.go
     #go test -v reflects/reflects_test.go
+    #go test -v regexp/regexp_test.go
     #go test -v runtimes/runtimes_test.go
     #go test -v serial/serial_test.go
     #go test -v times/times_test.go
     #go test -v tmpl/tmpl_test.go
-    go test -v validator/validator_test.go
+    #go test -v validator/validator_test.go
 fi
 
 ###########################################################
@@ -112,6 +114,7 @@ if [ $BENCH -eq 1 ]; then
     #cd cast/;go test -bench=. -benchmem -bc ${BENCH};cd ../;
 
     #cd flag/;go test -bench=. -benchmem -bc ${BENCH} -iv 1 -sv abcde;cd ../;
+    cd files/;go test -bench=. -benchmem;
 
     #cd join/;go test -bench . -benchmem -bc ${BENCH};cd ../;
     #cd join/;go test -bench=. -benchmem -bc ${BENCH};cd ../;
