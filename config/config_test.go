@@ -4,13 +4,9 @@ import (
 	"flag"
 	. "github.com/hiromaily/golibs/config"
 	lg "github.com/hiromaily/golibs/log"
+	o "github.com/hiromaily/golibs/os"
 	"os"
 	"testing"
-)
-
-var (
-	benchFlg = flag.Int("bc", 0, "Normal Test or Bench Test")
-	confFile = flag.String("fp", "", "Config File Path")
 )
 
 type User struct {
@@ -18,19 +14,17 @@ type User struct {
 	Name string
 }
 
-func setup() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[CONFIG_TEST]", "/var/log/go/test.log")
-	if *benchFlg == 0 {
-	}
-}
+var (
+	confFile      = flag.String("fp", "", "Config File Path")
+	benchFlg bool = false
+)
 
-func teardown() {
-	if *benchFlg == 0 {
-	}
-}
-
+//-----------------------------------------------------------------------------
+// Test Framework
+//-----------------------------------------------------------------------------
 // Initialize
-func TestMain(m *testing.M) {
+func init() {
+	//Here is [slower] than included file's init()
 	flag.Parse()
 
 	if *confFile == "" {
@@ -38,20 +32,31 @@ func TestMain(m *testing.M) {
 		return
 	}
 
-	//TODO: According to argument, it switch to user or not.
-	//TODO: For bench or not bench
+	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[CONFIG_TEST]", "/var/log/go/test.log")
+	if o.FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
+	}
+}
+
+func setup() {
+}
+
+func teardown() {
+}
+
+func TestMain(m *testing.M) {
 	setup()
 
 	code := m.Run()
 
 	teardown()
 
-	// 終了
 	os.Exit(code)
 }
 
 //-----------------------------------------------------------------------------
-// Compress
+// Test
 //-----------------------------------------------------------------------------
 func TestConfig(t *testing.T) {
 	//t.Skip("skipping TestEncodeStruct")

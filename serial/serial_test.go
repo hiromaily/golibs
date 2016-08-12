@@ -2,17 +2,11 @@ package serial_test
 
 import (
 	"encoding/hex"
-	"flag"
 	lg "github.com/hiromaily/golibs/log"
+	o "github.com/hiromaily/golibs/os"
 	. "github.com/hiromaily/golibs/serial"
 	"os"
 	"testing"
-)
-
-var (
-	benchFlg = flag.Int("bc", 0, "Normal Test or Bench Test")
-	//benchFlg2 = flag.String("test.bench", "", "text.bench")
-	// flag redefined: test.bench
 )
 
 type User struct {
@@ -20,36 +14,41 @@ type User struct {
 	Name string
 }
 
-func setup() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[SERIAL_TEST]", "/var/log/go/test.log")
-	if *benchFlg == 0 {
-	}
+var (
+	benchFlg bool = false
+)
 
-	//lg.Debugf("test.bench: %s", benchFlg2)
+//-----------------------------------------------------------------------------
+// Test Framework
+//-----------------------------------------------------------------------------
+// Initialize
+func init() {
+	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[SERIAL_TEST]", "/var/log/go/test.log")
+	if o.FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
+	}
+}
+
+func setup() {
 }
 
 func teardown() {
-	if *benchFlg == 0 {
-	}
 }
 
-// Initialize
 func TestMain(m *testing.M) {
-	flag.Parse()
-
-	//TODO: According to argument, it switch to user or not.
-	//TODO: For bench or not bench
 	setup()
 
 	code := m.Run()
-	//ok := testing.RunTests()
 
 	teardown()
 
-	// 終了
 	os.Exit(code)
 }
 
+//-----------------------------------------------------------------------------
+// Test
+//-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 // Gob
 //-----------------------------------------------------------------------------
@@ -253,7 +252,7 @@ func TestDcodeMap(t *testing.T) {
 }
 
 //-----------------------------------------------------------------------------
-//Bench
+// Bench
 //-----------------------------------------------------------------------------
 func BenchmarkSerializeStruct(b *testing.B) {
 	//b.Skip("skipping BenchmarkSerializeStruct")

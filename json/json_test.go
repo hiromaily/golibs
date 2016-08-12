@@ -6,17 +6,11 @@ import (
 	"flag"
 	//. "github.com/hiromaily/golibs/json"
 	lg "github.com/hiromaily/golibs/log"
+	o "github.com/hiromaily/golibs/os"
 	"io/ioutil"
 	"os"
 	"testing"
 )
-
-var (
-	benchFlg = flag.Int("bc", 0, "Normal Test or Bench Test")
-	jsonFile = flag.String("fp", "", "Json File Path")
-)
-
-var fileData []byte
 
 //https://scene-si.org/2016/06/13/advanced-go-tips-and-tricks/
 //Nested structures when parsing JSON data
@@ -29,17 +23,6 @@ type Person struct {
 	} `json:"address"`
 }
 
-var jsonData string = `
-{
-    "id": 1,
-    "name": "Tit Petric",
-    "address": {
-        "city": "Ljubljana",
-        "country": "Slovenia"
-    }
-}
-`
-
 type TeacherInfo struct {
 	Id      int    `json:"id"`
 	Name    string `json:"name"`
@@ -51,6 +34,69 @@ type SiteInfo struct {
 	Teachers []TeacherInfo `json:"teachers"`
 }
 
+var (
+	jsonFile      = flag.String("fp", "", "Json File Path")
+	benchFlg bool = false
+	fileData []byte
+)
+
+var jsonData string = `
+{
+    "id": 1,
+    "name": "Tit Petric",
+    "address": {
+        "city": "Ljubljana",
+        "country": "Slovenia"
+    }
+}
+`
+
+//-----------------------------------------------------------------------------
+// Test Framework
+//-----------------------------------------------------------------------------
+// Initialize
+func init() {
+	flag.Parse()
+
+	if *jsonFile == "" {
+		os.Exit(1)
+		return
+	}
+
+	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[JSON_TEST]", "/var/log/go/test.log")
+	if o.FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
+	}
+}
+
+func setup() {
+	var err error
+	fileData, err = LoadJsonFile(*jsonFile)
+	if err != nil {
+		os.Exit(1)
+		return
+	}
+}
+
+func teardown() {
+	if *benchFlg == 0 {
+	}
+}
+
+func TestMain(m *testing.M) {
+	setup()
+
+	code := m.Run()
+
+	teardown()
+
+	os.Exit(code)
+}
+
+//-----------------------------------------------------------------------------
+// functions
+//-----------------------------------------------------------------------------
 func LoadJsonFile(filePath string) ([]byte, error) {
 	// Loading jsonfile
 	if filePath == "" {
@@ -65,47 +111,8 @@ func LoadJsonFile(filePath string) ([]byte, error) {
 	return file, nil
 }
 
-func setup() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[JSON_TEST]", "/var/log/go/test.log")
-	if *benchFlg == 0 {
-	}
-
-	var err error
-	fileData, err = LoadJsonFile(*jsonFile)
-	if err != nil {
-		os.Exit(1)
-		return
-	}
-}
-
-func teardown() {
-	if *benchFlg == 0 {
-	}
-}
-
-// Initialize
-func TestMain(m *testing.M) {
-	flag.Parse()
-
-	if *jsonFile == "" {
-		os.Exit(1)
-		return
-	}
-
-	//TODO: According to argument, it switch to user or not.
-	//TODO: For bench or not bench
-	setup()
-
-	code := m.Run()
-
-	teardown()
-
-	// 終了
-	os.Exit(code)
-}
-
 //-----------------------------------------------------------------------------
-// Json
+// Test
 //-----------------------------------------------------------------------------
 func TestJsonAsStruct(t *testing.T) {
 	funcName := "TestJsonAsStruct"

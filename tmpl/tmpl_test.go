@@ -1,16 +1,12 @@
 package tmpl_test
 
 import (
-	"flag"
 	//. "github.com/hiromaily/golibs/tmpl"
 	lg "github.com/hiromaily/golibs/log"
+	o "github.com/hiromaily/golibs/os"
 	"os"
 	"testing"
 	tt "text/template"
-)
-
-var (
-	benchFlg = flag.Int("bc", 0, "Normal Test or Bench Test")
 )
 
 type TeachrInfo struct {
@@ -23,6 +19,15 @@ type SiteInfo struct {
 	Url      string
 	Teachers []TeachrInfo
 }
+
+type Site struct {
+	Name  string
+	Pages []int
+}
+
+var (
+	benchFlg bool = false
+)
 
 var tmplTeachers string = `
 	//1. just dot
@@ -91,40 +96,49 @@ var tmplTeachers4 string = `
 	-----------------------------------
 `
 
-func plus10(num int) int {
-	return num + 10
+var tmplSite string = `
+	{{range .Pages}}
+		<li><a href="{{.}}">{{.}}</a></li>
+	{{end}}
+`
+
+//-----------------------------------------------------------------------------
+// Test Framework
+//-----------------------------------------------------------------------------
+// Initialize
+func init() {
+	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[TMPL_TEST]", "/var/log/go/test.log")
+	if o.FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
+	}
 }
 
 func setup() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[TMPL_TEST]", "/var/log/go/test.log")
-	if *benchFlg == 0 {
-	}
 }
 
 func teardown() {
-	if *benchFlg == 0 {
-	}
 }
 
-// Initialize
 func TestMain(m *testing.M) {
-	flag.Parse()
-
-	//TODO: According to argument, it switch to user or not.
-	//TODO: For bench or not bench
 	setup()
 
 	code := m.Run()
-	//ok := testing.RunTests()
 
 	teardown()
 
-	// 終了
 	os.Exit(code)
 }
 
 //-----------------------------------------------------------------------------
-// Text
+// functions
+//-----------------------------------------------------------------------------
+func plus10(num int) int {
+	return num + 10
+}
+
+//-----------------------------------------------------------------------------
+// Test
 //-----------------------------------------------------------------------------
 func TestTextTemplate(t *testing.T) {
 	funcName := "TestTextTemplate"

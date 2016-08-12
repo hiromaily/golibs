@@ -23,3 +23,11 @@ func IsTmplFile(target string) bool {
 func IsExtFile(target, ext string) bool {
 	return CheckRegexp(`^.*\.`+ext+`$`, target)
 }
+
+func IsHeaderURL(target string) bool {
+	return CheckRegexp(`^http(s)?:\/\/`, target)
+}
+
+func IsBenchTest(target string) bool {
+	return CheckRegexp(`^-test.bench`, target)
+}

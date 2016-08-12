@@ -1,6 +1,5 @@
 package files
 
-import ()
 import (
 	reg "github.com/hiromaily/golibs/regexp"
 	"io/ioutil"

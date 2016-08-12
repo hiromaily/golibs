@@ -1,9 +1,9 @@
 package validator_test
 
 import (
-	"flag"
 	"fmt"
 	lg "github.com/hiromaily/golibs/log"
+	o "github.com/hiromaily/golibs/os"
 	//r "github.com/hiromaily/golibs/runtimes"
 	. "github.com/hiromaily/golibs/validator"
 	"os"
@@ -12,8 +12,15 @@ import (
 	"testing"
 )
 
+type LoginRequest struct {
+	Email string `valid:"nonempty,email,min=5,max=40" field:"email" dispName:"E-Mail"`
+	Pass  string `valid:"nonempty,min=8,max=16" field:"pass" dispName:"Password"`
+	Code  string `valid:"nonempty,number" field:"code" dispName:"Code"`
+	Alpha string `valid:"alphabet" field:"alpha" dispName:"Alpha"`
+}
+
 var (
-	benchFlg = flag.Int("bc", 0, "Normal Test or Bench Test")
+	benchFlg bool = false
 )
 
 var ErrFmt = map[string]string{
@@ -23,13 +30,6 @@ var ErrFmt = map[string]string{
 	"number":   "Only number is allowd on %s",
 	"min":      "At least %s of characters is required on %s",
 	"max":      "At a maximum %s of characters is allowed on %s",
-}
-
-type LoginRequest struct {
-	Email string `valid:"nonempty,email,min=5,max=40" field:"email" dispName:"E-Mail"`
-	Pass  string `valid:"nonempty,min=8,max=16" field:"pass" dispName:"Password"`
-	Code  string `valid:"nonempty,number" field:"code" dispName:"Code"`
-	Alpha string `valid:"alphabet" field:"alpha" dispName:"Alpha"`
 }
 
 var validTests = []struct {
@@ -46,6 +46,37 @@ var validTests = []struct {
 		[]string{"Only number is allowd on Code", "At a maximum 16 of characters is allowed on Password"}},
 }
 
+//-----------------------------------------------------------------------------
+// Test Framework
+//-----------------------------------------------------------------------------
+// Initialize
+func init() {
+	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[FLAG_TEST]", "/var/log/go/test.log")
+	if o.FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
+	}
+}
+
+func setup() {
+}
+
+func teardown() {
+}
+
+func TestMain(m *testing.M) {
+	setup()
+
+	code := m.Run()
+
+	teardown()
+
+	os.Exit(code)
+}
+
+//-----------------------------------------------------------------------------
+// functions
+//-----------------------------------------------------------------------------
 func sliceMatching(s1 []string, s2 []string) bool {
 	if len(s1) != len(s2) {
 		return false
@@ -64,35 +95,23 @@ func sliceMatching(s1 []string, s2 []string) bool {
 	return bRet
 }
 
-func setup() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[FLAG_TEST]", "/var/log/go/test.log")
-	if *benchFlg == 0 {
+func checkStruct(data *LoginRequest) {
+
+	val := reflect.ValueOf(data).Elem()
+
+	for i := 0; i < val.NumField(); i++ {
+		valueField := val.Field(i)
+		typeField := val.Type().Field(i)
+		tag := typeField.Tag
+
+		fmt.Printf("Field Name: %s,\t Field Value: %v,\t Tag Value: %s\n",
+			typeField.Name, valueField.Interface(), tag.Get("valid"))
 	}
-}
-
-func teardown() {
-	if *benchFlg == 0 {
-	}
-}
-
-// Initialize
-func TestMain(m *testing.M) {
-	flag.Parse()
-
-	//TODO: According to argument, it switch to user or not.
-	//TODO: For bench or not bench
-	setup()
-
-	code := m.Run()
-
-	teardown()
-
-	// 終了
-	os.Exit(code)
+	fmt.Println("--------------------------")
 }
 
 //-----------------------------------------------------------------------------
-// Validation
+// Test
 //-----------------------------------------------------------------------------
 func TestCheckValidation(t *testing.T) {
 	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
@@ -110,7 +129,7 @@ func TestCheckValidation(t *testing.T) {
 		t.Errorf("TestCheckValidation[01] error: %#v", mRet)
 	}
 
-	msgs := ConvertErrorMsg(mRet, ErrFmt)
+	msgs := ConvertErrorMsgs(mRet, ErrFmt)
 	//search message
 	bRet := false
 	for _, v := range msgs {
@@ -149,7 +168,7 @@ func TestCheckValidationOnTable(t *testing.T) {
 			t.Errorf("TestCheckValidation[01](index:%d) error: %#v", i, mRet)
 		}
 
-		msgs := ConvertErrorMsg(mRet, ErrFmt)
+		msgs := ConvertErrorMsgs(mRet, ErrFmt)
 		//search message
 		//expected error message
 		if !sliceMatching(tt.errMsg, msgs) {
@@ -176,21 +195,5 @@ func TestCheckValidationEg(t *testing.T) {
 	//3: there is lack of field
 	data = &LoginRequest{Email: "abc", Pass: "pass", Code: "aa"}
 	checkStruct(data)
-
-}
-
-func checkStruct(data *LoginRequest) {
-
-	val := reflect.ValueOf(data).Elem()
-
-	for i := 0; i < val.NumField(); i++ {
-		valueField := val.Field(i)
-		typeField := val.Type().Field(i)
-		tag := typeField.Tag
-
-		fmt.Printf("Field Name: %s,\t Field Value: %v,\t Tag Value: %s\n",
-			typeField.Name, valueField.Interface(), tag.Get("valid"))
-	}
-	fmt.Println("--------------------------")
 
 }

@@ -1,18 +1,14 @@
 package goroutine_test
 
 import (
-	"flag"
 	"fmt"
 	. "github.com/hiromaily/golibs/goroutine"
 	lg "github.com/hiromaily/golibs/log"
+	o "github.com/hiromaily/golibs/os"
 	u "github.com/hiromaily/golibs/utils"
 	"os"
 	"sync"
 	"testing"
-)
-
-var (
-	benchFlg = flag.Int("bc", 0, "Normal Test or Bench Test")
 )
 
 type User struct {
@@ -20,33 +16,41 @@ type User struct {
 	Name string
 }
 
-func setup() {
+var (
+	benchFlg bool = false
+)
+
+//-----------------------------------------------------------------------------
+// Test Framework
+//-----------------------------------------------------------------------------
+// Initialize
+func init() {
 	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[GOROUTINE_TEST]", "/var/log/go/test.log")
-	if *benchFlg == 0 {
+	if o.FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
 	}
+}
+
+func setup() {
 }
 
 func teardown() {
-	if *benchFlg == 0 {
-	}
 }
 
-// Initialize
 func TestMain(m *testing.M) {
-	flag.Parse()
-
-	//TODO: According to argument, it switch to user or not.
-	//TODO: For bench or not bench
 	setup()
 
 	code := m.Run()
 
 	teardown()
 
-	// 終了
 	os.Exit(code)
 }
 
+//-----------------------------------------------------------------------------
+// functions
+//-----------------------------------------------------------------------------
 func something(idx int) {
 	fmt.Println(idx)
 }
@@ -61,7 +65,7 @@ func something2(idx int, data interface{}) {
 }
 
 //-----------------------------------------------------------------------------
-// Semaphore
+// Test
 //-----------------------------------------------------------------------------
 func TestSemaphore1(t *testing.T) {
 	//t.Skip("skipping TestSemaphore1")

@@ -1,52 +1,13 @@
 package reflects_test
 
 import (
-	"flag"
 	lg "github.com/hiromaily/golibs/log"
+	o "github.com/hiromaily/golibs/os"
 	. "github.com/hiromaily/golibs/reflects"
 	"os"
 	"testing"
 	"time"
 )
-
-var (
-	benchFlg = flag.Int("bc", 0, "Normal Test or Bench Test")
-)
-
-func setup() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[Reflects_TEST]", "/var/log/go/test.log")
-	if *benchFlg == 0 {
-	}
-}
-
-func teardown() {
-	if *benchFlg == 0 {
-	}
-}
-
-// Initialize
-func TestMain(m *testing.M) {
-	flag.Parse()
-
-	//TODO: According to argument, it switch to user or not.
-	//TODO: For bench or not bench
-	setup()
-
-	code := m.Run()
-
-	teardown()
-
-	// 終了
-	os.Exit(code)
-}
-
-var dInt int = 10
-var dInt64 int64 = 99999
-var dStr string = "testdata"
-var dBool bool = false
-var dSlice []int = []int{1, 2, 3, 4, 5}
-var dTime time.Duration = 1 * time.Nanosecond
-var dMap = map[string]int{"apple": 150, "banana": 300, "lemon": 300}
 
 type TeacherInfo struct {
 	Id      int    `json:"id"`
@@ -59,12 +20,52 @@ type SiteInfo struct {
 	Teachers []TeacherInfo `json:"teachers"`
 }
 
-var siteInfo SiteInfo = SiteInfo{Url: "http://google.com",
-	Teachers: []TeacherInfo{{Id: 123, Name: "Harry", Country: "Japan"}, {Id: 456, Name: "Taro", Country: "America"}}}
-var tInfo []TeacherInfo = []TeacherInfo{{Id: 123, Name: "Harry", Country: "Japan"}, {Id: 456, Name: "Taro", Country: "America"}}
+var (
+	benchFlg bool = false
+	//test data
+	dInt   int           = 10
+	dInt64 int64         = 99999
+	dStr   string        = "testdata"
+	dBool  bool          = false
+	dSlice []int         = []int{1, 2, 3, 4, 5}
+	dTime  time.Duration = 1 * time.Nanosecond
+	dMap                 = map[string]int{"apple": 150, "banana": 300, "lemon": 300}
+
+	siteInfo SiteInfo = SiteInfo{Url: "http://google.com",
+		Teachers: []TeacherInfo{{Id: 123, Name: "Harry", Country: "Japan"}, {Id: 456, Name: "Taro", Country: "America"}}}
+	tInfo []TeacherInfo = []TeacherInfo{{Id: 123, Name: "Harry", Country: "Japan"}, {Id: 456, Name: "Taro", Country: "America"}}
+)
 
 //-----------------------------------------------------------------------------
-// Reflects
+// Test Framework
+//-----------------------------------------------------------------------------
+// Initialize
+func init() {
+	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[Reflects_TEST]", "/var/log/go/test.log")
+	if o.FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
+	}
+}
+
+func setup() {
+}
+
+func teardown() {
+}
+
+func TestMain(m *testing.M) {
+	setup()
+
+	code := m.Run()
+
+	teardown()
+
+	os.Exit(code)
+}
+
+//-----------------------------------------------------------------------------
+// Test
 //-----------------------------------------------------------------------------
 func TestCheckReflect(t *testing.T) {
 	t.Skip("skipping TestCheckReflect")
@@ -191,7 +192,7 @@ func TestSetDataToStruct(t *testing.T) {
 }
 
 //-----------------------------------------------------------------------------
-//Benchmark
+// Benchmark
 //-----------------------------------------------------------------------------
 func BenchmarkReflects(b *testing.B) {
 	b.ResetTimer()

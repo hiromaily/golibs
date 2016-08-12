@@ -5,52 +5,54 @@ import (
 	"fmt"
 	. "github.com/hiromaily/golibs/flag"
 	lg "github.com/hiromaily/golibs/log"
+	o "github.com/hiromaily/golibs/os"
 	r "github.com/hiromaily/golibs/runtimes"
 	"os"
 	"testing"
 )
 
 var (
-	benchFlg = flag.Int("bc", 0, "Normal Test or Bench Test")
-)
-
-var usage = `Usage: %s [options...] <url>
+	benchFlg bool = false
+	usage         = `Usage: %s [options...] <url>
 
 Options:
   -iv  Number of something.
   -sv  String of something
        bra bra bra.
 `
+)
+
+//-----------------------------------------------------------------------------
+// Test Framework
+//-----------------------------------------------------------------------------
+// Initialize
+func init() {
+	//Here is [slower] than included file's init()
+	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[FLAG_TEST]", "/var/log/go/test.log")
+	if o.FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
+	}
+}
 
 func setup() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[FLAG_TEST]", "/var/log/go/test.log")
-	if *benchFlg == 0 {
-	}
 }
 
 func teardown() {
-	if *benchFlg == 0 {
-	}
 }
 
-// Initialize
 func TestMain(m *testing.M) {
-	flag.Parse()
-
-	//TODO: According to argument, it switch to user or not.
-	//TODO: For bench or not bench
 	setup()
 
 	code := m.Run()
 
 	teardown()
 
-	// 終了
 	os.Exit(code)
 }
 
 //-----------------------------------------------------------------------------
-// Flag
+// Test
 //-----------------------------------------------------------------------------
 func TestInitFlag(t *testing.T) {
 	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
@@ -88,7 +90,7 @@ func TestInitFlag2(t *testing.T) {
 }
 
 //-----------------------------------------------------------------------------
-//Bench
+// Bench
 //-----------------------------------------------------------------------------
 func BenchmarkFlag(b *testing.B) {
 	b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))

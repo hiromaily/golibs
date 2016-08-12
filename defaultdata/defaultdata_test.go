@@ -1,46 +1,48 @@
 package defaultdata_test
 
 import (
-	"flag"
 	. "github.com/hiromaily/golibs/defaultdata"
 	lg "github.com/hiromaily/golibs/log"
+	o "github.com/hiromaily/golibs/os"
 	"os"
 	"testing"
 )
 
 var (
-	benchFlg = flag.Int("bc", 0, "Normal Test or Bench Test")
+	benchFlg bool = false
 )
 
-func setup() {
+//-----------------------------------------------------------------------------
+// Test Framework
+//-----------------------------------------------------------------------------
+// Initialize
+func init() {
+	//Here is [slower] than included file's init()
 	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[DEFAULTDATA_TEST]", "/var/log/go/test.log")
-	if *benchFlg == 0 {
+	if o.FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
 	}
+}
+
+func setup() {
 }
 
 func teardown() {
-	if *benchFlg == 0 {
-	}
 }
 
-// Initialize
 func TestMain(m *testing.M) {
-	flag.Parse()
-
-	//TODO: According to argument, it switch to user or not.
-	//TODO: For bench or not bench
 	setup()
 
 	code := m.Run()
 
 	teardown()
 
-	// 終了
 	os.Exit(code)
 }
 
 //-----------------------------------------------------------------------------
-// DefaultData
+// Test
 //-----------------------------------------------------------------------------
 func TestDefault(t *testing.T) {
 

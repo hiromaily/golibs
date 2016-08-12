@@ -1,18 +1,14 @@
 package mysql_test
 
 import (
-	"flag"
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/mysql"
 	"github.com/hiromaily/golibs/db/redis"
 	lg "github.com/hiromaily/golibs/log"
+	o "github.com/hiromaily/golibs/os"
 	u "github.com/hiromaily/golibs/utils"
 	"os"
 	"testing"
-)
-
-var (
-	benchFlg = flag.Int("bc", 0, "Normal Test or Bench Test")
 )
 
 type MySQL struct {
@@ -24,12 +20,56 @@ type MySQL2 struct {
 	*MS
 }
 
-var db MySQL
-var db2 MySQL2
+var (
+	benchFlg bool = false
+	db       MySQL
+	db2      MySQL2
+	//cahce
+	cacheData map[string][]map[string]interface{}
+)
 
-//cahce
-var cacheData map[string][]map[string]interface{}
+//-----------------------------------------------------------------------------
+// Test Framework
+//-----------------------------------------------------------------------------
+// Initialize
+func init() {
+	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[MySQL_TEST]", "/var/log/go/test.log")
+	if o.FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
+	}
+}
 
+func setup() {
+	if !benchFlg {
+		//New("localhost", "hiromaily", "root", "", 3306)
+		NewMySQL()
+
+		//Redis
+		redis.New("localhost", 6379, "")
+		//redis.GetRedisInstance().Connection(0)
+	}
+}
+
+func teardown() {
+	if !benchFlg {
+		GetMySQLInstance().Db.Close()
+	}
+}
+
+func TestMain(m *testing.M) {
+	setup()
+
+	code := m.Run()
+
+	teardown()
+
+	os.Exit(code)
+}
+
+//-----------------------------------------------------------------------------
+// functions
+//-----------------------------------------------------------------------------
 func NewMySQL() {
 	conf.SetTomlPath("../../settings.toml")
 	c := conf.GetConfInstance().MySQL
@@ -168,40 +208,9 @@ func (ms *MySQL) GetSimpleSQL2(id int) ([]map[string]interface{}, error) {
 
 }
 
-func setup() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[MySQL_TEST]", "/var/log/go/test.log")
-	if *benchFlg == 0 {
-		//New("localhost", "hiromaily", "root", "", 3306)
-		NewMySQL()
-
-		//Redis
-		redis.New("localhost", 6379)
-		//redis.GetRedisInstance().Connection(0)
-	}
-}
-
-func teardown() {
-	if *benchFlg == 0 {
-		GetMySQLInstance().Db.Close()
-	}
-}
-
-// Initialize
-func TestMain(m *testing.M) {
-	flag.Parse()
-
-	//TODO: According to argument, it switch to user or not.
-	//TODO: For bench or not bench
-	setup()
-
-	code := m.Run()
-
-	teardown()
-
-	// 終了
-	os.Exit(code)
-}
-
+//-----------------------------------------------------------------------------
+// Test
+//-----------------------------------------------------------------------------
 func TestGetUserList(t *testing.T) {
 	//t.Skip("skipping TestGetUserList")
 
@@ -307,7 +316,7 @@ func TestSelectSQLAllFieldIns(t *testing.T) {
 }
 
 //-----------------------------------------------------------------------------
-//Benchmark
+// Benchmark
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 // ConnectionPool VS Not use it

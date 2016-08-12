@@ -19,6 +19,7 @@ Options:
        bra bra bra.
 `
 
+// Set Usage
 func SetUsage(msg string) {
 	// -h option
 	flag.Usage = func() {
@@ -26,6 +27,7 @@ func SetUsage(msg string) {
 	}
 }
 
+// Show usage before exit
 func ShowUsageAndExit(msg string) {
 	if msg != "" {
 		fmt.Fprintf(os.Stderr, msg)
@@ -37,18 +39,12 @@ func ShowUsageAndExit(msg string) {
 	os.Exit(1)
 }
 
-func GetArgs(i int) string {
-	return os.Args[i]
-}
-
+//just example
 func GetIntVal() int {
 	return *intVal
 }
 
+//just example
 func GetStrVal() string {
 	return *strVal
-}
-
-func AddParam(val string) {
-	os.Args = append(os.Args, val)
 }

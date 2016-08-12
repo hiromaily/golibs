@@ -1,24 +1,61 @@
 package gorm_test
 
 import (
-	"flag"
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/gorm"
 	lg "github.com/hiromaily/golibs/log"
+	o "github.com/hiromaily/golibs/os"
 	"os"
 	"testing"
-)
-
-var (
-	benchFlg = flag.Int("bc", 0, "Normal Test or Bench Test")
 )
 
 type MySQL struct {
 	*GR
 }
 
-var db MySQL
+var (
+	benchFlg bool = false
+	db       MySQL
+)
 
+//-----------------------------------------------------------------------------
+// Test Framework
+//-----------------------------------------------------------------------------
+// Initialize
+func init() {
+	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[GORM_TEST]", "/var/log/go/test.log")
+	if o.FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
+	}
+}
+
+func setup() {
+	if !benchFlg {
+		//New("localhost", "hiromaily", "root", "", 3306)
+		NewMySQL()
+	}
+}
+
+func teardown() {
+	if !benchFlg {
+		GetMySQLInstance().Close()
+	}
+}
+
+func TestMain(m *testing.M) {
+	setup()
+
+	code := m.Run()
+
+	teardown()
+
+	os.Exit(code)
+}
+
+//-----------------------------------------------------------------------------
+// functions
+//-----------------------------------------------------------------------------
 func NewMySQL() {
 	conf.SetTomlPath("../../settings.toml")
 	c := conf.GetConfInstance().MySQL
@@ -36,36 +73,9 @@ func GetMySQLInstance() *MySQL {
 	return &db
 }
 
-func setup() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[GORM_TEST]", "/var/log/go/test.log")
-	if *benchFlg == 0 {
-		//New("localhost", "hiromaily", "root", "", 3306)
-		NewMySQL()
-	}
-}
-
-func teardown() {
-	if *benchFlg == 0 {
-		GetMySQLInstance().Close()
-	}
-}
-
-// Initialize
-func TestMain(m *testing.M) {
-	flag.Parse()
-
-	//TODO: According to argument, it switch to user or not.
-	//TODO: For bench or not bench
-	setup()
-
-	code := m.Run()
-
-	teardown()
-
-	// 終了
-	os.Exit(code)
-}
-
+//-----------------------------------------------------------------------------
+// Test
+//-----------------------------------------------------------------------------
 func TestSelectUser(t *testing.T) {
 
 	type User struct {

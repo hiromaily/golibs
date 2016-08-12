@@ -1,7 +1,6 @@
 package os_test
 
 import (
-	"flag"
 	lg "github.com/hiromaily/golibs/log"
 	. "github.com/hiromaily/golibs/os"
 	"os"
@@ -10,38 +9,39 @@ import (
 )
 
 var (
-	benchFlg = flag.Int("bc", 0, "Normal Test or Bench Test")
+	benchFlg bool = false
 )
 
-func setup() {
+//-----------------------------------------------------------------------------
+// Test Framework
+//-----------------------------------------------------------------------------
+// Initialize
+func init() {
 	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[OS_TEST]", "/var/log/go/test.log")
-	if *benchFlg == 0 {
+	if FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
 	}
+}
+
+func setup() {
 }
 
 func teardown() {
-	if *benchFlg == 0 {
-	}
 }
 
-// Initialize
 func TestMain(m *testing.M) {
-	flag.Parse()
-
-	//TODO: According to argument, it switch to user or not.
-	//TODO: For bench or not bench
 	setup()
 
 	code := m.Run()
 
 	teardown()
 
-	// 終了
 	os.Exit(code)
 }
 
 //-----------------------------------------------------------------------------
-// OS
+// Test
 //-----------------------------------------------------------------------------
 func TestOSHost(t *testing.T) {
 
@@ -65,4 +65,20 @@ func TestEnv(t *testing.T) {
 	os.Clearenv()
 	flg = os.Getenv("TEST_FLG")
 	t.Logf("After Clearenv(), TEST_FLG is %s\n", flg)
+}
+
+func TestGetArgs(t *testing.T) {
+	t.Log(GetArgs(1))
+}
+
+func TestAddParam(t *testing.T) {
+	key := "abcdef=100"
+	if FindParam(key) {
+		t.Errorf("[01:FindParam] Result is wrong.")
+	}
+
+	AddParam(key)
+	if !FindParam(key) {
+		t.Errorf("[02:FindParam or AddParam] Result is wrong.")
+	}
 }

@@ -7,6 +7,7 @@ import (
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/mongodb"
 	lg "github.com/hiromaily/golibs/log"
+	o "github.com/hiromaily/golibs/os"
 	r "github.com/hiromaily/golibs/runtimes"
 	"gopkg.in/mgo.v2/bson"
 	"os"
@@ -25,11 +26,6 @@ import (
 
 //Not yet
 //TODO:テーブル結合のロジックによるカバー
-
-var (
-	//benchFlg = flag.Int("bc", 0, "Normal Test or Bench Test")
-	jsonFile = flag.String("fp", "", "Json File Path")
-)
 
 type Company struct {
 	ID        bson.ObjectId `bson:"_id,omitempty"`
@@ -59,14 +55,62 @@ type User struct {
 	CreatedAt time.Time     `bson:"createdAt"`
 }
 
-//Database Name For test
-var testDbName string = "testdb01"
+var (
+	jsonFile      = flag.String("fp", "", "Json File Path")
+	benchFlg bool = false
+	//Database Name For test
+	testDbName string = "testdb01"
 
-//Collection Name For test
-var testColUser string = "user"
-var testColCompany string = "company"
-var testColTeacher string = "teacher"
+	//Collection Name For test
+	testColUser    string = "user"
+	testColCompany string = "company"
+	testColTeacher string = "teacher"
+)
 
+//-----------------------------------------------------------------------------
+// Test Framework
+//-----------------------------------------------------------------------------
+// Initialize
+func init() {
+	flag.Parse()
+
+	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[MongoDB_TEST]", "/var/log/go/test.log")
+	if o.FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
+	}
+}
+
+func setup() {
+	//New("localhost")
+	conf.SetTomlPath("../../settings.toml")
+	c := conf.GetConfInstance().Mongo
+
+	//NewMongo("localhost")
+	New(c.Host, c.Database)
+	if c.Database != "" {
+		//GetMongo().GetDB("hiromaily")
+		GetMongo().GetDB(c.Database)
+	}
+}
+
+func teardown() {
+	GetMongo().Close()
+}
+
+func TestMain(m *testing.M) {
+	setup()
+
+	code := m.Run()
+
+	teardown()
+
+	os.Exit(code)
+}
+
+//-----------------------------------------------------------------------------
+// functions
+//-----------------------------------------------------------------------------
 func CreateCompanyData() error {
 	mg := GetMongo()
 	mg.GetCol(testColCompany)
@@ -95,39 +139,9 @@ func CreateCompanyData() error {
 	return err
 }
 
-func setup() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[MongoDB_TEST]", "/var/log/go/test.log")
-
-	//New("loalhost")
-	conf.SetTomlPath("../../settings.toml")
-	c := conf.GetConfInstance().Mongo
-
-	//NewMongo("loalhost")
-	New(c.Host, c.Database)
-	if c.Database != "" {
-		//GetMongo().GetDB("hiromaily")
-		GetMongo().GetDB(c.Database)
-	}
-}
-
-func teardown() {
-	GetMongo().Close()
-}
-
-// Initialize
-func TestMain(m *testing.M) {
-	flag.Parse()
-
-	setup()
-
-	code := m.Run()
-
-	teardown()
-
-	// 終了
-	os.Exit(code)
-}
-
+//-----------------------------------------------------------------------------
+// Test
+//-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 // Preparation
 //-----------------------------------------------------------------------------

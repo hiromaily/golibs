@@ -3,32 +3,44 @@ package files_test
 import (
 	. "github.com/hiromaily/golibs/files"
 	lg "github.com/hiromaily/golibs/log"
+	o "github.com/hiromaily/golibs/os"
 	"os"
 	"testing"
 )
 
-func setup() {
+var benchFlg bool = false
+
+//-----------------------------------------------------------------------------
+// Test Framework
+//-----------------------------------------------------------------------------
+// Initialize
+func init() {
+	//Here is [slower] than included file's init()
 	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[Regexp_TEST]", "/var/log/go/test.log")
+	if o.FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
+	}
+}
+
+func setup() {
 }
 
 func teardown() {
 }
 
-// Initialize
 func TestMain(m *testing.M) {
-
 	setup()
 
 	code := m.Run()
 
 	teardown()
 
-	// 終了
 	os.Exit(code)
 }
 
 //-----------------------------------------------------------------------------
-// GetFileList
+// Test
 //-----------------------------------------------------------------------------
 func TestGetFileList(t *testing.T) {
 	basePath := "/Users/hy/work/go/src/github.com/hiromaily/go-gin-wrapper/templates/pages"

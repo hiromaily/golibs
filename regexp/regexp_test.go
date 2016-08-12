@@ -2,12 +2,17 @@ package regexp_test
 
 import (
 	lg "github.com/hiromaily/golibs/log"
+	o "github.com/hiromaily/golibs/os"
 	. "github.com/hiromaily/golibs/regexp"
 	"os"
 	"testing"
 )
 
 //http://ashitani.jp/golangtips/tips_regexp.html
+
+var (
+	benchFlg bool = false
+)
 
 var regExpData = []struct {
 	reg         string
@@ -53,30 +58,42 @@ var regExpData = []struct {
 	{`^.*\.go$|^.*\.php$|^.*\.js$|^.*\.py$|^.*\.txt$`, "abc.go", true},
 	{`^.*\.go$|^.*\.php$|^.*\.js$|^.*\.py$|^.*\.txt$`, "abc_xx.go", true},
 	{`^.*\.go$|^.*\.php$|^.*\.js$|^.*\.py$|^.*\.txt$`, "ooo_qq.php", true},
+	//
+	{`^http(s)?:\/\/`, "http://google.com", true},
+	{`^http(s)?:\/\/`, "https://google.com", true},
+	{`^-test.bench`, "-test.bench=.", true},
+}
+
+//-----------------------------------------------------------------------------
+// Test Framework
+//-----------------------------------------------------------------------------
+// Initialize
+func init() {
+	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[Regexp_TEST]", "/var/log/go/test.log")
+	if o.FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
+	}
 }
 
 func setup() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[Regexp_TEST]", "/var/log/go/test.log")
 }
 
 func teardown() {
 }
 
-// Initialize
 func TestMain(m *testing.M) {
-
 	setup()
 
 	code := m.Run()
 
 	teardown()
 
-	// 終了
 	os.Exit(code)
 }
 
 //-----------------------------------------------------------------------------
-// Regexp
+// Test
 //-----------------------------------------------------------------------------
 func TestRegexp(t *testing.T) {
 	for idx, tt := range regExpData {
@@ -111,5 +128,20 @@ func TestRegexp2(t *testing.T) {
 	}
 	if IsExtFile("index.thml", "tmpl") {
 		t.Errorf("[08]IsExtFile() doens't work yet")
+	}
+	if !IsHeaderURL("http://google.com/") {
+		t.Errorf("[09]IsHeaderURL() doens't work yet")
+	}
+	if !IsHeaderURL("https://google.com/") {
+		t.Errorf("[10]IsHeaderURL() doens't work yet")
+	}
+	if IsHeaderURL("httpps://google.com/") {
+		t.Errorf("[11]IsHeaderURL() doens't work yet")
+	}
+	if IsHeaderURL("https:://google.com/") {
+		t.Errorf("[12]IsHeaderURL() doens't work yet")
+	}
+	if !IsBenchTest("-test.bench=.") {
+		t.Errorf("[13]IsBenchTest doens't work yet")
 	}
 }

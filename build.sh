@@ -11,7 +11,7 @@ JSONPATH=${GOPATH}/src/github.com/hiromaily/booking-teacher/settings.json
 TOMLPATH=${GOPATH}/src/github.com/hiromaily/golibs/settings.toml
 BOLTPATH=${GOPATH}/src/github.com/hiromaily/golibs/boltdb
 
-TEST_MODE=1
+TEST_MODE=0
 BENCH=0
 COVERAGRE=0
 PROFILE=0
@@ -95,7 +95,7 @@ if [ $TEST_MODE -eq 1 ]; then
     #go test -v http/http_test.go
     #go test -v json/json_test.go -fp ${JSONPATH}
     #go test -v mails/mails_test.go -fp ${TOMLPATH}
-    #go test -v os/os_test.go
+    go test -v os/os_test.go
     #go test -v reflects/reflects_test.go
     #go test -v regexp/regexp_test.go
     #go test -v runtimes/runtimes_test.go
@@ -111,22 +111,23 @@ fi
 if [ $BENCH -eq 1 ]; then
     echo '============== benchmark =============='
 
-    #cd cast/;go test -bench=. -benchmem -bc ${BENCH};cd ../;
+    #cd cast/;go test -bench=. -benchmem;cd ../;
 
-    #cd flag/;go test -bench=. -benchmem -bc ${BENCH} -iv 1 -sv abcde;cd ../;
-    cd files/;go test -bench=. -benchmem;
+    cd flag/;go test -bench=. -benchmem -iv 1 -sv abcde;cd ../;
 
-    #cd join/;go test -bench . -benchmem -bc ${BENCH};cd ../;
-    #cd join/;go test -bench=. -benchmem -bc ${BENCH};cd ../;
+    #cd files/;go test -bench=. -benchmem;
 
-    #cd serial/;go test -bench . -benchmem -bc ${BENCH};cd ../;
-    #cd serial/;go test -bench=. -benchmem -bc ${BENCH};cd ../;
+    #cd join/;go test -bench . -benchmem;cd ../;
+    #cd join/;go test -bench=. -benchmem;cd ../;
 
-    #cd db/mysql/;go test -bench=. -benchmem -bc ${BENCH};cd ../;
+    #cd serial/;go test -bench . -benchmem;cd ../;
+    #cd serial/;go test -bench=. -benchmem;cd ../;
 
-    #cd db/redis/;go test -bench=. -benchmem -bc ${BENCH};cd ../;
+    #cd db/mysql/;go test -bench=. -benchmem;cd ../;
 
-    #cd db/boltdb/;go test -bench=. -benchmem -bc ${BENCH} -fp ${BOLTPATH};cd ../;
+    #cd db/redis/;go test -bench=. -benchmem;cd ../;
+
+    #cd db/boltdb/;go test -bench=. -benchmem -fp ${BOLTPATH};cd ../;
 fi
 
 ###########################################################

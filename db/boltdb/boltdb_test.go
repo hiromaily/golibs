@@ -4,29 +4,21 @@ import (
 	"flag"
 	. "github.com/hiromaily/golibs/db/boltdb"
 	lg "github.com/hiromaily/golibs/log"
+	o "github.com/hiromaily/golibs/os"
 	"os"
 	"testing"
 )
 
 var (
-	benchFlg = flag.Int("bc", 0, "Normal Test or Bench Test")
-	path     = flag.String("fp", "", "BoltDB File Path")
+	path          = flag.String("fp", "", "BoltDB File Path")
+	benchFlg bool = false
 )
 
-func setup() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[BoltDB_TEST]", "/var/log/go/test.log")
-	if *benchFlg == 0 {
-		New(*path)
-	}
-}
-
-func teardown() {
-	if *benchFlg == 0 {
-	}
-}
-
+//-----------------------------------------------------------------------------
+// Test Framework
+//-----------------------------------------------------------------------------
 // Initialize
-func TestMain(m *testing.M) {
+func init() {
 	flag.Parse()
 
 	if *path == "" {
@@ -34,16 +26,35 @@ func TestMain(m *testing.M) {
 		return
 	}
 
+	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[BoltDB_TEST]", "/var/log/go/test.log")
+	if o.FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
+	}
+}
+
+func setup() {
+	if !benchFlg {
+		New(*path)
+	}
+}
+
+func teardown() {
+}
+
+func TestMain(m *testing.M) {
 	setup()
 
 	code := m.Run()
 
 	teardown()
 
-	// 終了
 	os.Exit(code)
 }
 
+//-----------------------------------------------------------------------------
+// Test
+//-----------------------------------------------------------------------------
 func TestSetAndGetData01(t *testing.T) {
 
 	data := "testdayo"
@@ -65,7 +76,7 @@ func TestSetAndGetData01(t *testing.T) {
 }
 
 //-----------------------------------------------------------------------------
-//Benchmark
+// Benchmark
 //-----------------------------------------------------------------------------
 func BenchmarkSetData01(b *testing.B) {
 	New(*path)

@@ -5,29 +5,22 @@ import (
 	conf "github.com/hiromaily/golibs/config"
 	lg "github.com/hiromaily/golibs/log"
 	. "github.com/hiromaily/golibs/mails"
+	o "github.com/hiromaily/golibs/os"
 	tpl "github.com/hiromaily/golibs/tmpl"
 	"os"
 	"testing"
 )
 
 var (
-	benchFlg = flag.Int("bc", 0, "Normal Test or Bench Test")
-	confFile = flag.String("fp", "", "Config File Path")
+	confFile      = flag.String("fp", "", "Config File Path")
+	benchFlg bool = false
 )
 
-func setup() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[MAIL_TEST]", "/var/log/go/test.log")
-	if *benchFlg == 0 {
-	}
-}
-
-func teardown() {
-	if *benchFlg == 0 {
-	}
-}
-
+//-----------------------------------------------------------------------------
+// Test Framework
+//-----------------------------------------------------------------------------
 // Initialize
-func TestMain(m *testing.M) {
+func init() {
 	flag.Parse()
 
 	if *confFile == "" {
@@ -35,20 +28,31 @@ func TestMain(m *testing.M) {
 		return
 	}
 
-	//TODO: According to argument, it switch to user or not.
-	//TODO: For bench or not bench
+	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[MAIL_TEST]", "/var/log/go/test.log")
+	if o.FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
+	}
+}
+
+func setup() {
+}
+
+func teardown() {
+}
+
+func TestMain(m *testing.M) {
 	setup()
 
 	code := m.Run()
 
 	teardown()
 
-	// 終了
 	os.Exit(code)
 }
 
 //-----------------------------------------------------------------------------
-// Mail
+// Test
 //-----------------------------------------------------------------------------
 func TestMail(t *testing.T) {
 

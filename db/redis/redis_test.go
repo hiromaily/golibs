@@ -1,13 +1,12 @@
 package redis_test
 
 import (
-	"flag"
 	"fmt"
 	"github.com/garyburd/redigo/redis"
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/redis"
-	//hrk "github.com/hiromaily/golibs/heroku"
 	lg "github.com/hiromaily/golibs/log"
+	o "github.com/hiromaily/golibs/os"
 	r "github.com/hiromaily/golibs/runtimes"
 	"os"
 	"testing"
@@ -15,7 +14,7 @@ import (
 )
 
 var (
-	benchFlg = flag.Int("bc", 0, "Normal Test or Bench Test")
+	benchFlg bool = false
 )
 
 //http://qiita.com/nabewata07/items/10ab0008cb5e07b81a34
@@ -24,52 +23,51 @@ var (
 //TODO:Sorted sets type on Redis, it's easy to total
 //http://redis.shibu.jp/commandreference/sortedsets.html
 
-func setup() {
+//-----------------------------------------------------------------------------
+// Test Framework
+//-----------------------------------------------------------------------------
+// Initialize
+func init() {
 	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[Redis_TEST]", "/var/log/go/test.log")
+	if o.FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
+	}
+}
 
+func setup() {
 	//conf
 	conf.SetTomlPath("../../settings.toml")
 	c := conf.GetConfInstance().Redis
 
 	//New("localhost", 6379)
 	New(c.Host, c.Port, "")
-	if *benchFlg == 0 {
+	if !benchFlg {
 		GetRedisInstance().Connection(0)
 	}
-
-	//heroku version
-	//host, pass, port, err := hrk.GetRedisInfo("redis://h:pd6jckg1nh4gjhcbujkj41s7pee@ec2-54-243-217-112.compute-1.amazonaws.com:26109")
-	//if err != nil {
-	//	panic(err)
-	//}
-	//New(host, uint16(port), pass)
-	//if *benchFlg == 0 {
-	//	GetRedisInstance().Connection(0)
-	//}
 }
 
 func teardown() {
-	if *benchFlg == 0 {
+	if !benchFlg {
 		dropDatabase()
 		r := GetRedisInstance()
 		r.Close()
 	}
 }
 
-// Initialize
 func TestMain(m *testing.M) {
-	flag.Parse()
-
 	setup()
 
 	code := m.Run()
 
 	teardown()
 
-	// 終了
 	os.Exit(code)
 }
 
+//-----------------------------------------------------------------------------
+// functions
+//-----------------------------------------------------------------------------
 func dropDatabase() {
 	r := GetRedisInstance()
 	r.Flush(0)
@@ -79,15 +77,10 @@ func dropDatabase() {
 }
 
 //-----------------------------------------------------------------------------
+// Test
 //-----------------------------------------------------------------------------
-//Common
 //-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
-//EXPIRE(key, seconds)
-
-//TTL(key)
-
-//INFO
+//EXPIRE(key, seconds), TTL(key), INFO
 //-----------------------------------------------------------------------------
 func TestCommonUsingDo(t *testing.T) {
 	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
