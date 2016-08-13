@@ -34,7 +34,7 @@ func createSignature(data []byte, secret string) string {
 func debugHttpRequest(data []byte, err error) {
 	if err == nil {
 		//log.Debug(fmt.Sprintf("dump of http request\n%s", data))
-		lg.Debugf("dump of http request : %s", string(data))
+		lg.Debugf("dump of http request : %s", data)
 	} else {
 		//log.Fatal(fmt.Sprintf("%v", err))
 		lg.Fatal(err)
@@ -83,7 +83,7 @@ func createSendData() url.Values {
 }
 
 // handling response
-func handleResponse(resp *http.Response) string {
+func HandleResponse(resp *http.Response) string {
 	//resp.StatusCode
 	//resp.Header
 
@@ -138,7 +138,7 @@ func PostRequest(reqUrl string, bytesMessage []byte) (int, string, error) {
 	}
 
 	//handle response
-	return resp.StatusCode, handleResponse(resp), nil
+	return resp.StatusCode, HandleResponse(resp), nil
 }
 
 // Http Request(just sample code)
@@ -172,7 +172,7 @@ func GetRequestWithData(reqUrl string) (int, string, error) {
 	}
 
 	//handle response
-	return resp.StatusCode, handleResponse(resp), nil
+	return resp.StatusCode, HandleResponse(resp), nil
 }
 
 // Http Request(just sample code)

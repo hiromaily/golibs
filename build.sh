@@ -11,7 +11,7 @@ JSONPATH=${GOPATH}/src/github.com/hiromaily/booking-teacher/settings.json
 TOMLPATH=${GOPATH}/src/github.com/hiromaily/golibs/settings.toml
 BOLTPATH=${GOPATH}/src/github.com/hiromaily/golibs/boltdb
 
-TEST_MODE=0
+TEST_MODE=0  #0:off, 1:run all test, 2:test for specific one
 BENCH=0
 COVERAGRE=0
 PROFILE=0
@@ -72,37 +72,40 @@ fi
 ###########################################################
 if [ $TEST_MODE -eq 1 ]; then
     echo '============== test =============='
-    #go test -v cipher/encryption/encryption_test.go
-    #go test -v cipher/hash/hash_test.go
-    #go test -v compress/compress_test.go
-    #go test -v config/config_test.go -fp ${TOMLPATH}
+    go test -v cipher/encryption/encryption_test.go
+    go test -v cipher/hash/hash_test.go
+    go test -v compress/compress_test.go
+    go test -v config/config_test.go -fp ${TOMLPATH}
 
-    #go test -v db/boltdb/boltdb_test.go -fp ${BOLTPATH}
-    #go test -v db/cassandra/cassandra_test.go
-    #go test -v db/gorm/gorm_test.go
-    #go test -v db/gorp/gorp_test.go
-    #go test -v db/mongodb/mongodb_test.go -fp ${JSONPATH}
-    #go test -v db/mysql/mysql_test.go
-    #go test -v db/redis/redis_test.go
+    go test -v db/boltdb/boltdb_test.go -fp ${BOLTPATH}
+    go test -v db/cassandra/cassandra_test.go
+    go test -v db/gorm/gorm_test.go
+    go test -v db/gorp/gorp_test.go
+    go test -v db/mongodb/mongodb_test.go -fp ${JSONPATH}
+    go test -v db/mysql/mysql_test.go
+    go test -v db/redis/redis_test.go
 
-    #go test -v defaultdata/defaultdata_test.go
-    #go test -v draw/draw_test.go
-    #go test -v exec/exec_test.go
+    go test -v defaultdata/defaultdata_test.go
+    go test -v draw/draw_test.go
+    go test -v exec/exec_test.go
     go test -v -race files/files_test.go
-    #go test -v flag/flag_test.go -iv 1 -sv abcde
-    #go test -v -race goroutine/goroutine_test.go
-    #go test -v heroku/heroku_test.go
-    #go test -v http/http_test.go
-    #go test -v json/json_test.go -fp ${JSONPATH}
-    #go test -v mails/mails_test.go -fp ${TOMLPATH}
+    go test -v flag/flag_test.go -iv 1 -sv abcde
+    go test -v -race goroutine/goroutine_test.go
+    go test -v heroku/heroku_test.go
+    go test -v http/http_test.go
+    go test -v html/html_test.go
+    go test -v json/json_test.go -fp ${JSONPATH}
+    go test -v mails/mails_test.go -fp ${TOMLPATH}
     go test -v os/os_test.go
-    #go test -v reflects/reflects_test.go
-    #go test -v regexp/regexp_test.go
-    #go test -v runtimes/runtimes_test.go
-    #go test -v serial/serial_test.go
-    #go test -v times/times_test.go
-    #go test -v tmpl/tmpl_test.go
-    #go test -v validator/validator_test.go
+    go test -v reflects/reflects_test.go
+    go test -v regexp/regexp_test.go
+    go test -v runtimes/runtimes_test.go
+    go test -v serial/serial_test.go
+    go test -v times/times_test.go
+    go test -v tmpl/tmpl_test.go
+    go test -v validator/validator_test.go
+elif [ $TEST_MODE -eq 2 ]; then
+    go test -v html/html_test.go
 fi
 
 ###########################################################
