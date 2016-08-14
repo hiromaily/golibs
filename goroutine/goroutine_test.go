@@ -92,5 +92,5 @@ func TestSemaphore2(t *testing.T) {
 	}
 
 	//cannot use data (type []map[string]int) as type []interface {} in argument to goroutine.Semaphore2
-	Semaphore2(something2, concurrencyCnt, u.InterfaceSliceMap(data), wg)
+	Semaphore2(something2, concurrencyCnt, u.SliceMapToInterface(data), wg)
 }
