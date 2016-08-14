@@ -95,6 +95,7 @@ if [ $TEST_MODE -eq 1 ]; then
     go test -v http/http_test.go
     go test -v html/html_test.go
     go test -v json/json_test.go -fp ${JSONPATH}
+    go test -v log/log_test.go
     go test -v mails/mails_test.go -fp ${TOMLPATH}
     go test -v os/os_test.go
     go test -v reflects/reflects_test.go
@@ -106,7 +107,8 @@ if [ $TEST_MODE -eq 1 ]; then
     go test -v validator/validator_test.go
 elif [ $TEST_MODE -eq 2 ]; then
     #go test -v html/html_test.go
-    go test -v db/mysql/mysql_test.go
+    #go test -v db/mysql/mysql_test.go
+    go test -v log/log_test.go
 fi
 
 ###########################################################
