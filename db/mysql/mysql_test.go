@@ -1,11 +1,13 @@
 package mysql_test
 
 import (
+	"fmt"
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/mysql"
 	"github.com/hiromaily/golibs/db/redis"
 	lg "github.com/hiromaily/golibs/log"
 	o "github.com/hiromaily/golibs/os"
+	r "github.com/hiromaily/golibs/runtimes"
 	u "github.com/hiromaily/golibs/utils"
 	"os"
 	"testing"
@@ -108,11 +110,10 @@ func GetMySQL2Instance() *MySQL2 {
 }
 
 // Get User List
-func (ms *MySQL) GetUserList() ([]map[string]interface{}, error) {
+func (ms *MySQL) getUserList() ([]map[string]interface{}, error) {
 	sql := "SELECT user_id, first_name, last_name, create_datetime FROM t_users WHERE delete_flg=?"
-	data, _, err := ms.Db.SelectSQLAllField(sql, 0)
+	data, _, err := ms.Db.Select(sql, 0)
 	if err != nil {
-		//lg.Errorf("SQL may be wrong. : %s\n", err.Error())
 		return nil, err
 	} else if len(data) == 0 {
 		//lg.Info("No data.")
@@ -121,7 +122,8 @@ func (ms *MySQL) GetUserList() ([]map[string]interface{}, error) {
 	return data, nil
 }
 
-func (ms *MySQL) GetUserListOnCache() ([]map[string]interface{}, error) {
+// Get User List(Using Cache)
+func (ms *MySQL) getUserListOnCache() ([]map[string]interface{}, error) {
 	var cacheKey string = "sql001"
 
 	//check cache data
@@ -130,12 +132,10 @@ func (ms *MySQL) GetUserListOnCache() ([]map[string]interface{}, error) {
 	}
 
 	sql := "SELECT user_id, first_name, last_name, create_datetime FROM t_users WHERE delete_flg=?"
-	data, _, err := ms.Db.SelectSQLAllField(sql, 0)
+	data, _, err := ms.Db.Select(sql, 0)
 	if err != nil {
-		//lg.Errorf("SQL may be wrong. : %s\n", err.Error())
 		return nil, err
 	} else if len(data) == 0 {
-		//lg.Info("No data.")
 		return nil, u.Stoe("No data.")
 	}
 	//set chache
@@ -144,109 +144,122 @@ func (ms *MySQL) GetUserListOnCache() ([]map[string]interface{}, error) {
 	return data, nil
 }
 
-// Get User List(Using Cache)
-// TODO: not yet finished
-func (ms *MySQL) GetUserListUsingCache() ([]map[string]interface{}, error) {
-	//--------------------------------------
-	sql := "SELECT user_id, first_name, last_name, create_datetime FROM t_users WHERE delete_flg=?"
-	data, _, err := ms.Db.SelectSQLAllField(sql, 0)
+// For comparison of multiple simple queries and one complicated heavy query in performance
+func (ms *MySQL) getComplicatedSQL() ([]map[string]interface{}, error) {
+	sql := `SELECT user_id, first_name, last_name, create_datetime FROM t_users WHERE delete_flg=?`
+
+	data, _, err := ms.Db.Select(sql, 1)
 	if err != nil {
-		//lg.Errorf("SQL may be wrong. : %s\n", err.Error())
 		return nil, err
 	} else if len(data) == 0 {
-		//lg.Info("No data.")
 		return nil, u.Stoe("No data.")
 	}
 	return data, nil
 }
 
-//
-func (ms *MySQL) GetComplicatedSQL() ([]map[string]interface{}, error) {
-	sql := `SELECT user_id, first_name, last_name, create_datetime FROM t_users WHERE delete_flg=?
-`
+func (ms *MySQL) getSimpleSQL1() ([]map[string]interface{}, error) {
+	sql := `SELECT user_id, first_name, last_name, create_datetime FROM t_users WHERE delete_flg=?`
 
-	data, _, err := ms.Db.SelectSQLAllField(sql, 1)
+	data, _, err := ms.Db.Select(sql, 1)
 	if err != nil {
-		//lg.Errorf("SQL may be wrong. : %s\n", err.Error())
 		return nil, err
 	} else if len(data) == 0 {
-		//lg.Info("No data.")
 		return nil, u.Stoe("No data.")
 	}
 	return data, nil
 }
 
-func (ms *MySQL) GetSimpleSQL1() ([]map[string]interface{}, error) {
-	sql := `SELECT user_id, first_name, last_name, create_datetime FROM t_users WHERE delete_flg=?
-`
+func (ms *MySQL) getSimpleSQL2(id int) ([]map[string]interface{}, error) {
+	sql := `SELECT user_id, first_name, last_name, create_datetime FROM t_users WHERE delete_flg=?`
 
-	data, _, err := ms.Db.SelectSQLAllField(sql, 1)
+	data, _, err := ms.Db.Select(sql, 1)
 	if err != nil {
-		//lg.Errorf("SQL may be wrong. : %s\n", err.Error())
 		return nil, err
 	} else if len(data) == 0 {
-		//lg.Info("No data.")
 		return nil, u.Stoe("No data.")
 	}
 	return data, nil
-
-}
-
-func (ms *MySQL) GetSimpleSQL2(id int) ([]map[string]interface{}, error) {
-	sql := `SELECT user_id, first_name, last_name, create_datetime FROM t_users WHERE delete_flg=?
-`
-
-	data, _, err := ms.Db.SelectSQLAllField(sql, 1)
-	if err != nil {
-		//lg.Errorf("SQL may be wrong. : %s\n", err.Error())
-		return nil, err
-	} else if len(data) == 0 {
-		//lg.Info("No data.")
-		return nil, u.Stoe("No data.")
-	}
-	return data, nil
-
 }
 
 //-----------------------------------------------------------------------------
 // Test
 //-----------------------------------------------------------------------------
 func TestGetUserList(t *testing.T) {
-	//t.Skip("skipping TestGetUserList")
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
-	data, err := GetMySQLInstance().GetUserList()
+	data, err := GetMySQLInstance().getUserList()
 	if err != nil {
-		t.Fatalf("TestGetUserList: %s", err)
+		t.Fatalf("GetMySQLInstance().getUserList() error: %s", err)
 	}
 
-	if u.Itos(data[0]["first_name"]) != "taro" {
-		t.Errorf("TestGetUserList result: %#v", data[0])
+	if u.Itos(data[0]["first_name"]) != "harry" {
+		t.Errorf(" GetMySQLInstance().getUserList() result: %#v", data[0])
+	} else {
+		t.Logf("result: %+v", data[0])
 	}
-	t.Logf("data %+v", data[0])
-	//TODO:format
-	//create_datetime:2016-04-29 21:43:15 +0900 JST
 }
 
-func TestSelectSQLAllField(t *testing.T) {
-	//t.Skip("skipping TestSelectSQLAllField")
+func TestSelect(t *testing.T) {
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	sql := "SELECT user_id, first_name, last_name, create_datetime FROM t_users WHERE delete_flg=?"
-	//data, _, err := GetDBInstance().SelectSQLAllField(sql, 0)
-	data, _, err := GetMySQLInstance().Db.SelectSQLAllField(sql, 0)
-
+	data, _, err := GetMySQLInstance().Db.Select(sql, 0)
 	if err != nil {
-		t.Fatalf("SelectSQLAllField: %s", err)
+		t.Fatalf("GetMySQLInstance().Db.Select(sql, 0) error: %s", err)
 	}
 
-	if u.Itos(data[0]["first_name"]) != "taro" {
-		t.Errorf("TestSelectSQLAllField result: %#v", data[0])
+	if u.Itos(data[0]["first_name"]) != "harry" {
+		t.Errorf("GetMySQLInstance().Db.Select(sql, 0) result: %#v", data[0])
+	} else {
+		t.Logf("result: %+v", data[0])
 	}
-	t.Logf("data %+v", data[0])
 }
 
-//TODO:work in progress
-func TestSelectSQLAllFieldIns(t *testing.T) {
-	//t.Skip("skipping TestSelectSQLAllFieldIns")
+func TestSelectInsScanOne(t *testing.T) {
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+
+	type Person struct {
+		UserId    int    `db:"id"`
+		FirstName string `db:"first_name"`
+		LastName  string `db:"last_name"`
+		//DateTime  time.Time `db:"create_datetime"`
+		DateTime string `db:"create_datetime"`
+	}
+
+	db := GetMySQLInstance().Db
+
+	//1.Single data
+	var person Person
+	sql := "SELECT user_id, first_name, last_name, create_datetime FROM t_users WHERE delete_flg=?"
+	db.SelectIns(sql, "0")
+	if db.Err != nil {
+		t.Fatalf("[1]db.SelectIns(): %s", db.Err)
+	}
+
+	for db.ScanOne(&person) {
+		//t.Log(person)
+		//t.Logf("person.UserId: %d", person.UserId)
+		//t.Logf("person.FirstName: %s", person.FirstName)
+		//t.Logf("person.LastName: %s", person.LastName)
+		//t.Logf("person.DateTime: %s", person.DateTime)
+	}
+	if db.Err != nil {
+		t.Fatalf("[1]db.ScanOne(): %s", db.Err)
+	}
+
+	//When result is nothing -> nodata
+	var person2 Person
+	b := db.SelectIns(sql, "1").ScanOne(&person2)
+	if db.Err != nil {
+		t.Fatalf("[2]db.SelectIns(): %s", db.Err)
+	}
+	if b {
+		t.Error("[2]db.ScanOne(): return bool may be wrong.")
+	}
+}
+
+func TestSelectInsScan(t *testing.T) {
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	type Person struct {
 		UserId    int    `db:"id"`
@@ -259,60 +272,25 @@ func TestSelectSQLAllFieldIns(t *testing.T) {
 	//db := GetDBInstance()
 	db := GetMySQLInstance().Db
 
-	//single data
-	var person Person
+	//2. Get All Data
+	var persons []Person
 	sql := "SELECT user_id, first_name, last_name, create_datetime FROM t_users WHERE delete_flg=?"
-	db.SelectSQLAllFieldIns(sql, "0")
+	db.SelectIns(sql, 0).Scan(&persons)
+
 	if db.Err != nil {
-		t.Fatalf("TestSelectSQLAllFieldIns: %s", db.Err)
+		t.Errorf("[1]db.SelectIns(sql, 0).Scan(): %s", db.Err)
 	}
-	for {
-		//Next
-		db.ScanOne(&person)
-		if db.Err != nil {
-			t.Fatalf("TestSelectSQLAllFieldIns: %s", db.Err)
-		} else {
-			t.Log(person)
-			t.Logf("person.UserId: %d", person.UserId)
-			t.Logf("person.FirstName: %s", person.FirstName)
-			t.Logf("person.LastName: %s", person.LastName)
-			t.Logf("person.DateTime: %s", person.DateTime)
-		}
+
+	//When result is nothing -> len(xxx)==0
+	var persons2 []Person
+	b := db.SelectIns(sql, 1).Scan(&persons2)
+	if db.Err != nil {
+		t.Errorf("[2]db.SelectIns(sql, 1).Scan(): %s", db.Err)
 	}
-	/*
-		db.SelectSQLAllFieldIns(sql, "0").ScanOne(&person)
-
-		if db.Err != nil {
-			t.Fatalf("TestSelectSQLAllFieldIns: %s", db.Err)
-		} else {
-			t.Log(person)
-			t.Logf("person.UserId: %d", person.UserId)
-			t.Logf("person.FirstName: %s", person.FirstName)
-			t.Logf("person.LastName: %s", person.LastName)
-		}
-		//Next
-		db.ScanOne(&person)
-		if db.Err != nil {
-			t.Fatalf("TestSelectSQLAllFieldIns: %s", db.Err)
-		} else {
-			t.Log(person)
-			t.Logf("person.UserId: %d", person.UserId)
-			t.Logf("person.FirstName: %s", person.FirstName)
-			t.Logf("person.LastName: %s", person.LastName)
-		}
-	*/
-
-	//slice
-	/*
-		var persons []Person
-		sql = "SELECT user_id, first_name, last_name FROM t_users WHERE delete_flg=?"
-		db.SelectSQLAllFieldIns(sql, 0).Scan(&persons)
-
-		if db.Err != nil {
-			t.Fatalf("TestSelectSQLAllFieldIns: %s", db.Err)
-		}
-	*/
-
+	//if len(persons2) != 0 {
+	if b {
+		t.Errorf("[2]db.SelectIns(sql, 1).Scan(): number of result is %d", len(persons2))
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -322,7 +300,7 @@ func TestSelectSQLAllFieldIns(t *testing.T) {
 // ConnectionPool VS Not use it
 //-----------------------------------------------------------------------------
 func BenchmarkConnectionPool(b *testing.B) {
-	b.Skip("skipping BenchmarkConnectionPool")
+	b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	//BenchmarkConnectionPool-4
 	b.ResetTimer()
@@ -331,7 +309,7 @@ func BenchmarkConnectionPool(b *testing.B) {
 	GetMySQLInstance().Db.SetMaxOpenConns(10000)
 	for i := 0; i < b.N; i++ {
 		//
-		_, _ = GetMySQLInstance().GetUserList()
+		_, _ = GetMySQLInstance().getUserList()
 		//
 	}
 	GetMySQLInstance().Db.Close()
@@ -342,13 +320,13 @@ func BenchmarkConnectionPool(b *testing.B) {
 }
 
 func BenchmarkOpenClose(b *testing.B) {
-	b.Skip("skipping BenchmarkOpenClose")
+	b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		NewMySQL()
 		//performance for select query
-		_, _ = GetMySQLInstance().GetUserList()
+		_, _ = GetMySQLInstance().getUserList()
 		//
 		GetMySQLInstance().Db.Close()
 	}
@@ -361,13 +339,13 @@ func BenchmarkOpenClose(b *testing.B) {
 // ComplicatedSQL VS MultiSimpleSQL(Don't use it)
 //-----------------------------------------------------------------------------
 func BenchmarkComplicatedSQL(b *testing.B) {
-	b.Skip("skipping BenchmarkComplicatedSQL")
+	b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	b.ResetTimer()
 	NewMySQL()
 	for i := 0; i < b.N; i++ {
 		//
-		_, _ = GetMySQLInstance().GetComplicatedSQL()
+		_, _ = GetMySQLInstance().getComplicatedSQL()
 		//
 	}
 	GetMySQLInstance().Db.Close()
@@ -376,16 +354,16 @@ func BenchmarkComplicatedSQL(b *testing.B) {
 }
 
 func BenchmarkMultiSimpleSQL(b *testing.B) {
-	b.Skip("skipping BenchmarkMultiSimpleSQL")
+	b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	b.ResetTimer()
 	NewMySQL()
 	for i := 0; i < b.N; i++ {
 		//
-		_, _ = GetMySQLInstance().GetSimpleSQL1()
-		_, _ = GetMySQLInstance().GetSimpleSQL2(9)
-		_, _ = GetMySQLInstance().GetSimpleSQL2(13)
-		_, _ = GetMySQLInstance().GetSimpleSQL2(21)
+		_, _ = GetMySQLInstance().getSimpleSQL1()
+		_, _ = GetMySQLInstance().getSimpleSQL2(9)
+		_, _ = GetMySQLInstance().getSimpleSQL2(13)
+		_, _ = GetMySQLInstance().getSimpleSQL2(21)
 		//
 	}
 	GetMySQLInstance().Db.Close()
@@ -398,7 +376,7 @@ func BenchmarkMultiSimpleSQL(b *testing.B) {
 //-----------------------------------------------------------------------------
 //TODO:work in progress
 func BenchmarkSetStruct(b *testing.B) {
-	b.Skip("skipping BenchmarkSetStruct")
+	b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	type Person struct {
 		UserId    int    `db:"id"`
@@ -416,7 +394,7 @@ func BenchmarkSetStruct(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 		//
-		GetMySQLInstance().Db.SelectSQLAllFieldIns(sql, "0").ScanOne(&person)
+		GetMySQLInstance().Db.SelectIns(sql, "0").ScanOne(&person)
 		//db.SelectSQLAllFieldIns(sql, "0")
 		//
 	}
@@ -431,13 +409,13 @@ func BenchmarkSetStruct(b *testing.B) {
 //   Use for only heavy query
 //-----------------------------------------------------------------------------
 func BenchmarkCacheResponse(b *testing.B) {
-	b.Skip("skipping BenchmarkCacheResponse")
+	b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	b.ResetTimer()
 	NewMySQL()
 	for i := 0; i < b.N; i++ {
 		//
-		_, _ = GetMySQLInstance().GetUserListOnCache()
+		_, _ = GetMySQLInstance().getUserListOnCache()
 		//
 	}
 	GetMySQLInstance().Db.Close()
@@ -446,23 +424,3 @@ func BenchmarkCacheResponse(b *testing.B) {
 	//20000000	        87.1 ns/op (93.8 ns/op)
 	//ok  	github.com/hiromaily/golibs/db/mysql	1.885s
 }
-
-/*
-func BenchmarkCacheResponseToRedis(b *testing.B) {
-	b.ResetTimer()
-	NewMySQL()
-	redis.New("localhost", 6379)
-	//GetRedisInstance().Connection(0)
-
-	//1. exec sql
-	//2. save result using serialized query sentense as key
-	//3. check redis using that key
-	for i := 0; i < b.N; i++ {
-		//
-		_, _ = GetMySQLInstance().GetUserList()
-		//
-	}
-	GetMySQLInstance().Db.Close()
-	b.StopTimer()
-}
-*/

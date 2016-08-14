@@ -11,7 +11,7 @@ JSONPATH=${GOPATH}/src/github.com/hiromaily/booking-teacher/settings.json
 TOMLPATH=${GOPATH}/src/github.com/hiromaily/golibs/settings.toml
 BOLTPATH=${GOPATH}/src/github.com/hiromaily/golibs/boltdb
 
-TEST_MODE=0  #0:off, 1:run all test, 2:test for specific one
+TEST_MODE=2  #0:off, 1:run all test, 2:test for specific one
 BENCH=0
 COVERAGRE=0
 PROFILE=0
@@ -105,7 +105,8 @@ if [ $TEST_MODE -eq 1 ]; then
     go test -v tmpl/tmpl_test.go
     go test -v validator/validator_test.go
 elif [ $TEST_MODE -eq 2 ]; then
-    go test -v html/html_test.go
+    #go test -v html/html_test.go
+    go test -v db/mysql/mysql_test.go
 fi
 
 ###########################################################
