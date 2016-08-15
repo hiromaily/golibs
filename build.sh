@@ -108,7 +108,8 @@ if [ $TEST_MODE -eq 1 ]; then
 elif [ $TEST_MODE -eq 2 ]; then
     #go test -v html/html_test.go
     #go test -v db/mysql/mysql_test.go
-    go test -v log/log_test.go
+    #go test -v log/log_test.go
+    go test -v db/mongodb/mongodb_test.go -fp ${JSONPATH}
 fi
 
 ###########################################################

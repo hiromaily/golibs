@@ -1,8 +1,10 @@
 package config
 
 import (
+	"errors"
 	"fmt"
 	"github.com/BurntSushi/toml"
+	u "github.com/hiromaily/golibs/utils"
 	"io/ioutil"
 )
 
@@ -52,8 +54,11 @@ type RedisConfig struct {
 }
 
 type MongoConfig struct {
-	Host     string `toml:"host"`
-	Database string `toml:"database"`
+	Host   string `toml:"host"`
+	Port   uint16 `toml:"port"`
+	DbName string `toml:"dbname"`
+	User   string `toml:"user"`
+	Pass   string `toml:"pass"`
 }
 
 type MailConfig struct {
@@ -74,22 +79,76 @@ type MailContentConfig struct {
 	Tplfile string `toml:"tplfile"`
 }
 
+var checkTomlKeys [][]string = [][]string{
+	{"environment"},
+	{"aws", "access_key"},
+	{"aws", "secret_key"},
+	{"aws", "region"},
+	{"aws", "sqs", "endpoint"},
+	{"aws", "sqs", "queue_name"},
+	{"aws", "sqs", "deadque_name"},
+	{"aws", "sqs", "msgattr", "operation_type"},
+	{"aws", "sqs", "msgattr", "content_type"},
+	{"mysql", "host"},
+	{"mysql", "port"},
+	{"mysql", "dbname"},
+	{"mysql", "user"},
+	{"mysql", "pass"},
+	{"redis", "host"},
+	{"redis", "port"},
+	{"redis", "pass"},
+	{"mongodb", "host"},
+	{"mongodb", "port"},
+	{"mongodb", "dbname"},
+	{"mongodb", "user"},
+	{"mongodb", "pass"},
+	{"mail", "address"},
+	{"mail", "password"},
+	{"mail", "timeout"},
+	{"mail", "smtp", "server"},
+	{"mail", "smtp", "port"},
+	//{"mail", "content", "subject"},
+	//{"mail", "content", "tplfile"},
+}
+
 //check validation of config
 func validateConfig(conf *Config, md *toml.MetaData) error {
 	//for protection when debugging on non production environment
 	var errStrings []string
 
 	//Check added new items on toml
-	if !md.IsDefined("environment") {
-		errStrings = append(errStrings, "environment")
+	// environment
+	//if !md.IsDefined("environment") {
+	//	errStrings = append(errStrings, "environment")
+	//}
+
+	format := "[%s]"
+	inValid := false
+	for _, keys := range checkTomlKeys {
+		if !md.IsDefined(keys...) {
+			switch len(keys) {
+			case 1:
+				format = "[%s]"
+			case 2:
+				format = "[%s] %s"
+			case 3:
+				format = "[%s.%s] %s"
+			default:
+				//invalid check string
+				inValid = true
+				break
+			}
+			keysIfc := u.SliceStrToInterface(keys)
+			errStrings = append(errStrings, fmt.Sprintf(format, keysIfc...))
+		}
 	}
 
-	if !md.IsDefined("mysql", "user") {
-		errStrings = append(errStrings, "[mysql] user")
+	// Error
+	if inValid {
+		return errors.New("Error: Check Text has wrong number of parameter")
 	}
-
 	if len(errStrings) != 0 {
-		return fmt.Errorf("Error  There are lack of keys : %#v \n", errStrings)
+		return fmt.Errorf("Error: There are lacks of keys : %#v \n", errStrings)
 	}
 
 	return nil

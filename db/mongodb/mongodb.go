@@ -27,20 +27,27 @@ var mgInfo MongoInfo
 // Settings
 //-----------------------------------------------------------------------------
 // create session object
-func New(host, db string) {
+func New(host, db, user, pass string, port uint16) {
 	var err error
 	if mgInfo.Session == nil {
-		//mgInfo.session, _ = mgo.Dial("mongodb://localhost/test")
+		//[mongodb://][user:pass@]host1[:port1][,host2[:port2],...][/database][?options]
+		//mgInfo.session, _ = mgo.Dial("mongodb://user:pass@localhost:port/test")
+		mongoUrl := ""
 		if db == "" {
 			//session, err := mgo.Dial("localhost:40001")
-			mgInfo.Session, err = mgo.Dial(fmt.Sprintf("mongodb://%s", host))
+			mongoUrl = fmt.Sprintf("mongodb://%s:%d", host, port)
 		} else {
-			mgInfo.Session, err = mgo.Dial(fmt.Sprintf("mongodb://%s/%s", host, db))
+			if user != "" && pass != "" {
+				mongoUrl = fmt.Sprintf("mongodb://%s:%s@%s:%d/%s", user, pass, host, port, db)
+			} else {
+				mongoUrl = fmt.Sprintf("mongodb://%s:%d/%s", host, port, db)
+			}
 		}
+		mgInfo.Session, err = mgo.Dial(mongoUrl)
+
 		if err != nil {
 			panic(err)
 		}
-
 		//mgInfo.Session.SetMode(mgo.Monotonic, true)
 	}
 }

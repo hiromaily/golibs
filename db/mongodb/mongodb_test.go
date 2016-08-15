@@ -87,10 +87,11 @@ func setup() {
 	c := conf.GetConfInstance().Mongo
 
 	//NewMongo("localhost")
-	New(c.Host, c.Database)
-	if c.Database != "" {
+
+	New(c.Host, c.DbName, c.User, c.Pass, c.Port)
+	if c.DbName != "" {
 		//GetMongo().GetDB("hiromaily")
-		GetMongo().GetDB(c.Database)
+		GetMongo().GetDB(c.DbName)
 	}
 }
 
@@ -156,7 +157,7 @@ func TestCreateDatabase(t *testing.T) {
 }
 
 func TestCreateCollection(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 	mg := GetMongo()
 
 	err := mg.CreateCol(testColUser)
@@ -188,7 +189,7 @@ func TestSetExpireOnCollection(t *testing.T) {
 //-----------------------------------------------------------------------------
 // insert one record
 func TestInsertOne(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
