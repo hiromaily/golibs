@@ -5,13 +5,10 @@ import (
 	"flag"
 	. "github.com/hiromaily/golibs/http/boom"
 	lg "github.com/hiromaily/golibs/log"
+	o "github.com/hiromaily/golibs/os"
 	//u "github.com/hiromaily/golibs/utils"
 	"os"
 	"testing"
-)
-
-var (
-	benchFlg = flag.Int("bc", 0, "Normal Test or Bench Test")
 )
 
 type MessagesJson struct {
@@ -19,33 +16,49 @@ type MessagesJson struct {
 	Text        string `json:"text"`
 }
 
+var (
+	benchFlg bool = false
+)
+
+//-----------------------------------------------------------------------------
+// Test Framework
+//-----------------------------------------------------------------------------
+// Initialize
+func init() {
+	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[HTTP_TEST]", "/var/log/go/test.log")
+	if o.FindParam("-test.bench") {
+		lg.Debug("This is bench test.")
+		benchFlg = true
+	}
+}
+
 func setup() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[HTTP_TEST]", "/var/log/goweb/ginserver.log")
-	if *benchFlg == 0 {
+	if benchFlg {
 	}
 }
 
 func teardown() {
-	if *benchFlg == 0 {
+	if benchFlg {
 	}
 }
 
-// Initialize
 func TestMain(m *testing.M) {
-	flag.Parse()
-
-	//TODO: According to argument, it switch to user or not.
-	//TODO: For bench or not bench
 	setup()
 
 	code := m.Run()
 
 	teardown()
 
-	// 終了
 	os.Exit(code)
 }
 
+//-----------------------------------------------------------------------------
+// function
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+// Test
+//-----------------------------------------------------------------------------
 func TestExecBoom(t *testing.T) {
 	url := "https://www.google.co.jp/"
 

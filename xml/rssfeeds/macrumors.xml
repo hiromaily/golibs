@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2full.xsl"?>
+<?xml-stylesheet type="text/css" media="screen" href="http://feeds.macrumors.com/~d/styles/itemcontent.css"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" version="2.0">
+	<channel>
+		<title>MacRumors: Mac News and Rumors - All Stories</title>
+		<link>http://www.macrumors.com</link>
+		<description>Apple, iPhone, iPad, Mac News and Rumors</description>
+		<lastBuildDate>Mon, 15 Aug 2016 03:00:29 PDT</lastBuildDate>
+		<language>en</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+		<generator>http://www.macrumors.com</generator>
+		<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.macrumors.com/MacRumors-All" />
+		<feedburner:info xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" uri="macrumors-all" />
+		<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" />
+		<item>
+			<title>Tesla Rethinks 'Autopilot' Definition in China After Beijing Crash</title>
+			<link>http://www.macrumors.com/2016/08/15/tesla-autopilot-china-beijing-crash/</link>
+			<comments>http://forums.macrumors.com/threads/tesla-autopilot-china-beijing-crash.1988124</comments>
+			<pubDate>Mon, 15 Aug 2016 02:54:30 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/15/tesla-autopilot-china-beijing-crash/</guid>
+			<dc:creator>Tim Hardwick</dc:creator>
+			<category>Apple Car</category>
+			<category>Tesla</category>
+			<description>Tesla has removed the word "autopilot" from its China website after a driver in Beijing who crashed while the mode was active complained that the company had misled them about its capability (via &lt;em&gt;&lt;a href="http://www.reuters.com/article/us-tesla-china-crash-idUSKCN10Q0L4"&gt;Reuters&lt;/a&gt;&lt;/em&gt;).
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				The accident happened on a commuter highway when the car failed to avoid a vehicle parked on the left side and partially in the roadway, damaging both cars but causing no injuries.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2014/02/tesla_model_s.jpg" alt="tesla_model_s" width="800" height="450" class="aligncenter size-full wp-image-402411" /&gt;&lt;center&gt;&lt;em&gt;Tesla Model S all-electric five-door, luxury liftback (Image: &lt;a href="http://www.tesla.com"&gt;Tesla Motors&lt;/a&gt;)&lt;/em&gt;&lt;/center&gt;
+				&lt;br/&gt;
+				It is the first incident of its kind in China, but follows a fatal crash in Florida &lt;a href="http://www.macrumors.com/2016/07/12/tesla-google-scrutiny-self-driving-car-crashes/"&gt;earlier this year&lt;/a&gt; and highlights a lack of clarity surrounding how automated driving features work.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				References to autopilot and the term "zidong jiashi", which also translates as "self-driving", were taken off the company's web page for the Model S sedan by late Sunday, according to a comparison with an archived version of the page. The references have been replaced by a phrase that translates as 'self-assisted driving'.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				In an emailed statement to &lt;em&gt;Reuters&lt;/em&gt;, a spokeswoman for the company said:
+				&lt;br/&gt;
+				&lt;blockquote&gt;At Tesla we are continuously making improvements, including to translations. We've been in the process of addressing any discrepancies across languages for many weeks. Timing had nothing to do with current events or articles.&lt;/blockquote&gt;In response to the crash, Tesla China staff have reportedly undergone training to re-emphasize that car salespeople must always keep two hands on the wheel when demonstrating the autopilot function.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Other Tesla drivers interviewed by &lt;em&gt;Reuters&lt;/em&gt; said China sales staff took their hands off the wheel while demonstrating the function. Under Chinese law, drivers are required to keep two hands on the wheel at all times.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				The spokeswoman for Tesla said that the system was not self-driving but merely assistive and that drivers were responsible for always maintaining control of the vehicle. On the Tesla U.S. &lt;a href="https://www.tesla.com/models"&gt;website&lt;/a&gt;, autopilot in the Model S is described as allowing the car "to steer within a lane, change lanes with the simple tap of a turn signal, and manage speed by using active, traffic-aware cruise control".
+				&lt;br/&gt;
+				&lt;blockquote&gt;Digital control of motors, brakes, and steering helps avoid collisions from the front and sides, and prevents the car from wandering off the road. Autopilot also enables your car to scan for a parking space and parallel park on command. And our new Summon feature lets you "call" your car from your phone so it can come greet you at the front door in the morning.&lt;/blockquote&gt;U.S. regulators have yet to issue written regulations for autonomous vehicles, but Apple – heavily rumored to be working on a car project – has &lt;a href="http://www.macrumors.com/2015/09/18/apple-met-california-dmv-autonomous-vehicle/"&gt;already met with California DMV officials&lt;/a&gt; regarding self-driving car laws within the state.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Multiple reports &lt;a href="http://www.macrumors.com/2015/09/21/apple-car-development-speeds-up/"&gt;indicate&lt;/a&gt; that Apple is exploring the functionality with the possibility of including it in a later iteration of its vehicle project, which is said to be &lt;a href="http://www.macrumors.com/2016/07/25/apple-car-bob-mansfield/"&gt;overseen&lt;/a&gt; by former longtime executive Bob Mansfield, who last served as Senior Vice President of Technologies at the company.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Apple has reportedly recruited &lt;a href="http://www.macrumors.com/2015/02/13/apple-working-on-electric-car/"&gt;hundreds of engineers&lt;/a&gt; from the likes of Tesla, Ford, GM, and elsewhere to work on the so-called &lt;a href="http://www.macrumors.com/roundup/apple-car/"&gt;Apple Car&lt;/a&gt;, codenamed "Project Titan" internally, despite CEO &lt;a href="http://www.macrumors.com/roundup/tim-cook/"&gt;Tim Cook&lt;/a&gt;'s &lt;a href="http://www.macrumors.com/2016/08/14/tim-cook-discusses-his-role-apple-virtual-reality/"&gt;recent refusal&lt;/a&gt; to be drawn on the subject. The electric vehicle could be street-ready between &lt;a href="http://www.macrumors.com/2015/09/21/apple-car-development-speeds-up/"&gt;2019&lt;/a&gt; and &lt;a href="http://www.macrumors.com/2016/07/21/apple-car-target-slipped-2021-report/"&gt;2021&lt;/a&gt; according to various reports, with R&amp;D based in Sunnyvale, California.   &lt;br/&gt;&lt;br/&gt;&lt;div class="linkback"&gt;Related Roundup: &lt;a href="http://www.macrumors.com/roundup/apple-car/"&gt;Apple Car&lt;/a&gt; &lt;br/&gt;Tag: &lt;a href="http://www.macrumors.com/roundup/tesla/"&gt;Tesla&lt;/a&gt; &lt;/div&gt;&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/tesla-autopilot-china-beijing-crash.1988124/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=3MGziJZcPOY:O93-5OprbN8:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=3MGziJZcPOY:O93-5OprbN8:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/3MGziJZcPOY" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>Apple Maps Expands Transit Data to San Antonio and Dallas-Fort Worth</title>
+			<link>http://www.macrumors.com/2016/08/15/apple-maps-transit-data-san-antonio-dallas/</link>
+			<comments>http://forums.macrumors.com/threads/apple-maps-transit-data-san-antonio-dallas.1988116</comments>
+			<pubDate>Mon, 15 Aug 2016 01:49:30 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/15/apple-maps-transit-data-san-antonio-dallas/</guid>
+			<dc:creator>Tim Hardwick</dc:creator>
+			<category>Apple Maps</category>
+			<category>transit</category>
+			<description>Apple continues to build upon the transit coverage of &lt;a href="http://www.macrumors.com/roundup/apple-maps/"&gt;Apple Maps&lt;/a&gt;, today adding the Dallas-Fort Worth metroplex and the City of San Antonio to supported areas in Texas. The support marks the first expansion of transit coverage beyond the state's capital of Austin.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/dallas-800x710.jpg" alt="dallas" width="800" height="710" class="aligncenter size-large wp-image-515857" /&gt;
+				&lt;br/&gt;
+				In Dallas-Fort Worth, Apple will now offer up routes that include transportation by the Dallas Area Rapid Transit (DART) light rail commuter service and streetcar line, as well as the Skylink at DFW Airport.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/san-antonio-800x710.jpg" alt="san antonio" width="800" height="710" class="aligncenter size-large wp-image-515858" /&gt;
+				&lt;br/&gt;
+				In San Antonio, coverage is concentrated within the Connolly Loop (Interstate 410), and takes in the city's VIA Metropolitan Transit system.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Transit directions were &lt;a href="http://www.macrumors.com/2015/09/16/ios-9-apple-maps-transit-nearby/"&gt;first added to Apple Maps&lt;/a&gt; in 2015 as part of &lt;a href="http://www.macrumors.com/roundup/ios-9/"&gt;iOS 9&lt;/a&gt;. At launch, transit information was only available in a handful of cities, but Apple has been working hard to expand the feature to additional locations.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Transit data is &lt;a href="http://www.macrumors.com/2015/09/16/ios-9-apple-maps-transit-nearby/"&gt;now available&lt;/a&gt; in more than 20 cities around the world, along with dozens of cities in China.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;em&gt;(Thanks, Ram!)&lt;/em&gt;&lt;br/&gt;&lt;br/&gt;&lt;div class="linkback"&gt;Tags: &lt;a href="http://www.macrumors.com/roundup/apple-maps/"&gt;Apple Maps&lt;/a&gt;, &lt;a href="http://www.macrumors.com/roundup/transit/"&gt;transit&lt;/a&gt; &lt;/div&gt;&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/apple-maps-transit-data-san-antonio-dallas.1988116/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=6gFHqcwrtsw:h7Zu1wbK954:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=6gFHqcwrtsw:h7Zu1wbK954:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/6gFHqcwrtsw" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>Apple Planning 10.5" iPad Pro in 2017, 'Revolutionary' OLED iPad as Soon as 2018</title>
+			<link>http://www.macrumors.com/2016/08/15/kuo-10-5-ipad-pro-2017/</link>
+			<comments>http://forums.macrumors.com/threads/kuo-10-5-ipad-pro-2017.1988105</comments>
+			<pubDate>Sun, 14 Aug 2016 22:57:32 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/15/kuo-10-5-ipad-pro-2017/</guid>
+			<dc:creator>Eric Slivka</dc:creator>
+			<category>iPad Air</category>
+			<category>iPad Pro</category>
+			<category>KGI Securities</category>
+			<category>Ming-Chi Kuo</category>
+			<description>Noted analyst &lt;a href="http://www.macrumors.com/roundup/ming-chi-kuo/"&gt;Ming-Chi Kuo&lt;/a&gt; has released a new research report outlining his expectations for the future of Apple's iPad lineup, predicting three new iPads ranging from 9.7 inches to 12.9 inches to be released in 2017.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/ipad_lineup_2016_sides.jpg" alt="ipad_lineup_2016_sides" width="800" height="167" class="aligncenter size-full wp-image-515849" /&gt;
+				&lt;br/&gt;
+				According to Kuo, Apple is aiming to introduce a new 10.5-inch &lt;a href="http://www.macrumors.com/roundup/ipad-pro/"&gt;iPad Pro&lt;/a&gt; model next year to go along with a 12.9-inch iPad Pro 2 and a "low-cost" 9.7-inch iPad model. Kuo makes no mention about the fate of the current 7.9-inch iPad mini, although many have assumed that model may be phased out as the recent 5.5-inch iPhone "Plus" models have helped lessen demand for Apple's smallest tablet.&lt;blockquote&gt;&lt;b&gt;We expect three new iPads (12.9” iPad Pro 2, new size 10.5” iPad Pro &amp; low-cost 9.7” iPad) to be launched in 2017, though this may not drive shipment growth amid structural headwinds; 2017F shipments to fall 10-20% YoY.&lt;/b&gt; If the iPad comes in a larger size, such as a 10.5” model, we believe it will be helpful to bid for tenders within the commercial and education markets. As a result, we expect Apple to launch a 10.5” iPad Pro in 2017. In addition, we estimate the 12.9” iPad Pro 2 and 10.5” iPad Pro will adopt the A10X processor, with TSMC (2330 TT, NT&amp;#36;177.5, N) being the sole supplier using 10nm process technology. The low-cost 9.7” model may adopt the A9X processor, which is also exclusively supplied by TSMC.&lt;/blockquote&gt;Looking even further ahead, Kuo predicts "revolutionary" changes for the iPad lineup for 2018 "at the earliest," with Apple making "radical" changes to the iPad's design and shifting to an AMOLED display.&lt;blockquote&gt;&lt;b&gt;Revolutionary iPad model likely to be introduced in 2018F at the earliest, with radical changes in form factor design &amp; user behavior on adoption of flexible AMOLED panel.&lt;/b&gt; We believe iPad will follow in the footsteps of the iPhone by adopting AMOLED panel in 2018F at the earliest. If Apple can truly tap the potential of a flexible AMOLED panel, we believe the new iPad model will offer new selling points through radical form factor design and user behavior changes, which could benefit shipments.&lt;/blockquote&gt;Kuo remains conservative in his predictions of iPad shipments, cutting his total 2016 shipment forecast from 45–50 million to 35–40 million due in large part to a lack of new models before the end of the year. Even with updated models in 2017, however, Kuo predicts shipments will continue to decline as part of general trends in the tablet market.&lt;br/&gt;&lt;br/&gt;&lt;div class="linkback"&gt;Related Roundups: &lt;a href="http://www.macrumors.com/roundup/ipad/"&gt;iPad Air 2&lt;/a&gt;, &lt;a href="http://www.macrumors.com/roundup/ipad-pro/"&gt;iPad Pro&lt;/a&gt; &lt;br/&gt;Tags: &lt;a href="http://www.macrumors.com/roundup/kgi-securities/"&gt;KGI Securities&lt;/a&gt;, &lt;a href="http://www.macrumors.com/roundup/ming-chi-kuo/"&gt;Ming-Chi Kuo&lt;/a&gt; &lt;br/&gt;Buyer's Guide: &lt;a href="http://buyersguide.macrumors.com/#9-7-iPad-Pro"&gt;9.7" iPad Pro (Neutral)&lt;/a&gt;, &lt;a href="http://buyersguide.macrumors.com/#12-9-iPad-Pro"&gt;12.9" iPad Pro (Neutral)&lt;/a&gt; &lt;/div&gt;&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/kuo-10-5-ipad-pro-2017.1988105/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=aBp4Ehaszo0:6wq0LjbgEEY:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=aBp4Ehaszo0:6wq0LjbgEEY:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/aBp4Ehaszo0" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>Twitter Looking to Launch Apple TV App for NFL Live Streaming</title>
+			<link>http://www.macrumors.com/2016/08/14/twitter-apple-tv-app-nfl/</link>
+			<comments>http://forums.macrumors.com/threads/twitter-apple-tv-app-nfl.1988097</comments>
+			<pubDate>Sun, 14 Aug 2016 20:24:15 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/14/twitter-apple-tv-app-nfl/</guid>
+			<dc:creator>Eric Slivka</dc:creator>
+			<category>Apple TV</category>
+			<category>Twitter</category>
+			<description>In a piece covering Twitter's successful effort to win live streaming rights for Thursday night National Football League games this season, &lt;a href="http://www.nytimes.com/2016/08/15/technology/with-nfl-deal-twitter-live-streams-its-ambitions.html"&gt;&lt;em&gt;The New York Times&lt;/em&gt; reports&lt;/a&gt; that Twitter is in discussions with Apple to launch a Twitter app for the &lt;a href="http://www.macrumors.com/roundup/apple-tv/"&gt;Apple TV&lt;/a&gt; that would let Twitter's users watch the NFL games on Apple's set-top box.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/nfl_twitter_apple_tv.jpg" alt="nfl_twitter_apple_tv" width="800" height="559" class="aligncenter size-full wp-image-515846" /&gt;&lt;blockquote&gt;Twitter has directed [Chief Financial Officer] Mr. [Anthony] Noto, a former Goldman Sachs banker with deep ties to the sports media industry, to lead the charge on live streaming and has assigned an engineering team to create its streaming video player. Jack Dorsey, Twitter’s chief executive, considers streaming a critical component of the company’s focus on “live” experiences, along with Periscope, its app that allows smartphone users to live-stream video.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				To bolster the effort, Twitter is in talks with Apple to bring the Twitter app to Apple TV, which would potentially let millions of Apple TV users watch the streaming N.F.L. games, according to the two people briefed on the discussions.&lt;/blockquote&gt;Beyond the NFL, Twitter continues to strike deals for other live streaming content, and while the company's strategy for live streaming is not yet "fully formed," Twitter is considering how to bring that content users either in the main timeline or in the Moments tab of the current app for various platforms.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				The NFL had solicited a number of companies, &lt;a href="http://www.macrumors.com/2015/12/17/nfl-solicits-apple-stream-thursday-night-football/"&gt;including Apple&lt;/a&gt;, to gauge interest in streaming rights for Thursday Night Football, but Apple ultimately &lt;a href="http://www.macrumors.com/2016/03/04/apple-wont-bid-on-nfl-thursday-night-football/"&gt;declined to submit a bid&lt;/a&gt;.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Twitter's first Thursday Night Football live stream will take place on September 15 when the New York Jets visit the Buffalo Bills.&lt;br/&gt;&lt;br/&gt;&lt;div class="linkback"&gt;Related Roundups: &lt;a href="http://www.macrumors.com/roundup/apple-tv/"&gt;Apple TV&lt;/a&gt;, &lt;a href="http://www.macrumors.com/roundup/tvos-10/"&gt;tvOS 10&lt;/a&gt; &lt;br/&gt;Tag: &lt;a href="http://www.macrumors.com/roundup/twitter/"&gt;Twitter&lt;/a&gt; &lt;br/&gt;Buyer's Guide: &lt;a href="http://buyersguide.macrumors.com/#Apple_TV"&gt;Apple TV (Neutral)&lt;/a&gt; &lt;/div&gt;&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/twitter-apple-tv-app-nfl.1988097/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=I1DL1thTKfs:UX41QhHW0zg:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=I1DL1thTKfs:UX41QhHW0zg:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/I1DL1thTKfs" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>Tim Cook Discusses His Job, Apple's Long-Term Future, AI, Virtual Reality, and More</title>
+			<link>http://www.macrumors.com/2016/08/14/tim-cook-discusses-his-role-apple-virtual-reality/</link>
+			<comments>http://forums.macrumors.com/threads/tim-cook-discusses-his-role-apple-virtual-reality.1988021</comments>
+			<pubDate>Sun, 14 Aug 2016 10:44:00 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/14/tim-cook-discusses-his-role-apple-virtual-reality/</guid>
+			<dc:creator>Tim Hardwick</dc:creator>
+			<category>Apple</category>
+			<category>Rumors</category>
+			<category>Mac</category>
+			<category>iOS</category>
+			<category>iPhone</category>
+			<category>iPad</category>
+			<description>&lt;img src="http://cdn.macrumors.com/article-new/2015/01/tim_cook_headshot_glasses-250x286.jpg" alt="tim_cook_headshot_glasses" width="250" height="286" class="alignright size-medium wp-image-435361" /&gt;The &lt;em&gt;&lt;a href="https://www.washingtonpost.com/classic-apps/stepping-out-of-steve-jobss-shadow-tim-cook-champions-the-promise-of-apple/2016/08/12/fadb6c26-59cd-11e6-831d-0324760ca856_story.html"&gt;Washington Post&lt;/a&gt;&lt;/em&gt; today posted a lengthy new interview with &lt;a href="http://www.macrumors.com/roundup/tim-cook/"&gt;Tim Cook&lt;/a&gt;, in which he discussed his first five years as Apple CEO and hinted at the company's work on augmented reality products.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				When asked how he handled the scrutiny that came with the role, Cook admitted that it was something he'd had to adapt to since taking over from Steve Jobs, and that there was very little Apple could do without it being reported somewhere.
+				&lt;br/&gt;
+				&lt;blockquote&gt;You’re both praised and criticized, and the extremes are wide — very wide. And that can happen all in a day. You build up — my skin got materially thicker after August 2011. And I don’t mean in a bad way. I don’t mean that I’m callous and don’t care. I think I’m a bit better today about compartmentalizing things and not taking everything so personally.&lt;/blockquote&gt;Asked what has changed about Apple since his tenure in the role, Cook explained that while the company's aim of making "insanely great products" remained the same, its interests had broadened in line with its tremendous growth.
+				&lt;br/&gt;
+				&lt;blockquote&gt;The obvious things are we have more employees. The company is four times larger [by revenue since 2010]. We’ve broadened the iPhone lineup. That was a really key decision and I think a very good one. We’ve gone into the &lt;a href="http://www.macrumors.com/roundup/apple-watch/"&gt;Apple Watch&lt;/a&gt; business, which has gotten us into wellness and in health. We keep pulling that string to see where that takes us. Lots of core technology work has been done.&lt;/blockquote&gt;Cook also explained that the company had stepped up its social responsibility and been more transparent about issues such as its environmental work, which had been "going on at Apple for decades, but we didn't talk about it." When asked how Apple could move forward when so much of its business is tied up in the iPhone and an industry that's cooling off, Cook said:
+				&lt;br/&gt;
+				&lt;blockquote&gt;Look at the core technologies that make up the smartphone today and look at the ones that will be dominant in smartphones of the future — like AI. AI will make this product even more essential to you. It will become even a better assistant than it is today. So where you probably aren’t leaving home without it today — you’re really going to be connected to it in the future. That level of performance is going to skyrocket.&lt;/blockquote&gt;When asked about some analysts' claims that Apple's best days are behind it, Cook said the suggestion "doesn't bother him" because "he's heard it all before" and he doesn't subscribe to it "because it's traditional thinking in a lot of ways: You can't get large because you are large".
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Asked about Apple's future and statements he made in the last earnings call about artificial intelligence, Cook argued that the  company wasn't falling behind AI efforts by other companies and called the breadth of &lt;a href="http://www.macrumors.com/roundup/siri/"&gt;Siri&lt;/a&gt; "unbelievable":
+				&lt;br/&gt;
+				&lt;blockquote&gt;Increasingly, Siri understands things without having to memorize certain ways to say things. The prediction of Siri is going way up. What we’ve done with AI is focus on things that will help the customer. And we announced in June that we’re opening Siri to third parties, so third-party developers can now use Siri. So a simple example with that, whatever kind of ride-sharing app you might use, Uber or Lyft in the United States, you could just — using your voice — order the car. So third-party developers are writing tons of those that will be available to the public in the fall. And that’s how we’re broadening Siri in a huge way.&lt;/blockquote&gt;Apple has had a team working on virtual and augmented reality technologies since at least early 2015, when rumors suggested there were a &lt;a href="http://www.macrumors.com/2015/03/18/apple-augmented-reality-team/"&gt;small number of employees&lt;/a&gt; investigating how Apple could incorporate the technologies into its products. Apple's interest in virtual reality dates back much further, however, and Apple has filed multiple patents over the years, for products like &lt;a href="http://www.macrumors.com/2013/12/10/apples-work-on-video-goggles-highlighted-in-newly-granted-patent/"&gt;video goggles&lt;/a&gt;, motion-sensing &lt;a href="http://www.macrumors.com/2012/01/12/apple-researching-motion-sensing-virtual-3d-user-interface-for-ios-devices/"&gt;3D virtual interfaces for iOS devices&lt;/a&gt;, and 3D "&lt;a href="http://www.macrumors.com/2009/12/17/apple-working-on-3d-hyper-reality-displays/"&gt;hyper reality&lt;/a&gt;" displays. When asked if Apple had designs on the augmented or virtual reality space, Cook said:
+				&lt;br/&gt;
+				&lt;blockquote&gt;I think AR [augmented reality] is extremely interesting and sort of a core technology. So, yes, it’s something we’re doing a lot of things on behind that curtain that we talked about. [Laughs.]&lt;/blockquote&gt;In the full interview, Cook reflects on the death of Steve Jobs, Apple's tax policies, his non-traditional view of the role of a CEO, his succession planning, and some of the mistakes he's made along the way. You can read the full &lt;em&gt;Washington Post&lt;/em&gt; interview &lt;a href="https://www.washingtonpost.com/classic-apps/stepping-out-of-steve-jobss-shadow-tim-cook-champions-the-promise-of-apple/2016/08/12/fadb6c26-59cd-11e6-831d-0324760ca856_story.html"&gt;here&lt;/a&gt;.&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/tim-cook-discusses-his-role-apple-virtual-reality.1988021/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=u4T1bgrhudI:YCpPjO3JxkM:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=u4T1bgrhudI:YCpPjO3JxkM:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/u4T1bgrhudI" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>Cryptography Experts Recommend Apple Replace its iMessage Encryption</title>
+			<link>http://www.macrumors.com/2016/08/14/imessage-encryption-vulnerable-attack/</link>
+			<comments>http://forums.macrumors.com/threads/imessage-encryption-vulnerable-attack.1987985</comments>
+			<pubDate>Sun, 14 Aug 2016 05:40:33 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/14/imessage-encryption-vulnerable-attack/</guid>
+			<dc:creator>Tim Hardwick</dc:creator>
+			<category>iMessage</category>
+			<category>Encryption</category>
+			<description>&lt;img src="http://cdn.macrumors.com/article-new/2016/03/IMessage_Icon-250x250.jpg" alt="IMessage_Icon" width="250" height="250" class="alignright size-medium wp-image-494035" /&gt;Apple has implemented a series of short- and long-term defenses to its iMessage protocol after several issues were discovered by a team of researchers at Johns Hopkins University, according to a &lt;a href="https://www.usenix.org/system/files/conference/usenixsecurity16/sec16_paper_garman.pdf"&gt;report&lt;/a&gt; published today (via &lt;em&gt;&lt;a href="http://www.patentlyapple.com/patently-apple/2016/08/apple-fixed-a-security-issue-in-imessage-that-researchers-from-john-hopkins-university-discovered.html"&gt;PatentlyApple&lt;/a&gt;&lt;/em&gt;).
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				This attack is different to the one Johns Hopkins researchers &lt;a href="http://www.macrumors.com/2016/03/21/imessage-security-flaw-decrypt-images/"&gt;discovered in March&lt;/a&gt;, which allowed an attacker to decrypt photos and videos sent over iMessage.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				The technical paper details how another method known as a "ciphertext attack" allowed them to retrospectively decrypt certain types of payloads and attachments when either the sender or receiver is still online.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				The scenario requires that the attacker intercepts messages using stolen TLS certificates or by gaining access to Apple's servers. While the attack takes a high level of technical expertise to be successful, the researchers note that it would be well within the means of state-sponsored actors.
+				&lt;br/&gt;
+				&lt;blockquote&gt;Overall, our determination is that while iMessage’s end-to-end encryption protocol is an improvement over systems that use encryption on network traffic only (e.g., Google Hangouts), messages sent through iMessage may not be secure against sophisticated adversaries.&lt;/blockquote&gt;The team also discovered that Apple doesn't rotate encryption keys at regular intervals, in the way that modern encryption protocols such as OTR and Signal do. This means that the same attack can be used on iMessage historical data, which is often backed up inside &lt;a href="http://www.macrumors.com/roundup/icloud/"&gt;iCloud&lt;/a&gt;. In theory, law enforcement could issue a court order forcing Apple to provide access to their servers and then use the attack to decrypt the data.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				The researchers believe the attack could also be used on other protocols that use the same encryption format, such as Apple's Handoff feature, which transfers data between devices via Bluetooth. OpenPGP encryption (as implemented by GnuPGP) may be vulnerable to similar attacks when used in instant messaging applications, the paper noted.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Apple was notified of the issue as early as November 2015 and patched the iMessage protocol in &lt;a href="http://www.macrumors.com/roundup/ios-9/"&gt;iOS 9.3&lt;/a&gt; and OS X 10.11.4 as a result. Since that time, the company has been pushing out further mitigations recommended by the researchers through monthly updates to several of its products.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				However, the team's long-term recommendation is that Apple should replace the iMessage encryption mechanism with one that eliminates weaknesses in the protocol's core distribution mechanism.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				The paper detailing the security issue is called &lt;em&gt;Dancing on the Lip of the Volcano: Chosen Ciphertext Attacks on Apple iMessage&lt;/em&gt;, and was published as part of the &lt;a href="https://www.usenix.org/conference/usenixsecurity16"&gt;USENIX Security Symposium&lt;/a&gt;, which took place in Austin, Texas. You can read the full paper &lt;a href="https://www.usenix.org/system/files/conference/usenixsecurity16/sec16_paper_garman.pdf"&gt;here&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;div class="linkback"&gt;Tags: &lt;a href="http://www.macrumors.com/roundup/imessage/"&gt;iMessage&lt;/a&gt;, &lt;a href="http://www.macrumors.com/roundup/encryption/"&gt;Encryption&lt;/a&gt; &lt;/div&gt;&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/imessage-encryption-vulnerable-attack.1987985/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=cBY3RqJwzOU:iMMsMW4l7Ps:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=cBY3RqJwzOU:iMMsMW4l7Ps:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/cBY3RqJwzOU" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>'Stranger Things' and 'The Get Down' Albums Debut Exclusively on Apple Music</title>
+			<link>http://www.macrumors.com/2016/08/13/stranger-things-get-down-apple-music/</link>
+			<comments>http://forums.macrumors.com/threads/stranger-things-get-down-apple-music.1987873</comments>
+			<pubDate>Sat, 13 Aug 2016 09:46:27 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/13/stranger-things-get-down-apple-music/</guid>
+			<dc:creator>Mitchel Broussard</dc:creator>
+			<category>Netflix</category>
+			<category>Apple Music</category>
+			<description>Netflix has released the soundtracks for both its popular sci-fi series &lt;em&gt;Stranger Things&lt;/em&gt;, and its new musical drama &lt;em&gt;The Get Down&lt;/em&gt;, exclusively on iTunes and &lt;a href="http://www.macrumors.com/roundup/apple-music/"&gt;Apple Music&lt;/a&gt;. There are 36 total songs rounding out the "Volume 1" soundtrack for &lt;em&gt;Stranger Things&lt;/em&gt;, and on August 19 a "Volume 2" is expected to launch on Apple's music services as well, with both volumes getting physical CD treatments on September 16 and September 23, respectively (via &lt;a href="http://consequenceofsound.net/2016/08/stream-stranger-things-season-1-soundtrack-volume-1/"&gt;&lt;em&gt;Consequence of Sound&lt;/em&gt;&lt;/a&gt;).
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/Netflix-Soundtracks.jpg" alt="Netflix Soundtracks" width="692" height="445" class="alignright size-full wp-image-515790" /&gt;
+				&lt;br/&gt;
+				The music from the &lt;em&gt;Stranger Things&lt;/em&gt; soundtrack was created by Kyle Dixon and Michael Stein, members of an Austin-based band called Survive. The two musicians helped craft the feel of the show's score by balancing "a classic tone," without going so far as to make it "'80s cheese."
+				&lt;br/&gt;
+				&lt;blockquote&gt;“We discussed having a classic tone and feel to the music for the show but being reserved enough that it wasn’t ’80s cheese, while offering a refreshing quality so that felt modern,” Stein said in a press release. “This was one of the qualities that drew them to our music in the first place. Having a familiarity with classic synths worked, but with an overall forward thinking approach.”&lt;/blockquote&gt; Netflix has yet to say when or if the two volume soundtrack will hit other streaming platforms. Apple Music has netted &lt;a href="http://www.macrumors.com/2016/08/04/britney-spears-glory-exclusive-apple-music/"&gt;plenty&lt;/a&gt; of &lt;a href="http://www.macrumors.com/2016/07/15/katy-perry-apple-music-rise/"&gt;exclusives&lt;/a&gt; over the past few months, but the TV soundtrack for &lt;em&gt;Stranger Things&lt;/em&gt; marks an interesting new addition of content for the service's users. Earlier in the week, artist Kyle Lambert &lt;a href="http://www.macrumors.com/2016/08/09/stranger-things-poster-ipad-pro/"&gt;detailed his process&lt;/a&gt; of creating the poster art for &lt;em&gt;Stranger Things&lt;/em&gt;, which involved the use of an &lt;a href="http://www.macrumors.com/roundup/ipad-pro/"&gt;iPad Pro&lt;/a&gt; and &lt;a href="http://www.macrumors.com/roundup/apple-pencil/"&gt;Apple Pencil&lt;/a&gt;.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;center&gt;&lt;iframe src='//tools.applemusic.com/embed/v1/album/1142771412?country=gb' height='500px' width='100%' frameborder=0&gt;&lt;/iframe&gt;&lt;/center&gt;
+				&lt;br/&gt;
+				&lt;em&gt;The Get Down&lt;/em&gt;'s soundtrack is one "Deluxe Version," adding up to 24 total songs from the new series. Artists on the album include Christina Aguilera, Leon Bridges, and Janelle Monáe, who contribute to the "musical panorama of New York City from the '70s to the '10s." Apple Music is even curating playlists for songs from each episode of the show, and has so far debuted collections for the first two episodes, each with about a dozen tracks.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;center&gt;&lt;iframe src='//tools.applemusic.com/embed/v1/album/1140679908?country=us' height='500px' width='100%' frameborder=0&gt;&lt;/iframe&gt;&lt;/center&gt;
+				&lt;br/&gt;
+				&lt;em&gt;The Get Down (Original Soundtrack from the Netflix Original Series)&lt;/em&gt; can be streamed on Apple Music or purchased for &amp;#36;13.99 on the iTunes store. [&lt;a href="https://itunes.apple.com/us/album/get-down-original-soundtrack/id1140679908"&gt;Direct Link&lt;/a&gt;]
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;em&gt;Stranger Things, Volume 1 (A Netflix Original Soundtrack)&lt;/em&gt; can also be listened to on Apple's streaming music service, in addition to being available for purchase on iTunes for &amp;#36;9.99. [&lt;a href="https://itunes.apple.com/us/album/stranger-things-vol.-1-netflix/id1143131526?app=itunes"&gt;Direct Link&lt;/a&gt;]&lt;br/&gt;&lt;br/&gt;&lt;div class="linkback"&gt;Tags: &lt;a href="http://www.macrumors.com/roundup/netflix/"&gt;Netflix&lt;/a&gt;, &lt;a href="http://www.macrumors.com/roundup/apple-music/"&gt;Apple Music&lt;/a&gt; &lt;/div&gt;&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/stranger-things-get-down-apple-music.1987873/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=mME4baiYj7A:FG0URTy76qI:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=mME4baiYj7A:FG0URTy76qI:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/mME4baiYj7A" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>MacRumors Giveaway: Win a Lightning MicroSD Card Reader and 64GB MicroSD Card from Lexar</title>
+			<link>http://www.macrumors.com/2016/08/12/macrumors-giveaway-lexar-lightning-microsd-reader/</link>
+			<comments>http://forums.macrumors.com/threads/macrumors-giveaway-lexar-lightning-microsd-reader.1987730</comments>
+			<pubDate>Fri, 12 Aug 2016 11:02:13 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/12/macrumors-giveaway-lexar-lightning-microsd-reader/</guid>
+			<dc:creator>Juli Clover</dc:creator>
+			<category>iPhone</category>
+			<category>iPad</category>
+			<category>iOS</category>
+			<category>Apple</category>
+			<description>For this week's giveaway, we've teamed up with well-known storage and memory company &lt;a href="http://www.lexar.com/"&gt;Lexar&lt;/a&gt; to offer &lt;em&gt;MacRumors&lt;/em&gt; readers a chance to win a bundle that includes Lexar's &lt;a href="http://www.lexar.com/lexar-microsd-reader"&gt;Lightning-based MicroSD Card Reader&lt;/a&gt; and a high-performance&lt;a href="http://www.lexar.com/microsd-633x?category=5778"&gt; 64GB MicroSD card&lt;/a&gt;.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Lexar's MicroSD Lightning Reader is a tiny coin-sized dongle that makes it easy to transfer content from a microSD card to an iPhone or iPad, so it's an ideal companion to products like drones and GoPro-style action cameras. Many Android phones also feature microSD slots, so it's also a good way to transfer files between Android and iOS device, and it's also useful for transferring files directly between two iOS devices.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;center&gt;&lt;iframe src="https://www.youtube.com/embed/kYkAQZuAMDI" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"&gt;&lt;/iframe&gt;&lt;/center&gt;
+				&lt;br/&gt;
+				The Lightning MicroSD Reader is small enough that it can go anywhere, from a pocket to a small camera bag, but it looks like a high quality accessory that matches well with Apple's design aesthetic. It's so compact that it's potentially easy to lose, but it comes with a little strap so it can be attached to a set of keys or a loop on a backpack. The Lightning connector of the MicroSD Reader fits well into the Lightning port of an iPhone even with a case on, including Apple's own line of cases.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				With a USB microSD reader (included with the 64GB card in the giveaway) you can also offload files from a computer and transfer them directly to the iPhone through the microSD reader, or use the reader to offload files from an iPhone to the microSD card for extra storage space.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img class="aligncenter size-large wp-image-515769" src="http://cdn.macrumors.com/article-new/2016/08/lexarcardandsdreader-800x612.jpg" alt="lexarcardandsdreader" width="800" height="612" /&gt;
+				&lt;br/&gt;
+				The MicroSD Lightning Reader has to be used with the Lexar app, which is decent. If you put content like videos and photos on the microSD card, you can view them directly within the app and save them to the camera roll. You can also use the app to back up your iPhone's photos and contacts and transfer files to Dropbox.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img class="aligncenter size-large wp-image-515767" src="http://cdn.macrumors.com/article-new/2016/08/lexarapp-800x706.jpg" alt="lexarapp" width="800" height="706" /&gt;
+				&lt;br/&gt;
+				The Lexar MicroSD Lightning Reader can be &lt;a href="https://www.amazon.com/Lexar-microSD-Lightning-Reader-LRWMLBNL/dp/B012PKYVT8"&gt;purchased from Amazon&lt;/a&gt; for &amp;#36;19.99, but four &lt;em&gt;MacRumors&lt;/em&gt; readers will win a Lightning Reader and a 64GB Lexar microSD card through our giveaway. To enter to win, use the Rafflecopter widget below and enter an email address. Email addresses will be used solely for contact purposes to reach the winner and send the prize.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				You can earn additional entries by subscribing to our &lt;a href="https://my.leadpages.net/leadbox/145ef7173f72a2%3A104a9fa76b46dc/5754903989321728/"&gt;weekly newsletter&lt;/a&gt;, subscribing to our &lt;a href="https://www.youtube.com/user/macrumors"&gt;YouTube channel&lt;/a&gt;, following us on &lt;a href="https://twitter.com/macrumors"&gt;Twitter&lt;/a&gt;, or visiting the &lt;em&gt;MacRumors&lt;/em&gt; &lt;a href="https://www.facebook.com/MacRumors"&gt;Facebook page&lt;/a&gt;.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Due to the complexities of international laws regarding giveaways, &lt;strong&gt;only U.S. residents who are 18 years of age or older are eligible to enter&lt;/strong&gt;. To offer feedback or get more information on the giveaway restrictions, please refer to &lt;a href="http://forums.macrumors.com/threads/macrumors-giveaways-why-are-they-only-open-to-u-s-residents.1918337/"&gt;our Site Feedback section&lt;/a&gt;, as that is where discussion of the rules will be redirected.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;center&gt;&lt;a id="rcwidget_una29iok" class="rcptr" href="http://www.rafflecopter.com/rafl/display/32e3850181/" rel="nofollow" data-raflid="32e3850181" data-theme="classic" data-template="54da49a5b58b3718156e1a65"&gt;a Rafflecopter giveaway&lt;/a&gt;&lt;script src="https://widget-prime.rafflecopter.com/launch.js"&gt;&lt;/script&gt;&lt;/center&gt;The contest will run from today (August 12) at 11:00 a.m. Pacific Time through 11:00 a.m. Pacific Time on August 19. The winners will be chosen randomly on August 19 and will be contacted by email. The winners have 48 hours to respond and provide a shipping address before new winners are chosen.&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/macrumors-giveaway-lexar-lightning-microsd-reader.1987730/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=Rcp5Vtf6sIs:gl3weNHmeCU:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=Rcp5Vtf6sIs:gl3weNHmeCU:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/Rcp5Vtf6sIs" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>Sonos Review: The Play:5 is the Perfect Centerpiece for a Whole House Audio System</title>
+			<link>http://www.macrumors.com/review/sonos-play-5-speaker/</link>
+			<comments>http://forums.macrumors.com/threads/sonos-play-5-speaker.1987724</comments>
+			<pubDate>Fri, 12 Aug 2016 10:03:02 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/review/sonos-play-5-speaker&amp;post_date=1471032182/</guid>
+			<dc:creator>Juli Clover</dc:creator>
+			<category>Sonos</category>
+			<description>Sonos is a well-regarded brand known for creating some of the best multi-room home speaker setups, and in late 2015, the company debuted its latest product, a second-generation Play:5. The original Play:5 (once called the S5) came out in 2009, so the new Play:5 marks a long overdue update that brings a new design and better sound.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				As someone new to the Sonos ecosystem, the Play:5 (paired with a set of Play:1 speakers) is the first Sonos speaker I've tested in my home. After a month breaking it in, I finally understand why Sonos is such a popular brand and is regarded as the best system for iPhone-compatible whole house audio.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/sonoscolors-800x265.jpg" alt="sonoscolors" width="800" height="265" class="aligncenter size-large wp-image-515750" /&gt;
+				&lt;br/&gt;
+				Priced at &amp;#36;499, the new Play:5 isn't cheap, but that price point includes a hassle-free user experience and impressive audio. As covered in the review below, there are some downsides to buying into the Sonos line, but its ease of use, sound, and multi-speaker pairing capabilities make it largely a win for those ready to shell out the cash for a quality sound system.
+				&lt;br/&gt;
+				&lt;!--more--&gt;
+				&lt;br/&gt;
+				&lt;h2&gt;Design&lt;/h2&gt;
+				&lt;br/&gt;
+				The second-generation Sonos Play:5 has a more modern look than the original Play:5, bringing it in line with the Sonos Play:1 and the Sonos Play:3. It's less boxy, wider, and has been designed in a way that lets it be positioned either horizontally or vertically. There's no integrated stand.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/sonoscables-800x564.jpg" alt="" width="800" height="564" class="aligncenter size-large wp-image-515763" /&gt;
+				&lt;br/&gt;
+				It's available with either a black or white outer shell, both of which come with a black mesh front panel that hides the interior components. Design wise, the Play:5 is unobtrusive enough to blend well into any room or decor style, but it might be more difficult decorating around the white version, which stands out more.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/sonosplay5-800x600.jpg" alt="" width="800" height="600" class="aligncenter size-large wp-image-515759" /&gt;
+				&lt;br/&gt;
+				Visually, the Play:5 is most similar to the Play:3, only quite a bit larger. I have a decent-sized two bedroom apartment with a large living room and I felt like the Sonos Play:5 was too much speaker for the room, just based on its size alone. It measures in at just over 14 inches wide, eight inches tall and six inches wide and it weighs just about 14 pounds.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				This is a hefty speaker that you're going to want to station in one spot and not move around a lot. It's not easy to carry and there's no handle or anything for transporting it. There's also no battery, so it always needs a power source.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/sonosplay5iphonecomparison-800x526.jpg" alt="" width="800" height="526" class="aligncenter size-large wp-image-515761" /&gt;
+				&lt;br/&gt;
+				At the top of the Play:5, there are capacitive LED-lit buttons that respond to different gestures to perform functions like upping the volume, pausing a song, and switching to the next song, so there's no need to have access to a device for making quick music alterations.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/sonosplay5back-800x600.jpg" alt="" width="800" height="600" class="aligncenter size-large wp-image-515760" /&gt;
+				&lt;br/&gt;
+				The back of the Play:5 houses a port for the cable that powers it, a 3.5mm jack, an optional Ethernet port that can be used if you have a house without strong Wi-Fi, and a button for syncing the speaker to the Sonos app.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;h2&gt;Sonos Setup and App&lt;/h2&gt;
+				&lt;br/&gt;
+				Sonos' line of speakers connect to your devices through your home Wi-Fi network rather than via Bluetooth, and for that reason, you have to use the Sonos apps to listen to music rather than playing music directly from your device. There are apps for Mac, Windows, Android, and iOS.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Being restricted to the Sonos apps for music playback is something of a negative because you're locked into the Sonos ecosystem and can't use a music app of your choosing. It also makes it more difficult for guests to connect to your home music system because connecting over Bluetooth is not an option (but there is an audio line-in).
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/sonosapplemusic-800x707.jpg" alt="sonosapplemusic" width="800" height="707" class="aligncenter size-large wp-image-515752" /&gt;&lt;em&gt;&lt;center&gt;Sonos for iOS&lt;/center&gt;&lt;/em&gt;
+				&lt;br/&gt;
+				On the plus side, the Sonos apps and the Wi-Fi connection are convenient. Setup was beyond simple - about five minutes passed from the time I unboxed the Play:5 to the time I had it up and running -- and I never had to reconnect or deal with connection issues.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				The Play:5 is always ready to play music as long as it's powered on and there's decent Wi-Fi available, plus it can do things like play different songs from the same music service in different rooms (or the same song in multiple rooms) if you have more than one speaker. Ease of use was one of the things I loved most about the Play:5 -- it just worked and did what I wanted it to do.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/sonosmac-800x502.jpg" alt="sonosmac" width="800" height="502" class="aligncenter size-large wp-image-515753" /&gt;&lt;em&gt;&lt;center&gt;Sonos for Mac&lt;/center&gt;&lt;/em&gt;
+				&lt;br/&gt;
+				Since this is a Wi-Fi system, it's also expandable. You can start with one speaker and then add on additional speakers in other rooms for a whole home audio system that's all connected.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				I tried the Sonos apps for Mac and iOS, but I primarily used my iPhone for music playback. All of the Sonos apps support playback from more than &lt;a href="http://www.sonos.com/streaming-music"&gt;40 streaming music services&lt;/a&gt; like Spotify and &lt;a href="http://www.macrumors.com/roundup/apple-music/"&gt;Apple Music&lt;/a&gt; or from music stored directly on a device. A wide range of file formats can be played.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;center&gt;&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/VKQmP3g9vn4" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;/center&gt;
+				&lt;br/&gt;
+				The Sonos apps aren't the most straightforward and there were some annoyances I ran into, like being unable to shuffle directly from my Apple Music playlists without adding them to a Sonos playlist and not being able to pause music for an incoming phone call, but for the most part, using the Sonos app to manage my music (from Apple Music) was fine.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				If I could choose, I'd probably opt to use Apple Music, but the Sonos app wasn't a deal breaker. It might even be a preferable control method if you subscribe to multiple music services.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;h2&gt;Sound&lt;/h2&gt;
+				&lt;br/&gt;
+				Sound wise, the Sonos Play:5 is fantastic. I live in an apartment so I don't have a lot of experience with professional audio equipment or speakers of this size (I mostly use headphones) and listening to music on the Play:5 was a revelation - with some songs, there was a level of detail and crispness I've never heard before. Vocals are always at the forefront and the bass is deep and rich.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/sonossideview-800x549.jpg" alt="" width="800" height="549" class="aligncenter size-large wp-image-515758" /&gt;
+				&lt;br/&gt;
+				The Play:5 is a speaker that costs &amp;#36;499, so I expect nothing less than amazing sound, and it lived up to my expectations. Behind the grille, there are six drivers (three tweeters and three mid-woofers) with dedicated amplifiers, and let me tell you, this speaker puts out some serious sound. It's a speaker you can feel. It's more than loud enough to fill a large room, and even at top volume levels playing songs with a lot of bass, there was never any distortion.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				I never had issues with the connection, which I do sometimes run into with Bluetooth speakers, and there were never any points where the sound dropped out or was interrupted. The Play:5 and the Sonos app always offered smooth playback.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				The Play:5 comes with a built-in Trueplay dynamic tuning system that's designed to calibrate the speakers based on their position in the room to account for room shape and objects within the room. I expected this to be little more than a gimmick, but the adjustments that were made with Trueplay seemed to slightly improve the sound of the Play:5, which I had positioned on a desk.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/sonostrueplay-800x707.jpg" alt="sonostrueplay" width="800" height="707" class="aligncenter size-large wp-image-515751" /&gt;
+				&lt;br/&gt;
+				In addition to dynamic tuning, there are settings for adjusting bass, treble, and balance to your taste, which you may need to do after tuning with Trueplay to reach the ideal sound.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;h2&gt;Bottom Line&lt;/h2&gt;
+				&lt;br/&gt;
+				The Sonos Play:5 is too much speaker for my apartment, but if you have a house or a larger space and want to start making purchases towards a whole-home audio system, Sonos is the way to go and the Play:5 is the best sounding speaker the company offers.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				At &amp;#36;499, the Play:5 is a serious investment (and you can even argue that it's overpriced), but it's incredibly easy to use, sounds amazing, and supports almost every audio service in existence. On the downside, you're locked into the Sonos app and the Sonos ecosystem once you make a purchase, but the tradeoff seems worth it to those looking for the best multi-room audio experience.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/sonosplay5play1-800x554.jpg" alt="" width="800" height="554" class="aligncenter size-large wp-image-515757" /&gt;
+				&lt;br/&gt;
+				After using the Sonos Play:5 and the Sonos system for a few weeks, I'm hooked. A WiFi audio system that doesn't allow the flexibility of a Bluetooth connection isn't going to be for everyone, but I was a fan of the simplicity and the sound quality. This is one review product that I am sorry to send back.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				As a side note, I didn't own the original Play:5 and so I can't compare this new version to the original version. I highly recommend anyone who is considering a purchase read through multiple reviews to get a clear picture from both those who are new to the Sonos system and those who have used it for years.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;b&gt;Pros:&lt;/b&gt;
+				&lt;br/&gt;
+				&lt;ul&gt;
+				&lt;br/&gt;
+				&lt;li&gt;Excellent sound&lt;/li&gt;
+				&lt;br/&gt;
+				&lt;li&gt;Connects over WiFi&lt;/li&gt;
+				&lt;br/&gt;
+				&lt;li&gt;Almost all music services available in Sonos app&lt;/li&gt;
+				&lt;br/&gt;
+				&lt;li&gt;Can group multiple speakers together&lt;/li&gt;
+				&lt;br/&gt;
+				&lt;li&gt;Can play different songs on different speakers via same device&lt;/li&gt;
+				&lt;br/&gt;
+				&lt;li&gt;Easy to set up and control&lt;/li&gt;
+				&lt;br/&gt;
+				&lt;li&gt;Expandable system for whole home audio&lt;/li&gt;
+				&lt;br/&gt;
+				&lt;li&gt;Can use horizontally or vertically&lt;/li&gt;
+				&lt;br/&gt;
+				&lt;/ul&gt;
+				&lt;br/&gt;
+				&lt;b&gt;Cons:&lt;/b&gt;
+				&lt;br/&gt;
+				&lt;ul&gt;
+				&lt;br/&gt;
+				&lt;li&gt;Needs Wi-Fi&lt;/li&gt;
+				&lt;br/&gt;
+				&lt;li&gt;Locked into Sonos ecosystem&lt;/li&gt;
+				&lt;br/&gt;
+				&lt;li&gt;Have to use Sonos app&lt;/li&gt;
+				&lt;br/&gt;
+				&lt;li&gt;No Bluetooth&lt;/li&gt;
+				&lt;br/&gt;
+				&lt;li&gt;Expensive&lt;/li&gt;
+				&lt;br/&gt;
+				&lt;/ul&gt;
+				&lt;br/&gt;
+				&lt;h2&gt;How to Buy&lt;/h2&gt;
+				&lt;br/&gt;
+				The Sonos Play:5 can be &lt;a href="http://www.sonos.com/en-us/shop/play5"&gt;purchased from the Sonos website&lt;/a&gt; for &amp;#36;499 with a 45-day return policy. It is also available &lt;a href="https://www.amazon.com/SONOS-PLAY-Ultimate-Speaker-Streaming/dp/B014LFINIA"&gt;from Amazon.com&lt;/a&gt; at the same price point.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;em&gt;&lt;small&gt;Note: Sonos provided MacRumors with a Sonos Play:5 and a Sonos Play:1 for testing purposes, which were returned to Sonos at the conclusion of the review. No other compensation was received.&lt;/small&gt;&lt;/em&gt;&lt;br/&gt;&lt;br/&gt;&lt;div class="linkback"&gt;Tag: &lt;a href="http://www.macrumors.com/roundup/sonos/"&gt;Sonos&lt;/a&gt; &lt;/div&gt;&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/sonos-play-5-speaker.1987724/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=k-4AZ-e1tS8:PjmF7KHO10k:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=k-4AZ-e1tS8:PjmF7KHO10k:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/k-4AZ-e1tS8" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>Apple TV Universal Search Now Supports 'Stan' in Australia</title>
+			<link>http://www.macrumors.com/2016/08/12/apple-tv-universal-search-stan-australia/</link>
+			<comments>http://forums.macrumors.com/threads/apple-tv-universal-search-stan-australia.1987711</comments>
+			<pubDate>Fri, 12 Aug 2016 09:09:07 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/12/apple-tv-universal-search-stan-australia/</guid>
+			<dc:creator>Joe Rossignol</dc:creator>
+			<category>Apple TV</category>
+			<description>Apple has &lt;a href="https://support.apple.com/en-us/HT205321"&gt;recently added&lt;/a&gt; Australian streaming service &lt;a href="https://www.stan.com.au/"&gt;Stan&lt;/a&gt; to the universal search function on the fourth-generation &lt;a href="http://www.macrumors.com/roundup/apple-tv/"&gt;Apple TV&lt;/a&gt;, marking the first third-party service outside of the U.S. beyond Netflix to be supported.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/Stan.jpg" alt="Stan" width="800" height="404" class="aligncenter size-full wp-image-515746" /&gt;
+				&lt;br/&gt;
+				For those unfamiliar with universal search, it's a feature that allows users to conduct &lt;a href="http://www.macrumors.com/roundup/siri/"&gt;Siri&lt;/a&gt; voice searches or text-based searches to find TV and movie content across a wide range of channels. At launch, universal search only supported a few channels, but Apple has been &lt;a href="http://www.macrumors.com/2016/06/21/apple-tv-universal-search-9-new-channels/"&gt;rapidly expanding the feature&lt;/a&gt; to encompass additional channels.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Universal search is available for a wide number of apps in the United States, but the feature is limited to iTunes and Netflix in Canada, France, Germany, and the United Kingdom. In Australia, universal search on the fourth-generation Apple TV supports movies and TV shows in iTunes, Netflix, and Stan.&lt;br/&gt;&lt;br/&gt;&lt;div class="linkback"&gt;Related Roundups: &lt;a href="http://www.macrumors.com/roundup/apple-tv/"&gt;Apple TV&lt;/a&gt;, &lt;a href="http://www.macrumors.com/roundup/tvos-10/"&gt;tvOS 10&lt;/a&gt; &lt;br/&gt;Buyer's Guide: &lt;a href="http://buyersguide.macrumors.com/#Apple_TV"&gt;Apple TV (Neutral)&lt;/a&gt; &lt;/div&gt;&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/apple-tv-universal-search-stan-australia.1987711/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=8gDmW_QEnqo:dFb38Q7EjnI:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=8gDmW_QEnqo:dFb38Q7EjnI:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/8gDmW_QEnqo" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>Apple's Chairman and Top Lawyer Cash in Combined $10M in Stock Bonuses</title>
+			<link>http://www.macrumors.com/2016/08/12/arthur-d-levinson-bruce-sewell-stock-sale/</link>
+			<comments>http://forums.macrumors.com/threads/arthur-d-levinson-bruce-sewell-stock-sale.1987705</comments>
+			<pubDate>Fri, 12 Aug 2016 08:50:55 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/12/arthur-d-levinson-bruce-sewell-stock-sale/</guid>
+			<dc:creator>Joe Rossignol</dc:creator>
+			<category>AAPL</category>
+			<category>SEC</category>
+			<description>&lt;img src="http://cdn.macrumors.com/article-new/2013/06/sewell-250x285.jpg" alt="sewell" width="250" height="285" class="alignright size-medium wp-image-378169" /&gt;Apple chairman Arthur D. Levinson and general counsel Bruce Sewell recently sold approximately &amp;#36;7.6 million and &amp;#36;2.5 million worth of company shares respectively, according to SEC documents filed electronically this week.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Levinson &lt;a href="http://investor.apple.com/secfiling.cfm?filingID=1628280-16-18921&amp;CIK=320193"&gt;sold 70,000 shares&lt;/a&gt; of common stock on August 9 for an average price of &amp;#36;108.68, while Sewell &lt;a href="http://investor.apple.com/secfiling.cfm?filingID=1628280-16-18832&amp;CIK=320193"&gt;disposed of 23,305 shares&lt;/a&gt; for an average price of &amp;#36;107.49 on August 5. The combined return was slightly over &amp;#36;10 million.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Levinson, CEO of biotech company Calico, a subsidiary of Google parent Alphabet, has &lt;a href="http://www.macrumors.com/2011/11/15/apple-names-art-levinson-chairman-disneys-bob-iger-joins-board-of-directors/"&gt;served as chairman&lt;/a&gt; of Apple's board of directors since November 2011. The former Genentech executive has served on the board since 2000, with CEO &lt;a href="http://www.macrumors.com/roundup/tim-cook/"&gt;Tim Cook&lt;/a&gt; praising his "enormous contributions to Apple" and "incredibly valuable" insight and leadership.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Sewell has served as Apple's general counsel, or chief lawyer in layman's terms, since September 2009. He oversees all company-related legal matters, including corporate governance, intellectual property, litigation and securities compliance, global security, and privacy, including a recent &lt;a href="http://www.macrumors.com/roundup/apple-fbi/"&gt;high-profile court battle with the FBI&lt;/a&gt; related to the intersection of national security and smartphone encryption.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Apple's senior executives and directors are commonly awarded generous stock bonuses based on performance and tenure. Last August, Cook and services chief &lt;a href="http://www.macrumors.com/roundup/eddy-cue/"&gt;Eddy Cue&lt;/a&gt; received 560,000 and 350,000 restricted stock units respectively, worth a &lt;a href="http://www.macrumors.com/2015/08/26/cook-cue-aapl-stock-rsus-2015/"&gt;combined &amp;#36;93.8 million&lt;/a&gt; at the time. Later in the year, Apple's recently promoted hardware chief Johny Srouji was &lt;a href="http://www.macrumors.com/2015/12/29/johny-srouji-awarded-90k-stock-sec/"&gt;awarded nearly &amp;#36;10 million&lt;/a&gt; in restricted stock units.&lt;br/&gt;&lt;br/&gt;&lt;div class="linkback"&gt;Tags: &lt;a href="http://www.macrumors.com/roundup/aapl/"&gt;AAPL&lt;/a&gt;, &lt;a href="http://www.macrumors.com/roundup/sec/"&gt;SEC&lt;/a&gt; &lt;/div&gt;&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/arthur-d-levinson-bruce-sewell-stock-sale.1987705/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=FilBlRYa9Vo:HvClRIvpVJc:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=FilBlRYa9Vo:HvClRIvpVJc:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/FilBlRYa9Vo" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>Apple Rumored to Be Pursuing Massive Office Expansion in Seattle Area</title>
+			<link>http://www.macrumors.com/2016/08/12/apple-pursuing-office-seattle/</link>
+			<comments>http://forums.macrumors.com/threads/apple-pursuing-office-seattle.1987694</comments>
+			<pubDate>Fri, 12 Aug 2016 08:15:10 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/12/apple-pursuing-office-seattle/</guid>
+			<dc:creator>Mitchel Broussard</dc:creator>
+			<category>Seattle</category>
+			<category>Apple real estate</category>
+			<description>&lt;img src="http://cdn.macrumors.com/article-new/2015/02/Apple-Logo.png" alt="Apple Logo" width="250" height="250" class="alignright size-full wp-image-437787" /&gt;Apple might be looking to further expand its presence in Seattle, Washington following its &lt;a href="http://www.macrumors.com/2016/08/05/apple-acquires-ai-startup-turi/"&gt;acquisition&lt;/a&gt; of Seattle-based machine learning and artificial intelligence startup &lt;a href="https://turi.com/"&gt;Turi&lt;/a&gt;. The news comes from reports of a "large California company" looking to purchase a big piece of office space in the city, with most believing that it's Apple (via &lt;a href="http://www.geekwire.com/2016/apple-rumored-to-be-taking-a-big-bite-out-of-seattle-area-office-market-with-potential-expansion/"&gt;&lt;em&gt;GeekWire&lt;/em&gt;&lt;/a&gt;).
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Last week, Apple paid &amp;#36;200 million to acquire Turi, which bills itself as a "machine learning platform for developers and data scientists," helping them build apps using the capabilities of artificial intelligence. Although the company's acquisition of Turi helps justify the rumor of Apple's expansion in Seattle, nothing has yet been solidified and, according to &lt;em&gt;GeekWire&lt;/em&gt;, the Seattle rumors "pre-date Apple’s acquisition of Turi."
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Specifically, the "large California company" is looking at properties in downtown Bellevue, particularly in the Schnitzer West’s 16-story Centre 425 building. Schnitzer West is under construction, with an opening expected towards the end of 2016, so if Apple makes a move it could begin increasing its Seattle presence by the end of the year.
+				&lt;br/&gt;
+				&lt;blockquote&gt;At this point, we’ve been unable to confirm exactly where Apple may be headed in the Seattle area, but multiple sources say the footprint could be huge, several hundred thousand square feet. The rumors we’ve heard also pre-date Apple’s acquisition of Turi.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				If a deal in downtown Bellevue were to go through it would be a big shot in the arm for an area that was looking at some sizable office vacancy over the next few years. In addition to the office buildings set to open soon, Expedia is leaving downtown Bellevue for Seattle in 2019. But the Valve and Salesforce deals, combined with a possible Apple move, would show that there are plenty of companies ready to step up to fill the void.
+				&lt;br/&gt;
+				&lt;/blockquote&gt; Last summer, Apple &lt;a href="http://www.macrumors.com/2015/07/20/apple-two-union-square-seattle-lease/"&gt;leased 30,000 square feet of office space&lt;/a&gt; in the Two Union Square skyscraper in downtown Seattle, which housed 120 to 200 employees, based on standard corporate leasing ratios. The work spaces now being looked at are over ten times as big, with the Bellevue location housing 354,000 square feet of office space, with the potential for approximately 1,400 to 2,300 employees. Apple &lt;a href="http://www.macrumors.com/2014/11/03/apple-union-bay-networks-seattle/"&gt;originally expanded&lt;/a&gt; into Seattle in 2014 with a small team of more than 30 workers stationed in the city.&lt;br/&gt;&lt;br/&gt;&lt;div class="linkback"&gt;Tags: &lt;a href="http://www.macrumors.com/roundup/seattle/"&gt;Seattle&lt;/a&gt;, &lt;a href="http://www.macrumors.com/roundup/apple-real-estate/"&gt;Apple real estate&lt;/a&gt; &lt;/div&gt;&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/apple-pursuing-office-seattle.1987694/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=zCU6YydwlpM:8G72P--YKpg:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=zCU6YydwlpM:8G72P--YKpg:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/zCU6YydwlpM" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>iPhone 7's Secondary Speaker Holes May Be Purely Cosmetic</title>
+			<link>http://www.macrumors.com/2016/08/12/iphone-7-second-speaker-cosmetic/</link>
+			<comments>http://forums.macrumors.com/threads/iphone-7-second-speaker-cosmetic.1987693</comments>
+			<pubDate>Fri, 12 Aug 2016 08:04:49 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/12/iphone-7-second-speaker-cosmetic/</guid>
+			<dc:creator>Joe Rossignol</dc:creator>
+			<category>iPhone 7</category>
+			<category>nowhereelse.fr</category>
+			<description>While multiple sources and leaked components have pointed towards &lt;a href="http://www.macrumors.com/roundup/iphone-7/"&gt;iPhone 7&lt;/a&gt; models having dual speakers, which could very well be the case, a new design drawing spotted by French website &lt;a href="http://www.nowhereelse.fr/iphone-7-documents-internes-115043/"&gt;&lt;em&gt;NWE&lt;/em&gt;&lt;/a&gt; suggests the additional holes may be purely cosmetic to give the bottom edge a symmetrical design.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/iPhone-7-design-drawing.jpg" alt="iPhone-7-design-drawing" width="750" height="563" class="aligncenter size-full wp-image-515676" /&gt;
+				&lt;br/&gt;
+				The text in the documents refers to the area that occupies the 3.5mm headphone jack on current iPhones as having simply a microphone and microphone mesh, with no mention of a speaker in that location. Most of the secondary holes would be non-functional, except for the one furthest to the right, which would double as a microphone.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				The veracity of the photo cannot be confirmed, and the rumor conflicts with some previous reports, but at least one previous iPhone 7 design drawing has depicted the left speaker grille as ornamental. In the photos, the secondary holes are not cut all the way through except for what would be normally be the microphone hole.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/iPhone-7-speaker-grille-closed-off.jpg" alt="iPhone-7-speaker-grille-closed-off" width="800" height="297" class="aligncenter size-full wp-image-515678" /&gt;
+				&lt;br/&gt;
+				The inclusion of dual speakers or lack thereof will be known for certain in less than a month. Apple is expected to announce the tentatively named iPhone 7 and iPhone 7 Plus on &lt;a href="http://www.macrumors.com/2016/08/10/macbook-pro-lineup-overhaul-4-years/"&gt;September 7&lt;/a&gt;, likely followed by pre-orders on &lt;a href="http://www.macrumors.com/2016/07/28/iphone-7-7-plus-pre-orders-maybe-sept-9/"&gt;September 9&lt;/a&gt; and retail availability on &lt;a href="http://www.macrumors.com/2016/07/23/iphone-7-launch-week-of-september-12th/"&gt;September 16&lt;/a&gt; in first-wave launch countries.&lt;br/&gt;&lt;br/&gt;&lt;div class="linkback"&gt;Related Roundup: &lt;a href="http://www.macrumors.com/roundup/iphone-7/"&gt;iPhone 7&lt;/a&gt; &lt;br/&gt;Tag: &lt;a href="http://www.macrumors.com/roundup/nowhereelse-fr/"&gt;nowhereelse.fr&lt;/a&gt; &lt;/div&gt;&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/iphone-7-second-speaker-cosmetic.1987693/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=5gx8T6-S54k:2cBlM-BTvlg:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=5gx8T6-S54k:2cBlM-BTvlg:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/5gx8T6-S54k" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>iPad and Aviation Apps Helping to Decrease Private Plane Crash Fatalities</title>
+			<link>http://www.macrumors.com/2016/08/12/ipad-decrease-private-plane-fatalities/</link>
+			<comments>http://forums.macrumors.com/threads/ipad-decrease-private-plane-fatalities.1987687</comments>
+			<pubDate>Fri, 12 Aug 2016 07:32:41 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/12/ipad-decrease-private-plane-fatalities/</guid>
+			<dc:creator>Mitchel Broussard</dc:creator>
+			<category>iPad Air</category>
+			<category>iPad mini</category>
+			<category>iPad Pro</category>
+			<description>Crashes, and subsequent fatalities, of small private planes have "fallen to the lowest levels in decades" thanks to mobile devices that give pilots "much better weather information" than a few years ago, along with other benefits. These devices mainly include Apple's iPad lineup and, in 2015, helped contribute to the lowest rate of fatal crashes &lt;a href="http://www.faa.gov/news/fact_sheets/news_story.cfm?newsId=20574"&gt;ever recorded&lt;/a&gt; by the U.S. Federal Aviation Administration: 1.03 fatal accidents per 100,000 flight hours (via &lt;a href="http://www.bloomberg.com/news/articles/2016-08-11/ipad-apps-help-cut-fatal-crashes-of-private-planes-to-new-lows"&gt;&lt;em&gt;Bloomberg&lt;/em&gt;&lt;/a&gt;).
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2015/11/iPad-Pro-Trio.jpg" alt="iPad-Pro-Trio" width="800" height="397" class="aligncenter size-full wp-image-472843" /&gt;
+				&lt;br/&gt;
+				As pointed out by John Hansman, an astronautics and aeronautics professor at the Massachusetts Institute of Technology, the data should be "approached with care," due to the fact that there is far less information and data available on general aviation as opposed to commercial flights. Private airplane flights per year have also decreased, which would help lessen the overall chance for accidents in the first place. Still, the new data collected "jibes with broad new efforts to improve safety in that arena," according to Hansman.
+				&lt;br/&gt;
+				&lt;blockquote&gt;“It’s encouraging,” said Hansman, who has studied private-aircraft safety data. “There are reasons to think it might be accurate. There’s a lot of things happening in the system that are slowly making it better.”&lt;/blockquote&gt; In reaction to these accidents, the FAA and the U.S. National Transportation Safety Board moved to bolster each private aircraft pilot's safety levels, leading to the official approval of "weather and other programs for mobile devices." To improve the regulation of these aircrafts, the two administrations also approved ways to make it easier to add safety equipment to planes, including devices that warn of engine failure and the impending loss of control of the plane.&lt;br/&gt;&lt;br/&gt;&lt;div class="linkback"&gt;Related Roundups: &lt;a href="http://www.macrumors.com/roundup/ipad/"&gt;iPad Air 2&lt;/a&gt;, &lt;a href="http://www.macrumors.com/roundup/ipad-mini/"&gt;iPad mini 4 (2015)&lt;/a&gt;, &lt;a href="http://www.macrumors.com/roundup/ipad-pro/"&gt;iPad Pro&lt;/a&gt; &lt;br/&gt;Buyer's Guide: &lt;a href="http://buyersguide.macrumors.com/#9-7-iPad-Pro"&gt;9.7" iPad Pro (Neutral)&lt;/a&gt;, &lt;a href="http://buyersguide.macrumors.com/#iPad_Mini"&gt;iPad Mini (Don't Buy)&lt;/a&gt;, &lt;a href="http://buyersguide.macrumors.com/#12-9-iPad-Pro"&gt;12.9" iPad Pro (Neutral)&lt;/a&gt; &lt;/div&gt;&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/ipad-decrease-private-plane-fatalities.1987687/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=gKNvs71mQiI:M_2-kOu2ZHQ:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=gKNvs71mQiI:M_2-kOu2ZHQ:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/gKNvs71mQiI" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>Apple Gets Approval for Irish Data Center Construction After Months of Objections</title>
+			<link>http://www.macrumors.com/2016/08/12/apple-approval-irish-data-center/</link>
+			<comments>http://forums.macrumors.com/threads/apple-approval-irish-data-center.1987670</comments>
+			<pubDate>Fri, 12 Aug 2016 06:04:07 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/12/apple-approval-irish-data-center/</guid>
+			<dc:creator>Mitchel Broussard</dc:creator>
+			<category>data center</category>
+			<description>Following months of being repeatedly blocked by independent planning body An Bord Pleanála, Apple has finally been granted the go-ahead to build its massive data center in Galway County, Ireland (via &lt;a href="http://www.businessinsider.com/apples-ireland-data-centre-approved-2016-8?r=UK&amp;IR=T"&gt;&lt;em&gt;Business Insider&lt;/em&gt;&lt;/a&gt;). The Irish planning board reversed course on its earlier oppositions to the data center, "despite opposition from a number of individuals and local businesses," giving Apple permission to build just one data hall. Each time an extension of the property is to be made, Apple will have to reapply for permission with the local planning body.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				The &lt;a href="http://www.macrumors.com/2016/05/27/apple-defends-irish-data-center/"&gt;original objections&lt;/a&gt; to the facility -- which will specifically be located in Derrydonnell Forest -- cited a worry over the local wildlife and the potential for negative impact that Apple's data center could have on it, as well as flooding concerns in a neighboring golf course. In June, these issues continued anew with fresh worry that the data center's &lt;a href="http://www.macrumors.com/2016/06/01/apples-irish-data-center-nuclear/"&gt;proximity to a nuclear power plant&lt;/a&gt; could be harmful, despite the plant having been shut down for years.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2015/06/Apple-Data-Center.jpg" alt="Apple Data Center" width="800" height="617" class="aligncenter size-full wp-image-453235" /&gt; &lt;blockquote&gt;The planning body said the data centre will provide the area with a significant economic boost, adding that they took into account how hard it is to find sites that are able to accommodate huge data centres that need to be connected to the national grid.&lt;/blockquote&gt; With the new majority vote from An Bord Pleanála overpowering the last few protestors, Apple now can continue with its 10-15 year construction plan of a massive data center site for services like the &lt;a href="http://www.macrumors.com/roundup/app-store/"&gt;App Store&lt;/a&gt;, &lt;a href="http://www.macrumors.com/roundup/apple-music/"&gt;Apple Music&lt;/a&gt;, &lt;a href="http://www.macrumors.com/roundup/apple-pay/"&gt;Apple Pay&lt;/a&gt; and &lt;a href="http://www.macrumors.com/roundup/icloud/"&gt;iCloud&lt;/a&gt;. After winning permission for this first building, Apple's ultimate goal by the end of its decade-long plan is a total of eight buildings housing servers for the company's online services.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Apple's plan was to originally have the Irish data center up and running by early 2017, but since its first proposal in September 2015 and the ensuing blockades, it's expected that goal has been pushed further back. The company is &lt;a href="http://www.macrumors.com/2015/02/23/apple-new-data-centers-europe/"&gt;also planning&lt;/a&gt; the construction of a data center of similar scale (about 166,000 square meters) in Denmark.&lt;br/&gt;&lt;br/&gt;&lt;div class="linkback"&gt;Tag: &lt;a href="http://www.macrumors.com/roundup/data-center/"&gt;data center&lt;/a&gt; &lt;/div&gt;&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/apple-approval-irish-data-center.1987670/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=tYFOR9Yg2n0:iCVJuS3Qh5k:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=tYFOR9Yg2n0:iCVJuS3Qh5k:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/tYFOR9Yg2n0" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>Foxconn's Profits Slide 31% as iPhone Sales Continue to Drop</title>
+			<link>http://www.macrumors.com/2016/08/12/foxconn-31-percent-profit-decline/</link>
+			<comments>http://forums.macrumors.com/threads/foxconn-31-percent-profit-decline.1987664</comments>
+			<pubDate>Fri, 12 Aug 2016 05:18:40 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/12/foxconn-31-percent-profit-decline/</guid>
+			<dc:creator>Mitchel Broussard</dc:creator>
+			<category>iPhone 7</category>
+			<category>Foxconn</category>
+			<description>Following in line with a &lt;a href="http://www.macrumors.com/2016/08/08/tim-cook-eddy-cue-interview-fastco/"&gt;slump&lt;/a&gt; in iPhone sales, Apple manufacturer Foxconn recently reported a 31 percent decline in profits in the second quarter of 2016. For the full quarter, ending in June, Foxconn was said to have amassed a net profit of 17.7 billion New Taiwan dollars, down from NT&amp;#36;25.7 billion a year earlier. Analysts watching the company had expected a revenue of around NT&amp;#36;23.9 billion for the quarter (via &lt;a href="http://www.wsj.com/articles/foxconn-profit-slumps-along-with-iphone-sales-1470930889?mod=rss_Technology"&gt;&lt;em&gt;The Wall Street Journal&lt;/em&gt;&lt;/a&gt;).
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				A &lt;a href="http://www.macrumors.com/2016/06/08/iphone-sales-to-reach-bottom-brian-white/"&gt;doom and gloom&lt;/a&gt; sentiment began surrounding Apple, and its overseas manufacturers, soon after the Cupertino-based company reported its &lt;a href="http://www.macrumors.com/2016/04/26/q2-2016-earnings/"&gt;first quarterly sales decline since 2003&lt;/a&gt; in April. Despite a &lt;a href="http://www.macrumors.com/2016/05/03/apple-ramps-iphone-se-orders-amid-sales-pressures/"&gt;strong presence&lt;/a&gt; of the &lt;a href="http://www.macrumors.com/roundup/iphone-se/"&gt;iPhone SE&lt;/a&gt; in the market, iPhone sales continued to contribute to an overall &lt;a href="http://www.macrumors.com/2016/07/26/apple-guidance-q4-2016/"&gt;revenue decline&lt;/a&gt; for the company as the year continued.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2013/05/foxconn_workers_2.jpg" alt="foxconn_workers_2" width="620" height="355" class="aligncenter size-full wp-image-373392" /&gt;
+				&lt;br/&gt;
+				The slump in the iPhone market now appears to be fully affecting Apple's manufacturing partners with the news out of Foxconn today, but both companies are looking forward to an uptick in sales in the future. Notably, Foxconn's &lt;a href="http://www.macrumors.com/2016/02/24/foxconn-acquires-sharp/"&gt;acquisition of Japanese electronics maker Sharp&lt;/a&gt; has been officially approved by Chinese antitrust authorities, "clearing the final hurdle" in the lengthy buyout process. With the acquisition over, it should be easier for Foxconn to move forward with not only manufacturing of parts for the &lt;a href="http://www.macrumors.com/roundup/iphone-7/"&gt;iPhone 7&lt;/a&gt;, but potentially even ramping up &lt;a href="http://www.macrumors.com/2016/04/06/foxconn-oled-displays-via-sharp/"&gt;development of AMOLED&lt;/a&gt; displays and &lt;a href="http://www.macrumors.com/2016/08/09/foxconn-developing-glass-casing-iphone-8/"&gt;glass casings&lt;/a&gt; for the 2017 iPhone.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Overall, weak demand for the iPhone 7 -- due to a "lack of innovation" -- was &lt;a href="http://www.macrumors.com/2016/05/11/iphone-decline-affecting-apple-suppliers/"&gt;predicted by a group of Apple suppliers&lt;/a&gt; in May. Multiple companies, like Japan Display and Taiwanese Semiconductor Manufacturing Company, reported fears of both huge net profit declines and a worrisome decrease in chip orders thanks to an overall declining iPhone market. Still, Apple CEO &lt;a href="http://www.macrumors.com/roundup/tim-cook/"&gt;Tim Cook&lt;/a&gt; is optimistic about iPhone sales moving forward, saying that he sees "&lt;a href="http://www.macrumors.com/2016/07/26/tim-cook-optimistic-iphone-7-sales/"&gt;so many signs that are positive&lt;/a&gt;" as the company moves towards the iPhone 7 and &lt;a href="http://www.macrumors.com/roundup/ios-10/"&gt;iOS 10&lt;/a&gt; in the fall.&lt;br/&gt;&lt;br/&gt;&lt;div class="linkback"&gt;Related Roundup: &lt;a href="http://www.macrumors.com/roundup/iphone-7/"&gt;iPhone 7&lt;/a&gt; &lt;br/&gt;Tag: &lt;a href="http://www.macrumors.com/roundup/foxconn/"&gt;Foxconn&lt;/a&gt; &lt;/div&gt;&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/foxconn-31-percent-profit-decline.1987664/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=MdP0r4O5Qks:t1D5AnRR_Eo:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=MdP0r4O5Qks:t1D5AnRR_Eo:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/MdP0r4O5Qks" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>Siri Offers Humorous Responses to Questions About Hit Game Pokémon Go</title>
+			<link>http://www.macrumors.com/2016/08/11/siri-pokemon-go-responses/</link>
+			<comments>http://forums.macrumors.com/threads/siri-pokemon-go-responses.1987565</comments>
+			<pubDate>Thu, 11 Aug 2016 13:31:22 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/11/siri-pokemon-go-responses/</guid>
+			<dc:creator>Juli Clover</dc:creator>
+			<category>Siri</category>
+			<category>Pokémon GO</category>
+			<description>Apple's virtual assistant &lt;a href="http://www.macrumors.com/roundup/siri/"&gt;Siri&lt;/a&gt; is known for offering up funny responses to a range of questions, and Apple's Siri team often puts time and effort into providing Siri with answers and comments on current events. This summer, augmented reality game Pokémon Go has become a worldwide phenomenon, and as &lt;a href="https://www.reddit.com/r/pokemongo/comments/4vajdc/ask_siri_whats_your_favourite_pokemon_for_a/"&gt;discovered on Reddit&lt;/a&gt; and by &lt;em&gt;&lt;a href="https://9to5mac.com/2016/08/11/funny-pokemon-go-siri-replies/"&gt;9to5Mac&lt;/a&gt;&lt;/em&gt;, Siri will now answer questions about the hit game.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				A question like "Siri, what's your favorite Pokémon?" receives answers like "That yellow species with an electrostatic tail of variable lengths is rather cute" or "Polymaths prefer Poliwags." Asking Siri if it likes Pokémon Go also results in humorous answers like "I like pocket monsters. Pocket assistants, too."
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/pokemongosiriresponses-800x707.jpg" alt="pokemongosiriresponses" width="800" height="707" class="aligncenter size-large wp-image-515618" /&gt;
+				&lt;br/&gt;
+				Because Siri draws in information from sources like Wolfram Alpha, which has &lt;a href="http://blog.wolframalpha.com/2013/10/10/gotta-compute-em-all-wolframalphas-new-data-about-pokemon/"&gt;offered information about Pokémon&lt;/a&gt; since 2013, the personal assistant can also answer specific questions you ask about Pokémon. Data available includes Pokémon type, abilities, stats, evolutions, and more specific comparative questions about which Pokémon have the highest attack, fastest speed, and more.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/pokemonwolframalpha-800x707.jpg" alt="pokemonwolframalpha" width="800" height="707" class="aligncenter size-large wp-image-515619" /&gt;
+				&lt;br/&gt;
+				While fervor over Pokémon Go has died down somewhat in recent days due to &lt;a href="http://www.macrumors.com/2016/07/30/pokemon-go-updates/"&gt;controversial feature changes&lt;/a&gt; and decisions made by Niantic Labs, Pokémon Go &lt;a href="http://www.macrumors.com/2016/07/22/pokemon-go-app-store-record/"&gt;set an App Store record&lt;/a&gt; for the most ever downloads during its first week of availability.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				It is considered the biggest mobile game in U.S. history and has been &lt;a href="http://www.macrumors.com/2016/07/13/pokemon-go-biggest-mobile-game/"&gt;downloaded more than 100 million times&lt;/a&gt;. According to estimates, the game brings in more than &amp;#36;10 million in daily revenue across the iOS and Google Play app stores.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				To find other questions Siri gives funny answers to, Siri.io, a new website that offers &lt;a href="http://www.macrumors.com/2016/08/01/comprehensive-siri-commands-website/"&gt;a comprehensive list of Siri&lt;/a&gt; commands is worth checking out.&lt;br/&gt;&lt;br/&gt;&lt;div class="linkback"&gt;Tags: &lt;a href="http://www.macrumors.com/roundup/siri/"&gt;Siri&lt;/a&gt;, &lt;a href="http://www.macrumors.com/roundup/pokemon-go/"&gt;Pokémon GO&lt;/a&gt; &lt;/div&gt;&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/siri-pokemon-go-responses.1987565/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=pa986sMTO_Q:R6HTiJsxtqU:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=pa986sMTO_Q:R6HTiJsxtqU:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/pa986sMTO_Q" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>iPhone 7 Display Photos Show Reversed Orientation, Usual Home Button Cutout</title>
+			<link>http://www.macrumors.com/2016/08/11/iphone-7-front-panel-display/</link>
+			<comments>http://forums.macrumors.com/threads/iphone-7-front-panel-display.1987514</comments>
+			<pubDate>Thu, 11 Aug 2016 08:02:59 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/11/iphone-7-front-panel-display/</guid>
+			<dc:creator>Eric Slivka</dc:creator>
+			<category>iPhone 7</category>
+			<category>GeekBar</category>
+			<description>Mobile phone repair firm GeekBar continues to share photos of &lt;a href="http://www.macrumors.com/roundup/iphone-7/"&gt;iPhone 7&lt;/a&gt; components on its Weibo page, with the latest set showing off the display assembly for the device. One photo in particular is interesting because it includes the display assembly paired with a front panel for the device, revealing that the display is mounted upside down compared to previous iPhone models.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/iphone_7_display_panel.jpg" alt="iphone_7_display_panel" width="690" height="800" class="aligncenter size-full wp-image-515605" /&gt;&lt;center&gt;&lt;em&gt;iPhone 7 display and front panel photographed upside down&lt;/em&gt;&lt;/center&gt;
+				&lt;br/&gt;
+				The iPhone's display and digitizer flex cables have traditionally come from the &lt;a href="http://www.macrumors.com/2015/08/01/iphone-6s-display/"&gt;top edge of the display&lt;/a&gt;, routing toward connectors in the top portion of the iPhone's main logic board. The &lt;a href="http://www.macrumors.com/roundup/3d-touch/"&gt;3D Touch&lt;/a&gt; chip built into the display assembly on the &lt;a href="http://www.macrumors.com/roundup/iphone-6s/"&gt;iPhone 6s&lt;/a&gt; and 6s Plus is also located near the top of that display.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				When the &lt;a href="http://www.macrumors.com/2016/08/08/iphone-7-bare-logic-board/"&gt;bare logic board&lt;/a&gt; for the iPhone 7 surfaced earlier this week, one notable change was that the main A10 chip had been shifted higher on the board than corresponding chips on other iPhones, and several of the usual display-related connectors were not in their typical locations. Instead, there were extra spots for flex cable connectors found near the bottom of the iPhone 7 logic board, and today's display assembly photo shows a corresponding change to the display part.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Several other sites reporting on these photos today have been looking at the part upside down and noting that the "bottom" portion of the display appears different with no cutout for the home button, potentially supporting rumors of a flush, Force Touch home button integrated into the front panel.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/iphone_7_home_cutout.jpg" alt="iphone_7_home_cutout" width="427" height="267" class="aligncenter size-full wp-image-515607" /&gt;
+				&lt;br/&gt;
+				What these sites are looking at as the home button area is actually the top of the part with the earpiece and camera and sensor holes. With the reversed orientation of the display assembly on the front panel, the home button would be at the top of the photo and a portion of the home button cutout can indeed be seen under the flex cable.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				The presence of a cutout does not necessarily mean the home button won't have Force Touch haptic feedback as rumored, however, as the functionality could still be included in a separate home button component attached in much the same way as on previous iPhones.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/iphone_7_displays.jpg" alt="iphone_7_displays" width="690" height="920" class="aligncenter size-full wp-image-515609" /&gt;
+				&lt;br/&gt;
+				The iPhone 7 is expected to be unveiled at a media event tentatively scheduled for Wednesday, September 7, with pre-orders reportedly beginning on September 9 and a launch following on September 16.&lt;br/&gt;&lt;br/&gt;&lt;div class="linkback"&gt;Related Roundup: &lt;a href="http://www.macrumors.com/roundup/iphone-7/"&gt;iPhone 7&lt;/a&gt; &lt;br/&gt;Tag: &lt;a href="http://www.macrumors.com/roundup/geekbar/"&gt;GeekBar&lt;/a&gt; &lt;/div&gt;&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/iphone-7-front-panel-display.1987514/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=NTkMv_UKjEk:3s6sFhQUdHg:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=NTkMv_UKjEk:3s6sFhQUdHg:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/NTkMv_UKjEk" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>CVS Launches Barcode-Based 'CVS Pay' in Lieu of Apple Pay</title>
+			<link>http://www.macrumors.com/2016/08/11/cvs-pay-launches/</link>
+			<comments>http://forums.macrumors.com/threads/cvs-pay-launches.1987506</comments>
+			<pubDate>Thu, 11 Aug 2016 07:17:51 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/11/cvs-pay-launches/</guid>
+			<dc:creator>Joe Rossignol</dc:creator>
+			<category>Apple Pay</category>
+			<category>CVS</category>
+			<description>&lt;a href="http://www.macrumors.com/roundup/apple-pay/"&gt;Apple Pay&lt;/a&gt; holdout CVS today introduced &lt;a href="https://cvshealth.com/newsroom/press-releases/cvs-pharmacy-launches-breakthrough-end-end-mobile-payment-experience"&gt;CVS Pay&lt;/a&gt;, a new barcode-based mobile payment solution that integrates payment, prescription pickup, and its ExtraCare loyalty program into a single scan at checkout. CVS Pay is built into the newly updated &lt;a href="http://appshopper.com/shopping/cvs-pharmacy"&gt;CVS Pharmacy app&lt;/a&gt; for iOS and Android devices.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/CVS-Pay.jpg" alt="CVS-Pay" width="545" height="310" class="aligncenter size-full wp-image-515583" /&gt;
+				&lt;br/&gt;
+				CVS Pay works with all major U.S. credit cards, including MasterCard, Visa, Discover, and American Express, in addition to debit, Health Savings Account, and Flexible Spending Account cards. All verifications for prescriptions and payment like a signature or PIN occur within the CVS Pharmacy app.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				After adding their credit or debit cards to the app, customers can show the store associate a barcode, or pickup number at drive-thru locations, to initiate payment. The associate will scan the barcode, ring up the purchases, let the customer choose a stored payment method, and then process the payment.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/CVS-Pay-screenshot.jpg" alt="CVS-Pay-screenshot" width="545" height="475" class="aligncenter size-full wp-image-515593" /&gt;
+				&lt;br/&gt;
+				CVS Pay is the pharmacy chain's first official mobile payments solution. CVS officially &lt;a href="http://www.macrumors.com/2014/10/27/cvs-rite-aid-disable-apple-pay-support/"&gt;disabled Apple Pay&lt;/a&gt; shortly following its U.S. launch, prompting a &lt;a href="http://www.macrumors.com/2014/10/27/apple-working-to-add-apple-pay-partners/"&gt;response from Apple&lt;/a&gt; and even a &lt;a href="http://www.macrumors.com/2014/11/04/law-firm-class-action-rite-aid-cvs/"&gt;potential class action lawsuit&lt;/a&gt;. At the time, CVS was committed to &lt;a href="https://en.wikipedia.org/wiki/Merchant_Customer_Exchange"&gt;MCX&lt;/a&gt; and its &lt;a href="http://www.macrumors.com/2016/06/07/currentc-beta-test-ends/"&gt;indefinitely postponed&lt;/a&gt; payments solution &lt;a href="http://www.macrumors.com/roundup/currentc/"&gt;CurrentC&lt;/a&gt;.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				CVS Pay launches today in select markets, including New York, New Jersey, Pennsylvania, and Delaware, and a nationwide rollout to its over 9,600 pharmacy locations in the U.S. is expected to begin later this year. &lt;a href="http://appshopper.com/shopping/cvs-pharmacy"&gt;CVS Pharmacy&lt;/a&gt; is free on the &lt;a href="http://www.macrumors.com/roundup/app-store/"&gt;App Store&lt;/a&gt; [&lt;a href="https://itunes.apple.com/app/cvs-pharmacy/id395545555?mt=8"&gt;Direct Link&lt;/a&gt;] for iPhone, with a companion &lt;a href="http://www.macrumors.com/roundup/apple-watch/"&gt;Apple Watch&lt;/a&gt; app available.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;small&gt;Top Image: CVS Health via Fortune&lt;/small&gt;&lt;br/&gt;&lt;br/&gt;&lt;div class="linkback"&gt;Related Roundup: &lt;a href="http://www.macrumors.com/roundup/apple-pay/"&gt;Apple Pay&lt;/a&gt; &lt;br/&gt;Tag: &lt;a href="http://www.macrumors.com/roundup/cvs/"&gt;CVS&lt;/a&gt; &lt;/div&gt;&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/cvs-pay-launches.1987506/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=-cg_oTF4xZs:7HF8PLu5UA0:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=-cg_oTF4xZs:7HF8PLu5UA0:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/-cg_oTF4xZs" height="1" width="1" alt=""/&gt;</description>
+		</item>
+		<item>
+			<title>Apple Re-Hires Flipboard Co-Founder Evan Doll for Continued Push Into Health Initiatives</title>
+			<link>http://www.macrumors.com/2016/08/11/apple-re-hires-evan-doll/</link>
+			<comments>http://forums.macrumors.com/threads/apple-re-hires-evan-doll.1987502</comments>
+			<pubDate>Thu, 11 Aug 2016 06:54:54 PDT</pubDate>
+			<guid isPermaLink="false">http://www.macrumors.com/2016/08/11/apple-re-hires-evan-doll/</guid>
+			<dc:creator>Mitchel Broussard</dc:creator>
+			<category>Apple</category>
+			<category>Rumors</category>
+			<category>Mac</category>
+			<category>iOS</category>
+			<category>iPhone</category>
+			<category>iPad</category>
+			<description>Apple has re-hired software engineer Evan Doll to help the company "develop more health-related software," according to information spotted by &lt;a href="http://www.bloomberg.com/news/articles/2016-08-11/apple-rehires-flipboard-co-founder-for-health-software-role"&gt;&lt;em&gt;Bloomberg&lt;/em&gt;&lt;/a&gt; on Doll's &lt;a href="https://www.linkedin.com/in/evandoll"&gt;LinkedIn account&lt;/a&gt;. Specifically, Doll is now a director of health software engineering at Apple, a position which he began sometime in July, but his profile information doesn't provide any further details into his role at the company.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				The software engineer worked at Apple from 2003 to 2009, helping create and develop the software operating system for the iPhone. In 2009, he left Apple and co-founded magazine app &lt;a href="https://flipboard.com/"&gt;Flipboard&lt;/a&gt; with Mike McCue. Similar to &lt;a href="http://www.macrumors.com/roundup/apple-news/"&gt;Apple News&lt;/a&gt;, Flipboard curates content and stories tailored to each user's personal tastes and preferences, and has even been &lt;a href="http://www.macrumors.com/2011/12/07/flipboard-comes-to-iphone-with-phil-schillers-endorsement/"&gt;endorsed by Apple&lt;/a&gt; in the past.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				&lt;img src="http://cdn.macrumors.com/article-new/2016/08/3-format2101.jpg" alt="3-format2101" width="620" height="349" class="aligncenter size-full wp-image-515571" /&gt;
+				&lt;br/&gt;
+				The launch of Apple News was reported as a steep competitive challenge for the small company, resulting in a &lt;a href="http://www.bloomberg.com/news/articles/2015-10-28/flipboard-s-fanfare-fades-as-executives-exit-sale-talks-stall"&gt;majority of its executives leaving&lt;/a&gt; the company -- including Doll himself -- in September 2015. Despite his background in the news curation space, Doll's new placement at Apple has him focused on potential new health initiatives, an area that the company has slowly been &lt;a href="http://www.macrumors.com/2016/05/24/apple-ceo-tim-cook-startup-fest-interview/"&gt;building upon&lt;/a&gt; lately.
+				&lt;br/&gt;
+				&lt;blockquote&gt;Apple has been beefing up its engineering team for health-care applications, hiring Sage Bionetworks founder and Merck &amp; Co. veteran Stephen Friend and former Nest Labs technology chief Yoky Matsuoka earlier this year. Chief Executive Officer &lt;a href="http://www.macrumors.com/roundup/tim-cook/"&gt;Tim Cook&lt;/a&gt; is increasingly positioning the &lt;a href="http://www.macrumors.com/roundup/apple-watch/"&gt;Apple Watch&lt;/a&gt; as a wellness accessory as he tries to win a slice of the &amp;#36;4.6 trillion U.S. health and fitness industry.&lt;/blockquote&gt; A report from earlier in the week suggested that Apple is &lt;a href="http://www.macrumors.com/2016/08/09/apple-health-tracking-hardware-2017/"&gt;working&lt;/a&gt; on a new health-tracking piece of hardware to launch alongside the 10th anniversary iPhone in 2017. Although details are still lacking for a product launch over a year away, the product is said to collect heart rate, pulse, and blood sugar changes, which could be describing a next-generation Apple Watch if it's not an entirely new addition to the company's hardware lineup.
+				&lt;br/&gt;
+
+				&lt;br/&gt;
+				Earlier in the year, Apple CEO Tim Cook spoke with Jim Cramer on "Mad Money," discussing Apple's &lt;a href="http://www.macrumors.com/2015/03/12/tim-cook-jim-cramer-mad-money/"&gt;initiatives in the health landscape&lt;/a&gt;. Cook described services like ResearchKit and the Health app as "significantly underestimated" sections of the technology market. Ultimately, when asked what the "next frontiers" in product development, Cook described health, and all the inroads taken by Apple to provide detailed analysis of a user's well-being, as "the biggest one of all."&lt;br/&gt;&lt;a href="http://forums.macrumors.com/threads/apple-re-hires-evan-doll.1987502/"&gt;Discuss this article&lt;/a&gt; in our forums&lt;br/&gt;&lt;br/&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=CYsGsJO7hjk:gXrrE4tMApc:6W8y8wAjSf4"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=6W8y8wAjSf4" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.macrumors.com/~ff/MacRumors-All?a=CYsGsJO7hjk:gXrrE4tMApc:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/MacRumors-All?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/MacRumors-All/~4/CYsGsJO7hjk" height="1" width="1" alt=""/&gt;</description>
+		</item>
+	</channel>
+</rss>

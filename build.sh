@@ -7,8 +7,9 @@
 #export GOTRACEBACK=all
 #CURRENTDIR=`pwd`
 
-JSONPATH=${GOPATH}/src/github.com/hiromaily/booking-teacher/settings.json
+JSONPATH=${GOPATH}/src/github.com/hiromaily/go-book-teacher/settings.json
 TOMLPATH=${GOPATH}/src/github.com/hiromaily/golibs/settings.toml
+XMLPATH=${GOPATH}/src/github.com/hiromaily/golibs/xml/rssfeeds/
 BOLTPATH=${GOPATH}/src/github.com/hiromaily/golibs/boltdb
 
 TEST_MODE=2  #0:off, 1:run all test, 2:test for specific one
@@ -109,7 +110,10 @@ elif [ $TEST_MODE -eq 2 ]; then
     #go test -v html/html_test.go
     #go test -v db/mysql/mysql_test.go
     #go test -v log/log_test.go
-    go test -v db/mongodb/mongodb_test.go -fp ${JSONPATH}
+    #go test -v db/mongodb/mongodb_test.go -fp ${JSONPATH}
+    #go test -v json/json_test.go -fp ${JSONPATH}
+    go test -v xml/xml_test.go -fp ${XMLPATH}/techcrunch.xml
+    go test -v xml/xml_test.go -fp ${XMLPATH}/cnet.xml
 fi
 
 ###########################################################

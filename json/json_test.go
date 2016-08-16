@@ -2,12 +2,11 @@ package json_test
 
 import (
 	"encoding/json"
-	"errors"
 	"flag"
-	//. "github.com/hiromaily/golibs/json"
+	"fmt"
+	. "github.com/hiromaily/golibs/json"
 	lg "github.com/hiromaily/golibs/log"
 	o "github.com/hiromaily/golibs/os"
-	"io/ioutil"
 	"os"
 	"testing"
 )
@@ -59,6 +58,7 @@ func init() {
 	flag.Parse()
 
 	if *jsonFile == "" {
+		fmt.Println("json parameter is required to run.")
 		os.Exit(1)
 		return
 	}
@@ -74,14 +74,13 @@ func setup() {
 	var err error
 	fileData, err = LoadJsonFile(*jsonFile)
 	if err != nil {
+		fmt.Println(err)
 		os.Exit(1)
 		return
 	}
 }
 
 func teardown() {
-	if *benchFlg == 0 {
-	}
 }
 
 func TestMain(m *testing.M) {
@@ -92,23 +91,6 @@ func TestMain(m *testing.M) {
 	teardown()
 
 	os.Exit(code)
-}
-
-//-----------------------------------------------------------------------------
-// functions
-//-----------------------------------------------------------------------------
-func LoadJsonFile(filePath string) ([]byte, error) {
-	// Loading jsonfile
-	if filePath == "" {
-		err := errors.New("Nothing Json File")
-		return nil, err
-	}
-
-	file, err := ioutil.ReadFile(filePath)
-	if err != nil {
-		return nil, err
-	}
-	return file, nil
 }
 
 //-----------------------------------------------------------------------------

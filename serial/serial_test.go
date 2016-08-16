@@ -161,9 +161,6 @@ func TestDeSerializeInterfaces(t *testing.T) {
 // map[string]interface{} x slice
 func TestSerializeMapInterface(t *testing.T) {
 	t.Skip("skipping TestSerializeMapInterface")
-	//if *benchFlg == 1 {
-	//	t.Skip("skipping TestSerializeMapInterface")
-	//}
 
 	//[]map[string]interface{}
 	args := make([]map[string]interface{}, 3)
@@ -183,9 +180,6 @@ func TestSerializeMapInterface(t *testing.T) {
 
 func TestDeSerializeMapInterface(t *testing.T) {
 	t.Skip("skipping TestDeSerializeInterfaces")
-	//if *benchFlg == 1 {
-	//	t.Skip("skipping TestDeSerializeInterfaces")
-	//}
 
 	//TODO:check make is required or not.
 	//args := make([]map[string]interface{}, 3)

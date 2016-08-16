@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2full.xsl"?>
+<?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" version="2.0">
+	<channel>
+		<title>The Next Web</title>
+		<link>http://thenextweb.com</link>
+		<description>International technology news, business &amp; culture</description>
+		<lastBuildDate>Mon, 15 Aug 2016 09:51:46 +0000</lastBuildDate>
+		<language>en-US</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+		<generator>https://wordpress.org/?v=4.5.2</generator>
+		<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/TheNextWeb" />
+		<feedburner:info uri="thenextweb" />
+		<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" />
+		<feedburner:emailServiceId>TheNextWeb</feedburner:emailServiceId>
+		<feedburner:feedburnerHostname>https://feedburner.google.com</feedburner:feedburnerHostname>
+		<item>
+			<title>This week in patents: Google Glass goes old school with battery power</title>
+			<link>http://feedproxy.google.com/~r/TheNextWeb/~3/MNrU_UMZESk/</link>
+			<comments>http://thenextweb.com/insider/2016/08/15/week-patents-google-glass-goes-old-school/#respond</comments>
+			<pubDate>Mon, 15 Aug 2016 09:43:46 +0000</pubDate>
+			<dc:creator><![CDATA[Deepak Gupta]]></dc:creator>
+			<category><![CDATA[Insider]]></category>
+			<category><![CDATA[Boeing]]></category>
+			<category><![CDATA[drones]]></category>
+			<category><![CDATA[google]]></category>
+			<category><![CDATA[google glass]]></category>
+			<guid isPermaLink="false">http://thenextweb.com/?p=992163</guid>
+			<description>&lt;img src="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/08/2-1.jpg" width="645" height="380"&gt;&lt;br /&gt;This week, the US patent office issued 6,798 patents. Each patent adds a little something new to the human knowledge base. As we can&amp;#8217;t list all six thousand, the PatentYogi team has selected the five most interesting patents. Boeing&amp;#8217;s radically new technique to takeoff and land commercial aircrafts Patent number: US 20160229558 Engines on commercial passenger jets are sized for take-off conditions. This design condition leads to engine sizes that are larger than necessary for every other phase of the aircraft flight. The larger sized engine for take-off conditions results in higher purchase costs, higher cost of operation, creating additional drag to&amp;#8230; &lt;br&gt;&lt;br&gt;&lt;a href="http://thenextweb.com/insider/2016/08/15/week-patents-google-glass-goes-old-school/?utm_source=social&amp;#038;utm_medium=feed&amp;#038;utm_campaign=profeed"&gt;This story continues&lt;/a&gt; at The Next Web&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=MNrU_UMZESk:ZV9A6b4NhcA:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=MNrU_UMZESk:ZV9A6b4NhcA:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=MNrU_UMZESk:ZV9A6b4NhcA:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=MNrU_UMZESk:ZV9A6b4NhcA:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=MNrU_UMZESk:ZV9A6b4NhcA:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/TheNextWeb/~4/MNrU_UMZESk" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>http://thenextweb.com/insider/2016/08/15/week-patents-google-glass-goes-old-school/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<enclosure url="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/08/2-1.jpg" type="image/jpeg" length="0" />
+			<feedburner:origLink>http://thenextweb.com/insider/2016/08/15/week-patents-google-glass-goes-old-school/</feedburner:origLink>
+		</item>
+		<item>
+			<title>Malicious KickassTorrents clone wants to steal your credit card details</title>
+			<link>http://feedproxy.google.com/~r/TheNextWeb/~3/_zm2p0KVyds/</link>
+			<comments>http://thenextweb.com/insider/2016/08/15/popular-kickasstorrents-clone-torrent-site-wants-to-steal-your-credit-card-details/#respond</comments>
+			<pubDate>Mon, 15 Aug 2016 08:46:00 +0000</pubDate>
+			<dc:creator><![CDATA[Mix]]></dc:creator>
+			<category><![CDATA[Insider]]></category>
+			<category><![CDATA[scam]]></category>
+			<category><![CDATA[torrents]]></category>
+			<guid isPermaLink="false">http://thenextweb.com/?p=992149</guid>
+			<description>&lt;img src="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/08/kickass-torrents-kat.am-clone-scam-796x301.jpg" width="796" height="301"&gt;&lt;br /&gt;It&amp;#8217;s a cold summer for the torrent community. Last month pirates&amp;#8217; favorite tracker KickassTorrents shut down following the arrest of alleged founder Artem Vaulin and last week the internet&amp;#8217;s largest meta-search engine, Torrentz.eu, mysteriously closed its doors. With two of its major players out of the picture, the torrent community had a massive gap to fill up and it didn&amp;#8217;t take long before a bunch of clones spurred. Now it turns out not all of these mirrors are genuine. Popular KickassTorrents clone KAT.am – recently taken down following a run-in with Hollywood – has now resurfaced on the Web; but this time as a scam aimed at stealing your bank account details.&amp;#8230; &lt;br&gt;&lt;br&gt;&lt;a href="http://thenextweb.com/insider/2016/08/15/popular-kickasstorrents-clone-torrent-site-wants-to-steal-your-credit-card-details/?utm_source=social&amp;#038;utm_medium=feed&amp;#038;utm_campaign=profeed"&gt;This story continues&lt;/a&gt; at The Next Web&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=_zm2p0KVyds:KboZRHAnYH0:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=_zm2p0KVyds:KboZRHAnYH0:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=_zm2p0KVyds:KboZRHAnYH0:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=_zm2p0KVyds:KboZRHAnYH0:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=_zm2p0KVyds:KboZRHAnYH0:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/TheNextWeb/~4/_zm2p0KVyds" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>http://thenextweb.com/insider/2016/08/15/popular-kickasstorrents-clone-torrent-site-wants-to-steal-your-credit-card-details/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<enclosure url="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/08/kickass-torrents-kat.am-clone-scam-796x301.jpg" type="image/jpeg" length="0" />
+			<feedburner:origLink>http://thenextweb.com/insider/2016/08/15/popular-kickasstorrents-clone-torrent-site-wants-to-steal-your-credit-card-details/</feedburner:origLink>
+		</item>
+		<item>
+			<title>Earn money by recommending products with Maven</title>
+			<link>http://feedproxy.google.com/~r/TheNextWeb/~3/6tZ_GRhejj4/</link>
+			<comments>http://thenextweb.com/apps/2016/08/15/earn-money-by-recommending-products/#respond</comments>
+			<pubDate>Mon, 15 Aug 2016 06:53:31 +0000</pubDate>
+			<dc:creator><![CDATA[BetaList]]></dc:creator>
+			<category><![CDATA[Apps]]></category>
+			<category><![CDATA[marketing]]></category>
+			<category><![CDATA[money]]></category>
+			<guid isPermaLink="false">http://thenextweb.com/?p=992144</guid>
+			<description>&lt;img src="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/08/ATP_3010c-796x526.jpg" width="796" height="526"&gt;&lt;br /&gt;BetaList features the newest startups. Today, we look at Maven which lets you earn money through personal recommendations. Submit your startup to get featured too. What does your product do? Maven lets people earn money by recommending products and services to other people. People who love to shop, can now monetize their skill in an easy, natural way. We believe that everyone is an expert at something. The experienced mother of four who recommends to her friend, and soon to be first-time mother, safe baby products to buy. The college student who is commonly hit up for fashion advice because of her stylish yet thrifty&amp;#8230; &lt;br&gt;&lt;br&gt;&lt;a href="http://thenextweb.com/apps/2016/08/15/earn-money-by-recommending-products/?utm_source=social&amp;#038;utm_medium=feed&amp;#038;utm_campaign=profeed"&gt;This story continues&lt;/a&gt; at The Next Web&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=6tZ_GRhejj4:IgVhvNYE3xM:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=6tZ_GRhejj4:IgVhvNYE3xM:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=6tZ_GRhejj4:IgVhvNYE3xM:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=6tZ_GRhejj4:IgVhvNYE3xM:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=6tZ_GRhejj4:IgVhvNYE3xM:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/TheNextWeb/~4/6tZ_GRhejj4" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>http://thenextweb.com/apps/2016/08/15/earn-money-by-recommending-products/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<enclosure url="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/08/ATP_3010c-796x526.jpg" type="image/jpeg" length="0" />
+			<feedburner:origLink>http://thenextweb.com/apps/2016/08/15/earn-money-by-recommending-products/</feedburner:origLink>
+		</item>
+		<item>
+			<title>In photos: iPhone 7 (dummy) compared to the 6S, Plus and SE</title>
+			<link>http://feedproxy.google.com/~r/TheNextWeb/~3/KUSBHMnzmLM/</link>
+			<comments>http://thenextweb.com/apple/2016/08/14/iphone-7-6s-se-plus-compared/#respond</comments>
+			<pubDate>Sun, 14 Aug 2016 19:50:35 +0000</pubDate>
+			<dc:creator><![CDATA[Nate Swanner]]></dc:creator>
+			<category><![CDATA[Apple]]></category>
+			<category><![CDATA[Gadgets]]></category>
+			<guid isPermaLink="false">http://thenextweb.com/?p=992111</guid>
+			<description>&lt;img src="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/08/FullSizeRender-1-796x479.jpg" width="796" height="479"&gt;&lt;br /&gt;The iPhone 7 is coming, that much we know. While spy shots are always fun, we sourced our own dummy unit to take photos for you, our dear readers. Below you’ll see an iPhone 7 dummy unit next to the iPhone 6S, 6S Plus and iPhone SE. We didn’t bother with the iPhone 6 as it’s essentially the same dimensions as the 6S. The 6S Plus is just a size upgrade, but we took images anyway. We’ll remind you this is a dummy unit, and isn’t operational. It’s meant for third-party manufacturers to use as a model for creating cases&amp;#8230; &lt;br&gt;&lt;br&gt;&lt;a href="http://thenextweb.com/apple/2016/08/14/iphone-7-6s-se-plus-compared/?utm_source=social&amp;#038;utm_medium=feed&amp;#038;utm_campaign=profeed"&gt;This story continues&lt;/a&gt; at The Next Web&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=KUSBHMnzmLM:rr1Z-2TkcWw:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=KUSBHMnzmLM:rr1Z-2TkcWw:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=KUSBHMnzmLM:rr1Z-2TkcWw:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=KUSBHMnzmLM:rr1Z-2TkcWw:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=KUSBHMnzmLM:rr1Z-2TkcWw:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/TheNextWeb/~4/KUSBHMnzmLM" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>http://thenextweb.com/apple/2016/08/14/iphone-7-6s-se-plus-compared/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<enclosure url="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/08/FullSizeRender-1-796x479.jpg" type="image/jpeg" length="0" />
+			<feedburner:origLink>http://thenextweb.com/apple/2016/08/14/iphone-7-6s-se-plus-compared/</feedburner:origLink>
+		</item>
+		<item>
+			<title>Samsung T3 SSD review: A glass ceiling on cloud storage</title>
+			<link>http://feedproxy.google.com/~r/TheNextWeb/~3/tmROYfXjSlY/</link>
+			<comments>http://thenextweb.com/gadgets/2016/08/14/samsung-t3-ssd-review/#respond</comments>
+			<pubDate>Sun, 14 Aug 2016 18:27:37 +0000</pubDate>
+			<dc:creator><![CDATA[Nate Swanner]]></dc:creator>
+			<category><![CDATA[Gadgets]]></category>
+			<guid isPermaLink="false">http://thenextweb.com/?p=992097</guid>
+			<description>&lt;img src="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/08/SamsungSSDT3TNW-796x425.jpg" width="796" height="425"&gt;&lt;br /&gt;SSD is the future, but it’s an expensive purchase to make it today’s world. But prices are dropping, and external drives with deep storage are fast becoming something we all want on our desktops or in a travel bag. Samsung’s T3 SSD lineup is perhaps the best known of the bunch. We put the 2TB USB-C offering through its paces, comparing it to cloud storage as well as spinning drives. It’s small The first thing that jumps out is how tight the package on this 2TB model is. Compared to the Porsche Design drive I recently tested, it’s downright dwarfish.&amp;#8230; &lt;br&gt;&lt;br&gt;&lt;a href="http://thenextweb.com/gadgets/2016/08/14/samsung-t3-ssd-review/?utm_source=social&amp;#038;utm_medium=feed&amp;#038;utm_campaign=profeed"&gt;This story continues&lt;/a&gt; at The Next Web&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=tmROYfXjSlY:WgSYfLtkmKU:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=tmROYfXjSlY:WgSYfLtkmKU:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=tmROYfXjSlY:WgSYfLtkmKU:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=tmROYfXjSlY:WgSYfLtkmKU:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=tmROYfXjSlY:WgSYfLtkmKU:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/TheNextWeb/~4/tmROYfXjSlY" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>http://thenextweb.com/gadgets/2016/08/14/samsung-t3-ssd-review/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<enclosure url="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/08/SamsungSSDT3TNW-796x425.jpg" type="image/jpeg" length="0" />
+			<feedburner:origLink>http://thenextweb.com/gadgets/2016/08/14/samsung-t3-ssd-review/</feedburner:origLink>
+		</item>
+		<item>
+			<title>Here’s how the rumored OLED bar on the 2016 MacBook Pro might work</title>
+			<link>http://feedproxy.google.com/~r/TheNextWeb/~3/AsgFTxFtuMk/</link>
+			<comments>http://thenextweb.com/apple/2016/08/14/macbook-pro-2016-oled-bar/#respond</comments>
+			<pubDate>Sun, 14 Aug 2016 17:47:08 +0000</pubDate>
+			<dc:creator><![CDATA[Nate Swanner]]></dc:creator>
+			<category><![CDATA[Apple]]></category>
+			<category><![CDATA[Gadgets]]></category>
+			<guid isPermaLink="false">http://thenextweb.com/?p=992093</guid>
+			<description>&lt;img src="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/04/MacBookDuel2TNW-796x421.jpg" width="796" height="421"&gt;&lt;br /&gt;Rumors of a new MacBook Pro are starting to make the rounds, and it seems there will be an OLED bar where the function keys are now. We’re also getting more info on how it will work. Rather than the ‘customizable’ bar we’d previously heard would be included, it seems the OLED panel will customize itself. From Bloomberg: The most significant addition to the new MacBook Pro is a secondary display above the keyboard that replaces the standard function key row. Instead of physical keys, a strip-like screen will present functions on an as-needed basis that fit the current task&amp;#8230; &lt;br&gt;&lt;br&gt;&lt;a href="http://thenextweb.com/apple/2016/08/14/macbook-pro-2016-oled-bar/?utm_source=social&amp;#038;utm_medium=feed&amp;#038;utm_campaign=profeed"&gt;This story continues&lt;/a&gt; at The Next Web&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=AsgFTxFtuMk:XM4Fy6ZMar8:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=AsgFTxFtuMk:XM4Fy6ZMar8:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=AsgFTxFtuMk:XM4Fy6ZMar8:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=AsgFTxFtuMk:XM4Fy6ZMar8:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=AsgFTxFtuMk:XM4Fy6ZMar8:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/TheNextWeb/~4/AsgFTxFtuMk" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>http://thenextweb.com/apple/2016/08/14/macbook-pro-2016-oled-bar/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<enclosure url="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/04/MacBookDuel2TNW-796x421.jpg" type="image/jpeg" length="0" />
+			<feedburner:origLink>http://thenextweb.com/apple/2016/08/14/macbook-pro-2016-oled-bar/</feedburner:origLink>
+		</item>
+		<item>
+			<title>The Slim Pack may be the perfect backpack (especially for commuters)</title>
+			<link>http://feedproxy.google.com/~r/TheNextWeb/~3/hIQtGHkc9eE/</link>
+			<comments>http://thenextweb.com/gadgets/2016/08/14/slim-pack-perfect-backpack/#respond</comments>
+			<pubDate>Sun, 14 Aug 2016 16:59:09 +0000</pubDate>
+			<dc:creator><![CDATA[Nate Swanner]]></dc:creator>
+			<category><![CDATA[Gadgets]]></category>
+			<guid isPermaLink="false">http://thenextweb.com/?p=992082</guid>
+			<description>&lt;img src="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/08/SlimPack-contents-tight-1200-796x531.jpg" width="796" height="531"&gt;&lt;br /&gt;If you’re like me, finding the perfect backpack is an ongoing, evolving process. The new Slim Pack might actually be the one we’ve been looking for, though. Currently being funded on Kickstarter, Slim Pack has reached its goal five times over. Creator Dave Zuverink plans to start shipping the bag in December. Aimed at the mobile workforce, Slim Pack is a bit unlike anything you’ve seen before. It folds out like an accordion for easy access, but zips up tight to remain as low-profile as possible. SlimFold Slim Pack Kickstarter Preview from SlimFold on Vimeo. The outer shell is only&amp;#8230; &lt;br&gt;&lt;br&gt;&lt;a href="http://thenextweb.com/gadgets/2016/08/14/slim-pack-perfect-backpack/?utm_source=social&amp;#038;utm_medium=feed&amp;#038;utm_campaign=profeed"&gt;This story continues&lt;/a&gt; at The Next Web&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=hIQtGHkc9eE:Xpu7IMGpS3s:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=hIQtGHkc9eE:Xpu7IMGpS3s:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=hIQtGHkc9eE:Xpu7IMGpS3s:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=hIQtGHkc9eE:Xpu7IMGpS3s:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=hIQtGHkc9eE:Xpu7IMGpS3s:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/TheNextWeb/~4/hIQtGHkc9eE" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>http://thenextweb.com/gadgets/2016/08/14/slim-pack-perfect-backpack/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<enclosure url="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/08/SlimPack-contents-tight-1200-796x531.jpg" type="image/jpeg" length="0" />
+			<feedburner:origLink>http://thenextweb.com/gadgets/2016/08/14/slim-pack-perfect-backpack/</feedburner:origLink>
+		</item>
+		<item>
+			<title>Pokemon Go is handing out lifetime bans to players who cheat</title>
+			<link>http://feedproxy.google.com/~r/TheNextWeb/~3/O0KogDV7YFU/</link>
+			<comments>http://thenextweb.com/apps/2016/08/14/pokemon-go-ban-cheaters/#respond</comments>
+			<pubDate>Sun, 14 Aug 2016 16:20:35 +0000</pubDate>
+			<dc:creator><![CDATA[Nate Swanner]]></dc:creator>
+			<category><![CDATA[Apps]]></category>
+			<guid isPermaLink="false">http://thenextweb.com/?p=992078</guid>
+			<description>&lt;img src="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/07/pokemon-go.gif" width="500" height="365"&gt;&lt;br /&gt;Do you want to be permanently banned from Pokemon Go? It’s easy: just cheat. In an update to its terms of service page regarding appealing a ban, Pokemon Go creator Niantic Labs says those who use bots or cheater apps to play the game may have no recourse: [Reasons for a ban] includes, but is not limited to: falsifying your location, using emulators, modified or unofficial software and/or accessing Pokémon GO clients or backends in an unauthorized manner including through the use of third party software. Our goal is to provide a fair, fun and legitimate game experience for everyone.&amp;#8230; &lt;br&gt;&lt;br&gt;&lt;a href="http://thenextweb.com/apps/2016/08/14/pokemon-go-ban-cheaters/?utm_source=social&amp;#038;utm_medium=feed&amp;#038;utm_campaign=profeed"&gt;This story continues&lt;/a&gt; at The Next Web&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=O0KogDV7YFU:ONuP7ZIf2S8:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=O0KogDV7YFU:ONuP7ZIf2S8:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=O0KogDV7YFU:ONuP7ZIf2S8:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=O0KogDV7YFU:ONuP7ZIf2S8:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=O0KogDV7YFU:ONuP7ZIf2S8:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/TheNextWeb/~4/O0KogDV7YFU" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>http://thenextweb.com/apps/2016/08/14/pokemon-go-ban-cheaters/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<enclosure url="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/07/pokemon-go.gif" type="image/gif" length="0" />
+			<feedburner:origLink>http://thenextweb.com/apps/2016/08/14/pokemon-go-ban-cheaters/</feedburner:origLink>
+		</item>
+		<item>
+			<title>T-Mobile dropped the HTC 10 3 weeks ago, and nobody noticed</title>
+			<link>http://feedproxy.google.com/~r/TheNextWeb/~3/f-HYoVMQTJY/</link>
+			<comments>http://thenextweb.com/gadgets/2016/08/14/htc-10-t-mobile-bye-bye/#respond</comments>
+			<pubDate>Sun, 14 Aug 2016 15:54:23 +0000</pubDate>
+			<dc:creator><![CDATA[Nate Swanner]]></dc:creator>
+			<category><![CDATA[Gadgets]]></category>
+			<category><![CDATA[Insider]]></category>
+			<guid isPermaLink="false">http://thenextweb.com/?p=992075</guid>
+			<description>&lt;img src="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/05/HTC-10-3-796x448.jpg" width="796" height="448"&gt;&lt;br /&gt;T-Mobile has dropped the HTC 10 from its lineup. While stock may be available in stores, it’s no longer listed on the T-Mobile website. First discovered by a Redditor, it seems T-Mobile actually began distancing itself from the HTC 10 on July 21. Other Redditors claiming to be T-Mobile employees note that HTC 10 accessories have been returned to the distribution center, too. As Android Police notes, the phone was only available from T-Mobile for two months, roughly half the time little magenta kept the BlackBerry Priv around. Even sadder? Nobody noticed the phone was no longer available from a major&amp;#8230; &lt;br&gt;&lt;br&gt;&lt;a href="http://thenextweb.com/gadgets/2016/08/14/htc-10-t-mobile-bye-bye/?utm_source=social&amp;#038;utm_medium=feed&amp;#038;utm_campaign=profeed"&gt;This story continues&lt;/a&gt; at The Next Web&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=f-HYoVMQTJY:crrRlfXN_Vw:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=f-HYoVMQTJY:crrRlfXN_Vw:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=f-HYoVMQTJY:crrRlfXN_Vw:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=f-HYoVMQTJY:crrRlfXN_Vw:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=f-HYoVMQTJY:crrRlfXN_Vw:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/TheNextWeb/~4/f-HYoVMQTJY" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>http://thenextweb.com/gadgets/2016/08/14/htc-10-t-mobile-bye-bye/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<enclosure url="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/05/HTC-10-3-796x448.jpg" type="image/jpeg" length="0" />
+			<feedburner:origLink>http://thenextweb.com/gadgets/2016/08/14/htc-10-t-mobile-bye-bye/</feedburner:origLink>
+		</item>
+		<item>
+			<title>Embracing minimalism: How I travel light and stay productive</title>
+			<link>http://feedproxy.google.com/~r/TheNextWeb/~3/-useYepuGvg/</link>
+			<comments>http://thenextweb.com/insider/2016/08/14/minimalism-travel-events/#respond</comments>
+			<pubDate>Sun, 14 Aug 2016 15:31:10 +0000</pubDate>
+			<dc:creator><![CDATA[Nate Swanner]]></dc:creator>
+			<category><![CDATA[Insider]]></category>
+			<guid isPermaLink="false">http://thenextweb.com/?p=992065</guid>
+			<description>&lt;img src="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/08/Conferences2016-796x419.jpg" width="796" height="419"&gt;&lt;br /&gt;For a few months every year, I end up living out of a bag at a hotel as often as I’m home. Staying productive and traveling light often seems like the unattainable goal of minimalism, but I’ve cracked the code (at least for me). Here’s a quick rundown of what I use when the creature comforts of home are out of reach. Bag Depending on where I am headed, I use two different bags: an Everki Traveler or a Moshi Venturo. The Everki bag is great for air travel as its zip-down computer compartment is TSA friendly; I just butterfly it&amp;#8230; &lt;br&gt;&lt;br&gt;&lt;a href="http://thenextweb.com/insider/2016/08/14/minimalism-travel-events/?utm_source=social&amp;#038;utm_medium=feed&amp;#038;utm_campaign=profeed"&gt;This story continues&lt;/a&gt; at The Next Web&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=-useYepuGvg:noo7pUfAH9o:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=-useYepuGvg:noo7pUfAH9o:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=-useYepuGvg:noo7pUfAH9o:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/TheNextWeb?a=-useYepuGvg:noo7pUfAH9o:V_sGLiPBpWU"&gt;&lt;img src="http://feeds.feedburner.com/~ff/TheNextWeb?i=-useYepuGvg:noo7pUfAH9o:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/TheNextWeb/~4/-useYepuGvg" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>http://thenextweb.com/insider/2016/08/14/minimalism-travel-events/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<enclosure url="http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2016/08/Conferences2016-796x419.jpg" type="image/jpeg" length="0" />
+			<feedburner:origLink>http://thenextweb.com/insider/2016/08/14/minimalism-travel-events/</feedburner:origLink>
+		</item>
+	</channel>
+</rss>

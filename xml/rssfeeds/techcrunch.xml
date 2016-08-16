@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2full.xsl"?>
+<?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:media="http://search.yahoo.com/mrss/" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" version="2.0">
+
+	<channel>
+		<title>TechCrunch</title>
+
+		<link>https://techcrunch.com</link>
+		<description>TechCrunch is a group-edited blog that profiles the companies, products and events defining and transforming the new web.</description>
+		<lastBuildDate>Mon, 15 Aug 2016 09:01:42 +0000</lastBuildDate>
+		<language>en</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+		<generator>http://wordpress.com/</generator>
+		<cloud domain="techcrunch.com" port="80" path="/?rsscloud=notify" registerProcedure="" protocol="http-post" />
+		<image><link>http://www.techcrunch.com</link><url>http://www.techcrunch.com/wp-content/themes/techcrunchmu/images/techcrunch_logo.png</url><title>TechCrunch</title></image>
+		<atom:link rel="search" type="application/opensearchdescription+xml" href="https://techcrunch.com/osd.xml" title="TechCrunch" />
+
+		<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/Techcrunch" /><feedburner:info uri="techcrunch" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://techcrunch.com/?pushpress=hub" /><feedburner:feedFlare href="https://add.my.yahoo.com/rss?url=http%3A%2F%2Ffeeds.feedburner.com%2FTechcrunch" src="http://us.i1.yimg.com/us.yimg.com/i/us/my/addtomyyahoo4.gif">Subscribe with My Yahoo!</feedburner:feedFlare><feedburner:feedFlare href="http://www.newsgator.com/ngs/subscriber/subext.aspx?url=http%3A%2F%2Ffeeds.feedburner.com%2FTechcrunch" src="http://www.newsgator.com/images/ngsub1.gif">Subscribe with NewsGator</feedburner:feedFlare><feedburner:feedFlare href="http://feeds.my.aol.com/add.jsp?url=http%3A%2F%2Ffeeds.feedburner.com%2FTechcrunch" src="http://o.aolcdn.com/favorites.my.aol.com/webmaster/ffclient/webroot/locale/en-US/images/myAOLButtonSmall.gif">Subscribe with My AOL</feedburner:feedFlare><feedburner:feedFlare href="http://www.bloglines.com/sub/http://feeds.feedburner.com/Techcrunch" src="http://www.bloglines.com/images/sub_modern11.gif">Subscribe with Bloglines</feedburner:feedFlare><feedburner:feedFlare href="http://www.netvibes.com/subscribe.php?url=http%3A%2F%2Ffeeds.feedburner.com%2FTechcrunch" src="//www.netvibes.com/img/add2netvibes.gif">Subscribe with Netvibes</feedburner:feedFlare><feedburner:feedFlare href="http://fusion.google.com/add?feedurl=http%3A%2F%2Ffeeds.feedburner.com%2FTechcrunch" src="http://buttons.googlesyndication.com/fusion/add.gif">Subscribe with Google</feedburner:feedFlare><feedburner:feedFlare href="http://www.pageflakes.com/subscribe.aspx?url=http%3A%2F%2Ffeeds.feedburner.com%2FTechcrunch" src="http://www.pageflakes.com/ImageFile.ashx?instanceId=Static_4&amp;fileName=ATP_blu_91x17.gif">Subscribe with Pageflakes</feedburner:feedFlare><feedburner:browserFriendly>This is an XML content feed. It is intended to be viewed in a newsreader or syndicated to another site.</feedburner:browserFriendly><item>
+		<title>Cloud-based HR management platform HeavenHR closes €6M Series A</title>
+		<link>http://feedproxy.google.com/~r/Techcrunch/~3/NfIbgGnU1AQ/</link>
+		<comments>https://techcrunch.com/2016/08/15/heaven-is-in-the-cloud/#respond</comments>
+		<pubDate>Mon, 15 Aug 2016 08:22:11 +0000</pubDate>
+		<dc:creator><![CDATA[Steve O&#039;Hear]]></dc:creator>
+		<category><![CDATA[Europe]]></category>
+		<category><![CDATA[Fundings & Exits]]></category>
+		<category><![CDATA[Startups]]></category>
+		<category><![CDATA[TC]]></category>
+		<category><![CDATA[HeavenHR]]></category>
+
+		<guid isPermaLink="false">http://techcrunch.com/?p=1367391</guid>
+		<description>&lt;img width="680" height="430" src="https://tctechcrunch2011.files.wordpress.com/2016/08/management-team-ceo-johannes-roggendorf-cto-raphael-kirsch-cpo-florian-sauter-cdo-maurizio-bellemo.jpg?w=680" class="attachment-large size-large wp-post-image" alt="Management Team (CEO Johannes Roggendorf, CTO Raphael Kirsch, CPO Florian Sauter, CDO Maurizio Bellemo)" /&gt;&amp;nbsp;HeavenHR, a cloud-based HR management platform for small and medium enterprises (SMEs), has closed €6 million in Series A funding. Leading the round in the Berlin-based startup are Target Global, and Open Ocean. &lt;a href="https://techcrunch.com/2016/08/15/heaven-is-in-the-cloud/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+			&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=NfIbgGnU1AQ:fqG6_kWORd0:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=NfIbgGnU1AQ:fqG6_kWORd0:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=NfIbgGnU1AQ:fqG6_kWORd0:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=NfIbgGnU1AQ:fqG6_kWORd0:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=NfIbgGnU1AQ:fqG6_kWORd0:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=NfIbgGnU1AQ:fqG6_kWORd0:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=NfIbgGnU1AQ:fqG6_kWORd0:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=NfIbgGnU1AQ:fqG6_kWORd0:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+			&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/NfIbgGnU1AQ" height="1" width="1" alt=""/&gt;</description>
+		<wfw:commentRss>https://techcrunch.com/2016/08/15/heaven-is-in-the-cloud/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/management-team-ceo-johannes-roggendorf-cto-raphael-kirsch-cpo-florian-sauter-cdo-maurizio-bellemo.jpg?w=210&amp;h=158&amp;crop=1" />
+		<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/management-team-ceo-johannes-roggendorf-cto-raphael-kirsch-cpo-florian-sauter-cdo-maurizio-bellemo.jpg" type="image/jpeg" medium="image"><media:title type="html">Cloud-based%20HR%20management%20platform%20HeavenHR%20closes%20%E2%82%AC6M%20Series%26nbsp%3BA</media:title></media:content>
+		<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/management-team-ceo-johannes-roggendorf-cto-raphael-kirsch-cpo-florian-sauter-cdo-maurizio-bellemo.jpg" />
+		<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/management-team-ceo-johannes-roggendorf-cto-raphael-kirsch-cpo-florian-sauter-cdo-maurizio-bellemo.jpg" medium="image">
+			<media:title type="html">Management Team (CEO Johannes Roggendorf, CTO Raphael Kirsch, CPO Florian Sauter, CDO Maurizio Bellemo)</media:title>
+		</media:content>
+
+		<media:content url="http://0.gravatar.com/avatar/95b8a6df6d265cf57a4d89ee4856ea98?s=96&amp;d=identicon&amp;r=G" medium="image">
+			<media:title type="html">Steve O'Hear</media:title>
+		</media:content>
+		<feedburner:origLink>https://techcrunch.com/2016/08/15/heaven-is-in-the-cloud/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>Mapping Israel’s marketing technology industry</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/GtwOFalMgQo/</link>
+			<comments>https://techcrunch.com/2016/08/15/mapping-israels-marketing-technology-industry/#respond</comments>
+			<pubDate>Mon, 15 Aug 2016 08:00:21 +0000</pubDate>
+			<dc:creator><![CDATA[Hagar Sagi,Arik Kleinstein,Kobi Samboursky,Yoni Krakow]]></dc:creator>
+			<category><![CDATA[Column]]></category>
+			<category><![CDATA[Startups]]></category>
+			<category><![CDATA[TC]]></category>
+			<category><![CDATA[Israel]]></category>
+			<category><![CDATA[marketing tech]]></category>
+			<category><![CDATA[mobile marketing]]></category>
+			<category><![CDATA[content marketing]]></category>
+			<category><![CDATA[Taboola]]></category>
+			<category><![CDATA[convertmedia]]></category>
+			<category><![CDATA[Leadspace]]></category>
+			<category><![CDATA[supersonic]]></category>
+			<category><![CDATA[mintigo]]></category>
+			<category><![CDATA[Ion Interactive]]></category>
+			<category><![CDATA[IronSource]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?p=1367108</guid>
+			<description>&lt;img width="680" height="451" src="https://tctechcrunch2011.files.wordpress.com/2016/07/israelsunrise.jpg?w=680" class="attachment-large size-large wp-post-image" alt="Seaside Homes" /&gt;&amp;nbsp;Marketing technology is in the midst of a worldwide boom. Given the expansion of the internet, social media and various other forms of digital technology, there are a growing number of ways to market products and services to consumers. Like all technological trends, the rapid expansion of marketing technology companies has made its way to Israel. &lt;a href="https://techcrunch.com/2016/08/15/mapping-israels-marketing-technology-industry/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=GtwOFalMgQo:B02Exd33pVg:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=GtwOFalMgQo:B02Exd33pVg:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=GtwOFalMgQo:B02Exd33pVg:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=GtwOFalMgQo:B02Exd33pVg:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=GtwOFalMgQo:B02Exd33pVg:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=GtwOFalMgQo:B02Exd33pVg:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=GtwOFalMgQo:B02Exd33pVg:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=GtwOFalMgQo:B02Exd33pVg:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/GtwOFalMgQo" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/2016/08/15/mapping-israels-marketing-technology-industry/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/07/israelsunrise.jpg?w=210&amp;h=158&amp;crop=1" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/07/israelsunrise.jpg" type="image/jpeg" medium="image"><media:title type="html">Mapping%20Israel%26%238217%3Bs%20marketing%20technology%26nbsp%3Bindustry</media:title></media:content>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/07/israelsunrise.jpg" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/07/israelsunrise.jpg" medium="image">
+				<media:title type="html">Sun rising over waterfront town, Israel</media:title>
+			</media:content>
+
+			<media:content url="http://2.gravatar.com/avatar/2a014e70509390133a9b9073671a2e8d?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">tcbucket</media:title>
+			</media:content>
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/martechinfographics.jpg" medium="image">
+				<media:title type="html">MartechInfographics</media:title>
+			</media:content>
+			<feedburner:origLink>https://techcrunch.com/2016/08/15/mapping-israels-marketing-technology-industry/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>China is disrupting global fintech</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/es4FMXQuUcI/</link>
+			<comments>https://techcrunch.com/2016/08/14/china-is-disrupting-global-fintech/#respond</comments>
+			<pubDate>Mon, 15 Aug 2016 06:30:07 +0000</pubDate>
+			<dc:creator><![CDATA[Joshua Bateman]]></dc:creator>
+			<category><![CDATA[Column]]></category>
+			<category><![CDATA[Finance]]></category>
+			<category><![CDATA[China]]></category>
+			<category><![CDATA[alipay]]></category>
+			<category><![CDATA[Yuebao]]></category>
+			<category><![CDATA[alibaba]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?p=1368868</guid>
+			<description>&lt;img width="680" height="453" src="https://tctechcrunch2011.files.wordpress.com/2015/03/shutterstock_188326982.jpg?w=680" class="attachment-large size-large wp-post-image" alt="renminbi" /&gt;&amp;nbsp;A confluence of factors puts China at the financial technology (&amp;#8220;fintech&amp;#8221;) forefront: economic advancement, investor behavior, mobile technology, big data, financial industry liberalization, and regulatory acquiescence. &lt;a href="https://techcrunch.com/2016/08/14/china-is-disrupting-global-fintech/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=es4FMXQuUcI:KMDZmWkcqTk:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=es4FMXQuUcI:KMDZmWkcqTk:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=es4FMXQuUcI:KMDZmWkcqTk:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=es4FMXQuUcI:KMDZmWkcqTk:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=es4FMXQuUcI:KMDZmWkcqTk:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=es4FMXQuUcI:KMDZmWkcqTk:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=es4FMXQuUcI:KMDZmWkcqTk:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=es4FMXQuUcI:KMDZmWkcqTk:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/es4FMXQuUcI" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/2016/08/14/china-is-disrupting-global-fintech/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2015/03/shutterstock_188326982.jpg?w=210&amp;h=158&amp;crop=1" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2015/03/shutterstock_188326982.jpg" type="image/jpeg" medium="image"><media:title type="html">China%20is%20disrupting%20global%26nbsp%3Bfintech</media:title></media:content><twitter> <![CDATA[ joshdbateman ]]> </twitter>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2015/03/shutterstock_188326982.jpg" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2015/03/shutterstock_188326982.jpg" medium="image">
+				<media:title type="html">renminbi</media:title>
+			</media:content>
+
+			<media:content url="http://2.gravatar.com/avatar/5633afc3b452c34446afd2ae0174cf86?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">shieberj</media:title>
+			</media:content>
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2015/05/139477700.jpg?w=680" medium="image">
+				<media:title type="html">alibaba</media:title>
+			</media:content>
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/06/shutterstock_325058183.jpg?w=680" medium="image">
+				<media:title type="html">shutterstock china flags</media:title>
+			</media:content>
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2014/12/alipay.jpg?w=680" medium="image">
+				<media:title type="html">alipay</media:title>
+			</media:content>
+			<feedburner:origLink>https://techcrunch.com/2016/08/14/china-is-disrupting-global-fintech/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>After the correction comes The Conclusion</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/mKY8Wg43tJg/</link>
+			<comments>https://techcrunch.com/2016/08/14/compost/#respond</comments>
+			<pubDate>Mon, 15 Aug 2016 01:05:25 +0000</pubDate>
+			<dc:creator><![CDATA[Josh Constine]]></dc:creator>
+			<category><![CDATA[Apps]]></category>
+			<category><![CDATA[Fundings & Exits]]></category>
+			<category><![CDATA[Opinion]]></category>
+			<category><![CDATA[Startups]]></category>
+			<category><![CDATA[TC]]></category>
+			<category><![CDATA[Venture Capital]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?p=1368820</guid>
+			<description>&lt;img width="680" height="356" src="https://tctechcrunch2011.files.wordpress.com/2016/08/thats-all-folks.png?w=680" class="attachment-large size-large wp-post-image" alt="That&amp;#039;s all folks" /&gt;&amp;nbsp;Winter came, and now it&amp;#8217;s time for a season of shut downs, sell outs, and saving face. The circle of life includes the stage of death. That doesn&amp;#8217;t mean these founders did anything wrong, just not quite enough right. Their experiments are coming to an end.
+				Two years ago a bunch of startups raised two years of runway. An abundance of early capital had emerged. Angels and VCs&amp;#8230; &lt;a href="https://techcrunch.com/2016/08/14/compost/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=mKY8Wg43tJg:nh-WiP_X4eE:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=mKY8Wg43tJg:nh-WiP_X4eE:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=mKY8Wg43tJg:nh-WiP_X4eE:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=mKY8Wg43tJg:nh-WiP_X4eE:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=mKY8Wg43tJg:nh-WiP_X4eE:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=mKY8Wg43tJg:nh-WiP_X4eE:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=mKY8Wg43tJg:nh-WiP_X4eE:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=mKY8Wg43tJg:nh-WiP_X4eE:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/mKY8Wg43tJg" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/2016/08/14/compost/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/thats-all-folks.png?w=210&amp;h=158&amp;crop=1" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/thats-all-folks.png" type="image/png" medium="image"><media:title type="html">After%20the%20correction%20comes%20The%26nbsp%3BConclusion</media:title></media:content>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/thats-all-folks.png" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/thats-all-folks.png" medium="image">
+				<media:title type="html">That's all folks</media:title>
+			</media:content>
+
+			<media:content url="http://0.gravatar.com/avatar/fd3b857e7f0024396cdbd36c4c102a5d?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">joshsc</media:title>
+			</media:content>
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/compost-circle-of-life.png?w=680" medium="image">
+				<media:title type="html">Compost Circle Of Life</media:title>
+			</media:content>
+			<feedburner:origLink>https://techcrunch.com/2016/08/14/compost/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>Killing technology innovation in the public markets</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/qOGzTmgRm4c/</link>
+			<comments>https://techcrunch.com/2016/08/14/killing-technology-innovation-in-the-public-markets/#respond</comments>
+			<pubDate>Mon, 15 Aug 2016 01:00:36 +0000</pubDate>
+			<dc:creator><![CDATA[Chad Cardenas]]></dc:creator>
+			<category><![CDATA[Column]]></category>
+			<category><![CDATA[Finance]]></category>
+			<category><![CDATA[Fundings & Exits]]></category>
+			<category><![CDATA[TC]]></category>
+			<category><![CDATA[jamie dimon]]></category>
+			<category><![CDATA[public markets]]></category>
+			<category><![CDATA[publicly traded]]></category>
+			<category><![CDATA[IPOs]]></category>
+			<category><![CDATA[Committee on Capital Markets Regulation]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?p=1367225</guid>
+			<description>&lt;img width="680" height="453" src="https://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-104501053.jpg?w=680" class="attachment-large size-large wp-post-image" alt="Reflection of stock market graph in window" /&gt;&amp;nbsp;In 2004, Google finally went public in a long-awaited offering that lit the public markets on fire. But Google&amp;#8217;s S-1 filing was probably as unusual as anything the technology markets had ever seen: The company promised to not deliver quarterly guidance to investors, and instead promised to invest over the long term to preserve the culture of innovation that the company so fiercely protected. &lt;a href="https://techcrunch.com/2016/08/14/killing-technology-innovation-in-the-public-markets/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=qOGzTmgRm4c:FGJBHCxVIvE:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=qOGzTmgRm4c:FGJBHCxVIvE:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=qOGzTmgRm4c:FGJBHCxVIvE:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=qOGzTmgRm4c:FGJBHCxVIvE:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=qOGzTmgRm4c:FGJBHCxVIvE:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=qOGzTmgRm4c:FGJBHCxVIvE:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=qOGzTmgRm4c:FGJBHCxVIvE:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=qOGzTmgRm4c:FGJBHCxVIvE:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/qOGzTmgRm4c" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/2016/08/14/killing-technology-innovation-in-the-public-markets/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-104501053.jpg?w=210&amp;h=158&amp;crop=1" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-104501053.jpg" type="image/jpeg" medium="image"><media:title type="html">Killing%20technology%20innovation%20in%20the%20public%26nbsp%3Bmarkets</media:title></media:content>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-104501053.jpg" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-104501053.jpg" medium="image">
+				<media:title type="html">Reflection of stock market graph in window</media:title>
+			</media:content>
+
+			<media:content url="http://1.gravatar.com/avatar/1e86d9c92b3cd6f22f7af2317d348375?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">CP</media:title>
+			</media:content>
+			<feedburner:origLink>https://techcrunch.com/2016/08/14/killing-technology-innovation-in-the-public-markets/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>Why LinkedIn should kill the résumé and replace it with the experience graph</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/WrpPxyHSwTA/</link>
+			<comments>https://techcrunch.com/2016/08/14/why-linkedin-should-kill-the-resume-and-replace-it-with-the-experience-graph/#respond</comments>
+			<pubDate>Sun, 14 Aug 2016 22:00:37 +0000</pubDate>
+			<dc:creator><![CDATA[Garry Golden]]></dc:creator>
+			<category><![CDATA[Column]]></category>
+			<category><![CDATA[Startups]]></category>
+			<category><![CDATA[TC]]></category>
+			<category><![CDATA[LinkedIn]]></category>
+			<category><![CDATA[job search]]></category>
+			<category><![CDATA[work experience]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?p=1367221</guid>
+			<description>&lt;img width="680" height="383" src="https://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-523395835.png?w=680" class="attachment-large size-large wp-post-image" alt="CV resume shredder" /&gt;&amp;nbsp;Imagine a future where individuals can illustrate their progression of lifelong learning and training and its links to their real-world performance. In this version of the future, the once-ubiquitous résumé has been ousted by the experience graph. &lt;a href="https://techcrunch.com/2016/08/14/why-linkedin-should-kill-the-resume-and-replace-it-with-the-experience-graph/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=WrpPxyHSwTA:IjgcpCzHy5g:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=WrpPxyHSwTA:IjgcpCzHy5g:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=WrpPxyHSwTA:IjgcpCzHy5g:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=WrpPxyHSwTA:IjgcpCzHy5g:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=WrpPxyHSwTA:IjgcpCzHy5g:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=WrpPxyHSwTA:IjgcpCzHy5g:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=WrpPxyHSwTA:IjgcpCzHy5g:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=WrpPxyHSwTA:IjgcpCzHy5g:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/WrpPxyHSwTA" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/2016/08/14/why-linkedin-should-kill-the-resume-and-replace-it-with-the-experience-graph/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-523395835.png?w=210&amp;h=158&amp;crop=1" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-523395835.png" type="image/png" medium="image"><media:title type="html">Why%C2%A0LinkedIn%C2%A0should%20kill%20the%C2%A0r%C3%A9sum%C3%A9%20and%C2%A0replace%20it%20with%C2%A0the%20experience%26nbsp%3Bgraph</media:title></media:content><twitter> <![CDATA[ garrygolden ]]> </twitter>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-523395835.png" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-523395835.png" medium="image">
+				<media:title type="html">CV resume shredder</media:title>
+			</media:content>
+
+			<media:content url="http://1.gravatar.com/avatar/1e86d9c92b3cd6f22f7af2317d348375?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">CP</media:title>
+			</media:content>
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/xapi-graph.png" medium="image">
+				<media:title type="html">xapi-graph</media:title>
+			</media:content>
+			<feedburner:origLink>https://techcrunch.com/2016/08/14/why-linkedin-should-kill-the-resume-and-replace-it-with-the-experience-graph/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>Blab shuts down, founders promise new app on the way</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/jJ2tViIed4I/</link>
+			<comments>https://techcrunch.com/2016/08/14/blab-shuts-down-but-founders-promise-new-product-on-the-way/#respond</comments>
+			<pubDate>Sun, 14 Aug 2016 19:57:02 +0000</pubDate>
+			<dc:creator><![CDATA[Lora Kolodny]]></dc:creator>
+			<category><![CDATA[Apps]]></category>
+			<category><![CDATA[Mobile]]></category>
+			<category><![CDATA[Social]]></category>
+			<category><![CDATA[Startups]]></category>
+			<category><![CDATA[TC]]></category>
+			<category><![CDATA[Blab]]></category>
+			<category><![CDATA[shaan puri]]></category>
+			<category><![CDATA[Monkey Inferno]]></category>
+			<category><![CDATA[DEADPOOL]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?p=1368778</guid>
+			<description>Livestreaming app Blab, which amassed 3.9 million users in just one year, shut down this weekend, its CEO Shaan Puri announced with a post on Medium late Friday. The app, which competed with Twitter&amp;#8217;s Periscope, Facebook Live, IBM-owned UStream.tv and other media companies in the livestreaming game, was created at Monkey Inferno, a tech incubator self-funded by the founders of Bebo,&amp;hellip; &lt;a href="https://techcrunch.com/2016/08/14/blab-shuts-down-but-founders-promise-new-product-on-the-way/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=jJ2tViIed4I:KIXxA_FajOw:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=jJ2tViIed4I:KIXxA_FajOw:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=jJ2tViIed4I:KIXxA_FajOw:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=jJ2tViIed4I:KIXxA_FajOw:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=jJ2tViIed4I:KIXxA_FajOw:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=jJ2tViIed4I:KIXxA_FajOw:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=jJ2tViIed4I:KIXxA_FajOw:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=jJ2tViIed4I:KIXxA_FajOw:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/jJ2tViIed4I" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/2016/08/14/blab-shuts-down-but-founders-promise-new-product-on-the-way/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/06/app-store-graveyard1.jpg?w=210&amp;h=158&amp;crop=1" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/06/app-store-graveyard1.jpg" type="image/jpeg" medium="image"><media:title type="html">Blab%20shuts%20down%2C%20founders%20promise%20new%20app%20on%20the%26nbsp%3Bway</media:title></media:content>
+			<media:content url="http://0.gravatar.com/avatar/6669b82c456f152e55fac86f56e5c248?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">lorakolodnytc</media:title>
+			</media:content>
+			<feedburner:origLink>https://techcrunch.com/2016/08/14/blab-shuts-down-but-founders-promise-new-product-on-the-way/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>The IoT threat to privacy</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/MpHsmUDvQ7M/</link>
+			<comments>https://techcrunch.com/2016/08/14/the-iot-threat-to-privacy/#respond</comments>
+			<pubDate>Sun, 14 Aug 2016 19:00:54 +0000</pubDate>
+			<dc:creator><![CDATA[Christine Bannan]]></dc:creator>
+			<category><![CDATA[Column]]></category>
+			<category><![CDATA[Gadgets]]></category>
+			<category><![CDATA[Hardware]]></category>
+			<category><![CDATA[Privacy]]></category>
+			<category><![CDATA[TC]]></category>
+			<category><![CDATA[IoT]]></category>
+			<category><![CDATA[Internet of Things]]></category>
+			<category><![CDATA[smart homes]]></category>
+			<category><![CDATA[wearables]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?p=1367216</guid>
+			<description>&lt;img width="680" height="457" src="https://tctechcrunch2011.files.wordpress.com/2016/04/iot.jpg?w=680" class="attachment-large size-large wp-post-image" alt="IOT" /&gt;&amp;nbsp;As the Internet of Things becomes more widespread, consumers must demand better security and privacy protections that don&amp;#8217;t leave them vulnerable to corporate surveillance and data breaches. But before consumers can demand change, they must be informed &amp;#8212; which requires companies to be more transparent. &lt;a href="https://techcrunch.com/2016/08/14/the-iot-threat-to-privacy/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=MpHsmUDvQ7M:CRTF8rNscx4:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=MpHsmUDvQ7M:CRTF8rNscx4:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=MpHsmUDvQ7M:CRTF8rNscx4:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=MpHsmUDvQ7M:CRTF8rNscx4:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=MpHsmUDvQ7M:CRTF8rNscx4:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=MpHsmUDvQ7M:CRTF8rNscx4:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=MpHsmUDvQ7M:CRTF8rNscx4:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=MpHsmUDvQ7M:CRTF8rNscx4:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/MpHsmUDvQ7M" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/2016/08/14/the-iot-threat-to-privacy/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/04/iot.jpg?w=210&amp;h=158&amp;crop=1" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/04/iot.jpg" type="image/jpeg" medium="image"><media:title type="html">The%20IoT%20threat%20to%26nbsp%3Bprivacy</media:title></media:content>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/04/iot.jpg" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/04/iot.jpg" medium="image">
+				<media:title type="html">IOT</media:title>
+			</media:content>
+
+			<media:content url="http://1.gravatar.com/avatar/1e86d9c92b3cd6f22f7af2317d348375?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">CP</media:title>
+			</media:content>
+			<feedburner:origLink>https://techcrunch.com/2016/08/14/the-iot-threat-to-privacy/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>A brief history of Niantic Labs, the makers of Pokémon Go</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/ExKS5pALOqo/</link>
+			<comments>https://techcrunch.com/gallery/a-brief-history-of-niantic-labs-the-makers-of-pokemon-go/#respond</comments>
+			<pubDate>Sun, 14 Aug 2016 17:00:19 +0000</pubDate>
+			<dc:creator><![CDATA[Matthew Lynley]]></dc:creator>
+			<category><![CDATA[Apps]]></category>
+			<category><![CDATA[Mobile]]></category>
+			<category><![CDATA[Startups]]></category>
+			<category><![CDATA[TC]]></category>
+			<category><![CDATA[Pokémon Go]]></category>
+			<category><![CDATA[Niantic Labs]]></category>
+			<category><![CDATA[pokemon]]></category>
+			<category><![CDATA[The Pokemon Company]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?post_type=tc-media-gallery&amp;p=1351733</guid>
+			<description>&lt;img width="680" height="383" src="https://tctechcrunch2011.files.wordpress.com/2015/10/niantic-nintendo.jpg?w=680" class="attachment-large size-large wp-post-image" alt="niantic-nintendo" /&gt;&amp;nbsp;Niantic Labs, a small gaming company previously owned by Google, has gone from a somewhat obscure gaming shop to one of the most prominent developers overnight. The company launched Pokémon Go in July 2016, the first very long-awaited smartphone version of a Pokémon game. After holding out for nearly a decade, Nintendo and The Pokémon Company have finally unleashed one of its most&amp;hellip; &lt;a href="https://techcrunch.com/gallery/a-brief-history-of-niantic-labs-the-makers-of-pokemon-go/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=ExKS5pALOqo:tO1-14D2zwo:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=ExKS5pALOqo:tO1-14D2zwo:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=ExKS5pALOqo:tO1-14D2zwo:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=ExKS5pALOqo:tO1-14D2zwo:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=ExKS5pALOqo:tO1-14D2zwo:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=ExKS5pALOqo:tO1-14D2zwo:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=ExKS5pALOqo:tO1-14D2zwo:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=ExKS5pALOqo:tO1-14D2zwo:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/ExKS5pALOqo" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/gallery/a-brief-history-of-niantic-labs-the-makers-of-pokemon-go/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2015/10/niantic-nintendo.jpg?w=210&amp;h=158&amp;crop=1" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2015/10/niantic-nintendo.jpg" type="image/jpeg" medium="image"><media:title type="html">A%20brief%20history%20of%20Niantic%20Labs%2C%20the%20makers%20of%20Pok%C3%A9mon%26nbsp%3BGo</media:title></media:content>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2015/10/niantic-nintendo.jpg" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2015/10/niantic-nintendo.jpg" medium="image">
+				<media:title type="html">niantic-nintendo</media:title>
+			</media:content>
+
+			<media:content url="http://0.gravatar.com/avatar/fb80ccc18c4fecace4405aebe8fbedbc?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">matthewlynley</media:title>
+			</media:content>
+			<feedburner:origLink>https://techcrunch.com/gallery/a-brief-history-of-niantic-labs-the-makers-of-pokemon-go/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>I want a companion ship</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/2YwVDod33Fk/</link>
+			<comments>https://techcrunch.com/2016/08/14/i-want-a-companion-ship/#respond</comments>
+			<pubDate>Sun, 14 Aug 2016 15:10:17 +0000</pubDate>
+			<dc:creator><![CDATA[Darrell Etherington]]></dc:creator>
+			<category><![CDATA[Artificial Intelligence]]></category>
+			<category><![CDATA[Gadgets]]></category>
+			<category><![CDATA[Opinion]]></category>
+			<category><![CDATA[TC]]></category>
+			<category><![CDATA[Parrot]]></category>
+			<category><![CDATA[drones]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?p=1368760</guid>
+			<description>&lt;img width="680" height="397" src="https://tctechcrunch2011.files.wordpress.com/2016/08/newdrone-buddy-depth-01.png?w=680" class="attachment-large size-large wp-post-image" alt="newdrone-buddy-depth-01" /&gt;&amp;nbsp;It&amp;#8217;s time: We need a drone with automated follow features that not only includes a camera for cataloging your many feats, but also has an on-board voice assistant to and a cellular connection to get stuff done for you while you&amp;#8217;re out and about. It&amp;#8217;s time for friendly flyers; it&amp;#8217;s time we each had a companion ship. I don&amp;#8217;t know who gets this done &amp;#8211;&amp;hellip; &lt;a href="https://techcrunch.com/2016/08/14/i-want-a-companion-ship/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=2YwVDod33Fk:H-k9gVqtswE:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=2YwVDod33Fk:H-k9gVqtswE:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=2YwVDod33Fk:H-k9gVqtswE:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=2YwVDod33Fk:H-k9gVqtswE:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=2YwVDod33Fk:H-k9gVqtswE:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=2YwVDod33Fk:H-k9gVqtswE:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=2YwVDod33Fk:H-k9gVqtswE:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=2YwVDod33Fk:H-k9gVqtswE:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/2YwVDod33Fk" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/2016/08/14/i-want-a-companion-ship/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/newdrone-buddy-depth-01.png?w=210&amp;h=158&amp;crop=1" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/newdrone-buddy-depth-01.png" type="image/png" medium="image"><media:title type="html">I%20want%20a%20companion%26nbsp%3Bship</media:title></media:content>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/newdrone-buddy-depth-01.png" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/newdrone-buddy-depth-01.png" medium="image">
+				<media:title type="html">newdrone-buddy-depth-01</media:title>
+			</media:content>
+
+			<media:content url="http://1.gravatar.com/avatar/188039e12983eb749171a75cfd01378d?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">etherin</media:title>
+			</media:content>
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/staaker-01.jpg" medium="image">
+				<media:title type="html">staaker-01</media:title>
+			</media:content>
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2015/06/amazon-echo1.jpg" medium="image">
+				<media:title type="html">amazon-echo</media:title>
+			</media:content>
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/07/swagbot_head.jpg" medium="image">
+				<media:title type="html">SwagBot is an Australian ground-bound agriculture bot.</media:title>
+			</media:content>
+			<feedburner:origLink>https://techcrunch.com/2016/08/14/i-want-a-companion-ship/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>Big data’s humble beginnings</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/9b2HCztzKx8/</link>
+			<comments>https://techcrunch.com/2016/08/14/big-datas-humble-beginnings/#respond</comments>
+			<pubDate>Sun, 14 Aug 2016 15:00:38 +0000</pubDate>
+			<dc:creator><![CDATA[Joe Apprendi]]></dc:creator>
+			<category><![CDATA[Advertising Tech]]></category>
+			<category><![CDATA[Column]]></category>
+			<category><![CDATA[TC]]></category>
+			<category><![CDATA[big data]]></category>
+			<category><![CDATA[predictive analytics]]></category>
+			<category><![CDATA[OneDrop]]></category>
+			<category><![CDATA[HealthKit]]></category>
+			<category><![CDATA[ResearchKit]]></category>
+			<category><![CDATA[Carekit]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?p=1367180</guid>
+			<description>&lt;img width="680" height="508" src="https://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-591407443.jpg?w=680" class="attachment-large size-large wp-post-image" alt="High angle blurred view of pillars" /&gt;&amp;nbsp;Clicks. Once upon a time they were the most powerful tool in assessing online ad performance. A humble beginning, but much has changed. The data-driven measurement and predictive analytics technologies that launched adtech and expanded to marketing are now being applied to nearly everything &amp;#8212; and yet, it&amp;#8217;s easy to forget the road that led here. &lt;a href="https://techcrunch.com/2016/08/14/big-datas-humble-beginnings/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=9b2HCztzKx8:l0QVl8TkcTc:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=9b2HCztzKx8:l0QVl8TkcTc:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=9b2HCztzKx8:l0QVl8TkcTc:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=9b2HCztzKx8:l0QVl8TkcTc:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=9b2HCztzKx8:l0QVl8TkcTc:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=9b2HCztzKx8:l0QVl8TkcTc:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=9b2HCztzKx8:l0QVl8TkcTc:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=9b2HCztzKx8:l0QVl8TkcTc:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/9b2HCztzKx8" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/2016/08/14/big-datas-humble-beginnings/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-591407443.jpg?w=210&amp;h=158&amp;crop=1" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-591407443.jpg" type="image/jpeg" medium="image"><media:title type="html">Big%20data%26%238217%3Bs%20humble%26nbsp%3Bbeginnings</media:title></media:content>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-591407443.jpg" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-591407443.jpg" medium="image">
+				<media:title type="html">High angle blurred view of pillars</media:title>
+			</media:content>
+
+			<media:content url="http://1.gravatar.com/avatar/1e86d9c92b3cd6f22f7af2317d348375?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">CP</media:title>
+			</media:content>
+			<feedburner:origLink>https://techcrunch.com/2016/08/14/big-datas-humble-beginnings/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>SpaceX succesfully launches another satellite, brings home another rocket</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/1GysOIiabVg/</link>
+			<comments>https://techcrunch.com/2016/08/13/spacex-succesfully-launches-another-satellite-brings-home-another-rocket/#respond</comments>
+			<pubDate>Sun, 14 Aug 2016 06:05:41 +0000</pubDate>
+			<dc:creator><![CDATA[Emily Calandrelli]]></dc:creator>
+			<category><![CDATA[TC]]></category>
+			<category><![CDATA[Falcon 9]]></category>
+			<category><![CDATA[falcon]]></category>
+			<category><![CDATA[SpaceX]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?p=1368752</guid>
+			<description>&lt;img width="680" height="359" src="https://tctechcrunch2011.files.wordpress.com/2016/08/spacex-jcsat-landing.jpg?w=680" class="attachment-large size-large wp-post-image" alt="SpaceX JCSAT landing" /&gt;&amp;nbsp;At 1:26am ET, SpaceX launched their Falcon 9 rocket from Cape Canaveral and, once again, recovered the first stage of that rocket on a drone ship floating in the ocean. More importantly, SpaceX successfully completed the primary mission of today&amp;#8217;s launch by inserting their payload, the JCSAT-16 satellite, into Geostationary Transfer Orbit (GTO). First stage landing confirmed on&amp;hellip; &lt;a href="https://techcrunch.com/2016/08/13/spacex-succesfully-launches-another-satellite-brings-home-another-rocket/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=1GysOIiabVg:CuPazb1Qup8:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=1GysOIiabVg:CuPazb1Qup8:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=1GysOIiabVg:CuPazb1Qup8:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=1GysOIiabVg:CuPazb1Qup8:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=1GysOIiabVg:CuPazb1Qup8:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=1GysOIiabVg:CuPazb1Qup8:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=1GysOIiabVg:CuPazb1Qup8:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=1GysOIiabVg:CuPazb1Qup8:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/1GysOIiabVg" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/2016/08/13/spacex-succesfully-launches-another-satellite-brings-home-another-rocket/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/spacex-jcsat-landing.jpg?w=210&amp;h=158&amp;crop=1" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/spacex-jcsat-landing.jpg" type="image/jpeg" medium="image"><media:title type="html">SpaceX%20succesfully%20launches%20another%20satellite%2C%20brings%20home%20another%26nbsp%3Brocket</media:title></media:content>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/spacex-jcsat-landing.jpg" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/spacex-jcsat-landing.jpg" medium="image">
+				<media:title type="html">SpaceX JCSAT landing</media:title>
+			</media:content>
+
+			<media:content url="http://0.gravatar.com/avatar/9708715c00e644da23e87a694797459c?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">emcalthespacegal</media:title>
+			</media:content>
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/spacex-jcsat-mission-patch.png?w=231" medium="image">
+				<media:title type="html">SpaceX JCSAT mission patch</media:title>
+			</media:content>
+			<feedburner:origLink>https://techcrunch.com/2016/08/13/spacex-succesfully-launches-another-satellite-brings-home-another-rocket/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>Edtech is the next fintech</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/nST21qoZ1hA/</link>
+			<comments>https://techcrunch.com/2016/08/13/edtech-is-the-next-fintech/#respond</comments>
+			<pubDate>Sun, 14 Aug 2016 03:00:14 +0000</pubDate>
+			<dc:creator><![CDATA[David Bainbridge]]></dc:creator>
+			<category><![CDATA[Column]]></category>
+			<category><![CDATA[Education]]></category>
+			<category><![CDATA[TC]]></category>
+			<category><![CDATA[edtech]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?p=1367209</guid>
+			<description>&lt;img width="680" height="383" src="https://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-174573158.png?w=680" class="attachment-large size-large wp-post-image" alt="education technology" /&gt;&amp;nbsp;As the world tries to make sense of economic tremors from the Brexit fallout, upcoming U.S. elections and volatile European financial markets, it&amp;#8217;s easy to see why investors are becoming less willing to roll the dice and throw money at oversaturated venture markets. This presents a window of opportunity for investors trying to spot, catch and ride the wave of the next&amp;hellip; &lt;a href="https://techcrunch.com/2016/08/13/edtech-is-the-next-fintech/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=nST21qoZ1hA:dUaRxwagef4:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=nST21qoZ1hA:dUaRxwagef4:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=nST21qoZ1hA:dUaRxwagef4:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=nST21qoZ1hA:dUaRxwagef4:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=nST21qoZ1hA:dUaRxwagef4:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=nST21qoZ1hA:dUaRxwagef4:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=nST21qoZ1hA:dUaRxwagef4:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=nST21qoZ1hA:dUaRxwagef4:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/nST21qoZ1hA" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/2016/08/13/edtech-is-the-next-fintech/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-174573158.png?w=210&amp;h=158&amp;crop=1" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-174573158.png" type="image/png" medium="image"><media:title type="html">Edtech%20is%20the%20next%26nbsp%3Bfintech</media:title></media:content>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-174573158.png" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-174573158.png" medium="image">
+				<media:title type="html">education technology</media:title>
+			</media:content>
+
+			<media:content url="http://1.gravatar.com/avatar/1e86d9c92b3cd6f22f7af2317d348375?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">CP</media:title>
+			</media:content>
+			<feedburner:origLink>https://techcrunch.com/2016/08/13/edtech-is-the-next-fintech/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>The Pokémon Go influence on new tech</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/oSgg9mjVX-w/</link>
+			<comments>https://techcrunch.com/2016/08/13/the-pokemon-go-influence-on-new-tech/#respond</comments>
+			<pubDate>Sun, 14 Aug 2016 00:00:22 +0000</pubDate>
+			<dc:creator><![CDATA[Dr. Roger Smith]]></dc:creator>
+			<category><![CDATA[Augmented Reality]]></category>
+			<category><![CDATA[Column]]></category>
+			<category><![CDATA[Gaming]]></category>
+			<category><![CDATA[TC]]></category>
+			<category><![CDATA[pokemon]]></category>
+			<category><![CDATA[healthcare]]></category>
+			<category><![CDATA[telemedicine]]></category>
+			<category><![CDATA[Education]]></category>
+			<category><![CDATA[entertainment]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?p=1367175</guid>
+			<description>&lt;img width="680" height="383" src="https://tctechcrunch2011.files.wordpress.com/2016/08/pokemon-influence.png?w=680" class="attachment-large size-large wp-post-image" alt="pokemon-influence" /&gt;&amp;nbsp;Pokémon Go has changed the trajectory of the world on a scale just slightly smaller than Google Search and Facebook &amp;#8212; but it will be felt through all industries in the coming years. It looks like a simple game that incorporates a few unique and compelling features. But this game has taken technologies from niche research and gaming communities and thrust them into the world&amp;#8217;s&amp;#8230; &lt;a href="https://techcrunch.com/2016/08/13/the-pokemon-go-influence-on-new-tech/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=oSgg9mjVX-w:OnROdOiE6nQ:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=oSgg9mjVX-w:OnROdOiE6nQ:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=oSgg9mjVX-w:OnROdOiE6nQ:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=oSgg9mjVX-w:OnROdOiE6nQ:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=oSgg9mjVX-w:OnROdOiE6nQ:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=oSgg9mjVX-w:OnROdOiE6nQ:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=oSgg9mjVX-w:OnROdOiE6nQ:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=oSgg9mjVX-w:OnROdOiE6nQ:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/oSgg9mjVX-w" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/2016/08/13/the-pokemon-go-influence-on-new-tech/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/pokemon-influence.png?w=210&amp;h=158&amp;crop=1" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/pokemon-influence.png" type="image/png" medium="image"><media:title type="html">The%20Pok%C3%A9mon%20Go%20influence%20on%20new%26nbsp%3Btech</media:title></media:content>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/pokemon-influence.png" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/pokemon-influence.png" medium="image">
+				<media:title type="html">pokemon-influence</media:title>
+			</media:content>
+
+			<media:content url="http://1.gravatar.com/avatar/1e86d9c92b3cd6f22f7af2317d348375?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">CP</media:title>
+			</media:content>
+			<feedburner:origLink>https://techcrunch.com/2016/08/13/the-pokemon-go-influence-on-new-tech/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>Gillmor Gang: What Ailes You</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/nQmy_2cfrPE/</link>
+			<comments>https://techcrunch.com/2016/08/13/gillmor-gang-what-ailes-you/#respond</comments>
+			<pubDate>Sat, 13 Aug 2016 19:53:47 +0000</pubDate>
+			<dc:creator><![CDATA[Steve Gillmor]]></dc:creator>
+			<category><![CDATA[TC]]></category>
+			<category><![CDATA[Video]]></category>
+			<category><![CDATA[Robert Scoble]]></category>
+			<category><![CDATA[frank radice]]></category>
+			<category><![CDATA[Kevin Marks]]></category>
+			<category><![CDATA[Steve Gillmor]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?p=1368689</guid>
+			<description>&lt;img width="680" height="383" src="https://tctechcrunch2011.files.wordpress.com/2014/02/gg-test-pattern-sepia3.jpg?w=680" class="attachment-large size-large wp-post-image" alt="Gillmor Gang Artcard" /&gt;&amp;nbsp;The Gillmor Gang &amp;#8212; Robert Scoble, Frank Radice, Kevin Marks, and Steve Gillmor. Recorded live Friday, August 12, 2016. Why Twitter should call itself the Peacock Network, why many are fleeing Facebook until after the election, why social video is moving into corporate life, and why I&amp;#8217;m going to help Trumpty continue his great fall. @stevegillmor, @Scobleizer, @kevinmarks, @fradice&amp;hellip; &lt;a href="https://techcrunch.com/2016/08/13/gillmor-gang-what-ailes-you/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=nQmy_2cfrPE:UzL788u7Vx8:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=nQmy_2cfrPE:UzL788u7Vx8:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=nQmy_2cfrPE:UzL788u7Vx8:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=nQmy_2cfrPE:UzL788u7Vx8:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=nQmy_2cfrPE:UzL788u7Vx8:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=nQmy_2cfrPE:UzL788u7Vx8:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=nQmy_2cfrPE:UzL788u7Vx8:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=nQmy_2cfrPE:UzL788u7Vx8:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/nQmy_2cfrPE" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/2016/08/13/gillmor-gang-what-ailes-you/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2014/02/gg-test-pattern-sepia3.jpg?w=210&amp;h=158&amp;crop=1" />
+
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2014/02/gg-test-pattern-sepia3.jpg" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2014/02/gg-test-pattern-sepia3.jpg" medium="image">
+				<media:title type="html">GG test pattern sepia3</media:title>
+			</media:content>
+
+			<media:content url="http://2.gravatar.com/avatar/e819990a43a5972b40593cdc6896eef9?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">steve</media:title>
+			</media:content>
+			<feedburner:origLink>https://techcrunch.com/2016/08/13/gillmor-gang-what-ailes-you/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>Hearing is like seeing for our brains and for machines</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/E4r0_mb2r9E/</link>
+			<comments>https://techcrunch.com/2016/08/13/hearing-is-like-seeing-for-our-brains-and-for-machines/#respond</comments>
+			<pubDate>Sat, 13 Aug 2016 19:00:03 +0000</pubDate>
+			<dc:creator><![CDATA[Nils Lenke]]></dc:creator>
+			<category><![CDATA[Artificial Intelligence]]></category>
+			<category><![CDATA[Column]]></category>
+			<category><![CDATA[TC]]></category>
+			<category><![CDATA[convolutional neural networks]]></category>
+			<category><![CDATA[deep learning]]></category>
+			<category><![CDATA[machine learning]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?p=1367164</guid>
+			<description>&lt;img width="680" height="383" src="https://tctechcrunch2011.files.wordpress.com/2016/08/seeing-hearing-machine.png?w=680" class="attachment-large size-large wp-post-image" alt="seeing-hearing-machine" /&gt;&amp;nbsp;There are neural net machine learning approaches that are simply more than &amp;#8220;deep.&amp;#8221; Neural networks are popular for advancing voice technologies and AI, but it&amp;#8217;s interesting that many of the current approaches were developed for image/video processing. One, convolutional neural networks, makes it easy to see why image-processing neural nets are similar to the way our brains&amp;#8230; &lt;a href="https://techcrunch.com/2016/08/13/hearing-is-like-seeing-for-our-brains-and-for-machines/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=E4r0_mb2r9E:Y1Vm6VSQIXQ:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=E4r0_mb2r9E:Y1Vm6VSQIXQ:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=E4r0_mb2r9E:Y1Vm6VSQIXQ:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=E4r0_mb2r9E:Y1Vm6VSQIXQ:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=E4r0_mb2r9E:Y1Vm6VSQIXQ:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=E4r0_mb2r9E:Y1Vm6VSQIXQ:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=E4r0_mb2r9E:Y1Vm6VSQIXQ:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=E4r0_mb2r9E:Y1Vm6VSQIXQ:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/E4r0_mb2r9E" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/2016/08/13/hearing-is-like-seeing-for-our-brains-and-for-machines/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/seeing-hearing-machine.png?w=210&amp;h=158&amp;crop=1" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/seeing-hearing-machine.png" type="image/png" medium="image"><media:title type="html">Hearing%20is%20like%20seeing%20for%20our%20brains%20and%20for%26nbsp%3Bmachines</media:title></media:content>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/seeing-hearing-machine.png" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/seeing-hearing-machine.png" medium="image">
+				<media:title type="html">seeing-hearing-machine</media:title>
+			</media:content>
+
+			<media:content url="http://1.gravatar.com/avatar/1e86d9c92b3cd6f22f7af2317d348375?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">CP</media:title>
+			</media:content>
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/image0011.png" medium="image">
+				<media:title type="html">image001</media:title>
+			</media:content>
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/image002.png" medium="image">
+				<media:title type="html">image002</media:title>
+			</media:content>
+			<feedburner:origLink>https://techcrunch.com/2016/08/13/hearing-is-like-seeing-for-our-brains-and-for-machines/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>The Onion Omega2 lets you add Linux to your hardware projects</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/ZmrsEBRo5I8/</link>
+			<comments>https://techcrunch.com/2016/08/13/the-onion-omega2-lets-you-add-linux-to-your-hardware-projects/#respond</comments>
+			<pubDate>Sat, 13 Aug 2016 17:27:10 +0000</pubDate>
+			<dc:creator><![CDATA[John Biggs]]></dc:creator>
+			<category><![CDATA[Gadgets]]></category>
+			<category><![CDATA[TC]]></category>
+			<category><![CDATA[Internet of Things]]></category>
+			<category><![CDATA[arduino]]></category>
+			<category><![CDATA[interface]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?p=1368678</guid>
+			<description>&lt;img width="680" height="452" src="https://tctechcrunch2011.files.wordpress.com/2016/08/6c15c56111eae091b957a1640ea8e56e_original.png?w=680" class="attachment-large size-large wp-post-image" alt="6c15c56111eae091b957a1640ea8e56e_original" /&gt;&amp;nbsp;Need a tiny, $5 computer to build a robot that will bring you your slippers, initiate a massage chair session, and pour out your daily dose of bourbon? The Onion Omega2 can do all that and more. This tiny board is Arduino-compatible but also runs Linux natively. This means you can plug it in and get a command line or access the system via a desktop-like web interface. It has Wi-Fi built in and&amp;hellip; &lt;a href="https://techcrunch.com/2016/08/13/the-onion-omega2-lets-you-add-linux-to-your-hardware-projects/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=ZmrsEBRo5I8:66mVjrGZCZE:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=ZmrsEBRo5I8:66mVjrGZCZE:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=ZmrsEBRo5I8:66mVjrGZCZE:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=ZmrsEBRo5I8:66mVjrGZCZE:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=ZmrsEBRo5I8:66mVjrGZCZE:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=ZmrsEBRo5I8:66mVjrGZCZE:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=ZmrsEBRo5I8:66mVjrGZCZE:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=ZmrsEBRo5I8:66mVjrGZCZE:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/ZmrsEBRo5I8" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/2016/08/13/the-onion-omega2-lets-you-add-linux-to-your-hardware-projects/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/6c15c56111eae091b957a1640ea8e56e_original.png?w=210&amp;h=158&amp;crop=1" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/6c15c56111eae091b957a1640ea8e56e_original.png" type="image/png" medium="image"><media:title type="html">The%20Onion%20Omega2%20lets%20you%20add%20Linux%20to%20your%20hardware%26nbsp%3Bprojects</media:title></media:content>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/6c15c56111eae091b957a1640ea8e56e_original.png" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/6c15c56111eae091b957a1640ea8e56e_original.png" medium="image">
+				<media:title type="html">6c15c56111eae091b957a1640ea8e56e_original</media:title>
+			</media:content>
+
+			<media:content url="http://0.gravatar.com/avatar/c0a943f484a32e62ed3bc81dd0dd25da?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">john</media:title>
+			</media:content>
+			<feedburner:origLink>https://techcrunch.com/2016/08/13/the-onion-omega2-lets-you-add-linux-to-your-hardware-projects/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>The story of Naked Wines</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/VRnDaF3Pz1E/</link>
+			<comments>https://techcrunch.com/2016/08/13/the-story-of-naked-wines/#respond</comments>
+			<pubDate>Sat, 13 Aug 2016 15:17:38 +0000</pubDate>
+			<dc:creator><![CDATA[Haje Jan Kamps]]></dc:creator>
+			<category><![CDATA[Startups]]></category>
+			<category><![CDATA[TC]]></category>
+			<category><![CDATA[Crowdfunding]]></category>
+			<category><![CDATA[Naked Wines]]></category>
+			<category><![CDATA[Winemaking]]></category>
+			<category><![CDATA[Wine]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?p=1368014</guid>
+			<description>If you&amp;#8217;re a big fan of wine but still want to run a startup, there may not be that much innovation you can get away with on the product side. Wine, when all is said and done, is still wine. That doesn&amp;#8217;t mean you can&amp;#8217;t turn the industry inside out by turning the traditional winery business model on its head &amp;#8212; and that&amp;#8217;s exactly what Naked Wines did. I decided to have&amp;hellip; &lt;a href="https://techcrunch.com/2016/08/13/the-story-of-naked-wines/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=VRnDaF3Pz1E:UvDmUuoKMBc:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=VRnDaF3Pz1E:UvDmUuoKMBc:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=VRnDaF3Pz1E:UvDmUuoKMBc:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=VRnDaF3Pz1E:UvDmUuoKMBc:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=VRnDaF3Pz1E:UvDmUuoKMBc:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=VRnDaF3Pz1E:UvDmUuoKMBc:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=VRnDaF3Pz1E:UvDmUuoKMBc:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=VRnDaF3Pz1E:UvDmUuoKMBc:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/VRnDaF3Pz1E" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/2016/08/13/the-story-of-naked-wines/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://i0.wp.com/tctechcrunch2011.files.wordpress.com/2016/08/dsc6682.jpg?resize=210%2C158&amp;ssl=1" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/dsc6682.jpg?w=1024" type="image/jpeg" medium="image"><media:title type="html">The%20story%20of%20Naked%26nbsp%3BWines</media:title></media:content>
+			<media:content url="http://0.gravatar.com/avatar/f6ffdc4504715913427057be65524d44?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">hajejan</media:title>
+			</media:content>
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/dsc6682.jpg?w=1024" medium="image" />
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/dsc6865.jpg?w=1024" medium="image" />
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/20111024-img_0060-2.jpg?w=1024" medium="image" />
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/20110906-img_0007.jpg?w=1024" medium="image" />
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/20110906-img_0013.jpg?w=1024" medium="image" />
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/dsc5827.jpg?w=1024" medium="image" />
+			<feedburner:origLink>https://techcrunch.com/2016/08/13/the-story-of-naked-wines/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>Digital media unioning, one year later</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/jI_-5xwn_zI/</link>
+			<comments>https://techcrunch.com/2016/08/13/digital-media-unioning-one-year-later/#respond</comments>
+			<pubDate>Sat, 13 Aug 2016 15:00:20 +0000</pubDate>
+			<dc:creator><![CDATA[Lowell Peterson]]></dc:creator>
+			<category><![CDATA[Column]]></category>
+			<category><![CDATA[Media]]></category>
+			<category><![CDATA[TC]]></category>
+			<category><![CDATA[digital media]]></category>
+			<category><![CDATA[East]]></category>
+			<category><![CDATA[Writers Guild of America]]></category>
+			<category><![CDATA[unions]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?p=1367153</guid>
+			<description>&lt;img width="680" height="452" src="https://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-493602229.jpg?w=680" class="attachment-large size-large wp-post-image" alt="Computer in dark office, network lines radiating" /&gt;&amp;nbsp;In the last year, writers, editors, producers and other content creators at &amp;#8220;digital native&amp;#8221; companies have won representation with the Writers Guild of America, East. These innovative, mostly younger professionals want a voice in shaping their work lives, and they recognize that collective bargaining is a vital way to engage in the decisions that affect how they work and how that&amp;hellip; &lt;a href="https://techcrunch.com/2016/08/13/digital-media-unioning-one-year-later/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=jI_-5xwn_zI:hKyPMEVCiJQ:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=jI_-5xwn_zI:hKyPMEVCiJQ:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=jI_-5xwn_zI:hKyPMEVCiJQ:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=jI_-5xwn_zI:hKyPMEVCiJQ:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=jI_-5xwn_zI:hKyPMEVCiJQ:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=jI_-5xwn_zI:hKyPMEVCiJQ:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=jI_-5xwn_zI:hKyPMEVCiJQ:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=jI_-5xwn_zI:hKyPMEVCiJQ:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/jI_-5xwn_zI" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/2016/08/13/digital-media-unioning-one-year-later/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-493602229.jpg?w=210&amp;h=158&amp;crop=1" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-493602229.jpg" type="image/jpeg" medium="image"><media:title type="html">Digital%20media%20unioning%2C%20one%20year%26nbsp%3Blater</media:title></media:content>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-493602229.jpg" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-493602229.jpg" medium="image">
+				<media:title type="html">Computer in dark office, network lines radiating</media:title>
+			</media:content>
+
+			<media:content url="http://1.gravatar.com/avatar/1e86d9c92b3cd6f22f7af2317d348375?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">CP</media:title>
+			</media:content>
+			<feedburner:origLink>https://techcrunch.com/2016/08/13/digital-media-unioning-one-year-later/?ncid=rss</feedburner:origLink></item>
+		<item>
+			<title>How Frank Abagnale thinks like a con artist to improve security</title>
+			<link>http://feedproxy.google.com/~r/Techcrunch/~3/cufhd-OLSAE/</link>
+			<comments>https://techcrunch.com/2016/08/13/how-frank-abagnale-turned-early-life-as-con-artist-into-a-40-year-security-consulting-career/#respond</comments>
+			<pubDate>Sat, 13 Aug 2016 14:13:01 +0000</pubDate>
+			<dc:creator><![CDATA[Ron Miller]]></dc:creator>
+			<category><![CDATA[Security]]></category>
+			<category><![CDATA[TC]]></category>
+			<category><![CDATA[Frank Abagnale]]></category>
+			<category><![CDATA[Catch me if you can]]></category>
+			<category><![CDATA[security consulting]]></category>
+			<category><![CDATA[identity theft]]></category>
+
+			<guid isPermaLink="false">http://techcrunch.com/?p=1367420</guid>
+			<description>&lt;img width="680" height="452" src="https://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-466060002.jpg?w=680" class="attachment-large size-large wp-post-image" alt="Security expert Frank Abanale in 2015." /&gt;&amp;nbsp;Frank Abagnale, Jr&amp;#8217;s ignominious youth as a clever con artist was made famous in the 2002 movie, Catch Me If You Can, starring Leonardo DeCaprio as a young Frank, but Abagnale, as you might imagine, would rather talk about the life he led after he got caught, went to jail and paid his debt to society.
+				It was then that he turned his conning skill to good and began a 40-year career as a&amp;#8230; &lt;a href="https://techcrunch.com/2016/08/13/how-frank-abagnale-turned-early-life-as-con-artist-into-a-40-year-security-consulting-career/?ncid=rss"&gt;Read More&lt;/a&gt;&lt;div class="feedflare"&gt;
+				&lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=cufhd-OLSAE:UKfgTrNQykI:2mJPEYqXBVI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=2mJPEYqXBVI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=cufhd-OLSAE:UKfgTrNQykI:7Q72WNTAKBA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=7Q72WNTAKBA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=cufhd-OLSAE:UKfgTrNQykI:yIl2AUoC8zA"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=cufhd-OLSAE:UKfgTrNQykI:-BTjWOF_DHI"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=cufhd-OLSAE:UKfgTrNQykI:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=cufhd-OLSAE:UKfgTrNQykI:D7DqB2pKExk"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?i=cufhd-OLSAE:UKfgTrNQykI:D7DqB2pKExk" border="0"&gt;&lt;/img&gt;&lt;/a&gt; &lt;a href="http://feeds.feedburner.com/~ff/Techcrunch?a=cufhd-OLSAE:UKfgTrNQykI:qj6IDK7rITs"&gt;&lt;img src="http://feeds.feedburner.com/~ff/Techcrunch?d=qj6IDK7rITs" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
+				&lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/Techcrunch/~4/cufhd-OLSAE" height="1" width="1" alt=""/&gt;</description>
+			<wfw:commentRss>https://techcrunch.com/2016/08/13/how-frank-abagnale-turned-early-life-as-con-artist-into-a-40-year-security-consulting-career/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-466060002.jpg?w=210&amp;h=158&amp;crop=1" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-466060002.jpg" type="image/jpeg" medium="image"><media:title type="html">How%20Frank%20Abagnale%20thinks%20like%20a%20con%20artist%20to%20improve%26nbsp%3Bsecurity</media:title></media:content><twitter> <![CDATA[ ron_miller ]]> </twitter>
+			<media:thumbnail url="https://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-466060002.jpg" />
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/gettyimages-466060002.jpg" medium="image">
+				<media:title type="html">'Catch Me If You Can' Con Man Frank Abagnale Interview</media:title>
+			</media:content>
+
+			<media:content url="http://0.gravatar.com/avatar/0b82cfe9f0e15c08c5816481c9f383d9?s=96&amp;d=identicon&amp;r=G" medium="image">
+				<media:title type="html">ronjourn</media:title>
+			</media:content>
+
+			<media:content url="http://tctechcrunch2011.files.wordpress.com/2016/08/20160606-bc5_2155-1.jpg?w=680" medium="image">
+				<media:title type="html">Frank Abagnale speaking at Cloud Identity Summit in New Orleans in June.</media:title>
+			</media:content>
+			<feedburner:origLink>https://techcrunch.com/2016/08/13/how-frank-abagnale-turned-early-life-as-con-artist-into-a-40-year-security-consulting-career/?ncid=rss</feedburner:origLink></item>
+	</channel>
+</rss>

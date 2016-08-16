@@ -65,6 +65,11 @@ func GetFormatTime(strTime string, format string) string {
 
 }
 
+func GetLastModified(lastModified string) (time.Time, error) {
+	//Tue, 16 Aug 2016 01:31:09 GMT
+	return time.Parse(time.RFC1123, lastModified)
+}
+
 //Timer
 //Caller: defer Track(time.Now(), "parseFile()")
 //https://medium.com/@2xb/execution-time-tracking-in-golang-9379aebfe20e#.ffxgxejim
