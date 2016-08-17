@@ -43,7 +43,9 @@ func New(host, db, user, pass string, port uint16) {
 				mongoUrl = fmt.Sprintf("mongodb://%s:%d/%s", host, port, db)
 			}
 		}
+		fmt.Printf("mongo url: %s\n", mongoUrl)
 		mgInfo.Session, err = mgo.Dial(mongoUrl)
+		//fmt.Println(mgInfo.Session)
 
 		if err != nil {
 			panic(err)
