@@ -102,6 +102,13 @@ var tmplSite string = `
 	{{end}}
 `
 
+var innerOuter string = `
+{{with .Inner}}
+  Outer: {{$.OuterValue}}
+  Inner: {{.InnerValue}}
+{{end}}
+`
+
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------

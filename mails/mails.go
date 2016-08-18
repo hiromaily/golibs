@@ -49,7 +49,7 @@ func (ml *MailInfo) makeMailBody() {
 }
 
 func (ml *MailInfo) sendMail(c chan bool) {
-	//co := conf.GetConfInstance().Mail
+	//co := conf.GetConf().Mail
 
 	// Set up authentication information.
 	// func PlainAuth(identity, username, password, host string) Auth {

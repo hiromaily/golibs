@@ -6,8 +6,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/sqs"
-	awslib "oden.dac.co.jp/sallytools/common/libs/aws"
-	"oden.dac.co.jp/sallytools/common/libs/config"
+	awslib "github.com/hiromaily/golibs/aws"
+	conf "github.com/hiromaily/golibs/config"
 	"strconv"
 )
 
@@ -128,7 +128,7 @@ func CreateSendMessageBatchInput(url *string, body *string, acid *string, ot str
 	if *acid != "" {
 		acidData = *acid
 	}
-	conf := config.GetConfInstance()
+	conf := conf.GetConf()
 	if ot == "0" {
 		ot = conf.Aws.Sqs.MsgAttr.OpType
 	}
@@ -220,10 +220,10 @@ func GetQueueAttributes(params *sqs.GetQueueAttributesInput) (*sqs.GetQueueAttri
 // Create sqs client
 func New() {
 	//set environment variable
-	awslib.InitAwsEnv()
+	awslib.InitAwsEnv("", "")
 
 	//get config
-	conf := config.GetConfInstance()
+	conf := conf.GetConf()
 
 	//create client for sqs
 	svc = sqs.New(session.New(), aws.NewConfig().WithRegion(conf.Aws.Region))

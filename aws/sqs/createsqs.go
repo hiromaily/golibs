@@ -4,11 +4,8 @@ package sqs
 import (
 	"flag"
 	"fmt"
-	"log"
-	sqslib "oden.dac.co.jp/sallytools/common/libs/aws/sqs"
-	"oden.dac.co.jp/sallytools/common/libs/config"
-	logex "oden.dac.co.jp/sallytools/common/libs/log"
-	//"oden.dac.co.jp/sallytools/common/libs/utils"
+	conf "github.com/hiromaily/golibs/config"
+	lg "github.com/hiromaily/golibs/log"
 	"os"
 	"runtime"
 )
@@ -48,38 +45,40 @@ e.g. for how to use
 //TODO:otの値によって処理を分岐せねばならない。
 func getContentBody(text string) string {
 	//get config
-	conf := config.GetConfInstance()
+	/*
+		conf := conf.GetConf()
+		//connection info
+		conInfo := conf.CreateConInfo(conf.Request.Mid)
 
-	//connection info
-	conInfo := config.CreateConInfo(conf.Request.Mid)
-
-	//encode Json data
-	if *ot != "2" {
-		bytesMessage, err := conInfo.CreateSendMessage(text, 2)
-		if err != nil {
-			panic(err)
+		//encode Json data
+		if *ot != "2" {
+			bytesMessage, err := conInfo.CreateSendMessage(text, 2)
+			if err != nil {
+				panic(err)
+			}
+			return string(bytesMessage)
+		} else {
+			bytesMessage, err := conInfo.CreateSendMessageForOpType2(text)
+			if err != nil {
+				panic(err)
+			}
+			return string(bytesMessage)
 		}
-		return string(bytesMessage)
-	} else {
-		bytesMessage, err := conInfo.CreateSendMessageForOpType2(text)
-		if err != nil {
-			panic(err)
-		}
-		return string(bytesMessage)
-	}
+	*/
+	return ""
 }
 
 // Set SQS on AWS
 func setSQSData(num int, msg string) {
-	conf := config.GetConfInstance()
+	conf := conf.GetConf()
 	//conf.Aws.Sqs.QueueName -> test_message
 
 	//1.オブジェクト作成
-	sqslib.New()
+	New()
 	//2.sqsにqueueがあるかチェック
 	//3.なければ作成
-	inputParams := sqslib.CreateInputParam(conf.Aws.Sqs.QueueName)
-	sendMsgRes, err := sqslib.CreateNewQueue(inputParams)
+	inputParams := CreateInputParam(conf.Aws.Sqs.QueueName)
+	sendMsgRes, err := CreateNewQueue(inputParams)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -87,8 +86,8 @@ func setSQSData(num int, msg string) {
 
 	//4.deadMessage用も同じく、
 	//5.なければ作成
-	inputParamsForDead := sqslib.CreateInputParam(conf.Aws.Sqs.DeadQueueName)
-	deadMsgRes, err := sqslib.CreateNewQueue(inputParamsForDead)
+	inputParamsForDead := CreateInputParam(conf.Aws.Sqs.DeadQueueName)
+	deadMsgRes, err := CreateNewQueue(inputParamsForDead)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -97,12 +96,12 @@ func setSQSData(num int, msg string) {
 	//6.メッセージを作成
 	//body := getContentBody("send message dayo")
 	body := getContentBody(msg)
-	acid := config.GetConfInstance().Request.Acid
+	acid := ""
 	if num == 1 {
-		sendInputParams := sqslib.CreateSendMessageInput(sendMsgRes.QueueUrl, &body, &acid, *ot, *ct)
+		sendInputParams := CreateSendMessageInput(sendMsgRes.QueueUrl, &body, &acid, *ot, *ct)
 
 		//7.メッセージを送信
-		sqslib.SendMessageToQueue(sendInputParams)
+		SendMessageToQueue(sendInputParams)
 	} else {
 		var bulkCount int = num / 10
 		if bulkCount >= 1 {
@@ -120,40 +119,40 @@ func setSQSData(num int, msg string) {
 
 func sendBulkProcedure(url *string, body *string, acid *string, num int) {
 	//10通まで
-	sendInputBatchParams := sqslib.CreateSendMessageBatchInput(url, body, acid, *ot, *ct, num)
+	sendInputBatchParams := CreateSendMessageBatchInput(url, body, acid, *ot, *ct, num)
 
 	//メッセージを送信
-	sqslib.SendMultipleMessagesToQueue(sendInputBatchParams)
+	SendMultipleMessagesToQueue(sendInputBatchParams)
 
 }
 
 func purgeSQSData() {
-	sqslib.New()
-	conf := config.GetConfInstance()
+	New()
+	conf := conf.GetConf()
 
-	inputParams := sqslib.CreateInputParam(conf.Aws.Sqs.QueueName)
-	sendMsgRes, err := sqslib.CreateNewQueue(inputParams)
+	inputParams := CreateInputParam(conf.Aws.Sqs.QueueName)
+	sendMsgRes, err := CreateNewQueue(inputParams)
 	if err != nil {
 		panic(err.Error())
 	}
 
 	//fmt.Println(*sendMsgRes.QueueUrl)
-	sqslib.PurgeQueue(sendMsgRes.QueueUrl)
+	PurgeQueue(sendMsgRes.QueueUrl)
 }
 
 func getSQSAttributes() {
-	sqslib.New()
-	conf := config.GetConfInstance()
+	New()
+	conf := conf.GetConf()
 
-	inputParams := sqslib.CreateInputParam(conf.Aws.Sqs.QueueName)
-	sendMsgRes, err := sqslib.CreateNewQueue(inputParams)
+	inputParams := CreateInputParam(conf.Aws.Sqs.QueueName)
+	sendMsgRes, err := CreateNewQueue(inputParams)
 	if err != nil {
 		panic(err.Error())
 	}
 
 	//check attribute
-	params := sqslib.CreateAttributesParams(sendMsgRes.QueueUrl)
-	resp, err := sqslib.GetQueueAttributes(params)
+	params := CreateAttributesParams(sendMsgRes.QueueUrl)
+	resp, err := GetQueueAttributes(params)
 
 	//fmt.Printf("%s", resp)
 	//fmt.Printf("%v", resp.Attributes)
@@ -175,20 +174,20 @@ func handleCmdline() {
 	flag.Parse()
 
 	//log.Debug("flag.NArg(): " + strconv.Itoa(flag.NArg()))
-	logex.Debug("flag.NArg(): ", flag.NArg())
-	logex.Debug("mode: ", *mode)
-	logex.Debug("toml: ", *toml)
-	logex.Debug("n: ", *n)
-	logex.Debug("msg: ", *msg)
-	logex.Debug("loc: ", *loc)
-	logex.Debug("ot: ", *ot)
-	logex.Debug("ct: ", *ct)
-	logex.Debug("debug: ", *debug)
+	lg.Debug("flag.NArg(): ", flag.NArg())
+	lg.Debug("mode: ", *mode)
+	lg.Debug("toml: ", *toml)
+	lg.Debug("n: ", *n)
+	lg.Debug("msg: ", *msg)
+	lg.Debug("loc: ", *loc)
+	lg.Debug("ot: ", *ot)
+	lg.Debug("ct: ", *ct)
+	lg.Debug("debug: ", *debug)
 }
 
 //init
 func init() {
-	logex.InitializeDefaultLog(2, log.Ltime) //From debug log
+	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[SQL]", "/var/log/go/test.log")
 
 	//handle command line
 	handleCmdline()
@@ -202,27 +201,13 @@ func main() {
 
 	//get toml path
 	if *toml != "" {
-		config.SetTomlPath(*toml)
+		conf.SetTomlPath(*toml)
 	}
 
 	//-loc オプション -> 0:何も設定しない、1:位置情報をtrueにする、2:位置情報をfalseにする
 	//get config
-	//conf := config.GetConfInstance()
-	if *loc == 1 {
-		config.ChangeConfigLocationEnable(true)
-	} else if *loc == 2 {
-		config.ChangeConfigLocationEnable(false)
-	}
-
+	//conf := config.GetConf()
 	//パラメータに応じて、初期値を設定
-	conf := config.GetConfInstance()
-	if *ot == "0" {
-		*ot = conf.Aws.Sqs.MsgAttr.OpType
-	}
-	if *ct == "0" {
-		*ct = conf.Aws.Sqs.MsgAttr.OpType
-	}
-
 	if *mode == 1 {
 		//set sqs data
 		setSQSData(*n, *msg)

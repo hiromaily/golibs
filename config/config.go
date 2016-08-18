@@ -191,7 +191,7 @@ func New(file string) {
 }
 
 // singleton architecture
-func GetConfInstance() *Config {
+func GetConf() *Config {
 	var err error
 	if conf == nil {
 		conf, err = loadConfig("")

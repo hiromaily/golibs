@@ -117,13 +117,16 @@ func (mi *MongoInfo) SetExpireOnCollection(sessionExpire time.Duration) error {
 }
 
 // create collection
+/*
 func (mi *MongoInfo) CreateCol(colName string) error {
+	//gopkg.in/mgo.v2/bson.DocElem composite literal uses unkeyed fields
 	err := mi.Session.Run(bson.D{{"create", colName}}, nil)
 	if err == nil {
 		mi.C = mi.Db.C(colName)
 	}
 	return err
 }
+*/
 
 // get and set collection
 func (mi *MongoInfo) GetCol(colName string) *mgo.Collection {

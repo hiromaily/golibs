@@ -38,7 +38,7 @@ func init() {
 func setup() {
 	//conf
 	conf.SetTomlPath("../../settings.toml")
-	c := conf.GetConfInstance().Redis
+	c := conf.GetConf().Redis
 
 	//New("localhost", 6379)
 	New(c.Host, c.Port, "")

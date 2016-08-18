@@ -62,7 +62,7 @@ func TestMail(t *testing.T) {
 	}
 
 	conf.New(*confFile)
-	conf := conf.GetConfInstance().Mail
+	conf := conf.GetConf().Mail
 
 	//subject
 	subject := conf.Content[0].Subject

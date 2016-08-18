@@ -63,7 +63,7 @@ func TestConfig(t *testing.T) {
 	//*
 
 	New(*confFile)
-	conf := GetConfInstance()
+	conf := GetConf()
 
 	t.Logf("conf.Environment: %v", conf.Environment)
 	t.Logf("conf.Aws.AccessKey: %v", conf.Aws.AccessKey)
@@ -80,7 +80,7 @@ func TestConfig2(t *testing.T) {
 	tomlPath := os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/settings.default.toml"
 
 	SetTomlPath(tomlPath)
-	conf := GetConfInstance()
+	conf := GetConf()
 
 	t.Logf("conf.Environment: %v", conf.Environment)
 	t.Logf("conf.Aws.AccessKey: %v", conf.Aws.AccessKey)

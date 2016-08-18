@@ -84,7 +84,7 @@ func init() {
 func setup() {
 	//New("localhost")
 	conf.SetTomlPath("../../settings.toml")
-	c := conf.GetConfInstance().Mongo
+	c := conf.GetConf().Mongo
 
 	//NewMongo("localhost")
 
@@ -156,6 +156,7 @@ func TestCreateDatabase(t *testing.T) {
 	mg.GetDB(testDbName)
 }
 
+/*
 func TestCreateCollection(t *testing.T) {
 	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 	mg := GetMongo()
@@ -166,6 +167,7 @@ func TestCreateCollection(t *testing.T) {
 		//error: collection already exists
 	}
 }
+*/
 
 //set expire index
 func TestSetExpireOnCollection(t *testing.T) {

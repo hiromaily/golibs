@@ -17,6 +17,9 @@ BENCH=0
 COVERAGRE=0
 PROFILE=0
 
+# when using go 1.7 for the first time, delete all inside pkg directory and run go install.
+#go install -v ./...
+
 ###########################################################
 # Update all package
 ###########################################################
