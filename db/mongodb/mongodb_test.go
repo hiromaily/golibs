@@ -3,12 +3,11 @@ package mongodb_test
 import (
 	"encoding/json"
 	"flag"
-	"fmt"
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/mongodb"
 	lg "github.com/hiromaily/golibs/log"
 	o "github.com/hiromaily/golibs/os"
-	r "github.com/hiromaily/golibs/runtimes"
+	//r "github.com/hiromaily/golibs/runtimes"
 	"gopkg.in/mgo.v2/bson"
 	"os"
 	"testing"
@@ -171,7 +170,7 @@ func TestCreateCollection(t *testing.T) {
 
 //set expire index
 func TestSetExpireOnCollection(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 	mg := GetMongo()
 	mg.GetCol(testColUser)
 
@@ -218,7 +217,7 @@ func TestInsertOne(t *testing.T) {
 
 // insert multiple record at once
 func TestBulkInsert(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -254,7 +253,7 @@ func TestBulkInsert(t *testing.T) {
 
 // insert from json file
 func TestInsertJsonFile(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	//json
 	if *jsonFile == "" {
@@ -288,7 +287,7 @@ func TestInsertJsonFile(t *testing.T) {
 // READ
 //-----------------------------------------------------------------------------
 func TestGetOneDataByColumn(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -310,7 +309,7 @@ func TestGetOneDataByColumn(t *testing.T) {
 }
 
 func TestGetOneDataById(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -333,7 +332,7 @@ func TestGetOneDataById(t *testing.T) {
 }
 
 func TestGetAllDataByColumn(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -383,7 +382,7 @@ func TestGetAllDataByColumn(t *testing.T) {
 }
 
 func TestGetAllData(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -413,7 +412,7 @@ func TestGetAllData(t *testing.T) {
 // UPDATE
 //-----------------------------------------------------------------------------
 func TestUpdateOneDataByColumn(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 	//when condition is by column, you sould use UpdateAll()
 
 	mg := GetMongo()
@@ -436,7 +435,7 @@ func TestUpdateOneDataByColumn(t *testing.T) {
 }
 
 func TestUpdateAllDataByColumn(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -456,7 +455,7 @@ func TestUpdateAllDataByColumn(t *testing.T) {
 }
 
 func TestUpdateOneDataById(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -511,7 +510,7 @@ func TestUpdateOneDataById(t *testing.T) {
 // BULK UPDATE
 //-----------------------------------------------------------------------------
 func TestBulkUpdateByColumn(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -537,7 +536,7 @@ func TestBulkUpdateByColumn(t *testing.T) {
 // UPSERT
 //-----------------------------------------------------------------------------
 func TestUpsertOneData(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -560,7 +559,7 @@ func TestUpsertOneData(t *testing.T) {
 // DELETE
 //-----------------------------------------------------------------------------
 func TestDeleteOneData(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -574,7 +573,7 @@ func TestDeleteOneData(t *testing.T) {
 }
 
 func TestDeleteMultipleData(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -587,7 +586,7 @@ func TestDeleteMultipleData(t *testing.T) {
 }
 
 func TestDeleteAllData(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	mg := GetMongo()
 
@@ -610,7 +609,7 @@ func TestDeleteAllData(t *testing.T) {
 // Cleanup
 //-----------------------------------------------------------------------------
 func TestDropCollection(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
 	mg := GetMongo()
 

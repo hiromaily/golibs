@@ -113,10 +113,10 @@ elif [ $TEST_MODE -eq 2 ]; then
     #go test -v html/html_test.go
     #go test -v db/mysql/mysql_test.go
     #go test -v log/log_test.go
-    #go test -v db/mongodb/mongodb_test.go -fp ${JSONPATH}
+    go test -v db/mongodb/mongodb_test.go -fp ${JSONPATH}
     #go test -v json/json_test.go -fp ${JSONPATH}
-    go test -v xml/xml_test.go -fp ${XMLPATH}/techcrunch.xml
-    go test -v xml/xml_test.go -fp ${XMLPATH}/cnet.xml
+    #go test -v xml/xml_test.go -fp ${XMLPATH}/techcrunch.xml
+    #go test -v xml/xml_test.go -fp ${XMLPATH}/cnet.xml
 fi
 
 ###########################################################
