@@ -83,6 +83,11 @@ func TestGetFormatTime(t *testing.T) {
 	t.Logf("TestGetFormatTime[03] result: %s", result)
 }
 
+func TestGetCurrentTimeByStr(t *testing.T) {
+	strT := GetCurrentTimeByStr()
+	t.Log(strT)
+}
+
 func TestTrack(t *testing.T) {
 	t.Skip("skipping TestTrack")
 
