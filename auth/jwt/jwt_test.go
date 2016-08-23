@@ -27,8 +27,8 @@ func init() {
 
 func setup() {
 	//
-	priKey := os.Getenv("HOME") + "/.ssh/jwt.rsa"
-	pubKey := os.Getenv("HOME") + "/.ssh/jwt.rsa.pub"
+	priKey := os.Getenv("HOME") + "/.ssh/jwt_rsa"
+	pubKey := os.Getenv("HOME") + "/.ssh/jwt_rsa.pub"
 	err := InitKeys(priKey, pubKey)
 	if err != nil {
 		panic(err)
