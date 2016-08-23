@@ -152,8 +152,24 @@ func judgeParse(token *jwt.Token) (interface{}, error) {
 }
 
 // Check Token (it may be too strict to check)
-func JudgeJWT(tokenString, clientId, userName string) error {
+func JudgeJWT(tokenString string) error {
 	lg.Info("JudgeJWT()")
+
+	//token
+	token, err := jwt.Parse(tokenString, judgeParse)
+
+	if err != nil {
+		return err
+	} else if !token.Valid {
+		return fmt.Errorf("token is invalid")
+	}
+
+	return nil
+}
+
+// Check Token (it may be too strict to check)
+func JudgeJWTWithClaim(tokenString, clientId, userName string) error {
+	lg.Info("JudgeJWTWithClaim()")
 
 	//token
 	//token, err := jwt.Parse(tokenString, judgeParse)
@@ -179,8 +195,8 @@ func JudgeJWT(tokenString, clientId, userName string) error {
 }
 
 // Check Token (it may be too strict to check)
-func JudgeJWTWithClaim(tokenString, clientId, userName, option string) error {
-	lg.Info("JudgeJWTWithClaim()")
+func JudgeJWTWithCustomClaim(tokenString, clientId, userName, option string) error {
+	lg.Info("JudgeJWTWithCustomClaim()")
 
 	//token
 	token, err := jwt.ParseWithClaims(tokenString, &CustomClaims{}, judgeParse)

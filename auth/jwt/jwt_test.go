@@ -61,7 +61,7 @@ func createToken(t *testing.T, mode uint8) {
 	}
 	t.Logf("[%d]token: %s", mode, token)
 
-	err = JudgeJWT(token, "client123", "harry")
+	err = JudgeJWTWithClaim(token, "client123", "harry")
 	if err != nil {
 		//verification error
 		t.Errorf("[%d] 1.JudgeJWT() error: %s", mode, err)
@@ -70,7 +70,7 @@ func createToken(t *testing.T, mode uint8) {
 	//sleep
 	time.Sleep(time.Second * 3)
 
-	err = JudgeJWT(token, "client123", "harry")
+	err = JudgeJWTWithClaim(token, "client123", "harry")
 	if err == nil {
 		t.Errorf("[%d] 2.JudgeJWT() error has to be set: %s", mode, "Token is expired")
 	}
@@ -86,20 +86,20 @@ func createUserToken(t *testing.T, mode uint8) {
 	}
 	t.Logf("[%d]token: %s", mode, token)
 
-	err = JudgeJWTWithClaim(token, "client123", "harry", "option555")
+	err = JudgeJWTWithCustomClaim(token, "client123", "harry", "option555")
 	if err != nil {
 		t.Errorf("[%d] 1.JudgeJWTWithClaim() error: %s", mode, err)
 	}
 
 	// set different name
-	err = JudgeJWTWithClaim(token, "client123", "harry", "option777")
+	err = JudgeJWTWithCustomClaim(token, "client123", "harry", "option777")
 	if err == nil {
 		t.Errorf("[%d] 2.JudgeJWTWithClaim() error has to be set: %s", mode, "Option is invalid")
 	}
 
 	time.Sleep(time.Second * 3)
 
-	err = JudgeJWTWithClaim(token, "client123", "harry", "option555")
+	err = JudgeJWTWithCustomClaim(token, "client123", "harry", "option555")
 	if err == nil {
 		t.Errorf("[%d] 3.JudgeJWTWithClaim() error has to be set: %s", mode, "Token is expired")
 	}
