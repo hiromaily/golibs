@@ -3,5 +3,4 @@
 *.out
 *.log
 *.test
-boltdb
 exec/sh/*.sh
