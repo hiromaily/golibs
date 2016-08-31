@@ -111,7 +111,7 @@ if [ $TEST_MODE -eq 1 ]; then
     go test -v validator/validator_test.go
 elif [ $TEST_MODE -eq 2 ]; then
     go test -v auth/jwt/jwt_test.go
-    #go test -v db/rabbitmq/rmq_test.go
+    #go test -v messaging/rabbitmq/rmq_test.go
 fi
 
 ###########################################################

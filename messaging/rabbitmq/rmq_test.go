@@ -2,7 +2,7 @@ package rabbitmq_test
 
 import (
 	"fmt"
-	. "github.com/hiromaily/golibs/db/rabbitmq"
+	. "github.com/hiromaily/golibs/messaging/rabbitmq"
 	lg "github.com/hiromaily/golibs/log"
 	o "github.com/hiromaily/golibs/os"
 	"os"
