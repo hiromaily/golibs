@@ -2,8 +2,8 @@ package rabbitmq_test
 
 import (
 	"fmt"
-	. "github.com/hiromaily/golibs/messaging/rabbitmq"
 	lg "github.com/hiromaily/golibs/log"
+	. "github.com/hiromaily/golibs/messaging/rabbitmq"
 	o "github.com/hiromaily/golibs/os"
 	"os"
 	"testing"
