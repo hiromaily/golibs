@@ -83,6 +83,10 @@ func Consumer(c sarama.Consumer, topic string, ch ChReceive) {
 
 	//wait for notification from caller
 	<-ch.ChWait
+
+	defer func() {
+		ch.ChWait <- true
+	}()
 	lg.Debug("Reveiver() finish")
 
 	return

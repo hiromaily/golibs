@@ -8,7 +8,7 @@ import (
 	o "github.com/hiromaily/golibs/os"
 	"os"
 	"testing"
-	"time"
+	//"time"
 )
 
 var (
@@ -113,7 +113,9 @@ func TestKafka(t *testing.T) {
 
 	//finish notification to Consumer
 	ch.ChWait <- true
-	time.Sleep(1 * time.Second)
+
+	<-ch.ChWait //After finish
+	//time.Sleep(1 * time.Second)
 
 }
 
