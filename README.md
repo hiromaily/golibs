@@ -6,14 +6,25 @@ golang version is limited some packages.
 * [log] only version 1.5+
 
 ## libraries
-### aws
+
+### ■ algorithm
+* For indivisual study. (It works in progress.)
+
+----
+### ■ auth
+#### jwt
+* authentication by JWT (Json Web TOken) 
+
+----
+### ■ aws
 * For aws-related. (It works in progress.)
 
 ----
-### cast
+### ■ cast 
 * for now, cast byte to string mutually.
+
 ----
-### cipher
+### ■ cipher
 #### encryption
 * For encryption.
 
@@ -21,19 +32,19 @@ golang version is limited some packages.
 * For hash.
 
 ----
-### compress
+### ■ compress
 * For compress string data.
 
 ----
-### config
+### ■ config
 * For config settings from toml file.
 
 ----
-### context
+### ■ context
 * For context. (It's not started to develop yet.)
 
 ----
-### db
+### ■ db
 #### boltdb
 * For check how to use boltdb package.
 
@@ -58,9 +69,6 @@ golang version is limited some packages.
 #### postgresql
 * Handling PostgreSQL. (It's not started to develop yet.)
 
-#### rabbitmq
-* Handling RabbitMQ. (It's not started to develop yet.)
-
 #### redis
 * Handling Redis.
 
@@ -68,89 +76,118 @@ golang version is limited some packages.
 * For check how to use textindex package. (It's not started to develop yet.)
 
 ----
-### defaultdata
+### ■ defaultdata
 * For check how nil is treated in each Type through Test.
 * And how each type is treated on Interface{} type. 
 
 ----
-### draw
+### ■ draw
 * For drawing library. (It's not started to develop yet.)
 
 ----
-### exec
+### ■ exec
 * For check how to use "os/exec" package.
 
 ----
-### flag
+### ■ files
+* For finding specific file in directories.
+
+----
+### ■ flag
 * For check how to use "flag" package.
 
 ----
-### gettext
+### ■ gettext
 * For gettext. (It's not started to develop yet.)
 
 ----
-### goroutine
+### ■ goroutine
 * It's to control how many goroutine can be run at a time.
 
 ----
-### heroku
+### ■ heroku
 * Heroku related library.
 
 ----
-### http
+### ■ html
+* Web scraping. (It works in progress.)
+
+----
+### ■ http
 * It's just check how to use "net/http" package. (It works in progress.)
 
 ----
-### join
+### ■ join
 * For check which way is most efficient to join strings on testing package.
 
 ----
-### json
+### ■ json
 * For check how to use "json" package.
 
 ----
-### log
+### ■ log
 * logger. It can control loglevel in files and stdout respectively
 * only version 1.5 or later.
 
 ----
-### mails
+### ■ mails
 * Send mail. (It works in progress.)
 
 ----
-### reflects
+### ■ messaging
+#### kafka
+* Handling Apache kafka
+
+#### nats
+* Handling NATS
+
+#### rabbitmq
+* Handling RabbitMQ.
+
+----
+### ■ os
+* For util feature using "os" package.
+
+----
+### ■ reflects
 * For check how to use "reflect" package.
 
 ----
-### runtimes
+### ■ regexp
+* For search string to use "regexp" package.
+
+----
+### ■ runtimes
 * It's just check how to use "runtime" package.
 
 ----
-### serial
+### ■ serial
 * Serialize each Type to binary data.
 
 ----
-### session
+### ■ session
 * Control session on the web. (It works in progress.)
 
 ----
-### signal
+### ■ signal
 * Control signal to check where goroutine stop.
 
 ----
-### times
+### ■ times
 * For time related library.
 
 ----
-### tmpl
+### ■ tmpl
 * It's just check how to use "template/text" package.
 
 ----
-### utils
+### ■ utils
 * For useful funcs like handling slice, interface, type and so on.
 
 ----
-### validator
+### ■ validator
 * To check variable.
 
-
+----
+### ■ xml
+* For handling xml.
