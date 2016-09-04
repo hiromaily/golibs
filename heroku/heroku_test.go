@@ -48,7 +48,7 @@ func TestGetMySQLInfo(t *testing.T) {
 
 	if err != nil {
 		//unexpected EOF
-		t.Errorf("TestGetMySQLInfo error: %s", err)
+		t.Errorf("GetMySQLInfo error: %s", err)
 	}
 	t.Logf("host: %s", host)
 	t.Logf("dbname: %s", dbname)
@@ -60,9 +60,23 @@ func TestGetRedisInfo(t *testing.T) {
 	host, pass, port, err := GetRedisInfo("redis://h:pf217irr4gts39d29o0012bghsi@ec2-50-19-83-130.compute-1.amazonaws.com:20819")
 
 	if err != nil {
-		t.Errorf("TestGetRedisInfo error: %s", err)
+		t.Errorf("GetRedisInfo error: %s", err)
 	}
 	t.Logf("host: %s", host)
+	t.Logf("pass: %s", pass)
+	t.Logf("port: %d", port)
+}
+
+func TestGetMongoInfo(t *testing.T) {
+	host, dbname, user, pass, port, err := GetMongoInfo("mongodb://heroku_7lbnd77m:7r8f631nv2idt0fhj9ok9714j9@ds161495.mlab.com:61495/heroku_7lbnd77m")
+
+	if err != nil {
+		//unexpected EOF
+		t.Errorf("GetMongoInfo error: %s", err)
+	}
+	t.Logf("host: %s", host)
+	t.Logf("dbname: %s", dbname)
+	t.Logf("user: %s", user)
 	t.Logf("pass: %s", pass)
 	t.Logf("port: %d", port)
 }
