@@ -114,7 +114,8 @@ elif [ $TEST_MODE -eq 2 ]; then
     #go test -v messaging/rabbitmq/rmq_test.go
     #go test -v messaging/kafka/kafka_test.go
     #go test -v messaging/nats/nats_test.go
-    go test -v heroku/heroku_test.go
+    #go test -v heroku/heroku_test.go
+    go test -v regexp/regexp_test.go
 fi
 
 ###########################################################

@@ -145,3 +145,19 @@ func TestRegexp2(t *testing.T) {
 		t.Errorf("[13]IsBenchTest doens't work yet")
 	}
 }
+
+func TestRegexp3(t *testing.T) {
+	testOKData := []string{"aaa.jpg", "bbb.png", "cccc.js", "abd.woff"}
+	testNGData := []string{"/", "bbb/png", "cccc/js/", "/abd/woff/", "/abd/woff/gggg"}
+	for idx, tt := range testOKData {
+		if !IsStaticFile(tt) {
+			t.Errorf("[%d]IsStaticFile()OK data doens't work yet.", idx)
+		}
+	}
+
+	for idx, tt := range testNGData {
+		if IsStaticFile(tt) {
+			t.Errorf("[%d]IsStaticFile()NG data doens't work yet.", idx)
+		}
+	}
+}
