@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// 乱数からランダムの配列を返す
+// MakeIntData is to return array from random number
 func MakeIntData(num int) (values []int) {
 	// UNIX 時間をシードにして乱数生成器を用意する
 	t := time.Now().Unix()

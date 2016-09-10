@@ -12,10 +12,13 @@ TOMLPATH=${GOPATH}/src/github.com/hiromaily/golibs/settings.toml
 XMLPATH=${GOPATH}/src/github.com/hiromaily/golibs/xml/rssfeeds/
 BOLTPATH=${GOPATH}/src/github.com/hiromaily/golibs/boltdb
 
-TEST_MODE=2  #0:off, 1:run all test, 2:test for specific one
+TEST_MODE=0  #0:off, 1:run all test, 2:test for specific one
 BENCH=0
 COVERAGRE=0
 PROFILE=0
+
+GO_GET=0
+GO_LINT=0
 
 # when using go 1.7 for the first time, delete all inside pkg directory and run go install.
 #go install -v ./...
@@ -23,10 +26,11 @@ PROFILE=0
 ###########################################################
 # Update all package
 ###########################################################
-#go get -u -v
-#go get -u -v ./...
-#go get -u -f -v ./...
-
+if [ $GO_GET -eq 1 ]; then
+    #go get -u -v
+    go get -u -v ./...
+    #go get -u -f -v ./...
+fi
 
 ###########################################################
 # Adjust version dependency of projects
@@ -54,8 +58,12 @@ fi
 ###########################################################
 # go lint
 ###########################################################
-# it's too strict
-#golint ./...
+#go get -u github.com/golang/lint/golint
+if [ $GO_LINT -eq 1 ]; then
+    #golint ./...
+    #golint `go list ./... | grep -v '/vendor/'`
+    golint ./... | grep -v '^vendor\/' || true
+fi
 
 
 ###########################################################

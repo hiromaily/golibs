@@ -1,5 +1,8 @@
 # golibs
-golang libraries 
+
+[![Go Report Card](https://goreportcard.com/badge/github.com/hiromaily/golibs)](https://goreportcard.com/report/github.com/hiromaily/golibs)
+
+Golang libraries 
 
 ## requirement
 golang version is limited some packages.  
