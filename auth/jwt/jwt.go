@@ -9,6 +9,7 @@ import (
 	//"time"
 )
 
+// CustomClaims is structure of json for jwt claim
 type CustomClaims struct {
 	Option string `json:"option"`
 	jwt.StandardClaims
@@ -32,6 +33,7 @@ func init() {
 	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[JWT]", "")
 }
 
+// InitEncrypted is to initialize
 func InitEncrypted(mode uint8) {
 	encrypted = RSA
 	encrypted = mode
