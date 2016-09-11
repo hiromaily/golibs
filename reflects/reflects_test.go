@@ -1,10 +1,13 @@
 package reflects_test
 
 import (
+	"fmt"
 	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
 	. "github.com/hiromaily/golibs/reflects"
+	tu "github.com/hiromaily/golibs/testutil"
 	"os"
+	"reflect"
+	"strconv"
 	"testing"
 	"time"
 )
@@ -18,6 +21,13 @@ type TeacherInfo struct {
 type SiteInfo struct {
 	Url      string        `json:"url"`
 	Teachers []TeacherInfo `json:"teachers"`
+}
+
+type LoginRequest struct {
+	Email string `valid:"nonempty,email,min=5,max=40" field:"email" dispName:"E-Mail"`
+	Pass  string `valid:"nonempty,min=8,max=16" field:"pass" dispName:"Password"`
+	Code  string `valid:"nonempty,number" field:"code" dispName:"Code"`
+	Alpha string `valid:"alphabet" field:"alpha" dispName:"Alpha"`
 }
 
 var (
@@ -41,11 +51,7 @@ var (
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[Reflects_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[Reflects]")
 }
 
 func setup() {
@@ -65,39 +71,165 @@ func TestMain(m *testing.M) {
 }
 
 //-----------------------------------------------------------------------------
-// Test
+// functions
 //-----------------------------------------------------------------------------
-func TestCheckReflect(t *testing.T) {
-	t.Skip("skipping TestCheckReflect")
 
-	CheckReflect(dInt)     //int/int
-	CheckReflect(dInt64)   //int64/int64
-	CheckReflect(dStr)     //v.Kind(): string  Type: string
-	CheckReflect(dSlice)   //v.Kind(): slice   Type: []int
-	CheckReflect(dMap)     //v.Kind(): map     Type: map[string]int
-	CheckReflect(siteInfo) //v.Kind(): struct  Type: reflects_test.SiteInfo
-	CheckReflect(tInfo)    //v.Kind(): struct  Type: reflects_test.SiteInfo
+// CheckReflect is just to check ValueOf and TypeOf of value
+func checkReflect(value interface{}) {
+	//reflect.ValueOf()
+
+	t := reflect.TypeOf(value)
+	fmt.Printf("[]Type of parameter: %T\n", value)
+	fmt.Printf(" reflect.TypeOf(value): %v\n", t)
+
+	v := reflect.ValueOf(value)
+	fmt.Printf(" reflect.ValueOf(value): %v\n", v)
+	fmt.Printf(" v.Kind(): %v\n\n", v.Kind())
+
+}
+
+// get tag name
+func checkStruct(data *LoginRequest) {
+
+	val := reflect.ValueOf(data).Elem()
+
+	for i := 0; i < val.NumField(); i++ {
+		valueField := val.Field(i)
+		typeField := val.Type().Field(i)
+		tag := typeField.Tag
+
+		lg.Debugf("Field Name: %s,\t Field Value: %v,\t Tag Value: %s",
+			typeField.Name, valueField.Interface(), tag.Get("valid"))
+	}
+	lg.Debug("-------------------------------------")
+}
+
+// GetValueAsString is to get any formats any value as a string.
+func GetValueAsString(value interface{}) string {
+	return formatAtom(reflect.ValueOf(value))
+}
+
+// formatAtom is to format a value without inspecting its internal structure.
+func formatAtom(v reflect.Value) string {
+	switch v.Kind() {
+	case reflect.Invalid:
+		return "invalid"
+	case reflect.Int, reflect.Int8, reflect.Int16,
+		reflect.Int32, reflect.Int64:
+		return strconv.FormatInt(v.Int(), 10)
+	case reflect.Uint, reflect.Uint8, reflect.Uint16,
+		reflect.Uint32, reflect.Uint64, reflect.Uintptr:
+		return strconv.FormatUint(v.Uint(), 10)
+	case reflect.Bool:
+		//return strconv.FormatBool(v.Bool())
+		if v.Bool() {
+			return "true"
+		}
+		return "false"
+	case reflect.String:
+		return strconv.Quote(v.String())
+	case reflect.Chan, reflect.Func, reflect.Ptr, reflect.Slice, reflect.Map:
+		return v.Type().String() + " 0x" + strconv.FormatUint(uint64(v.Pointer()), 16)
+	default: // reflect.Array, reflect.Struct, reflect.Interface
+		return v.Type().String() + " value"
+	}
+}
+
+// Display is to display kind() and type() and value
+func Display(name string, x interface{}) {
+	fmt.Printf("Display %s (%T):\n", name, x)
+	display(name, reflect.ValueOf(x))
+}
+
+func display(name string, v reflect.Value) {
+	switch v.Kind() { //uint
+	case reflect.Invalid:
+		fmt.Printf("%s = invalid\n", name)
+	case reflect.Slice, reflect.Array:
+		for i := 0; i < v.Len(); i++ {
+			display(fmt.Sprintf("%s[%d]", name, i), v.Index(i))
+		}
+	case reflect.Struct:
+		for i := 0; i < v.NumField(); i++ {
+			fieldPath := fmt.Sprintf("%s.%s", name, v.Type().Field(i).Name)
+			display(fieldPath, v.Field(i))
+		}
+	case reflect.Map:
+		for _, key := range v.MapKeys() {
+			display(fmt.Sprintf("%s[%s]", name,
+				formatAtom(key)), v.MapIndex(key))
+		}
+	case reflect.Ptr:
+		if v.IsNil() {
+			fmt.Printf("%s = nil\n", name)
+		} else {
+			display(fmt.Sprintf("(*%s)", name), v.Elem())
+		}
+	case reflect.Interface:
+		if v.IsNil() {
+			fmt.Printf("%s = nil\n", name)
+		} else {
+			fmt.Printf("%s.type = %s\n", name, v.Elem().Type())
+			display(name+".value", v.Elem())
+		}
+	default: // basic types, channels, funcs
+		fmt.Printf("%s = %s\n", name, formatAtom(v))
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Check
+//-----------------------------------------------------------------------------
+
+// TestCheckValidationEg is just check of struct type
+func TestCheckValidationEg(t *testing.T) {
+	tu.SkipLog(t)
+
+	//1:Normal
+	data := &LoginRequest{Email: "abc", Pass: "pass", Code: "aa", Alpha: "abcde"}
+	checkStruct(data)
+
+	//2:Normal and blank field
+	data = &LoginRequest{Email: "abc", Pass: "pass", Code: "aa", Alpha: ""}
+	checkStruct(data)
+
+	//3: there is lack of field
+	data = &LoginRequest{Email: "abc", Pass: "pass", Code: "aa"}
+	checkStruct(data)
+
+}
+
+func TestCheckReflect(t *testing.T) {
+	tu.SkipLog(t)
+
+	checkReflect(dInt)     //int/int
+	checkReflect(dInt64)   //int64/int64
+	checkReflect(dStr)     //v.Kind(): string  Type: string
+	checkReflect(dSlice)   //v.Kind(): slice   Type: []int
+	checkReflect(dMap)     //v.Kind(): map     Type: map[string]int
+	checkReflect(siteInfo) //v.Kind(): struct  Type: reflects_test.SiteInfo
+	checkReflect(tInfo)    //v.Kind(): struct  Type: reflects_test.SiteInfo
 
 	var techerInfo []TeacherInfo
-	CheckReflect(&techerInfo) //v.Kind(): ptr  Type: *[]reflects_test.TeacherInfo
+	checkReflect(&techerInfo) //v.Kind(): ptr  Type: *[]reflects_test.TeacherInfo
 }
 
 func TestGetValueAsString(t *testing.T) {
-	t.Skip("skipping TestReflects")
+	tu.SkipLog(t)
 
-	t.Log(GetValueAsString(dInt))
-	t.Log(GetValueAsString(dInt64))
-	t.Log(GetValueAsString(dStr))
-	t.Log(GetValueAsString(dBool))
-	t.Log(GetValueAsString(dSlice))
-	t.Log(GetValueAsString(dTime))
-	t.Log(GetValueAsString(dMap))
-	t.Log(GetValueAsString([]time.Duration{dTime}))
-	t.Log(GetValueAsString(siteInfo))
+	lg.Debug(GetValueAsString(dInt))
+	lg.Debug(GetValueAsString(dInt64))
+	lg.Debug(GetValueAsString(dStr))
+	lg.Debug(GetValueAsString(dBool))
+	lg.Debug(GetValueAsString(dSlice))
+	lg.Debug(GetValueAsString(dTime))
+	lg.Debug(GetValueAsString(dMap))
+	lg.Debug(GetValueAsString([]time.Duration{dTime}))
+	lg.Debug(GetValueAsString(siteInfo))
 }
 
 func TestDisplay(t *testing.T) {
-	t.Skip("skipping TestDisplay")
+	tu.SkipLog(t)
 
 	Display("int", dInt)
 	//Display int (int):
@@ -162,9 +294,13 @@ func TestDisplay(t *testing.T) {
 	//(*struct)[1].Country = "America"
 }
 
+//-----------------------------------------------------------------------------
+// Test
+//-----------------------------------------------------------------------------
 func TestSetDataToStruct(t *testing.T) {
-	//t.Skip("skipping TestCheckStruct")
-	var columns []string = []string{"field1", "field2", "field3"}
+	//tu.SkipLog(t)
+
+	//var columns = []string{"field1", "field2", "field3"}
 	//values := []interface{}{10, "Harry", "Japan"}
 	values := make([][]interface{}, 2)
 	values[0] = []interface{}{10, "Harry", "UK"}
@@ -173,21 +309,21 @@ func TestSetDataToStruct(t *testing.T) {
 	//1.struct
 	//*
 	var techerInfo TeacherInfo
-	err := SetDataToStruct(columns, values, &techerInfo)
+	err := SetDataToStruct(values, &techerInfo)
 	if err != nil {
-		t.Errorf("TestSetDataToStruct: error: %s", err)
+		t.Errorf("[01]SetDataToStruct: error: %s", err)
 	}
-	t.Logf("techerInfo:%#v", techerInfo)
+	lg.Debugf("techerInfo:%#v", techerInfo)
 	//*/
 
 	//2.slice struct
 	//*
 	var techerInfos []TeacherInfo
-	err = SetDataToStruct(columns, values, &techerInfos)
+	err = SetDataToStruct(values, &techerInfos)
 	if err != nil {
-		t.Errorf("TestSetDataToStruct: error: %s", err)
+		t.Errorf("[02]SetDataToStruct: error: %s", err)
 	}
-	t.Logf("techerInfo:%#v", techerInfos)
+	lg.Debugf("techerInfo:%#v", techerInfos)
 	//*/
 }
 

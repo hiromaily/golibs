@@ -1,18 +1,14 @@
 package regexp_test
 
 import (
-	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
+	//lg "github.com/hiromaily/golibs/log"
 	. "github.com/hiromaily/golibs/regexp"
+	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
 )
 
 //http://ashitani.jp/golangtips/tips_regexp.html
-
-var (
-	benchFlg bool = false
-)
 
 var regExpData = []struct {
 	reg         string
@@ -69,11 +65,7 @@ var regExpData = []struct {
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[Regexp_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[Regexp]")
 }
 
 func setup() {
@@ -93,9 +85,13 @@ func TestMain(m *testing.M) {
 }
 
 //-----------------------------------------------------------------------------
+// Check
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
 // Test
 //-----------------------------------------------------------------------------
-func TestRegexp(t *testing.T) {
+func TestCheckRegexp(t *testing.T) {
 	for idx, tt := range regExpData {
 		bRet := CheckRegexp(tt.reg, tt.str)
 		if bRet != tt.expectation {
@@ -104,31 +100,43 @@ func TestRegexp(t *testing.T) {
 	}
 }
 
-func TestRegexp2(t *testing.T) {
+func TestIsInvisiblefile(t *testing.T) {
 	if !IsInvisiblefile(".git") {
 		t.Errorf("[01]IsInvisiblefile() doens't work yet")
 	}
 	if IsInvisiblefile("git") {
 		t.Errorf("[02]IsInvisiblefile() doens't work yet")
 	}
+}
+
+func TestIsGoFile(t *testing.T) {
 	if !IsGoFile("aaaa.go") {
-		t.Errorf("[03]IsGoFile() doens't work yet")
+		t.Errorf("[01]IsGoFile() doens't work yet")
 	}
 	if IsGoFile("bbb.txt") {
-		t.Errorf("[04]IsGoFile() doens't work yet")
+		t.Errorf("[02]IsGoFile() doens't work yet")
 	}
+}
+
+func TestIsTmplFile(t *testing.T) {
 	if !IsTmplFile("aaaa.tmpl") {
 		t.Errorf("[05]IsTmplFile() doens't work yet")
 	}
 	if IsTmplFile("bbb.html") {
 		t.Errorf("[06]IsTmplFile() doens't work yet")
 	}
+}
+
+func TestIsExtFile(t *testing.T) {
 	if !IsExtFile("abcde.go", "go") {
 		t.Errorf("[07]IsExtFile() doens't work yet")
 	}
 	if IsExtFile("index.thml", "tmpl") {
 		t.Errorf("[08]IsExtFile() doens't work yet")
 	}
+}
+
+func TestIsHeaderURL(t *testing.T) {
 	if !IsHeaderURL("http://google.com/") {
 		t.Errorf("[09]IsHeaderURL() doens't work yet")
 	}
@@ -141,12 +149,15 @@ func TestRegexp2(t *testing.T) {
 	if IsHeaderURL("https:://google.com/") {
 		t.Errorf("[12]IsHeaderURL() doens't work yet")
 	}
+}
+
+func TestIsBenchTest(t *testing.T) {
 	if !IsBenchTest("-test.bench=.") {
 		t.Errorf("[13]IsBenchTest doens't work yet")
 	}
 }
 
-func TestRegexp3(t *testing.T) {
+func TestIsStaticFile(t *testing.T) {
 	testOKData := []string{"aaa.jpg", "bbb.png", "cccc.js", "abd.woff"}
 	testNGData := []string{"/", "bbb/png", "cccc/js/", "/abd/woff/", "/abd/woff/gggg"}
 	for idx, tt := range testOKData {

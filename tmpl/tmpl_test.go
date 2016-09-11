@@ -149,7 +149,7 @@ func getTestData() *SiteInfo {
 }
 
 //-----------------------------------------------------------------------------
-// Test
+// Check
 //-----------------------------------------------------------------------------
 func TestTextTemplate(t *testing.T) {
 	//t.Skip("skipping TestTextTemplate")
@@ -197,6 +197,9 @@ func TestTextTemplate(t *testing.T) {
 	}
 }
 
+//-----------------------------------------------------------------------------
+// Test
+//-----------------------------------------------------------------------------
 func TestFilePathParser(t *testing.T) {
 	siteInfo := getTestData()
 

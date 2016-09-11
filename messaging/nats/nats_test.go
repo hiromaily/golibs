@@ -4,7 +4,7 @@ import (
 	"fmt"
 	lg "github.com/hiromaily/golibs/log"
 	. "github.com/hiromaily/golibs/messaging/nats"
-	o "github.com/hiromaily/golibs/os"
+	tu "github.com/hiromaily/golibs/testutil"
 	"github.com/nats-io/nats"
 	"os"
 	"sync"
@@ -13,7 +13,6 @@ import (
 )
 
 var (
-	benchFlg     bool   = false
 	subjectName  string = "msg.hiromaily"
 	subjectName2 string = "msg2.hiromaily"
 	subjectName3 string = "msg3.hiromaily"
@@ -34,11 +33,7 @@ var msgTests = []struct {
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[Nats_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[NATS]")
 }
 
 func setup() {

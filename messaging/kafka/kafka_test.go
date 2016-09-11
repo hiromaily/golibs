@@ -1,21 +1,18 @@
 package kafka_test
 
 import (
-	"fmt"
 	"github.com/Shopify/sarama"
 	lg "github.com/hiromaily/golibs/log"
 	. "github.com/hiromaily/golibs/messaging/kafka"
-	o "github.com/hiromaily/golibs/os"
+	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
-	//"time"
 )
 
 var (
-	benchFlg  bool   = false
 	topicName string = "topic"
 	host      string = "127.0.0.1"
-	port      int    = 32769
+	port      int    = 32768 //TODO:this port number may change.
 )
 
 var msgTests = []struct {
@@ -34,11 +31,7 @@ var msgTests = []struct {
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[Kafka_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[KAFKA]")
 }
 
 func setup() {
@@ -62,6 +55,10 @@ func TestMain(m *testing.M) {
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
+// Check
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
 // Test
 //-----------------------------------------------------------------------------
 func TestKafka(t *testing.T) {
@@ -78,9 +75,9 @@ func TestKafka(t *testing.T) {
 	}
 	go Consumer(c, topicName, ch)
 
-	fmt.Println("wait Reveiver()")
+	lg.Debug("wait Reveiver()")
 	<-ch.ChWait //After being ready.
-	fmt.Println("go after Reveiver()")
+	lg.Debug("go after Reveiver()")
 
 	//
 	//2.Producer(Sender)
@@ -103,7 +100,7 @@ func TestKafka(t *testing.T) {
 	count := 0
 	for {
 		m := <-ch.ChCMsg
-		fmt.Printf("Key: %v, Value: %v\n", string(m.Key), string(m.Value))
+		lg.Debugf("Key: %v, Value: %v", string(m.Key), string(m.Value))
 
 		count++
 		if count == len(msgTests) {
@@ -117,6 +114,8 @@ func TestKafka(t *testing.T) {
 	<-ch.ChWait //After finish
 	//time.Sleep(1 * time.Second)
 
+	//consumer
+	//c.Close()
 }
 
 //-----------------------------------------------------------------------------

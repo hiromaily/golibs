@@ -5,7 +5,7 @@ import (
 	tu "github.com/hiromaily/golibs/testutil"
 	. "github.com/hiromaily/golibs/validator"
 	"os"
-	"reflect"
+	//"reflect"
 	"sort"
 	"testing"
 )
@@ -85,21 +85,6 @@ func sliceMatching(s1 []string, s2 []string) bool {
 	return bRet
 }
 
-func checkStruct(data *LoginRequest) {
-
-	val := reflect.ValueOf(data).Elem()
-
-	for i := 0; i < val.NumField(); i++ {
-		valueField := val.Field(i)
-		typeField := val.Type().Field(i)
-		tag := typeField.Tag
-
-		lg.Debugf("Field Name: %s,\t Field Value: %v,\t Tag Value: %s",
-			typeField.Name, valueField.Interface(), tag.Get("valid"))
-	}
-	lg.Debug("-------------------------------------")
-}
-
 //-----------------------------------------------------------------------------
 // Test
 //-----------------------------------------------------------------------------
@@ -164,23 +149,4 @@ func TestCheckValidationOnTable(t *testing.T) {
 			t.Error("input data:", tt.input)
 		}
 	}
-}
-
-//TestCheckValidationEg is just check of struct type
-// This is not test.
-func TestCheckValidationEg(t *testing.T) {
-	tu.SkipLog(t)
-
-	//1:Normal
-	data := &LoginRequest{Email: "abc", Pass: "pass", Code: "aa", Alpha: "abcde"}
-	checkStruct(data)
-
-	//2:Normal and blank field
-	data = &LoginRequest{Email: "abc", Pass: "pass", Code: "aa", Alpha: ""}
-	checkStruct(data)
-
-	//3: there is lack of field
-	data = &LoginRequest{Email: "abc", Pass: "pass", Code: "aa"}
-	checkStruct(data)
-
 }

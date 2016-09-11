@@ -5,14 +5,6 @@ import (
 	"os"
 )
 
-// GetOS is to get Hostname. It's just sample to remember
-func GetOS() string {
-	hostname, _ := os.Hostname()
-	//centos7
-	//hy-MacBook-Pro.local
-	return hostname
-}
-
 // GetArgs is to get args
 func GetArgs(i int) string {
 	return os.Args[i]

@@ -16,11 +16,7 @@ var (
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	InitializeLog(DEBUG_STATUS, LOG_OFF_COUNT, 0, "[Log_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[OS]")
 }
 
 func setup() {

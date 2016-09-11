@@ -112,33 +112,41 @@ if [ $TEST_MODE -eq 1 ]; then
     go test -v html/html_test.go
     go test -v json/json_test.go -fp ${JSONPATH}
     go test -v log/log_test.go
-    go test -v mails/mails_test.go -fp ${TOMLPATH}
-    go test -v os/os_test.go
-    go test -v reflects/reflects_test.go
-    go test -v regexp/regexp_test.go
-    go test -v runtimes/runtimes_test.go
-    go test -v serial/serial_test.go
-    go test -v times/times_test.go
 
     #Check OK
     go test -v example/xml/xml_test.go -fp ./rssfeeds/techcrunch.xml -log ${LOGLEVEL}
 
 
+    go test -v mail/mail_test.go -log ${LOGLEVEL} -fp ${TOMLPATH}
+
+    # messaging
+    go test -v messaging/kafka/kafka_test.go -log ${LOGLEVEL}
+    go test -v messaging/nats/nats_test.go -log ${LOGLEVEL}
+    go test -v messaging/rabbitmq/rmq_test.go -log ${LOGLEVEL}
+
+    #
+    go test -v os/os_test.go -log ${LOGLEVEL}
+    go test -v reflects/reflects_test.go -log ${LOGLEVEL}
+    go test -v regexp/regexp_test.go -log ${LOGLEVEL}
+    go test -v runtimes/runtimes_test.go -log ${LOGLEVEL}
+    go test -v serial/serial_test.go -log ${LOGLEVEL}
+    #GOTRACEBACK=all go test -v signal/signal_test.go -log ${LOGLEVEL}
+    go test -v testutil/testutil_test.go -log ${LOGLEVEL}
     go test -v time/time_test.go -log ${LOGLEVEL}
     go test -v tmpl/tmpl_test.go -log ${LOGLEVEL}
+
     go test -v validator/validator_test.go -log ${LOGLEVEL}
     go test -v web/context/context_test.go -log ${LOGLEVEL}
     go test -v web/session/session_test.go -log ${LOGLEVEL}
 
 elif [ $TEST_MODE -eq 2 ]; then
-    #go test -v auth/jwt/jwt_test.go
-    #go test -v messaging/rabbitmq/rmq_test.go
-    #go test -v messaging/kafka/kafka_test.go
-    #go test -v messaging/nats/nats_test.go
+    #go test -v auth/jwt/jwt_test.go -log ${LOGLEVEL}
     #go test -v heroku/heroku_test.go
-    #go test -v regexp/regexp_test.go
 
-    go test -v testutil/testutil_test.go -log ${LOGLEVEL}
+    go test -v os/os_test.go -log ${LOGLEVEL}
+
+
+    #go test -v utils/utils_test.go -log ${LOGLEVEL}
 
 fi
 
@@ -147,6 +155,9 @@ fi
 ###########################################################
 if [ $BENCH -eq 1 ]; then
     echo '============== benchmark =============='
+    #OK
+    cd serial/;go test -bench . -benchmem;cd ../;
+
 
     #cd cast/;go test -bench=. -benchmem;cd ../;
 

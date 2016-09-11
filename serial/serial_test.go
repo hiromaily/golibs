@@ -2,9 +2,8 @@ package serial_test
 
 import (
 	"encoding/hex"
-	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
 	. "github.com/hiromaily/golibs/serial"
+	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
 )
@@ -14,20 +13,12 @@ type User struct {
 	Name string
 }
 
-var (
-	benchFlg bool = false
-)
-
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[SERIAL_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[Serial]")
 }
 
 func setup() {
@@ -59,10 +50,10 @@ func TestSerializeStruct(t *testing.T) {
 	u := User{Id: 10, Name: "harry dayo"}
 	result, err := ToGOB64(u)
 	if err != nil {
-		t.Errorf("TestSerializeStruct error: %s", err)
+		t.Errorf("ToGOB64() error: %s", err)
 	}
 	if result != "Iv+BAwEBBFVzZXIB/4IAAQIBAklkAQQAAQROYW1lAQwAAAAR/4IBFAEKaGFycnkgZGF5bwA=" {
-		t.Errorf("TestSerializeStruct result: %+v", result)
+		t.Errorf("ToGOB64 result: %+v", result)
 	}
 }
 
@@ -72,10 +63,10 @@ func TestDeSerializeStruct(t *testing.T) {
 	u := User{}
 	err := FromGOB64("Iv+BAwEBBFVzZXIB/4IAAQIBAklkAQQAAQROYW1lAQwAAAAR/4IBFAEKaGFycnkgZGF5bwA=", &u)
 	if err != nil {
-		t.Errorf("TestDeSerializeStruct error: %s", err)
+		t.Errorf("FromGOB64 error: %s", err)
 	}
 	if u.Id != 10 {
-		t.Errorf("TestDeSerializeStruct result: %+v", u)
+		t.Errorf("FromGOB64 result: %+v", u)
 	}
 }
 
@@ -89,11 +80,11 @@ func TestSerializeMap(t *testing.T) {
 	//when using map, result is not stable.
 	result, err := ToGOB64(m)
 	if err != nil {
-		t.Errorf("TestSerializeMap error: %s", err)
+		t.Errorf("ToGOB64 error: %s", err)
 	}
 	if result != "Dv+DBAEC/4QAAQwBBAAAIP+EAAMFYXBwbGX+ASwGYmFuYW5h/gJYBWxlbW9u/gJY" {
 		//if result != "Dv+DBAEC/4QAAQwBBAAAIP+EAAMGYmFuYW5h/gJYBWxlbW9u/gJYBWFwcGxl/gEs" {
-		t.Errorf("TestSerializeMap result: %#v", result)
+		t.Errorf("ToGOB64 result: %#v", result)
 	}
 }
 
@@ -105,10 +96,10 @@ func TestDeSerializeMap(t *testing.T) {
 	//FromGOB64("Dv+DBAEC/4QAAQwBBAAAIP+EAAMFYXBwbGX+ASwGYmFuYW5h/gJYBWxlbW9u/gJY", &u)
 	err := FromGOB64("Dv+DBAEC/4QAAQwBBAAAIP+EAAMGYmFuYW5h/gJYBWxlbW9u/gJYBWFwcGxl/gEs", &m)
 	if err != nil {
-		t.Errorf("TestDeSerializeMap error: %s", err)
+		t.Errorf("FromGOB64 error: %s", err)
 	}
 	if m["apple"] != 150 {
-		t.Errorf("TestDeSerializeMap result: %#v", m)
+		t.Errorf("FromGOB64 result: %#v", m)
 	}
 }
 
@@ -123,11 +114,11 @@ func TestSerializeMap2(t *testing.T) {
 	//TODO:convert map data to something others type.
 	result, err := ToGOB64(m)
 	if err != nil {
-		t.Errorf("TestSerializeMap error: %s", err)
+		t.Errorf("ToGOB64 error: %s", err)
 	}
 	if result != "Dv+DBAEC/4QAAQwBBAAAIP+EAAMFYXBwbGX+ASwGYmFuYW5h/gJYBWxlbW9u/gJY" {
 		//if result != "Dv+DBAEC/4QAAQwBBAAAIP+EAAMGYmFuYW5h/gJYBWxlbW9u/gJYBWFwcGxl/gEs" {
-		t.Errorf("TestSerializeMap result: %#v", result)
+		t.Errorf("ToGOB64 result: %#v", result)
 	}
 }
 
@@ -138,10 +129,10 @@ func TestSerializeInterfaces(t *testing.T) {
 	inf := []interface{}{1, "abcde", true}
 	result, err := ToGOB64(inf)
 	if err != nil {
-		t.Errorf("TestSerializeInterfaces error: %s", err)
+		t.Errorf("ToGOB64 error: %s", err)
 	}
 	if result != "DP+BAgEC/4IAARAAACX/ggADA2ludAQCAAIGc3RyaW5nDAcABWFiY2RlBGJvb2wCAgAB" {
-		t.Errorf("TestSerializeInterfaces result: %+v", result)
+		t.Errorf("ToGOB64 result: %+v", result)
 	}
 }
 
@@ -151,10 +142,10 @@ func TestDeSerializeInterfaces(t *testing.T) {
 	inf := []interface{}{}
 	err := FromGOB64("DP+BAgEC/4IAARAAACX/ggADA2ludAQCAAIGc3RyaW5nDAcABWFiY2RlBGJvb2wCAgAB", &inf)
 	if err != nil {
-		t.Errorf("TestDeSerializeInterfaces error: %s", err)
+		t.Errorf("FromGOB64 error: %s", err)
 	}
 	if inf[0] != 1 || inf[1] != "abcde" || inf[2] != true {
-		t.Errorf("TestDeSerializeInterfaces result: %+v", inf)
+		t.Errorf("FromGOB64 result: %+v", inf)
 	}
 }
 
@@ -169,12 +160,12 @@ func TestSerializeMapInterface(t *testing.T) {
 	args[2] = map[string]interface{}{"field1": 30, "field2": "vvvvvvvv", "field3": true}
 	result, err := ToGOB64(args)
 	if err != nil {
-		t.Errorf("TestSerializeMapInterface error: %s", err)
+		t.Errorf("ToGOB64 error: %s", err)
 	}
 	if result != "Df+FAgEC/4YAAf+EAAAO/4MEAQL/hAABDAEQAAD/tP+GAAMDBmZpZWxkMQNpbnQEAgAUBmZpZWxkMgZzdHJpbmcMDAAKc29tZXRoaW5ncwZmaWVsZDMEYm9vbAICAAEDBmZpZWxkMQNpbnQEAgAeBmZpZWxkMgZzdHJpbmcMCgAIdGVzdGRhdGEGZmllbGQzBGJvb2wCAgAAAwZmaWVsZDEDaW50BAIAPAZmaWVsZDIGc3RyaW5nDAoACHZ2dnZ2dnZ2BmZpZWxkMwRib29sAgIAAQ==" &&
 		result != "Df+DAgEC/4QAAf+CAAAO/4EEAQL/ggABDAEQAAD/tP+EAAMDBmZpZWxkMQNpbnQEAgAUBmZpZWxkMgZzdHJpbmcMDAAKc29tZXRoaW5ncwZmaWVsZDMEYm9vbAICAAEDBmZpZWxkMQNpbnQEAgAeBmZpZWxkMgZzdHJpbmcMCgAIdGVzdGRhdGEGZmllbGQzBGJvb2wCAgAAAwZmaWVsZDEDaW50BAIAPAZmaWVsZDIGc3RyaW5nDAoACHZ2dnZ2dnZ2BmZpZWxkMwRib29sAgIAAQ==" &&
 		result != "Df+DAgEC/4QAAf+CAAAO/4EEAQL/ggABDAEQAAD/tP+EAAMDBmZpZWxkMwRib29sAgIAAQZmaWVsZDEDaW50BAIAFAZmaWVsZDIGc3RyaW5nDAwACnNvbWV0aGluZ3MDBmZpZWxkMQNpbnQEAgAeBmZpZWxkMgZzdHJpbmcMCgAIdGVzdGRhdGEGZmllbGQzBGJvb2wCAgAAAwZmaWVsZDEDaW50BAIAPAZmaWVsZDIGc3RyaW5nDAoACHZ2dnZ2dnZ2BmZpZWxkMwRib29sAgIAAQ==" {
-		t.Errorf("TestSerializeMapInterface result: %#v", result)
+		t.Errorf("ToGOB64 result: %#v", result)
 	}
 }
 
@@ -186,13 +177,13 @@ func TestDeSerializeMapInterface(t *testing.T) {
 	args := []map[string]interface{}{}
 	err := FromGOB64("Df+FAgEC/4YAAf+EAAAO/4MEAQL/hAABDAEQAAD/tP+GAAMDBmZpZWxkMQNpbnQEAgAUBmZpZWxkMgZzdHJpbmcMDAAKc29tZXRoaW5ncwZmaWVsZDMEYm9vbAICAAEDBmZpZWxkMQNpbnQEAgAeBmZpZWxkMgZzdHJpbmcMCgAIdGVzdGRhdGEGZmllbGQzBGJvb2wCAgAAAwZmaWVsZDEDaW50BAIAPAZmaWVsZDIGc3RyaW5nDAoACHZ2dnZ2dnZ2BmZpZWxkMwRib29sAgIAAQ==", &args)
 	if err != nil {
-		t.Errorf("TestDeSerializeMapInterface error: %s", err)
+		t.Errorf("FromGOB64 error: %s", err)
 	}
 	if args[0]["field1"] != 10 || args[0]["field2"] != "somethings" || args[0]["field3"] != true {
-		t.Errorf("TestDeSerializeInterfaces result: %+v", args)
+		t.Errorf("FromGOB64 result: %+v", args)
 	}
 	if args[1]["field1"] != 15 || args[1]["field2"] != "testdata" || args[1]["field3"] != false {
-		t.Errorf("TestDeSerializeInterfaces result: %+v", args)
+		t.Errorf("FromGOB64 result: %+v", args)
 	}
 }
 
@@ -207,7 +198,7 @@ func TestEncodeStruct(t *testing.T) {
 
 	//if fmt.Sprintf("%x", byteData) != "82a249640aa44e616d65aa6861727279206461796f" {
 	if hex.EncodeToString(byteData) != "82a249640aa44e616d65aa6861727279206461796f" {
-		t.Errorf("TestEncodeStruct result: %x", byteData)
+		t.Errorf("CodecEncode result: %x", byteData)
 	}
 }
 
@@ -217,7 +208,7 @@ func TestDcodeStruct(t *testing.T) {
 	u := User{}
 	_ = CodecDecode("82a249640aa44e616d65aa6861727279206461796f", &u)
 	if u.Id != 10 {
-		t.Errorf("TestDcodeStruct result: %+v", u)
+		t.Errorf("CodecDecode result: %+v", u)
 	}
 }
 
@@ -230,7 +221,7 @@ func TestEncodeMap(t *testing.T) {
 	byteData := CodecEncode(m)
 
 	if hex.EncodeToString(byteData) != "83a56170706c65cc96a662616e616e61cd012ca56c656d6f6ecd012c" {
-		t.Errorf("TestEncodeMap result: %x", byteData)
+		t.Errorf("CodecEncode result: %x", byteData)
 	}
 }
 
@@ -241,7 +232,7 @@ func TestDcodeMap(t *testing.T) {
 	_ = CodecDecode("83a56170706c65cc96a662616e616e61cd012ca56c656d6f6ecd012c", &m)
 
 	if m["apple"] != 150 {
-		t.Errorf("TestDcodeMap result: %+v", m)
+		t.Errorf("CodecDecode result: %+v", m)
 	}
 }
 

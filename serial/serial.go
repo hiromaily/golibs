@@ -11,11 +11,15 @@ import (
 )
 
 //-----------------------------------------------------------------------------
+// TODO:work in progress
 //-----------------------------------------------------------------------------
+
+// Vector is vector
 type Vector struct {
 	x, y, z int
 }
 
+// MarshalBinarys is to marshal binary
 func (v Vector) MarshalBinarys() ([]byte, error) {
 	// A simple encoding: plain text.
 	var b bytes.Buffer
@@ -23,7 +27,7 @@ func (v Vector) MarshalBinarys() ([]byte, error) {
 	return b.Bytes(), nil
 }
 
-// UnmarshalBinary modifies the receiver so it must take a pointer receiver.
+// UnmarshalBinarys is to modifie the receiver so it must take a pointer receiver.
 func (v *Vector) UnmarshalBinarys(data []byte) error {
 	// A simple encoding: plain text.
 	b := bytes.NewBuffer(data)
@@ -34,10 +38,11 @@ func (v *Vector) UnmarshalBinarys(data []byte) error {
 //-----------------------------------------------------------------------------
 // Gob
 //-----------------------------------------------------------------------------
-// go binary encoder
-// TODO: when passed slice, is it possible to handle by just interface type?
+
+// ToGOB64 is binary encoder
 func ToGOB64(data interface{}) (string, error) {
-	//TODO: What kind of type is possible to convert like int, map, user-defined type?
+	// TODO: when passed slice, is it possible to handle by just interface type?
+	// TODO: What kind of type is possible to convert like int, map, user-defined type?
 	//data := User{Id: 10, Name: "harry"}
 
 	b := bytes.Buffer{}
@@ -51,7 +56,7 @@ func ToGOB64(data interface{}) (string, error) {
 	return base64.StdEncoding.EncodeToString(b.Bytes()), nil
 }
 
-// go binary decoder
+// FromGOB64 is binary decoder
 func FromGOB64(str string, tData interface{}) error {
 	//u := User{}
 	by, err := base64.StdEncoding.DecodeString(str)
@@ -71,11 +76,12 @@ func FromGOB64(str string, tData interface{}) error {
 }
 
 //-----------------------------------------------------------------------------
-//github.com/ugorji/go/codec
-//it may be faster than go-msgpack
+// github.com/ugorji/go/codec
+//  it may be faster than go-msgpack
 //-----------------------------------------------------------------------------
 var mh = &codec.MsgpackHandle{RawToString: true}
 
+// CodecEncode is encoder using github.com/ugorji/go/codec
 func CodecEncode(data interface{}) []byte {
 	//lg.Debugf("data: %+v", data)
 
@@ -95,7 +101,7 @@ func CodecEncode(data interface{}) []byte {
 	return buf.Bytes()
 }
 
-//func CodecDecode(bData []byte, tData interface{}) {
+// CodecDecode is decoder using github.com/ugorji/go/codec
 func CodecDecode(sData string, tData interface{}) error {
 	bData, err := hex.DecodeString(sData)
 	if err != nil {
