@@ -5,6 +5,7 @@ import (
 	"compress/gzip"
 )
 
+// GZipString is compress string by GZip
 func GZipString(baseStr string) ([]byte, error) {
 	var buf bytes.Buffer
 	gz := gzip.NewWriter(&buf)

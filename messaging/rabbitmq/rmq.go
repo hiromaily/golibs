@@ -7,22 +7,21 @@ import (
 	"github.com/streadway/amqp"
 )
 
+// RM is struct of RabitMQ object
 type RM struct {
 	DB *amqp.Connection
 	Ch *amqp.Channel
 }
 
-var ContentTypes []string = []string{
+// ContentTypes is content type of messages
+var ContentTypes = []string{
 	"text/plain",
 	"application/json",
 	"text/html",
 	"text/xml",
 }
 
-var (
-	//rm RM
-	defConType uint8 = 0
-)
+var defConType uint8
 
 func failOnError(err error, msg string) {
 	if err != nil {
@@ -31,11 +30,12 @@ func failOnError(err error, msg string) {
 	}
 }
 
+// SetContentType is to set default ContentType
 func SetContentType(val uint8) {
 	defConType = val
 }
 
-//connect to RabbitMQ server
+// New is to connect to RabbitMQ server
 func New(host, user, pass string, port int) *RM {
 	var err error
 	var rm RM
@@ -56,11 +56,12 @@ func New(host, user, pass string, port int) *RM {
 //	return &rm
 //}
 
+// Close is to close connection
 func (r *RM) Close() {
 	r.DB.Close()
 }
 
-//
+// CreateChannel is to create channel
 func (r *RM) CreateChannel() {
 	var err error
 	r.Ch, err = r.DB.Channel()
@@ -68,10 +69,12 @@ func (r *RM) CreateChannel() {
 	//defer r.Ch.Close()
 }
 
+// CloseChannel is to close connection to channel
 func (r *RM) CloseChannel() {
 	r.Ch.Close()
 }
 
+// Declare is to declare of queue name
 func (r *RM) Declare(name string) *amqp.Queue {
 	q, err := r.Ch.QueueDeclare(
 		name,  // name
@@ -86,6 +89,7 @@ func (r *RM) Declare(name string) *amqp.Queue {
 	return &q
 }
 
+// CreateReceiver is for consumer
 func (r *RM) CreateReceiver(name string, chBody chan []byte) {
 	msgs, err := r.Ch.Consume(
 		name,  // queue
@@ -103,6 +107,7 @@ func (r *RM) CreateReceiver(name string, chBody chan []byte) {
 	}
 }
 
+// Send is for producer
 func (r *RM) Send(body []byte, q *amqp.Queue) {
 	// It is common to use serialisation formats like JSON, Thrift, Protocol Buffers
 	// and MessagePack to serialize structured data in order to publish it as the message payload.

@@ -79,13 +79,13 @@ func TestConfig2(t *testing.T) {
 	//${GOPATH}/src/github.com/hiromaily/golibs/settings.toml
 	tomlPath := os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/settings.default.toml"
 
-	SetTomlPath(tomlPath)
+	SetTOMLPath(tomlPath)
 	conf := GetConf()
 
 	t.Logf("conf.Environment: %v", conf.Environment)
 	t.Logf("conf.Aws.AccessKey: %v", conf.Aws.AccessKey)
 	t.Logf("conf.Mail.Address: %v", conf.Mail.Address)
-	t.Logf("conf.Mail.Smtp.Server: %v", conf.Mail.Smtp.Server)
+	t.Logf("conf.Mail.Smtp.Server: %v", conf.Mail.SMTP.Server)
 	t.Logf("conf.Mail.Content[0].Subject: %v", conf.Mail.Content[0].Subject)
 	t.Logf("conf.MySQL.Host: %v", conf.MySQL.Host)
 }

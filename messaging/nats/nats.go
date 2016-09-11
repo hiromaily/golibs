@@ -9,6 +9,7 @@ import (
 //https://github.com/nats-io/nats
 //https://github.com/nats-io/nats/tree/master/examples
 
+// ChReceive is struct of channel for receiver
 type ChReceive struct {
 	Conn   *nats.Conn
 	ChWait chan bool
@@ -19,6 +20,8 @@ type ChReceive struct {
 //-----------------------------------------------------------------------------
 // function
 //-----------------------------------------------------------------------------
+
+// Connection is to connect NATS server
 func Connection(host, user, pass string, port int) (*nats.Conn, error) {
 	lg.Info("Connection()")
 	//nats://derek:pass@localhost:4222
@@ -45,13 +48,15 @@ func Connection(host, user, pass string, port int) (*nats.Conn, error) {
 //-----------------------------------------------------------------------------
 // Subscribe
 //-----------------------------------------------------------------------------
+
+// Subscribe is to subscribe to subject
 func (ch ChReceive) Subscribe(subject string) {
 	lg.Info("Subscribe()")
 
 	// Async Subscriber
-	var counter int = 0
+	var counter int
 	ch.Conn.Subscribe(subject, func(msg *nats.Msg) {
-		counter += 1
+		counter++
 		//lg.Debugf("[%d]Received msg:%s", counter, msg)
 		ch.ChCMsg <- msg
 	})
@@ -70,6 +75,7 @@ func (ch ChReceive) Subscribe(subject string) {
 	return
 }
 
+// Unsubscribe is to unsubscribe to subject
 func Unsubscribe(sub *nats.Subscription) {
 	// Unsubscribe
 	sub.Unsubscribe()
@@ -78,7 +84,8 @@ func Unsubscribe(sub *nats.Subscription) {
 //-----------------------------------------------------------------------------
 // Publish
 //-----------------------------------------------------------------------------
-//This func is not used because of just example.
+
+// Publish is not used because of just example.
 func Publish(host, user, pass, subject, msg string, port int) error {
 	lg.Info("Publish()")
 

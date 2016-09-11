@@ -1,9 +1,10 @@
 package tmpl_test
 
 import (
-	//. "github.com/hiromaily/golibs/tmpl"
 	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
+	tu "github.com/hiromaily/golibs/testutil"
+	. "github.com/hiromaily/golibs/tmpl"
+	//ht "html/template"
 	"os"
 	"testing"
 	tt "text/template"
@@ -24,10 +25,6 @@ type Site struct {
 	Name  string
 	Pages []int
 }
-
-var (
-	benchFlg bool = false
-)
 
 var tmplTeachers string = `
 	//1. just dot
@@ -114,11 +111,7 @@ var innerOuter string = `
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[TMPL_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[TMPL]")
 }
 
 func setup() {
@@ -144,56 +137,89 @@ func plus10(num int) int {
 	return num + 10
 }
 
-//-----------------------------------------------------------------------------
-// Test
-//-----------------------------------------------------------------------------
-func TestTextTemplate(t *testing.T) {
-	funcName := "TestTextTemplate"
-	//t.Skip("skipping TestTextTemplate")
-	siteInfo := SiteInfo{Url: "http://google.com",
+func getTestData() *SiteInfo {
+	siteInfo := &SiteInfo{Url: "http://google.com",
 		Teachers: []TeachrInfo{{Id: 1, Name: "Harry", Country: "Japan"},
 			{Id: 2, Name: "Harry", Country: "Japan"},
 			{Id: 3, Name: "Taro", Country: "UK"},
 			{Id: 4, Name: "", Country: "Germany"},
 			{Id: 5, Name: "Saburo", Country: "America"}}}
 
+	return siteInfo
+}
+
+//-----------------------------------------------------------------------------
+// Test
+//-----------------------------------------------------------------------------
+func TestTextTemplate(t *testing.T) {
+	//t.Skip("skipping TestTextTemplate")
+
+	siteInfo := getTestData()
+
 	//
 	tmpl, err := tt.New("siteInfoText").Parse(tmplTeachers)
 	if err != nil {
-		t.Fatalf("%s[01] error: %s", funcName, err)
+		t.Fatalf("[01] template.New() error: %s", err)
 	}
 	err = tmpl.Execute(os.Stdout, siteInfo)
 	if err != nil {
-		t.Fatalf("%s[02] error: %s", funcName, err)
+		t.Fatalf("[02] template.Execute() error: %s", err)
 	}
 
 	//2
 	tmpl2, err := tt.New("siteInfoText2").Parse(tmplTeachers2)
 	if err != nil {
-		t.Fatalf("%s[03] error: %s", funcName, err)
+		t.Fatalf("[03] template.New() error: %s", err)
 	}
 	err = tmpl2.Execute(os.Stdout, siteInfo)
 	if err != nil {
-		t.Fatalf("%s[04] error: %s", funcName, err)
+		t.Fatalf("[04] template.Execute() error: %s", err)
 	}
 
 	//3
 	tmpl3, err := tt.New("siteInfoText3").Funcs(tt.FuncMap{"plus10": plus10}).Parse(tmplTeachers3)
 	if err != nil {
-		t.Fatalf("%s[05] error: %s", funcName, err)
+		t.Fatalf("[05] template.New() error: %s", err)
 	}
 	err = tmpl3.Execute(os.Stdout, siteInfo)
 	if err != nil {
-		t.Fatalf("%s[05] error: %s", funcName, err)
+		t.Fatalf("[06] template.Execute() error: %s", err)
 	}
 
 	//4
 	tmpl4, err := tt.New("siteInfoText4").Funcs(tt.FuncMap{"plus10": plus10}).Parse(tmplTeachers4)
 	if err != nil {
-		t.Fatalf("%s[06] error: %s", funcName, err)
+		t.Fatalf("[07] template.New() error: %s", err)
 	}
 	err = tmpl4.Execute(os.Stdout, siteInfo)
 	if err != nil {
-		t.Fatalf("%s[07] error: %s", funcName, err)
+		t.Fatalf("[08] template.Execute() error: %s", err)
 	}
+}
+
+func TestFilePathParser(t *testing.T) {
+	siteInfo := getTestData()
+
+	path := os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/tmpl/file/sample1.tmpl"
+	result, err := FilePathParser(path, siteInfo)
+	if err != nil {
+		t.Fatalf("[01]FilePathParser() error: %s", err)
+	}
+	lg.Debug(result)
+}
+
+func TestFileTemplate(t *testing.T) {
+	siteInfo := getTestData()
+
+	goPath := os.Getenv("GOPATH")
+	tpl, err := tt.ParseFiles(goPath + "/src/github.com/hiromaily/golibs/tmpl/file/sample1.tmpl")
+	if err != nil {
+		t.Fatalf("[01] template.ParseFiles() error: %s", err)
+	}
+
+	result, err := FileTempParser(tpl, siteInfo)
+	if err != nil {
+		t.Fatalf("[02] FileTempParser() error: %s", err)
+	}
+	lg.Debug(result)
 }

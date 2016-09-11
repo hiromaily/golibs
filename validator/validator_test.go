@@ -1,10 +1,8 @@
 package validator_test
 
 import (
-	"fmt"
 	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
-	//r "github.com/hiromaily/golibs/runtimes"
+	tu "github.com/hiromaily/golibs/testutil"
 	. "github.com/hiromaily/golibs/validator"
 	"os"
 	"reflect"
@@ -18,10 +16,6 @@ type LoginRequest struct {
 	Code  string `valid:"nonempty,number" field:"code" dispName:"Code"`
 	Alpha string `valid:"alphabet" field:"alpha" dispName:"Alpha"`
 }
-
-var (
-	benchFlg bool = false
-)
 
 var ErrFmt = map[string]string{
 	"nonempty": "Empty is not allowed on %s",
@@ -51,11 +45,7 @@ var validTests = []struct {
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[FLAG_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[Validator]")
 }
 
 func setup() {
@@ -104,29 +94,28 @@ func checkStruct(data *LoginRequest) {
 		typeField := val.Type().Field(i)
 		tag := typeField.Tag
 
-		fmt.Printf("Field Name: %s,\t Field Value: %v,\t Tag Value: %s\n",
+		lg.Debugf("Field Name: %s,\t Field Value: %v,\t Tag Value: %s",
 			typeField.Name, valueField.Interface(), tag.Get("valid"))
 	}
-	fmt.Println("--------------------------")
+	lg.Debug("-------------------------------------")
 }
 
 //-----------------------------------------------------------------------------
 // Test
 //-----------------------------------------------------------------------------
 func TestCheckValidation(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	//TODO: TableDrivenTests
 	// https://github.com/golang/go/wiki/TableDrivenTests
 
 	posted := &LoginRequest{Email: "abc", Pass: "pass", Code: "aa"}
-	//mRet := CheckValidation(*posted, false)
 	mRet := CheckValidation(posted, false)
-	t.Logf("%+v", mRet)
+	lg.Debugf("CheckValidation() %+v", mRet)
 
 	//expected error number
 	if len(mRet) != 3 {
-		t.Errorf("TestCheckValidation[01] error: %#v", mRet)
+		t.Errorf("[01]CheckValidation error: %#v", mRet)
 	}
 
 	msgs := ConvertErrorMsgs(mRet, ErrFmt)
@@ -141,48 +130,46 @@ func TestCheckValidation(t *testing.T) {
 
 	//expected error message
 	if !bRet {
-		t.Errorf("TestCheckValidation[02] error: %#v", msgs)
+		t.Errorf("[02]ConvertErrorMsgs error: %#v", msgs)
 	}
-	t.Logf("%#v", msgs)
+	lg.Debugf("ConvertErrorMsgs() %#v", msgs)
 }
 
 func TestCheckSkipValidation(t *testing.T) {
 	posted := &LoginRequest{Email: "aa", Pass: "", Code: ""}
 	mRet := CheckValidation(posted, true)
-	t.Logf("%+v", mRet)
 
 	//expected error number
 	if len(mRet) != 1 {
-		t.Errorf("TestCheckSkipValidation[01] error: %#v", mRet)
+		t.Errorf("[01]CheckValidation error: %#v", mRet)
 	}
 
 }
 
+// Table Test
 func TestCheckValidationOnTable(t *testing.T) {
 	for i, tt := range validTests {
 		mRet := CheckValidation(&tt.input, false)
-		//t.Logf("%+v", mRet)
 
 		//expected error number
 		if len(mRet) != len(tt.errMsg) {
-			t.Errorf("TestCheckValidation[01](index:%d) error: %#v", i, mRet)
+			t.Errorf("[01]CheckValidation(index:%d) error: %#v", i, mRet)
 		}
 
 		msgs := ConvertErrorMsgs(mRet, ErrFmt)
 		//search message
 		//expected error message
 		if !sliceMatching(tt.errMsg, msgs) {
-			t.Errorf("TestCheckValidation[02](index:%d) error: %#v", i, msgs)
-			t.Error(tt.input)
+			t.Errorf("[02]ConvertErrorMsgs(index:%d) error: %#v", i, msgs)
+			t.Error("input data:", tt.input)
 		}
-		//t.Logf("%#v", msgs)
 	}
 }
 
-//change validation
-// it's inpossible bacause of nothing method for update
+//TestCheckValidationEg is just check of struct type
+// This is not test.
 func TestCheckValidationEg(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	tu.SkipLog(t)
 
 	//1:Normal
 	data := &LoginRequest{Email: "abc", Pass: "pass", Code: "aa", Alpha: "abcde"}

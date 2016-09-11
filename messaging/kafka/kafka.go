@@ -1,13 +1,13 @@
 package kafka
 
 import (
-	"errors"
 	"fmt"
 	"github.com/Shopify/sarama"
 	lg "github.com/hiromaily/golibs/log"
 	"sync"
 )
 
+// ChReceive is struct of channel for receiver
 type ChReceive struct {
 	ChWait chan bool
 	ChCMsg chan *sarama.ConsumerMessage
@@ -16,6 +16,7 @@ type ChReceive struct {
 //-----------------------------------------------------------------------------
 // function
 //-----------------------------------------------------------------------------
+
 func createConfig() *sarama.Config {
 	lg.Info("createConfig()")
 
@@ -30,6 +31,8 @@ func createConfig() *sarama.Config {
 //-----------------------------------------------------------------------------
 // Consumer
 //-----------------------------------------------------------------------------
+
+// CreateConsumer is to create consumer
 func CreateConsumer(host string, port int) (sarama.Consumer, error) {
 	lg.Info("CreateConsumer()")
 	//config := sarama.NewConfig()
@@ -42,11 +45,12 @@ func CreateConsumer(host string, port int) (sarama.Consumer, error) {
 	//consumer, err := sarama.NewConsumer([]string{fmt.Sprintf("%s:%d", host, port)}, nil)
 	if err != nil {
 		//panic(err)
-		return nil, errors.New(fmt.Sprintf("Failed to start consumer:%s", err))
+		return nil, fmt.Errorf("Failed to start consumer:%s", err)
 	}
 	return consumer, err
 }
 
+// Consumer is to start consumer
 func Consumer(c sarama.Consumer, topic string, ch ChReceive) {
 	lg.Info("Reveiver()")
 
@@ -92,8 +96,9 @@ func Consumer(c sarama.Consumer, topic string, ch ChReceive) {
 	return
 }
 
-//TODO: Work in progress. Not checked yet.
-func ReveiverOnMultiplePartitions(c sarama.Consumer, topic string) error {
+// ConsumerOnMultiplePartitions is is to start consumer in multiple partitions
+// TODO: Work in progress. Not checked yet.
+func ConsumerOnMultiplePartitions(c sarama.Consumer, topic string) error {
 	lg.Info("ReveiverOnMultiplePartitions()")
 
 	var wg sync.WaitGroup
@@ -103,14 +108,14 @@ func ReveiverOnMultiplePartitions(c sarama.Consumer, topic string) error {
 	//when there are multiple partitions
 	partitionList, err := c.Partitions(topic)
 	if err != nil {
-		return errors.New(fmt.Sprintf("Failed to get the list of partitions:%s", err))
+		return fmt.Errorf("Failed to get the list of partitions:%s", err)
 	}
 	lg.Debug("Connected to kafka broker")
 
 	for partition := range partitionList {
 		pc, err := c.ConsumePartition("topic.ops.falcon", int32(partition), sarama.OffsetNewest)
 		if err != nil {
-			return errors.New(fmt.Sprintf("Failed to start consumer for partition %d: %s\n", partition, err))
+			return fmt.Errorf("Failed to start consumer for partition %d: %s\n", partition, err)
 		}
 
 		wg.Add(1)
@@ -133,6 +138,8 @@ func ReveiverOnMultiplePartitions(c sarama.Consumer, topic string) error {
 //-----------------------------------------------------------------------------
 // Producer
 //-----------------------------------------------------------------------------
+
+// CreateMsg is to create message on topic
 func CreateMsg(topic, key, val string) *sarama.ProducerMessage {
 	lg.Info("createMsg()")
 
@@ -147,6 +154,7 @@ func CreateMsg(topic, key, val string) *sarama.ProducerMessage {
 	return msg
 }
 
+// CreateProducer is to create producer
 func CreateProducer(host string, port int) (sarama.SyncProducer, error) {
 	lg.Info("CreateProducer()")
 
@@ -155,11 +163,12 @@ func CreateProducer(host string, port int) (sarama.SyncProducer, error) {
 	producer, err := sarama.NewSyncProducer([]string{fmt.Sprintf("%s:%d", host, port)}, config)
 	if err != nil {
 		//
-		return nil, errors.New(fmt.Sprintf("Failed to produce message: %s", err))
+		return nil, fmt.Errorf("Failed to produce message: %s", err)
 	}
 	return producer, nil
 }
 
+// Producer is to send message
 func Producer(producer sarama.SyncProducer, msg *sarama.ProducerMessage) error {
 	lg.Info("Sender()")
 
@@ -170,7 +179,7 @@ func Producer(producer sarama.SyncProducer, msg *sarama.ProducerMessage) error {
 
 	partition, offset, err := producer.SendMessage(msg)
 	if err != nil {
-		return errors.New(fmt.Sprintf("Failed to produce message: %s", err))
+		return fmt.Errorf("Failed to produce message: %s", err)
 	}
 	lg.Debugf("Sender() partition=%d, offset=%d\n", partition, offset)
 

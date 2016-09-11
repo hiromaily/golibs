@@ -10,6 +10,7 @@ import (
 
 var db *bolt.DB
 
+// New is to create bold instance
 func New(path string) {
 	var err error
 	//db, err = bolt.Open("/Users/hy/work/go/src/github.com/hiromaily/golibs/datafile", 0600, nil)
@@ -19,10 +20,12 @@ func New(path string) {
 	}
 }
 
+// Close is to close connection
 func Close() {
 	db.Close()
 }
 
+// Set is to set data by key
 func Set(table, key string, value []byte) error {
 	//defer times.Track(time.Now(), "boltdb.Set()") //405.695µs
 
@@ -39,6 +42,7 @@ func Set(table, key string, value []byte) error {
 	})
 }
 
+// Get is to get data by key
 func Get(table, key string) ([]byte, error) {
 	//defer times.Track(time.Now(), "boltdb.Get()") //7.202µs
 

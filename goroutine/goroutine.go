@@ -8,7 +8,7 @@ import (
 
 //TODO: How many goroutine is possible
 
-// Get number of core
+// GetGOMAXPROCS is to get number of core
 func GetGOMAXPROCS() int {
 	if os.Getenv("GOMAXPROCS") != "" {
 		coreNum, _ := strconv.Atoi(os.Getenv("GOMAXPROCS"))
@@ -20,8 +20,8 @@ func GetGOMAXPROCS() int {
 	return 0
 }
 
-// Manage Concurrency
-//  execute func designated number
+// Semaphore is management of concurrency
+// It's to execute simultaneously specific func at designated number
 func Semaphore(paramFunc func(int), pool int, cnt int, wg *sync.WaitGroup) {
 	chanSemaphore := make(chan bool, pool)
 
@@ -42,8 +42,8 @@ func Semaphore(paramFunc func(int), pool int, cnt int, wg *sync.WaitGroup) {
 	wg.Wait()
 }
 
-// Manage Concurrency
-//  execute func with slice data
+// Semaphore2 is management of concurrency
+// It's to execute simultaneously specific func at number of slice data
 func Semaphore2(paramFunc func(int, interface{}), pool int, data []interface{}, wg *sync.WaitGroup) {
 	chanSemaphore := make(chan bool, pool)
 

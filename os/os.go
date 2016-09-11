@@ -5,6 +5,7 @@ import (
 	"os"
 )
 
+// GetOS is to get Hostname. It's just sample to remember
 func GetOS() string {
 	hostname, _ := os.Hostname()
 	//centos7
@@ -12,22 +13,17 @@ func GetOS() string {
 	return hostname
 }
 
-func GetEnv(name string) string {
-	//os.Getenv("GOPATH")
-	return os.Getenv(name)
-}
-
-// Get args
+// GetArgs is to get args
 func GetArgs(i int) string {
 	return os.Args[i]
 }
 
-// Add value to args
+// AddParam is to add value as arguments
 func AddParam(val string) {
 	os.Args = append(os.Args, val)
 }
 
-// Find specific args
+// FindParam is to find specific args
 func FindParam(key string) (bRet bool) {
 	//fmt.Println(os.Args)
 	bRet = false

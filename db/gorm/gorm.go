@@ -3,15 +3,18 @@ package gorm
 import (
 	"errors"
 	"fmt"
+	// mysql driver
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 )
 
+// GR is for database information and gorm instance
 type GR struct {
 	DB         *gorm.DB
 	ServerInfo //embeded
 }
 
+// ServerInfo is for database information
 type ServerInfo struct {
 	host   string
 	port   uint16
@@ -22,6 +25,7 @@ type ServerInfo struct {
 
 var dbInfo GR
 
+// New is for create instance
 func New(host, dbname, user, pass string, port uint16) {
 
 	var err error
@@ -42,8 +46,8 @@ func New(host, dbname, user, pass string, port uint16) {
 	return
 }
 
-// singleton architecture
-func GetDBInstance() *GR {
+// GetDB is to get instance. singleton architecture
+func GetDB() *GR {
 	if dbInfo.DB == nil {
 		panic(errors.New("DB instance is nil"))
 	}
@@ -59,14 +63,14 @@ func (gr *GR) getDsn() string {
 		gr.user, gr.pass, gr.host, gr.port, gr.dbname, param)
 }
 
-// Connection
+// Connection is to connect to MySQL server
 // Be careful, sql.Open() doesn't return err. Use db.Ping() to check DB condition.
 func (gr *GR) Connection() (*gorm.DB, error) {
 	//return sql.Open("mysql", getDsn())
 	return gorm.Open("mysql", gr.getDsn())
 }
 
-// Close
+// Close is to close connection
 func (gr *GR) Close() {
 	gr.DB.Close()
 }

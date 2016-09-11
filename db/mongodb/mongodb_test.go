@@ -82,7 +82,7 @@ func init() {
 
 func setup() {
 	//New("localhost")
-	conf.SetTomlPath("../../settings.toml")
+	conf.SetTOMLPath("../../settings.toml")
 	c := conf.GetConf().Mongo
 
 	//NewMongo("localhost")

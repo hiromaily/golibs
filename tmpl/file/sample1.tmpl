@@ -1,0 +1,12 @@
+//1. just dot
+{{.}}
+
+//2. variable
+Url:{{.Url}}
+
+//3. range
+{{range .Teachers}}
+- Id:{{.Id}}
+- Name:{{.Name}}
+- Country:{{.Country}}
+{{end}}

@@ -1,0 +1,8 @@
+//1. range
+{{range $index, $value := .Teachers}}
+- Index:{{$index}}
+- Value:{{$value}}
+ - Id:{{.Id}}
+- Name:{{.Name}}
+- Country:{{.Country}}
+{{end}}

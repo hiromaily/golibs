@@ -37,20 +37,20 @@ func init() {
 
 func setup() {
 	//conf
-	conf.SetTomlPath("../../settings.toml")
+	conf.SetTOMLPath("../../settings.toml")
 	c := conf.GetConf().Redis
 
 	//New("localhost", 6379)
 	New(c.Host, c.Port, "")
 	if !benchFlg {
-		GetRedisInstance().Connection(0)
+		GetRedis().Connection(0)
 	}
 }
 
 func teardown() {
 	if !benchFlg {
 		dropDatabase()
-		r := GetRedisInstance()
+		r := GetRedis()
 		r.Close()
 	}
 }
@@ -69,7 +69,7 @@ func TestMain(m *testing.M) {
 // functions
 //-----------------------------------------------------------------------------
 func dropDatabase() {
-	r := GetRedisInstance()
+	r := GetRedis()
 	r.Flush(0)
 	r.Flush(1)
 	r.Flush(2)
@@ -87,7 +87,7 @@ func TestCommonUsingDo(t *testing.T) {
 
 	sleepS := 2
 
-	c := GetRedisInstance().Conn
+	c := GetRedis().Conn
 	fmt.Println(c)
 
 	c.Do("MSET", "key1", 20, "key2", 30)
@@ -139,7 +139,7 @@ func TestStringsUsingDo(t *testing.T) {
 	//GetRedisInstance().Connection(1)
 	//GetRedisInstance().ConnectionS(2)
 
-	c := GetRedisInstance().Conn
+	c := GetRedis().Conn
 	//c := GetRedisInstance().Pool.Get()
 	c.Do("SET", "key1", 10)
 	c.Do("MSET", "key2", 20, "key3", 30)
@@ -159,9 +159,9 @@ func TestStringsUsingDo(t *testing.T) {
 func TestStringsUsingSend(t *testing.T) {
 	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
-	GetRedisInstance().ConnectionS(3)
+	GetRedis().ConnectionS(3)
 
-	c := GetRedisInstance().Conn
+	c := GetRedis().Conn
 	c.Send("SET", "key1", 10)
 	c.Send("MSET", "key2", 20, "key3", 30)
 	c.Flush()
@@ -207,7 +207,7 @@ func TestStringsUsingSend(t *testing.T) {
 func TestHashesUsingDo(t *testing.T) {
 	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
-	c := GetRedisInstance().Conn
+	c := GetRedis().Conn
 	//c := GetRedisInstance().Pool.Get()
 	c.Do("HMSET", "key:subkey1", "field1", 1, "field2", 2)
 
@@ -258,10 +258,10 @@ func TestHashesUsingDo(t *testing.T) {
 func TestListsUsingDo(t *testing.T) {
 	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
-	GetRedisInstance().Connection(1)
+	GetRedis().Connection(1)
 	//GetRedisInstance().ConnectionS(2)
 
-	c := GetRedisInstance().Conn
+	c := GetRedis().Conn
 	//c := GetRedisInstance().Pool.Get()
 
 	//RPUSH
@@ -337,10 +337,10 @@ func TestListsUsingDo(t *testing.T) {
 func TestSetsUsingDo(t *testing.T) {
 	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
-	GetRedisInstance().Connection(1)
+	GetRedis().Connection(1)
 	//GetRedisInstance().ConnectionS(2)
 
-	c := GetRedisInstance().Conn
+	c := GetRedis().Conn
 	//c := GetRedisInstance().Pool.Get()
 
 	key := "key-set1"
@@ -361,8 +361,8 @@ func TestSetsUsingDo(t *testing.T) {
 func BenchmarkSetData(b *testing.B) {
 	b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 
-	GetRedisInstance().Connection(0)
-	c := GetRedisInstance().Conn
+	GetRedis().Connection(0)
+	c := GetRedis().Conn
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -375,8 +375,8 @@ func BenchmarkSetData(b *testing.B) {
 }
 
 func BenchmarkGetData(b *testing.B) {
-	GetRedisInstance().Connection(0)
-	c := GetRedisInstance().Conn
+	GetRedis().Connection(0)
+	c := GetRedis().Conn
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -389,8 +389,8 @@ func BenchmarkGetData(b *testing.B) {
 }
 
 func BenchmarkSetGetData01(b *testing.B) {
-	GetRedisInstance().Connection(0)
-	c := GetRedisInstance().Conn
+	GetRedis().Connection(0)
+	c := GetRedis().Conn
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -404,8 +404,8 @@ func BenchmarkSetGetData01(b *testing.B) {
 }
 
 func BenchmarkSetGetData02(b *testing.B) {
-	GetRedisInstance().ConnectionS(3)
-	c := GetRedisInstance().Conn
+	GetRedis().ConnectionS(3)
+	c := GetRedis().Conn
 	c.Flush()
 	c.Receive()
 
@@ -427,8 +427,8 @@ func BenchmarkSetGetData02(b *testing.B) {
 
 //Bulk
 func BenchmarkSetBulkData01(b *testing.B) {
-	GetRedisInstance().Connection(0)
-	c := GetRedisInstance().Conn
+	GetRedis().Connection(0)
+	c := GetRedis().Conn
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -447,8 +447,8 @@ func BenchmarkSetBulkData01(b *testing.B) {
 }
 
 func BenchmarkSetBulkData02(b *testing.B) {
-	GetRedisInstance().ConnectionS(3)
-	c := GetRedisInstance().Conn
+	GetRedis().ConnectionS(3)
+	c := GetRedis().Conn
 	c.Flush()
 	c.Receive()
 

@@ -57,13 +57,13 @@ func TestMain(m *testing.M) {
 // functions
 //-----------------------------------------------------------------------------
 func NewMySQL() {
-	conf.SetTomlPath("../../settings.toml")
+	conf.SetTOMLPath("../../settings.toml")
 	c := conf.GetConf().MySQL
 
 	New(c.Host, c.DbName, c.User, c.Pass, c.Port)
 
 	db = MySQL{}
-	db.GR = GetDBInstance()
+	db.GR = GetDB()
 }
 
 func GetMySQLInstance() *MySQL {

@@ -12,22 +12,24 @@ import (
 
 //https://gist.github.com/andelf/5004821
 
-type MailInfo struct {
+// Info is for mail information
+type Info struct {
 	ToAddress   []string
 	FromAddress string
 	Subject     string
 	Body        string
-	Smtp
+	SMTP
 }
 
-type Smtp struct {
+// SMTP is for SMTP server
+type SMTP struct {
 	Address string
 	Pass    string
 	Server  string
 	Port    int
 }
 
-func (ml *MailInfo) makeMailBody() {
+func (ml *Info) makeMailBody() {
 	//TODO:when toaddress have more one address
 	header := make(map[string]string)
 	header["From"] = ml.FromAddress
@@ -37,7 +39,7 @@ func (ml *MailInfo) makeMailBody() {
 	header["Content-Type"] = "text/plain; charset=\"utf-8\""
 	header["Content-Transfer-Encoding"] = "base64"
 
-	var message string = ""
+	var message string
 	for k, v := range header {
 		message += fmt.Sprintf("%s: %s\r\n", k, v)
 	}
@@ -48,7 +50,7 @@ func (ml *MailInfo) makeMailBody() {
 	ml.Body = message
 }
 
-func (ml *MailInfo) sendMail(c chan bool) {
+func (ml *Info) sendMail(c chan bool) {
 	//co := conf.GetConf().Mail
 
 	// Set up authentication information.
@@ -82,7 +84,8 @@ func (ml *MailInfo) sendMail(c chan bool) {
 	return
 }
 
-func (ml *MailInfo) SendMail(timeOut string) {
+// SendMail is to send mail
+func (ml *Info) SendMail(timeOut string) {
 
 	emailTimeout, _ := time.ParseDuration(timeOut) //10s
 	c := make(chan bool)

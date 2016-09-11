@@ -73,24 +73,24 @@ func TestMain(m *testing.M) {
 // functions
 //-----------------------------------------------------------------------------
 func NewMySQL() {
-	conf.SetTomlPath("../../settings.toml")
+	conf.SetTOMLPath("../../settings.toml")
 	c := conf.GetConf().MySQL
 
 	New(c.Host, c.DbName, c.User, c.Pass, c.Port)
 
 	db = MySQL{}
-	db.Db = GetDBInstance()
+	db.Db = GetDB()
 }
 
 //For embeded type
 func NewMySQL2() {
-	conf.SetTomlPath("../../settings.toml")
+	conf.SetTOMLPath("../../settings.toml")
 	c := conf.GetConf().MySQL
 
 	New(c.Host, c.DbName, c.User, c.Pass, c.Port)
 
 	db2 = MySQL2{}
-	db2.MS = GetDBInstance()
+	db2.MS = GetDB()
 }
 
 //using singleton design pattern

@@ -2,18 +2,20 @@ package tmpl
 
 import (
 	"bytes"
-	"text/template"
+	tt "text/template"
+	//ht "html/template"
 )
 
-//template for string
+// StrTempParser is to get string of template for string
+// It's just sample
 func StrTempParser(temp string, params interface{}) (string, error) {
 	var parseResult bytes.Buffer
 
-	funcMap := template.FuncMap{
+	funcMap := tt.FuncMap{
 		"add": func(a, b int) int { return a + b },
 	}
 
-	tpl := template.Must(template.New("tpl").Funcs(funcMap).Parse(temp))
+	tpl := tt.Must(tt.New("tpl").Funcs(funcMap).Parse(temp))
 
 	if err := tpl.Execute(&parseResult, params); err != nil {
 		return "", err
@@ -22,18 +24,19 @@ func StrTempParser(temp string, params interface{}) (string, error) {
 	return parseResult.String(), nil
 }
 
-//template for file
+// FilePathParser is to get string from template file
 func FilePathParser(path string, params interface{}) (string, error) {
 	var parseResult bytes.Buffer
 
-	tpl := template.Must(template.ParseFiles(path))
+	tpl := tt.Must(tt.ParseFiles(path))
 	if err := tpl.Execute(&parseResult, params); err != nil {
 		return "", err
 	}
 	return parseResult.String(), nil
 }
 
-func FileTempParser(tpl *template.Template, params interface{}) (string, error) {
+// FileTempParser is to get string from template.Template
+func FileTempParser(tpl *tt.Template, params interface{}) (string, error) {
 	var parseResult bytes.Buffer
 
 	if err := tpl.Execute(&parseResult, params); err != nil {

@@ -52,7 +52,7 @@ func TestEncryption(t *testing.T) {
 	str := "abcdefg@gmail.com"
 
 	NewCrypt(size, key, iv)
-	crypt := GetCryptInstance()
+	crypt := GetCrypt()
 
 	/*
 		tmp := crypt.Encrypt([]byte(str))

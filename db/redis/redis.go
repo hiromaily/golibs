@@ -9,14 +9,16 @@ import (
 // https://godoc.org/github.com/garyburd/redigo/redis
 // http://stackoverflow.com/questions/25708256/golang-selecting-db-on-a-redispool-in-redigo
 
-type RedisInfo struct {
+// RD is struct for Redis
+type RD struct {
 	Pool *redis.Pool
 	Conn redis.Conn
 	DbNo uint8
 }
 
-var rdInfo RedisInfo
+var rdInfo RD
 
+// New is to create instance
 func New(host string, port uint16, pass string) {
 	if rdInfo.Pool == nil {
 		rdInfo.Pool = &redis.Pool{
@@ -41,8 +43,8 @@ func New(host string, port uint16, pass string) {
 	rdInfo.DbNo = 0
 }
 
-// singleton architecture
-func GetRedisInstance() *RedisInfo {
+// GetRedis is to get instance. singleton architecture
+func GetRedis() *RD {
 	if rdInfo.Pool == nil {
 		//panic("Before call this, call New in addtion to arguments")
 		return nil
@@ -50,29 +52,29 @@ func GetRedisInstance() *RedisInfo {
 	return &rdInfo
 }
 
-func (rd *RedisInfo) Close() {
-	rd.Pool.Close()
-}
-
-func (rd *RedisInfo) Connection(dbNo int) {
+// Connection is to connect Redis server
+func (rd *RD) Connection(dbNo int) {
 	rd.Conn = rd.Pool.Get()
 	rd.Conn.Do("SELECT", dbNo)
 }
 
-func (rd *RedisInfo) ConnectionS(dbNo int) {
+// ConnectionS is to connect Redis server using Send func
+func (rd *RD) ConnectionS(dbNo int) {
 	rd.Conn = rd.Pool.Get()
 	rd.Conn.Send("SELECT", dbNo)
 }
 
-func (rd *RedisInfo) Flush(dbNo int) {
+// Flush is to flush data
+func (rd *RD) Flush(dbNo int) {
 	rd.Conn = rd.Pool.Get()
 	rd.Conn.Send("SELECT", dbNo)
 	rd.Conn.Send("FLUSHALL")
 	rd.Conn.Flush()
 }
 
+// GetAndCluster is for cluster
 //TODO: not finished yet. work in progress.
-func (rd *RedisInfo) GetAndCruster() (int, error) {
+func (rd *RD) GetAndCluster() (int, error) {
 	data, err := redis.Int(rd.Conn.Do("GET", "key1"))
 
 	if err != nil {
@@ -93,4 +95,9 @@ func (rd *RedisInfo) GetAndCruster() (int, error) {
 		return 0, err
 	}
 	return data, nil
+}
+
+// Close is to close connection
+func (rd *RD) Close() {
+	rd.Pool.Close()
 }

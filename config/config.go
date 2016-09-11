@@ -8,10 +8,11 @@ import (
 	"io/ioutil"
 )
 
-var tomlFileName string = "./settings.toml"
+var tomlFileName = "./settings.toml"
 
 var conf *Config
 
+// Config is of root
 type Config struct {
 	Environment int
 	Aws         AwsConfig
@@ -21,6 +22,7 @@ type Config struct {
 	Mail        MailConfig
 }
 
+// AwsConfig is for Aamazon Web Service
 type AwsConfig struct {
 	AccessKey string    `toml:"access_key"`
 	SecretKey string    `toml:"secret_key"`
@@ -28,6 +30,7 @@ type AwsConfig struct {
 	Sqs       SqsConfig `toml:"sqs"`
 }
 
+// SqsConfig is for SQS of AWS
 type SqsConfig struct {
 	Endpoint      string        `toml:"endpoint"`
 	QueueName     string        `toml:"queue_name"`
@@ -35,11 +38,13 @@ type SqsConfig struct {
 	MsgAttr       MsgAttrConfig `toml:"msgattr"`
 }
 
+// MsgAttrConfig is for part of SQS
 type MsgAttrConfig struct {
 	OpType      string `toml:"operation_type"`
 	ContentType string `toml:"content_type"`
 }
 
+// MySQLConfig is for MySQL server
 type MySQLConfig struct {
 	Host   string `toml:"host"`
 	Port   uint16 `toml:"port"`
@@ -48,11 +53,13 @@ type MySQLConfig struct {
 	Pass   string `toml:"pass"`
 }
 
+// RedisConfig is for Redis server
 type RedisConfig struct {
 	Host string `toml:"host"`
 	Port uint16 `toml:"port"`
 }
 
+// MongoConfig is for MongoDB server
 type MongoConfig struct {
 	Host   string `toml:"host"`
 	Port   uint16 `toml:"port"`
@@ -61,25 +68,28 @@ type MongoConfig struct {
 	Pass   string `toml:"pass"`
 }
 
+// MailConfig is for mail
 type MailConfig struct {
 	Address  string              `toml:"address"`
 	Password string              `toml:"password"`
 	Timeout  string              `toml:"timeout"`
-	Smtp     SmtpConfig          `toml:"smtp"`
+	SMTP     SMTPConfig          `toml:"smtp"`
 	Content  []MailContentConfig `toml:"content"`
 }
 
-type SmtpConfig struct {
+// SMTPConfig is for SMTP server of mail
+type SMTPConfig struct {
 	Server string `toml:"server"`
 	Port   int    `toml:"port"`
 }
 
+// MailContentConfig is for mail contents
 type MailContentConfig struct {
 	Subject string `toml:"subject"`
 	Tplfile string `toml:"tplfile"`
 }
 
-var checkTomlKeys [][]string = [][]string{
+var checkTomlKeys = [][]string{
 	{"environment"},
 	{"aws", "access_key"},
 	{"aws", "secret_key"},
@@ -182,6 +192,7 @@ func loadConfig(path string) (*Config, error) {
 	return &config, nil
 }
 
+// New is to create config instance
 func New(file string) {
 	var err error
 	conf, err = loadConfig(file)
@@ -190,7 +201,7 @@ func New(file string) {
 	}
 }
 
-// singleton architecture
+// GetConf is to get config instance. singleton architecture
 func GetConf() *Config {
 	var err error
 	if conf == nil {
@@ -203,10 +214,12 @@ func GetConf() *Config {
 	return conf
 }
 
-func SetTomlPath(path string) {
+// SetTOMLPath is to set TOML file path
+func SetTOMLPath(path string) {
 	tomlFileName = path
 }
 
+// ResetConf is to clear config instance
 func ResetConf() {
 	conf = nil
 }

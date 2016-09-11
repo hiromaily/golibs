@@ -12,10 +12,13 @@ TOMLPATH=${GOPATH}/src/github.com/hiromaily/golibs/settings.toml
 XMLPATH=${GOPATH}/src/github.com/hiromaily/golibs/xml/rssfeeds/
 BOLTPATH=${GOPATH}/src/github.com/hiromaily/golibs/boltdb
 
-TEST_MODE=0  #0:off, 1:run all test, 2:test for specific one
+TEST_MODE=2  #0:off, 1:run all test, 2:test for specific one
 BENCH=0
 COVERAGRE=0
 PROFILE=0
+
+LOGLEVEL=1 #0: don't show t.Log() and log level is over or equal to INFO
+           #1: show t.Log() and log level is DEBUG
 
 GO_GET=0
 GO_LINT=0
@@ -83,6 +86,7 @@ fi
 # go test
 ###########################################################
 if [ $TEST_MODE -eq 1 ]; then
+    #t.LogのON/OFF
     echo '============== test =============='
     go test -v cipher/encryption/encryption_test.go
     go test -v cipher/hash/hash_test.go
@@ -115,15 +119,27 @@ if [ $TEST_MODE -eq 1 ]; then
     go test -v runtimes/runtimes_test.go
     go test -v serial/serial_test.go
     go test -v times/times_test.go
-    go test -v tmpl/tmpl_test.go
-    go test -v validator/validator_test.go
+
+    #Check OK
+    go test -v example/xml/xml_test.go -fp ./rssfeeds/techcrunch.xml -log ${LOGLEVEL}
+
+
+    go test -v time/time_test.go -log ${LOGLEVEL}
+    go test -v tmpl/tmpl_test.go -log ${LOGLEVEL}
+    go test -v validator/validator_test.go -log ${LOGLEVEL}
+    go test -v web/context/context_test.go -log ${LOGLEVEL}
+    go test -v web/session/session_test.go -log ${LOGLEVEL}
+
 elif [ $TEST_MODE -eq 2 ]; then
     #go test -v auth/jwt/jwt_test.go
     #go test -v messaging/rabbitmq/rmq_test.go
     #go test -v messaging/kafka/kafka_test.go
     #go test -v messaging/nats/nats_test.go
     #go test -v heroku/heroku_test.go
-    go test -v regexp/regexp_test.go
+    #go test -v regexp/regexp_test.go
+
+    go test -v testutil/testutil_test.go -log ${LOGLEVEL}
+
 fi
 
 ###########################################################

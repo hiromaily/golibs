@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-// Just Check
+// CheckReflect is just to check ValueOf and TypeOf of value
 func CheckReflect(value interface{}) {
 	//reflect.ValueOf()
 	v := reflect.ValueOf(value)
@@ -21,12 +21,12 @@ func CheckReflect(value interface{}) {
 	fmt.Printf("reflect.TypeOf(value): %v\n\n\n", t)
 }
 
-// Any formats any value as a string.
+// GetValueAsString is to get any formats any value as a string.
 func GetValueAsString(value interface{}) string {
 	return formatAtom(reflect.ValueOf(value))
 }
 
-// formatAtom formats a value without inspecting its internal structure.
+// formatAtom is to format a value without inspecting its internal structure.
 func formatAtom(v reflect.Value) string {
 	switch v.Kind() {
 	case reflect.Invalid:
@@ -52,7 +52,7 @@ func formatAtom(v reflect.Value) string {
 	}
 }
 
-// display
+// Display is
 func Display(name string, x interface{}) {
 	fmt.Printf("Display %s (%T):\n", name, x)
 	display(name, reflect.ValueOf(x))

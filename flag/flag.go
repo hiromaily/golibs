@@ -1,3 +1,4 @@
+// Package flag is just sample
 package flag
 
 import (
@@ -19,7 +20,7 @@ Options:
        bra bra bra.
 `
 
-// Set Usage
+// SetUsage is to set usage
 func SetUsage(msg string) {
 	// -h option
 	flag.Usage = func() {
@@ -27,7 +28,7 @@ func SetUsage(msg string) {
 	}
 }
 
-// Show usage before exit
+// ShowUsageAndExit is show usage and exit program.
 func ShowUsageAndExit(msg string) {
 	if msg != "" {
 		fmt.Fprintf(os.Stderr, msg)
@@ -37,14 +38,4 @@ func ShowUsageAndExit(msg string) {
 	flag.Usage()
 
 	os.Exit(1)
-}
-
-//just example
-func GetIntVal() int {
-	return *intVal
-}
-
-//just example
-func GetStrVal() string {
-	return *strVal
 }
