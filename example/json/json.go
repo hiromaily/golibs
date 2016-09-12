@@ -17,7 +17,7 @@ import (
 // MarshalJSON is to marshal JSON
 func MarshalJSON(jsonData string) ([]byte, error) {
 	//return of Marshal : byte array encoded by UTF-8
-	//when json of struct is exsiting, create json string from struct
+	//when json of struct is existing, create json string from struct
 
 	//func Marshal(v interface{}) ([]byte, os.Error)
 	//bJson, err := json.Marshal(jsonData)

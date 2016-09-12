@@ -93,7 +93,7 @@ func GetScrypt(baseString string) string {
 	//result is not readable.
 	//lg.Debugf("Scrypt: %s\n", dk)
 
-	//In order to read, it sould be encoded by base64
+	//In order to read, it should be encoded by base64
 	result := base64.StdEncoding.EncodeToString(dk)
 
 	return result

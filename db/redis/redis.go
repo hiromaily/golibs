@@ -46,7 +46,7 @@ func New(host string, port uint16, pass string) {
 // GetRedis is to get instance. singleton architecture
 func GetRedis() *RD {
 	if rdInfo.Pool == nil {
-		//panic("Before call this, call New in addtion to arguments")
+		//panic("Before call this, call New in addition to arguments")
 		return nil
 	}
 	return &rdInfo

@@ -17,7 +17,7 @@ type MySQL struct {
 	Db *MS
 }
 
-//For embeded type
+//For embedded type
 type MySQL2 struct {
 	*MS
 }
@@ -77,7 +77,7 @@ func NewMySQL() {
 	db.Db = GetDB()
 }
 
-//For embeded type
+//For embedded type
 func NewMySQL2() {
 	conf.SetTOMLPath("../../settings.toml")
 	c := conf.GetConf().MySQL

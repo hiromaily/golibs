@@ -63,10 +63,14 @@ fi
 ###########################################################
 #go get -u github.com/golang/lint/golint
 if [ $GO_LINT -eq 1 ]; then
-    echo '============== golint; =============='
-    #golint ./...
-    #golint `go list ./... | grep -v '/vendor/'`
+    echo '============== golint =============='
     golint ./... | grep -v '^vendor\/' || true
+
+    echo '============== misspell =============='
+    misspell .
+
+    echo '============== ineffassign =============='
+    ineffassign .
 fi
 
 

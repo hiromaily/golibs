@@ -130,7 +130,7 @@ func CreateCompanyData() error {
 		bulk.Insert(v)
 	}
 	//bulk.Insert(companies...)
-	//->cannot use &companis (type *[]Company) as type []interface {} in argument to bulk.Insert
+	//->cannot use &companies (type *[]Company) as type []interface {} in argument to bulk.Insert
 	_, err := bulk.Run()
 	return err
 }
@@ -413,7 +413,7 @@ func TestGetAllData(t *testing.T) {
 //-----------------------------------------------------------------------------
 func TestUpdateOneDataByColumn(t *testing.T) {
 	//tu.SkipLog(t)
-	//when condition is by column, you sould use UpdateAll()
+	//when condition is by column, you should use UpdateAll()
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -619,10 +619,18 @@ func TestDropCollection(t *testing.T) {
 
 	//err := mg.DropCol("col01")
 	err := mg.DropCol(testColUser)
+	if err != nil {
+		t.Errorf("DropCol(testColUser):Drop Collection / error: %s", err)
+		//ns not found
+	}
 	err = mg.DropCol(testColTeacher)
+	if err != nil {
+		t.Errorf("DropCol(testColTeacher):Drop Collection / error: %s", err)
+		//ns not found
+	}
 	err = mg.DropCol(testColCompany)
 	if err != nil {
-		t.Errorf("TestDropCollection:Drop Collection / error: %s", err)
+		t.Errorf("DropCol(testColCompany):Drop Collection / error: %s", err)
 		//ns not found
 	}
 }

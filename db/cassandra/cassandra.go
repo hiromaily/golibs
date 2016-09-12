@@ -36,13 +36,13 @@ func New(hosts []string, port int, keyspace string) (err error) {
 func GetCass() *CassInfo {
 	if cassInfo.Session == nil {
 		return nil
-		//panic("Before call this, call New in addtion to arguments")
+		//panic("Before call this, call New in addition to arguments")
 	}
 	return &cassInfo
 }
 
 // SetKeySpace is to change keyspace(database)
-// TODO:What happend?
+// TODO:What happened?
 func (cs *CassInfo) SetKeySpace(keyspace string) error {
 	err := cs.Session.Query(fmt.Sprintf("use %s", keyspace)).Exec()
 	return err

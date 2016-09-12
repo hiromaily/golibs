@@ -80,7 +80,7 @@ func getMongoSession(rtnSession uint8) *mgo.Session {
 // GetMongo is to get instance. singleton architecture
 func GetMongo() *MongoInfo {
 	if mgInfo.Session == nil {
-		//panic("Before call this, call New in addtion to arguments")
+		//panic("Before call this, call New in addition to arguments")
 		getMongoSession(0)
 	}
 	return &mgInfo

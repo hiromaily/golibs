@@ -92,7 +92,7 @@ func TestCommonUsingDo(t *testing.T) {
 
 	fields, err := redis.Ints(c.Do("HMGET", "key3:subkey1", "field1", "field2"))
 	if err != nil {
-		t.Errorf("field1 sould be 1, field2 sould be 1 but result is %#v, error is %s", fields, err)
+		t.Errorf("field1 should be 1, field2 should be 1 but result is %#v, error is %s", fields, err)
 	}
 
 	//EXPIRE
@@ -130,7 +130,7 @@ func TestCommonUsingDo(t *testing.T) {
 	fields, err = redis.Ints(c.Do("HMGET", "key3:subkey2", "field1", "field2"))
 	if err != nil {
 		//if err != nil || fields[0] != 99 || fields[1] != 100 {
-		t.Errorf("field1 sould be 99, field2 sould be 100 but result is %#v", fields)
+		t.Errorf("field1 should be 99, field2 should be 100 but result is %#v", fields)
 	}
 }
 
@@ -162,12 +162,12 @@ func TestStringsUsingDo(t *testing.T) {
 
 	val, err := redis.Int(c.Do("GET", "key1"))
 	if err != nil || val != 10 {
-		t.Errorf("key1 sould be 10 but result is %d: err is %s", val, err)
+		t.Errorf("key1 should be 10 but result is %d: err is %s", val, err)
 	}
 
 	vals, err2 := redis.Ints(c.Do("MGET", "key2", "key3"))
 	if err2 != nil || vals[0] != 20 || vals[1] != 30 {
-		t.Errorf("key2 sould be 20, key2 sould be 30, but result is %#v: err is %s", vals, err2)
+		t.Errorf("key2 should be 20, key2 should be 30, but result is %#v: err is %s", vals, err2)
 	}
 }
 
@@ -190,7 +190,7 @@ func TestStringsUsingSend(t *testing.T) {
 	c.Flush()
 	val, err := redis.Int(c.Receive())
 	if err != nil || val != 10 {
-		t.Errorf("key1 sould be 10 but result is %d: err is %s", val, err)
+		t.Errorf("key1 should be 10 but result is %d: err is %s", val, err)
 	}
 
 	//MGET
@@ -198,7 +198,7 @@ func TestStringsUsingSend(t *testing.T) {
 	c.Flush()
 	vals, err2 := redis.Ints(c.Receive())
 	if err2 != nil || vals[0] != 20 || vals[1] != 30 {
-		t.Errorf("key2 sould be 20, key2 sould be 30, but result is %#v: err is %s", vals, err2)
+		t.Errorf("key2 should be 20, key2 should be 30, but result is %#v: err is %s", vals, err2)
 	}
 }
 
@@ -229,11 +229,11 @@ func TestHashesUsingDo(t *testing.T) {
 
 	fields, err := redis.Ints(c.Do("HMGET", "key:subkey1", "field1", "field2"))
 	if err != nil || fields[0] != 1 || fields[1] != 2 {
-		t.Errorf("field1 sould be 1, field2 sould be 2 but result is %#v: err is %s", fields, err)
+		t.Errorf("field1 should be 1, field2 should be 2 but result is %#v: err is %s", fields, err)
 	}
 
 	//HGETALL
-	fields2, err := redis.StringMap(c.Do("HGETALL", "key:subkey1"))
+	fields2, _ := redis.StringMap(c.Do("HGETALL", "key:subkey1"))
 	lg.Debugf("HGETALL: %v, %s, %s", fields2, fields2["field1"], fields2["field2"])
 }
 
@@ -304,7 +304,7 @@ func TestListsUsingDo(t *testing.T) {
 	vals, _ = redis.Ints(c.Do("LRANGE", "key-list1", 0, -1))
 	//LLEN(key)   //get length of lists
 	length, _ := redis.Int(c.Do("LLEN", "key-list1"))
-	lg.Debugf("key-list1 length is %d", length)
+	lg.Debugf("key-list1 value is %v, length is %d", vals, length)
 	vals, _ = redis.Ints(c.Do("LRANGE", "key-list1", 0, -1))
 	lg.Debugf("key-list1 values is %v", vals)
 

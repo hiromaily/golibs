@@ -71,7 +71,7 @@ func CheckMultiInterface(args ...interface{}) {
 
 //-----------------------------------------------------------------------------
 // check Interface
-// If passing slice or pointer to interface{} what's happend?
+// If passing slice or pointer to interface{} what's happened?
 //-----------------------------------------------------------------------------
 
 // CheckInterfaceWhenSlice is to check slice argument in interface{} type

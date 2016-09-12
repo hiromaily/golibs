@@ -157,7 +157,7 @@ func (ms *MS) ScanOne(x interface{}) bool {
 	//e.g)v = person Person
 	v := reflect.ValueOf(x)
 	if v.Kind() != reflect.Ptr || v.IsNil() {
-		ms.Err = errors.New("parameter is not valid. it sould be pointer and not nil")
+		ms.Err = errors.New("parameter is not valid. it should be pointer and not nil")
 		return false
 	}
 
@@ -210,7 +210,7 @@ func (ms *MS) Scan(x interface{}) bool {
 	v := reflect.ValueOf(x)
 
 	if v.Kind() != reflect.Ptr || v.IsNil() {
-		ms.Err = errors.New("parameter is not valid. it sould be pointer and not nil")
+		ms.Err = errors.New("parameter is not valid. it should be pointer and not nil")
 		return false
 	}
 
@@ -245,7 +245,7 @@ func (ms *MS) Scan(x interface{}) bool {
 		return true
 	}
 
-	ms.Err = errors.New("parameter is not valid. it sould be pointer and not nil")
+	ms.Err = errors.New("parameter is not valid. it should be pointer and not nil")
 	return false
 
 }
