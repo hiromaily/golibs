@@ -156,10 +156,10 @@ func validateConfig(conf *Config, md *toml.MetaData) error {
 
 	// Error
 	if inValid {
-		return errors.New("Error: Check Text has wrong number of parameter")
+		return errors.New("error: Check Text has wrong number of parameter")
 	}
 	if len(errStrings) != 0 {
-		return fmt.Errorf("Error: There are lacks of keys : %#v \n", errStrings)
+		return fmt.Errorf("error: There are lacks of keys : %#v \n", errStrings)
 	}
 
 	return nil
@@ -174,14 +174,14 @@ func loadConfig(path string) (*Config, error) {
 	d, err := ioutil.ReadFile(tomlFileName)
 	if err != nil {
 		return nil, fmt.Errorf(
-			"Error reading %s: %s", tomlFileName, err)
+			"error reading %s: %s", tomlFileName, err)
 	}
 
 	var config Config
 	md, err := toml.Decode(string(d), &config)
 	if err != nil {
 		return nil, fmt.Errorf(
-			"Error parsing %s: %s(%v)", tomlFileName, err, md)
+			"error parsing %s: %s(%v)", tomlFileName, err, md)
 	}
 
 	//check validation of config

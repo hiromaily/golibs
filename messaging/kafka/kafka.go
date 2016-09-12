@@ -45,7 +45,7 @@ func CreateConsumer(host string, port int) (sarama.Consumer, error) {
 	//consumer, err := sarama.NewConsumer([]string{fmt.Sprintf("%s:%d", host, port)}, nil)
 	if err != nil {
 		//panic(err)
-		return nil, fmt.Errorf("Failed to start consumer:%s", err)
+		return nil, fmt.Errorf("failed to start consumer:%s", err)
 	}
 	return consumer, err
 }
@@ -60,7 +60,7 @@ func Consumer(c sarama.Consumer, topic string, ch ChReceive) {
 	pc, err := c.ConsumePartition(topic, 0, sarama.OffsetNewest)
 	if err != nil {
 		//return errors.New(fmt.Sprintf("Failed to get ConsumePartition:%s", err))
-		panic(fmt.Sprintf("Failed to get ConsumePartition:%s", err))
+		panic(fmt.Sprintf("failed to get ConsumePartition:%s", err))
 	}
 	lg.Debug("Reveiver() Connected to kafka broker")
 
@@ -108,14 +108,14 @@ func ConsumerOnMultiplePartitions(c sarama.Consumer, topic string) error {
 	//when there are multiple partitions
 	partitionList, err := c.Partitions(topic)
 	if err != nil {
-		return fmt.Errorf("Failed to get the list of partitions:%s", err)
+		return fmt.Errorf("failed to get the list of partitions:%s", err)
 	}
-	lg.Debug("Connected to kafka broker")
+	lg.Debug("connected to kafka broker")
 
 	for partition := range partitionList {
 		pc, err := c.ConsumePartition("topic.ops.falcon", int32(partition), sarama.OffsetNewest)
 		if err != nil {
-			return fmt.Errorf("Failed to start consumer for partition %d: %s\n", partition, err)
+			return fmt.Errorf("failed to start consumer for partition %d: %s\n", partition, err)
 		}
 
 		wg.Add(1)
@@ -163,7 +163,7 @@ func CreateProducer(host string, port int) (sarama.SyncProducer, error) {
 	producer, err := sarama.NewSyncProducer([]string{fmt.Sprintf("%s:%d", host, port)}, config)
 	if err != nil {
 		//
-		return nil, fmt.Errorf("Failed to produce message: %s", err)
+		return nil, fmt.Errorf("failed to produce message: %s", err)
 	}
 	return producer, nil
 }
@@ -179,7 +179,7 @@ func Producer(producer sarama.SyncProducer, msg *sarama.ProducerMessage) error {
 
 	partition, offset, err := producer.SendMessage(msg)
 	if err != nil {
-		return fmt.Errorf("Failed to produce message: %s", err)
+		return fmt.Errorf("failed to produce message: %s", err)
 	}
 	lg.Debugf("Sender() partition=%d, offset=%d\n", partition, offset)
 

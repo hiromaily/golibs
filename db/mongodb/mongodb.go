@@ -217,7 +217,7 @@ func GetObjectID(ID bson.ObjectId) string {
 func LoadJSONFile(filePath string) ([]byte, error) {
 	// Loading jsonfile
 	if filePath == "" {
-		err := errors.New("Nothing Json File")
+		err := errors.New("nothing JSON file")
 		return nil, err
 	}
 
