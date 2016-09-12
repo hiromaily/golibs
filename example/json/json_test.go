@@ -57,8 +57,10 @@ func init() {
 	tu.InitializeTest("[JSON]")
 
 	if *jsonFile == "" {
-		fmt.Println("json parameter is required to run.")
-		os.Exit(1)
+		//default
+		*jsonFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/testdata/json/teachers.json"
+		//fmt.Println("json parameter is required to run.")
+		//os.Exit(1)
 		return
 	}
 }

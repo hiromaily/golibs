@@ -253,7 +253,9 @@ func TestInsertJsonFile(t *testing.T) {
 
 	//json
 	if *jsonFile == "" {
-		t.Fatal("json file is required.")
+		//default
+		*jsonFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/testdata/json/teachers.json"
+		//t.Fatal("json file is required.")
 	}
 
 	fileData, err := LoadJSONFile(*jsonFile)

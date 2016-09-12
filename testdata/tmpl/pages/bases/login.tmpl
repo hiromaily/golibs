@@ -1,0 +1,96 @@
+﻿{{define "pages/bases/login.tmpl"}}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    {{template "components/header_login.tmpl" .}}
+  </head>
+  <body style="background-color: #E2E2E2;">
+    <div class="container">
+      <div class="row text-center " style="padding-top:100px;">
+        <div class="col-md-12">
+          <img class="logosize" src="assets/img/hy.png" />
+          <h3>Welcome to this website!!</h3>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+          <div class="panel-body">
+            <form role="form" name="form1" action="#" method="post">
+              <input type="hidden" name="gintoken" value="{{ .gintoken }}">
+              <hr />
+              <h5><span>{{ .message }}<span></h5>
+
+              <div id="msg_for_user">
+              {{range .errors}}<p class="error_msg">{{.}}</p>{{end}}
+              </div>
+
+              <br />
+              <div class="form-group input-group">
+                <span class="input-group-addon">
+                  <i class="fa fa-tag" ></i>
+                </span>
+                <input type="text" id="inputEmail" name="inputEmail" value="{{ .input.Email }}" class="form-control" placeholder="Your E-mail " />
+              </div>
+              <div class="form-group input-group">
+                <span class="input-group-addon">
+                  <i class="fa fa-lock" ></i>
+                </span>
+                <input type="password" id="inputPassword" name="inputPassword" value="{{ .input.Pass }}" class="form-control" placeholder="Your Password" />
+              </div>
+              <div class="form-group">
+                <label class="checkbox-inline">
+                  <input type="checkbox" />Remember me
+                </label>
+                <span class="pull-right">
+                  <a href="/" >Forget password ? </a>
+                </span>
+              </div>
+              <a href="/" id="loginBtn" class="btn btn-primary">Login Now</a>
+              <div class="googleBtn"><a href="{{ .gURL }}">google</a></div>
+              <div class="facebookBtn"><a href="{{ .fURL }}">facebook</a></div>
+                <hr />Not register ?
+              <a href="/">click here </a>or go to
+              <a href="/">Home</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script type="text/javascript">
+(function (){
+
+var loginBtn = document.getElementById("loginBtn");
+loginBtn.addEventListener("click", chkAndGo, false);
+
+function chkAndGo(evt){
+  evt.preventDefault();
+  //alert(1);
+
+  //something error
+  if(document.getElementById("inputEmail").value == ""){
+    //document.getElementById("msg_for_user").style.color = "#FF0000";
+    //document.getElementById("msg_for_user").textContent = "Please input your email address!";
+    document.getElementById("msg_for_user").innerHTML = "<p class='error_msg'>Please input your email address!</p>";
+    return false;
+  }
+  if(document.getElementById("inputPassword").value == ""){
+    //document.getElementById("msg_for_user").style.color = "#FF0000";
+    //document.getElementById("msg_for_user").textContent = "Please input your password!";
+    document.getElementById("msg_for_user").innerHTML = "<p class='error_msg'>Please input your password!</p>";
+    return false;
+  }
+
+  //send form
+  var form = document.form1;
+  form.method="post";
+  form.action="#";
+  form.submit();
+
+  return false;
+}
+
+})();
+</script>
+</body>
+</html>{{end}}

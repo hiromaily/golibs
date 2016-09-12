@@ -1,3 +1,4 @@
+// Package jwt is authentication by JWT
 package jwt
 
 import (

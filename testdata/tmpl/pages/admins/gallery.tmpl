@@ -1,0 +1,35 @@
+﻿{{define "pages/admins/gallery.tmpl"}}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    {{template "components/header3.tmpl" .}}
+  </head>
+  <body>
+    <div id="wrapper">
+      <!-- /. NAV TOP  -->
+      {{template "components/nav_header.tmpl" .}}
+      <!-- /. NAV SIDE  -->
+      {{template "components/nav_side.tmpl" .}}
+
+      <!-- -->
+      <div id="page-wrapper">
+        <div id="page-inner">
+          <!-- /. ROW 01 -->
+          {{template "components/wrapper/row_01.tmpl" .}}
+          <!-- /. ROW 12 -->
+          {{template "components/wrapper/row_12.tmpl" .}}
+        </div>
+        <!-- /. PAGE INNER  -->
+      </div>
+      <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- /. Footer -->
+    {{template "components/footer.tmpl" .}}
+
+  <!-- /. FOOTER jslist -->
+ {{template "components/footer_jslist2.tmpl" .}}
+
+</body>
+</html>
+{{end}}

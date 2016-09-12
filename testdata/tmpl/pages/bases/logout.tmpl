@@ -1,0 +1,37 @@
+﻿{{define "pages/bases/logout.tmpl"}}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    {{template "components/header.tmpl" .}}
+  </head>
+  <body>
+    <div id="wrapper">
+      <!-- /. NAV TOP  -->
+      {{template "components/nav_header.tmpl" .}}
+      <!-- /. NAV SIDE  -->
+      {{template "components/nav_side.tmpl" .}}
+
+      <!-- -->
+      <div id="page-wrapper">
+        <div id="page-inner">
+          <!-- /. ROW 01 -->
+          {{template "components/wrapper/row_01.tmpl" .}}
+          <!-- /. ROW 10 -->
+          {{template "components/wrapper/row_10.tmpl" .}}
+          <!-- /. ROW 11 -->
+          {{template "components/wrapper/row_11.tmpl" .}}
+        </div>
+        <!-- /. PAGE INNER  -->
+      </div>
+      <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- /. Footer -->
+    {{template "components/footer.tmpl" .}}
+
+<!-- /. FOOTER jslist -->
+{{template "components/footer_jslist.tmpl" .}}
+
+</body>
+</html>
+{{end}}

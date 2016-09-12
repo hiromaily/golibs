@@ -7,10 +7,12 @@
 #export GOTRACEBACK=all
 #CURRENTDIR=`pwd`
 
-JSONPATH=${GOPATH}/src/github.com/hiromaily/go-book-teacher/json/teachers.json
-TOMLPATH=${GOPATH}/src/github.com/hiromaily/golibs/settings.toml
-XMLPATH=${GOPATH}/src/github.com/hiromaily/golibs/example/xml/rssfeeds/
-BOLTPATH=${GOPATH}/src/github.com/hiromaily/golibs/db/boltdb/boltdb
+PROJECT_ROOT=${GOPATH}/src/github.com/hiromaily/golibs
+
+JSONPATH=${PROJECT_ROOT}/testdata/json/teachers.json
+TOMLPATH=${PROJECT_ROOT}/settings.toml
+XMLPATH=${PROJECT_ROOT}/example/xml/rssfeeds/
+BOLTPATH=${PROJECT_ROOT}}/db/boltdb/boltdb
 
 TEST_MODE=2  #0:off, 1:run all test, 2:test for specific one
 BENCH=0
@@ -65,6 +67,7 @@ fi
 if [ $GO_LINT -eq 1 ]; then
     echo '============== golint =============='
     golint ./... | grep -v '^vendor\/' || true
+    #golint -min_confidence=0.2 ./... | grep -v '^vendor\/' || true
 
     echo '============== misspell =============='
     misspell .
@@ -91,11 +94,7 @@ fi
 # go test
 ###########################################################
 if [ $TEST_MODE -eq 1 ]; then
-    #t.LogのON/OFF
     echo '============== test =============='
-    #go test -v html/html_test.go
-
-    #Check OK
     #
     go test -v auth/jwt/jwt_test.go -log ${LOGLEVEL}
     go test -v cipher/encryption/encryption_test.go -log ${LOGLEVEL}
@@ -149,7 +148,7 @@ if [ $TEST_MODE -eq 1 ]; then
     go test -v web/session/session_test.go -log ${LOGLEVEL}
 
 elif [ $TEST_MODE -eq 2 ]; then
-    go test -v utils/utils_test.go -log ${LOGLEVEL}
+    go test -v -race files/files_test.go -log ${LOGLEVEL}
 
 fi
 

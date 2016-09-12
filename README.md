@@ -1,6 +1,7 @@
 # golibs
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/hiromaily/golibs)](https://goreportcard.com/report/github.com/hiromaily/golibs)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/hiromaily/golibs/master/LICENSE)
 
 Golang libraries 
 
@@ -17,10 +18,6 @@ golang version is limited some packages.
 ### ■ auth
 #### jwt
 * authentication by JWT (Json Web TOken) 
-
-----
-### ■ aws
-* For aws-related. (It works in progress.)
 
 ----
 ### ■ cast 
@@ -41,10 +38,6 @@ golang version is limited some packages.
 ----
 ### ■ config
 * For config settings from toml file.
-
-----
-### ■ context
-* For context. (It's not started to develop yet.)
 
 ----
 ### ■ db
@@ -79,29 +72,44 @@ golang version is limited some packages.
 * For check how to use textindex package. (It's not started to develop yet.)
 
 ----
-### ■ defaultdata
+### ■ example
+* These packages are for just check
+
+#### ■ defaultdata
 * For check how nil is treated in each Type through Test.
 * And how each type is treated on Interface{} type. 
 
 ----
-### ■ draw
+#### ■ draw
 * For drawing library. (It's not started to develop yet.)
 
 ----
-### ■ exec
+#### ■ exec
 * For check how to use "os/exec" package.
+
+----
+#### ■ flag
+* For check how to use "flag" package.
+
+----
+#### ■ http
+* It's just check how to use "net/http" package. (It works in progress.)
+
+----
+#### ■ join
+* For check which way is most efficient to join strings on testing package.
+
+----
+#### ■ json
+* For check how to use "json" package.
+
+----
+#### ■ xml
+* For handling xml.
 
 ----
 ### ■ files
 * For finding specific file in directories.
-
-----
-### ■ flag
-* For check how to use "flag" package.
-
-----
-### ■ gettext
-* For gettext. (It's not started to develop yet.)
 
 ----
 ### ■ goroutine
@@ -112,28 +120,12 @@ golang version is limited some packages.
 * Heroku related library.
 
 ----
-### ■ html
-* Web scraping. (It works in progress.)
-
-----
-### ■ http
-* It's just check how to use "net/http" package. (It works in progress.)
-
-----
-### ■ join
-* For check which way is most efficient to join strings on testing package.
-
-----
-### ■ json
-* For check how to use "json" package.
-
-----
 ### ■ log
 * logger. It can control loglevel in files and stdout respectively
 * only version 1.5 or later.
 
 ----
-### ■ mails
+### ■ mail
 * Send mail. (It works in progress.)
 
 ----
@@ -168,15 +160,15 @@ golang version is limited some packages.
 * Serialize each Type to binary data.
 
 ----
-### ■ session
-* Control session on the web. (It works in progress.)
-
-----
 ### ■ signal
 * Control signal to check where goroutine stop.
 
 ----
-### ■ times
+### ■ testutil
+* Utility for test packages.
+
+----
+### ■ time
 * For time related library.
 
 ----
@@ -192,5 +184,12 @@ golang version is limited some packages.
 * To check variable.
 
 ----
-### ■ xml
-* For handling xml.
+### ■ web
+#### ■ context
+* For context. (It's not started to develop yet.)
+
+----
+#### ■ session
+* Control session on the web. (It works in progress.)
+
+----

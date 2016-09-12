@@ -1,0 +1,39 @@
+{{define "pages/accounts/accounts.tmpl"}}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    {{template "components/header2.tmpl" .}}
+  </head>
+  <body>
+    <div id="wrapper">
+      <!-- /. NAV TOP  -->
+      {{template "components/nav_header.tmpl" .}}
+      <!-- /. NAV SIDE  -->
+      {{template "components/nav_side.tmpl" .}}
+
+      <!-- -->
+      <div id="page-wrapper">
+        <div id="page-inner">
+          <!-- /. ROW 01 -->
+          {{template "components/wrapper/row_01.tmpl" .}}
+          <!-- /. ROW 07 -->
+          {{template "components/wrapper/row_07.tmpl" .}}
+          <!-- /. ROW 08 -->
+          {{template "components/wrapper/row_08.tmpl" .}}
+          <!-- /. ROW 09 -->
+          {{template "components/wrapper/row_09.tmpl" .}}
+        </div>
+        <!-- /. PAGE INNER  -->
+      </div>
+      <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- /. Footer -->
+    {{template "components/footer.tmpl" .}}
+
+<!-- /. FOOTER jslist -->
+{{template "components/footer_jslist.tmpl" .}}
+
+</body>
+</html>
+{{end}}

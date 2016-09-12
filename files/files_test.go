@@ -8,6 +8,8 @@ import (
 	"testing"
 )
 
+var basePath = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/testdata/tmpl/pages"
+
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
@@ -36,7 +38,6 @@ func TestMain(m *testing.M) {
 // Test
 //-----------------------------------------------------------------------------
 func TestGetFileList(t *testing.T) {
-	basePath := os.Getenv("GOPATH") + "/src/github.com/hiromaily/go-gin-wrapper/templates/pages"
 	ext := []string{"tmpl"}
 
 	files := GetFileList(basePath, ext)
@@ -46,7 +47,6 @@ func TestGetFileList(t *testing.T) {
 }
 
 func TestGetFileList2(t *testing.T) {
-	basePath := os.Getenv("GOPATH") + "/src/github.com/hiromaily/go-gin-wrapper/templates/pages"
 	ext := []string{"tmpl"}
 
 	files := GetFileListSingle(basePath, ext)
@@ -59,7 +59,6 @@ func TestGetFileList2(t *testing.T) {
 // Bench
 //-----------------------------------------------------------------------------
 func BenchmarkGetFileList(b *testing.B) {
-	basePath := os.Getenv("GOPATH") + "/src/github.com/hiromaily/go-gin-wrapper/templates/pages"
 	ext := []string{"tmpl"}
 
 	b.ResetTimer()
@@ -71,7 +70,6 @@ func BenchmarkGetFileList(b *testing.B) {
 }
 
 func BenchmarkGetFileList2(b *testing.B) {
-	basePath := os.Getenv("GOPATH") + "/src/github.com/hiromaily/go-gin-wrapper/templates/pages"
 	ext := []string{"tmpl"}
 
 	b.ResetTimer()
@@ -83,7 +81,6 @@ func BenchmarkGetFileList2(b *testing.B) {
 }
 
 func BenchmarkGetFileListJIC(b *testing.B) {
-	basePath := os.Getenv("GOPATH") + "/src/github.com/hiromaily/go-gin-wrapper/templates/pages"
 	ext := []string{"tmpl"}
 
 	b.ResetTimer()

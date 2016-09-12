@@ -26,7 +26,8 @@ func init() {
 	tu.InitializeTest("[Config]")
 
 	if *confFile == "" {
-		os.Exit(1)
+		*confFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/settings.toml"
+		//os.Exit(1)
 		return
 	}
 

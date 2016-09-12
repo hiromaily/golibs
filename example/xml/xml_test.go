@@ -44,8 +44,10 @@ func init() {
 
 	//check file
 	if *xmlFile == "" {
-		lg.Error("xml file parameter is required to run")
-		os.Exit(1)
+		//default
+		*xmlFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/example/xml/rssfeeds/"
+		//lg.Error("xml file parameter is required to run")
+		//os.Exit(1)
 		return
 	}
 }

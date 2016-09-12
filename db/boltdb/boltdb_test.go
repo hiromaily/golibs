@@ -20,7 +20,9 @@ var (
 func init() {
 	tu.InitializeTest("[BoltDB]")
 	if *path == "" {
-		os.Exit(1)
+		//os.Exit(1)
+		//default
+		*path = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/db/boltdb/boltdb"
 		return
 	}
 }

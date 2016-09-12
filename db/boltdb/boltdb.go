@@ -13,7 +13,6 @@ var db *bolt.DB
 // New is to create bold instance
 func New(path string) {
 	var err error
-	//db, err = bolt.Open("/Users/hy/work/go/src/github.com/hiromaily/golibs/datafile", 0600, nil)
 	db, err = bolt.Open(path, 0600, nil)
 	if err != nil {
 		lg.Fatal(err)
