@@ -2,6 +2,7 @@ package mail_test
 
 import (
 	"flag"
+	enc "github.com/hiromaily/golibs/cipher/encryption"
 	conf "github.com/hiromaily/golibs/config"
 	lg "github.com/hiromaily/golibs/log"
 	. "github.com/hiromaily/golibs/mail"
@@ -13,6 +14,7 @@ import (
 
 var (
 	confFile = flag.String("fp", "", "Config File Path")
+	mailTo   = "FcQjhb5ErsSBlh6EDwe69eLdcW/eJPKWtnTWmDPoAAM=" //encrypted mail address
 )
 
 //-----------------------------------------------------------------------------
@@ -28,6 +30,10 @@ func init() {
 		return
 	}
 
+	setupCipher()
+
+	crypt := enc.GetCrypt()
+	mailTo, _ = crypt.DecryptBase64(mailTo)
 }
 
 func setup() {
@@ -47,6 +53,21 @@ func TestMain(m *testing.M) {
 }
 
 //-----------------------------------------------------------------------------
+// functions
+//-----------------------------------------------------------------------------
+func setupCipher() {
+	size := 16
+	key := os.Getenv("ENC_KEY")
+	iv := os.Getenv("ENC_IV")
+
+	if key == "" || iv == "" {
+		panic("set Environment Variable: ENC_KEY, ENC_IV")
+	}
+
+	enc.NewCrypt(size, key, iv)
+}
+
+//-----------------------------------------------------------------------------
 // Test
 //-----------------------------------------------------------------------------
 func TestMail(t *testing.T) {
@@ -56,7 +77,8 @@ func TestMail(t *testing.T) {
 		FromName string
 	}
 
-	conf.New(*confFile)
+	conf.New(*confFile, true)
+	//conf.Cipher()
 	conf := conf.GetConf().Mail
 
 	//subject
@@ -68,12 +90,12 @@ func TestMail(t *testing.T) {
 	bodyParam := BodyInfo{ToName: "Hiroki", FromName: "Harry"}
 	body, err := tpl.FilePathParser(path, bodyParam)
 	if err != nil {
-		t.Fatalf("TestMail[01] error: %s", err)
+		t.Fatalf("FilePathParser error: %s", err)
 	}
 
 	//mails
 	smtp := SMTP{Address: conf.Address, Pass: conf.Password, Server: conf.SMTP.Server, Port: conf.SMTP.Port}
-	ml := &Info{ToAddress: []string{"hiromaily@gmail.com"}, FromAddress: conf.Address,
+	ml := &Info{ToAddress: []string{mailTo}, FromAddress: conf.Address,
 		Subject: subject, Body: body, SMTP: smtp}
 	ml.SendMail(conf.Timeout)
 }

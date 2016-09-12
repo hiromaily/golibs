@@ -149,6 +149,7 @@ if [ $TEST_MODE -eq 1 ]; then
 
 elif [ $TEST_MODE -eq 2 ]; then
     go test -v -race files/files_test.go -log ${LOGLEVEL}
+    #go test -v mail/mail_test.go -log ${LOGLEVEL} -fp ${TOMLPATH}
 
 fi
 

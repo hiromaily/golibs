@@ -1,20 +1,7 @@
 environment = 0    #0:local vagrant, 1:staging, 2:production
 
-[aws]
-access_key = "XXXXXXXXXXXXX"
-secret_key = "XXXXXXXXXXXXX"
-region = "ap-northeast-1"
-
-[aws.sqs]
-endpoint = "sqs.ap-northeast-1.amazonaws.com"
-queue_name = "queue_messages"
-deadque_name = "deadqueue_messages"
-
-[aws.sqs.msgattr]
-operation_type = "1"
-content_type = "1"
-
 [mysql]
+encrypted = false
 host = "localhost"
 port = 3306
 dbname = "hiromaily"
@@ -22,11 +9,13 @@ user = "root"
 pass = ""
 
 [redis]
+encrypted = false
 host = "localhost"
 port = 6379
 pass = "password"
 
 [mongodb]
+encrypted = false
 host = "localhost"
 port = 27017
 dbname = "hiromaily"
@@ -34,7 +23,7 @@ user = "hiromaily"
 pass = "12345678"
 
 [mail]
-# your email setting
+encrypted = false
 address = "xxxxx@gmail.com"
 password = "xxxxx"
 
@@ -52,3 +41,18 @@ tplfile = "testmail.tpl"
 [[mail.content]]
 subject = "[mail]Subject2"
 tplfile = "testmail2.tpl"
+
+[aws]
+encrypted = false
+access_key = "XXXXXXXXXXXXX"
+secret_key = "XXXXXXXXXXXXX"
+region = "ap-northeast-1"
+
+[aws.sqs]
+endpoint = "sqs.ap-northeast-1.amazonaws.com"
+queue_name = "queue_messages"
+deadque_name = "deadqueue_messages"
+
+[aws.sqs.msgattr]
+operation_type = "1"
+content_type = "1"

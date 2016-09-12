@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/BurntSushi/toml"
+	enc "github.com/hiromaily/golibs/cipher/encryption"
 	u "github.com/hiromaily/golibs/utils"
 	"io/ioutil"
 )
@@ -15,19 +16,70 @@ var conf *Config
 // Config is of root
 type Config struct {
 	Environment int
-	Aws         AwsConfig
-	MySQL       MySQLConfig
-	Redis       RedisConfig
-	Mongo       MongoConfig `toml:"mongodb"`
-	Mail        MailConfig
+	MySQL       *MySQLConfig
+	Redis       *RedisConfig
+	Mongo       *MongoConfig `toml:"mongodb"`
+	Mail        *MailConfig
+	Aws         *AwsConfig
+}
+
+// MySQLConfig is for MySQL server
+type MySQLConfig struct {
+	Encrypted bool   `toml:"encrypted"`
+	Host      string `toml:"host"`
+	Port      uint16 `toml:"port"`
+	DbName    string `toml:"dbname"`
+	User      string `toml:"user"`
+	Pass      string `toml:"pass"`
+}
+
+// RedisConfig is for Redis server
+type RedisConfig struct {
+	Encrypted bool   `toml:"encrypted"`
+	Host      string `toml:"host"`
+	Port      uint16 `toml:"port"`
+	Pass      string `toml:"pass"`
+}
+
+// MongoConfig is for MongoDB server
+type MongoConfig struct {
+	Encrypted bool   `toml:"encrypted"`
+	Host      string `toml:"host"`
+	Port      uint16 `toml:"port"`
+	DbName    string `toml:"dbname"`
+	User      string `toml:"user"`
+	Pass      string `toml:"pass"`
+}
+
+// MailConfig is for mail
+type MailConfig struct {
+	Encrypted bool                `toml:"encrypted"`
+	Address   string              `toml:"address"`
+	Password  string              `toml:"password"`
+	Timeout   string              `toml:"timeout"`
+	SMTP      *SMTPConfig         `toml:"smtp"`
+	Content   []MailContentConfig `toml:"content"`
+}
+
+// SMTPConfig is for SMTP server of mail
+type SMTPConfig struct {
+	Server string `toml:"server"`
+	Port   int    `toml:"port"`
+}
+
+// MailContentConfig is for mail contents
+type MailContentConfig struct {
+	Subject string `toml:"subject"`
+	Tplfile string `toml:"tplfile"`
 }
 
 // AwsConfig is for Aamazon Web Service
 type AwsConfig struct {
-	AccessKey string    `toml:"access_key"`
-	SecretKey string    `toml:"secret_key"`
-	Region    string    `toml:"region"`
-	Sqs       SqsConfig `toml:"sqs"`
+	Encrypted bool       `toml:"encrypted"`
+	AccessKey string     `toml:"access_key"`
+	SecretKey string     `toml:"secret_key"`
+	Region    string     `toml:"region"`
+	Sqs       *SqsConfig `toml:"sqs"`
 }
 
 // SqsConfig is for SQS of AWS
@@ -44,54 +96,33 @@ type MsgAttrConfig struct {
 	ContentType string `toml:"content_type"`
 }
 
-// MySQLConfig is for MySQL server
-type MySQLConfig struct {
-	Host   string `toml:"host"`
-	Port   uint16 `toml:"port"`
-	DbName string `toml:"dbname"`
-	User   string `toml:"user"`
-	Pass   string `toml:"pass"`
-}
-
-// RedisConfig is for Redis server
-type RedisConfig struct {
-	Host string `toml:"host"`
-	Port uint16 `toml:"port"`
-	Pass string `toml:"pass"`
-}
-
-// MongoConfig is for MongoDB server
-type MongoConfig struct {
-	Host   string `toml:"host"`
-	Port   uint16 `toml:"port"`
-	DbName string `toml:"dbname"`
-	User   string `toml:"user"`
-	Pass   string `toml:"pass"`
-}
-
-// MailConfig is for mail
-type MailConfig struct {
-	Address  string              `toml:"address"`
-	Password string              `toml:"password"`
-	Timeout  string              `toml:"timeout"`
-	SMTP     SMTPConfig          `toml:"smtp"`
-	Content  []MailContentConfig `toml:"content"`
-}
-
-// SMTPConfig is for SMTP server of mail
-type SMTPConfig struct {
-	Server string `toml:"server"`
-	Port   int    `toml:"port"`
-}
-
-// MailContentConfig is for mail contents
-type MailContentConfig struct {
-	Subject string `toml:"subject"`
-	Tplfile string `toml:"tplfile"`
-}
-
 var checkTomlKeys = [][]string{
 	{"environment"},
+	{"mysql", "encrypted"},
+	{"mysql", "host"},
+	{"mysql", "port"},
+	{"mysql", "dbname"},
+	{"mysql", "user"},
+	{"mysql", "pass"},
+	{"redis", "encrypted"},
+	{"redis", "host"},
+	{"redis", "port"},
+	{"redis", "pass"},
+	{"mongodb", "encrypted"},
+	{"mongodb", "host"},
+	{"mongodb", "port"},
+	{"mongodb", "dbname"},
+	{"mongodb", "user"},
+	{"mongodb", "pass"},
+	{"mail", "encrypted"},
+	{"mail", "address"},
+	{"mail", "password"},
+	{"mail", "timeout"},
+	{"mail", "smtp", "server"},
+	{"mail", "smtp", "port"},
+	//{"mail", "content", "subject"},
+	//{"mail", "content", "tplfile"},
+	{"aws", "encrypted"},
 	{"aws", "access_key"},
 	{"aws", "secret_key"},
 	{"aws", "region"},
@@ -100,26 +131,6 @@ var checkTomlKeys = [][]string{
 	{"aws", "sqs", "deadque_name"},
 	{"aws", "sqs", "msgattr", "operation_type"},
 	{"aws", "sqs", "msgattr", "content_type"},
-	{"mysql", "host"},
-	{"mysql", "port"},
-	{"mysql", "dbname"},
-	{"mysql", "user"},
-	{"mysql", "pass"},
-	{"redis", "host"},
-	{"redis", "port"},
-	{"redis", "pass"},
-	{"mongodb", "host"},
-	{"mongodb", "port"},
-	{"mongodb", "dbname"},
-	{"mongodb", "user"},
-	{"mongodb", "pass"},
-	{"mail", "address"},
-	{"mail", "password"},
-	{"mail", "timeout"},
-	{"mail", "smtp", "server"},
-	{"mail", "smtp", "port"},
-	//{"mail", "content", "subject"},
-	//{"mail", "content", "tplfile"},
 }
 
 //check validation of config
@@ -194,12 +205,18 @@ func loadConfig(path string) (*Config, error) {
 }
 
 // New is to create config instance
-func New(file string) {
+func New(file string, cipherFlg bool) *Config {
 	var err error
 	conf, err = loadConfig(file)
 	if err != nil {
 		panic(err)
 	}
+
+	if cipherFlg {
+		Cipher()
+	}
+
+	return conf
 }
 
 // GetConf is to get config instance. singleton architecture
@@ -223,4 +240,46 @@ func SetTOMLPath(path string) {
 // ResetConf is to clear config instance
 func ResetConf() {
 	conf = nil
+}
+
+// Cipher is to decrypt crypted string on config
+func Cipher() {
+	crypt := enc.GetCrypt()
+
+	if conf.MySQL.Encrypted {
+		c := conf.MySQL
+		c.Host, _ = crypt.DecryptBase64(c.Host)
+		c.DbName, _ = crypt.DecryptBase64(c.DbName)
+		c.User, _ = crypt.DecryptBase64(c.User)
+		c.Pass, _ = crypt.DecryptBase64(c.Pass)
+	}
+
+	if conf.Redis.Encrypted {
+		c := conf.Redis
+		c.Host, _ = crypt.DecryptBase64(c.Host)
+		c.Pass, _ = crypt.DecryptBase64(c.Pass)
+	}
+
+	if conf.Mongo.Encrypted {
+		c := conf.Mongo
+		c.Host, _ = crypt.DecryptBase64(c.Host)
+		c.DbName, _ = crypt.DecryptBase64(c.DbName)
+		c.User, _ = crypt.DecryptBase64(c.User)
+		c.Pass, _ = crypt.DecryptBase64(c.Pass)
+	}
+
+	if conf.Mail.Encrypted {
+		c := conf.Mail
+		c.Address, _ = crypt.DecryptBase64(c.Address)
+		c.Password, _ = crypt.DecryptBase64(c.Password)
+
+		c2 := conf.Mail.SMTP
+		c2.Server, _ = crypt.DecryptBase64(c2.Server)
+	}
+
+	if conf.Aws.Encrypted {
+		c := conf.Aws
+		c.AccessKey, _ = crypt.DecryptBase64(c.AccessKey)
+		c.SecretKey, _ = crypt.DecryptBase64(c.SecretKey)
+	}
 }
