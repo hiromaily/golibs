@@ -3,17 +3,19 @@ package flag_test
 import (
 	"flag"
 	"fmt"
-	. "github.com/hiromaily/golibs/flag"
+	. "github.com/hiromaily/golibs/example/flag"
 	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
 	r "github.com/hiromaily/golibs/runtimes"
+	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
 )
 
 var (
-	benchFlg bool = false
-	usage         = `Usage: %s [options...] <url>
+	intVal = flag.Int("iv", 0, "this is just check val for int")
+	strVal = flag.String("sv", "", "this is just check val for string")
+
+	usage = `Usage: %s [options...] <url>
 
 Options:
   -iv  Number of something.
@@ -27,12 +29,9 @@ Options:
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	//Here is [slower] than included file's init()
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[FLAG_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	SetUsage(usage)
+
+	tu.InitializeTest("[FLAG]")
 }
 
 func setup() {
@@ -52,17 +51,18 @@ func TestMain(m *testing.M) {
 }
 
 //-----------------------------------------------------------------------------
-// Test
+// Check
 //-----------------------------------------------------------------------------
 func TestInitFlag(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	tu.SkipLog(t)
 
-	flag.Usage = func() {
-		fmt.Fprint(os.Stderr, fmt.Sprintf(usage, os.Args[0]))
-	}
+	//SetUsage(usage)
+	//flag.Usage = func() {
+	//	fmt.Fprint(os.Stderr, fmt.Sprintf(usage, os.Args[0]))
+	//}
 
 	//command-line
-	flag.Parse()
+	//flag.Parse()
 
 	lg.Debugf("flag.NArg():%v", flag.NArg())
 	lg.Debugf("flag.Args():%v", flag.Args())
@@ -72,7 +72,7 @@ func TestInitFlag(t *testing.T) {
 }
 
 func TestInitFlag2(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	//./argtest FILE1 -opt1 aaa -opt2 bbb
 	//fs := flag.NewFlagSet(os.Args[0], flag.ExitOnError)
@@ -90,10 +90,14 @@ func TestInitFlag2(t *testing.T) {
 }
 
 //-----------------------------------------------------------------------------
+// Test
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
 // Bench
 //-----------------------------------------------------------------------------
 func BenchmarkFlag(b *testing.B) {
-	b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	tu.SkipBLog(b)
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {

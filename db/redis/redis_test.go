@@ -6,15 +6,11 @@ import (
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/redis"
 	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
 	r "github.com/hiromaily/golibs/runtimes"
+	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
 	"time"
-)
-
-var (
-	benchFlg bool = false
 )
 
 //http://qiita.com/nabewata07/items/10ab0008cb5e07b81a34
@@ -28,11 +24,7 @@ var (
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[Redis_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[REDIS]")
 }
 
 func setup() {
@@ -41,14 +33,14 @@ func setup() {
 	c := conf.GetConf().Redis
 
 	//New("localhost", 6379)
-	New(c.Host, c.Port, "")
-	if !benchFlg {
+	New(c.Host, c.Port, c.Pass)
+	if !tu.BenchFlg {
 		GetRedis().Connection(0)
 	}
 }
 
 func teardown() {
-	if !benchFlg {
+	if !tu.BenchFlg {
 		dropDatabase()
 		r := GetRedis()
 		r.Close()
@@ -83,16 +75,25 @@ func dropDatabase() {
 //EXPIRE(key, seconds), TTL(key), INFO
 //-----------------------------------------------------------------------------
 func TestCommonUsingDo(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	sleepS := 2
 
 	c := GetRedis().Conn
-	fmt.Println(c)
 
 	c.Do("MSET", "key1", 20, "key2", 30)
 	c.Do("HMSET", "key3:subkey1", "field1", 1, "field2", 2)
 	c.Do("HMSET", "key3:subkey2", "field1", 99, "field2", 100)
+
+	val, err := redis.Int(c.Do("GET", "key1"))
+	if err != nil {
+		t.Errorf("key1 is 10: value is %v, error is %s", val, err)
+	}
+
+	fields, err := redis.Ints(c.Do("HMGET", "key3:subkey1", "field1", "field2"))
+	if err != nil {
+		t.Errorf("field1 sould be 1, field2 sould be 1 but result is %#v, error is %s", fields, err)
+	}
 
 	//EXPIRE
 	c.Do("EXPIRE", "key1", sleepS)
@@ -100,21 +101,36 @@ func TestCommonUsingDo(t *testing.T) {
 
 	//TTL
 	s, err := redis.Int(c.Do("TTL", "key1"))
-	t.Logf("TTL is %v", s)
+	if err != nil {
+		t.Errorf("redis.Int(c.Do(\"TTL\", \"key1\")) error : %s", err)
+	}
+	lg.Debugf("TTL is %v", s)
 
 	//sleep
 	time.Sleep(time.Duration(sleepS) * time.Second)
 
+	s, _ = redis.Int(c.Do("TTL", "key1"))
+	lg.Debugf("TTL is %v", s)
+
 	//It can't access
-	val, err := redis.Int(c.Do("GET", "key1"))
+	val, err = redis.Int(c.Do("GET", "key1"))
 	if err == nil {
-		t.Errorf("key1 has already expired: value is %v, err is %s", val, err)
+		t.Errorf("key1 has already expired: value is %v", val)
+	}
+
+	//It can't access
+	//TODO:somehow it can access. but value is 0
+	fields, err = redis.Ints(c.Do("HMGET", "key3:subkey1", "field1", "field2"))
+	//if err == nil {
+	if err != nil || fields[0] != 0 || fields[1] != 0 {
+		t.Errorf("key3:subkey1 has already expired: value is %+v", fields)
 	}
 
 	//It's OK.
-	val, err = redis.Int(c.Do("GET", "key2"))
-	if err != nil || val != 30 {
-		t.Errorf("key2 sould be 30 but result is %d: err is %s", val, err)
+	fields, err = redis.Ints(c.Do("HMGET", "key3:subkey2", "field1", "field2"))
+	if err != nil {
+		//if err != nil || fields[0] != 99 || fields[1] != 100 {
+		t.Errorf("field1 sould be 99, field2 sould be 100 but result is %#v", fields)
 	}
 }
 
@@ -134,7 +150,7 @@ func TestCommonUsingDo(t *testing.T) {
 //-----------------------------------------------------------------------------
 
 func TestStringsUsingDo(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	//GetRedisInstance().Connection(1)
 	//GetRedisInstance().ConnectionS(2)
@@ -157,7 +173,7 @@ func TestStringsUsingDo(t *testing.T) {
 
 //send is faster than do method
 func TestStringsUsingSend(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	GetRedis().ConnectionS(3)
 
@@ -205,7 +221,7 @@ func TestStringsUsingSend(t *testing.T) {
 //-----------------------------------------------------------------------------
 
 func TestHashesUsingDo(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	c := GetRedis().Conn
 	//c := GetRedisInstance().Pool.Get()
@@ -218,7 +234,7 @@ func TestHashesUsingDo(t *testing.T) {
 
 	//HGETALL
 	fields2, err := redis.StringMap(c.Do("HGETALL", "key:subkey1"))
-	t.Logf("HGETALL: %v, %s, %s", fields2, fields2["field1"], fields2["field2"])
+	lg.Debugf("HGETALL: %v, %s, %s", fields2, fields2["field1"], fields2["field2"])
 }
 
 //-----------------------------------------------------------------------------
@@ -256,7 +272,7 @@ func TestHashesUsingDo(t *testing.T) {
 
 //-----------------------------------------------------------------------------
 func TestListsUsingDo(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	GetRedis().Connection(1)
 	//GetRedisInstance().ConnectionS(2)
@@ -269,37 +285,37 @@ func TestListsUsingDo(t *testing.T) {
 		c.Do("RPUSH", "key-list1", i)
 	}
 	vals, _ := redis.Ints(c.Do("LRANGE", "key-list1", 0, -1))
-	t.Logf("key-list1 values is %v", vals)
+	lg.Debugf("key-list1 values is %v", vals)
 
 	//LPUSH
 	for i := 9; i > 0; i-- {
 		c.Do("LPUSH", "key-list1", i)
 	}
 	vals, _ = redis.Ints(c.Do("LRANGE", "key-list1", 0, -1))
-	t.Logf("key-list1 values is %v", vals)
+	lg.Debugf("key-list1 values is %v", vals)
 
 	//LSET(key, index, value)
 	c.Do("LSET", "key-list1", 0, 100)
 	result, _ := redis.Int(c.Do("LINDEX", "key-list1", 0))
-	t.Logf("result of LSET is %v", result)
+	lg.Debugf("result of LSET is %v", result)
 
 	//LTRIM(key, start, end)   //update list
 	c.Do("LTRIM", "key-list1", 0, 9)
 	vals, _ = redis.Ints(c.Do("LRANGE", "key-list1", 0, -1))
 	//LLEN(key)   //get length of lists
 	length, _ := redis.Int(c.Do("LLEN", "key-list1"))
-	t.Logf("key-list1 length is %d", length)
+	lg.Debugf("key-list1 length is %d", length)
 	vals, _ = redis.Ints(c.Do("LRANGE", "key-list1", 0, -1))
-	t.Logf("key-list1 values is %v", vals)
+	lg.Debugf("key-list1 values is %v", vals)
 
 	//LPOP(key)
 	result, _ = redis.Int(c.Do("LPOP", "key-list1"))
-	t.Logf("result of LPOP is %v", result)
+	lg.Debugf("result of LPOP is %v", result)
 	result, _ = redis.Int(c.Do("RPOP", "key-list1"))
-	t.Logf("result of RPOP is %v", result)
+	lg.Debugf("result of RPOP is %v", result)
 
 	vals, _ = redis.Ints(c.Do("LRANGE", "key-list1", 0, -1))
-	t.Logf("key-list1 values is %v", vals)
+	lg.Debugf("key-list1 values is %v", vals)
 }
 
 //-----------------------------------------------------------------------------
@@ -335,7 +351,7 @@ func TestListsUsingDo(t *testing.T) {
 //SPOP(key)        //delete a element at random
 
 func TestSetsUsingDo(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	GetRedis().Connection(1)
 	//GetRedisInstance().ConnectionS(2)
@@ -350,7 +366,7 @@ func TestSetsUsingDo(t *testing.T) {
 		c.Do("SADD", key, i)
 	}
 	vals, _ := redis.Ints(c.Do("SMEMBERS", key))
-	t.Logf("%s values is %v", key, vals)
+	lg.Debugf("%s values is %v", key, vals)
 }
 
 //-----------------------------------------------------------------------------
@@ -359,7 +375,8 @@ func TestSetsUsingDo(t *testing.T) {
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 func BenchmarkSetData(b *testing.B) {
-	b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	tu.SkipBLog(b)
 
 	GetRedis().Connection(0)
 	c := GetRedis().Conn

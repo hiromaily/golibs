@@ -3,8 +3,8 @@ package goroutine_test
 import (
 	"fmt"
 	. "github.com/hiromaily/golibs/goroutine"
-	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
+	//lg "github.com/hiromaily/golibs/log"
+	tu "github.com/hiromaily/golibs/testutil"
 	u "github.com/hiromaily/golibs/utils"
 	"os"
 	"sync"
@@ -16,20 +16,12 @@ type User struct {
 	Name string
 }
 
-var (
-	benchFlg bool = false
-)
-
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[GOROUTINE_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[GOROUTINE]")
 }
 
 func setup() {
@@ -57,7 +49,6 @@ func something(idx int) {
 
 func something2(idx int, data interface{}) {
 	fmt.Println(idx)
-	//fmt.Printf("%+v\n", data)
 
 	//convert interface{} to map[string]int
 	result := u.ItoMsi(data)
@@ -68,9 +59,8 @@ func something2(idx int, data interface{}) {
 // Test
 //-----------------------------------------------------------------------------
 func TestSemaphore1(t *testing.T) {
-	//t.Skip("skipping TestSemaphore1")
-	//*
-	//var wg sync.WaitGroup
+	//tu.SkipLog(t)
+
 	wg := &sync.WaitGroup{}
 
 	concurrencyCnt := 10
@@ -79,9 +69,8 @@ func TestSemaphore1(t *testing.T) {
 }
 
 func TestSemaphore2(t *testing.T) {
-	//t.Skip("skipping TestSemaphore2")
-	//*
-	//var wg sync.WaitGroup
+	//tu.SkipLog(t)
+
 	wg := &sync.WaitGroup{}
 
 	concurrencyCnt := 10

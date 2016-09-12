@@ -1,35 +1,29 @@
 package cassandra_test
 
 import (
-	"fmt"
 	"github.com/gocql/gocql"
 	. "github.com/hiromaily/golibs/db/cassandra"
 	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
-	r "github.com/hiromaily/golibs/runtimes"
+	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
 	"time"
 )
 
-var benchFlg bool = false
+var keyspace = "hiromaily"
 
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[Cassandra_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[Cassandra]")
 }
 
 func setup() {
-	keyspace := "hiromaily"
-	hosts := []string{"localhost"}
-	New(hosts, keyspace)
+	//create keyspace
+
+	connection()
 }
 
 func teardown() {
@@ -44,6 +38,23 @@ func TestMain(m *testing.M) {
 	teardown()
 
 	os.Exit(code)
+}
+
+//-----------------------------------------------------------------------------
+// functions
+//-----------------------------------------------------------------------------
+func createKeySpace() {
+
+}
+
+func connection() {
+	//keyspace := "hiromaily"
+	hosts := []string{"localhost"}
+	port := 9042
+	err := New(hosts, port, keyspace)
+	if err != nil {
+		lg.Errorf("New() error: %s", err)
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -84,7 +95,7 @@ func TestSelectOne(t *testing.T) {
 	if err != nil {
 		t.Errorf("TestSelectOne error: %s", err)
 	} else {
-		t.Logf("%v, %s, %s", id, firstName, lastName)
+		lg.Debugf("%v, %s, %s", id, firstName, lastName)
 	}
 }
 
@@ -100,7 +111,7 @@ func TestSelectAll(t *testing.T) {
 	iter := db.Session.Query(sql).Iter()
 	//return value of Scan is bool
 	for iter.Scan(&id, &firstName, &lastName) {
-		t.Logf("%v, %s, %s", id, firstName, lastName)
+		lg.Debugf("%v, %s, %s", id, firstName, lastName)
 	}
 
 	//Close
@@ -134,7 +145,7 @@ func TestUpdate(t *testing.T) {
 	if err != nil {
 		t.Errorf("check is invalid after updated data,  error: %s", err)
 	} else {
-		t.Logf("%s, %s, %s", email, firstName, lastName)
+		lg.Debugf("%s, %s, %s", email, firstName, lastName)
 	}
 
 }
@@ -143,7 +154,7 @@ func TestUpdate(t *testing.T) {
 // Delete Row
 //-----------------------------------------------------------------------------
 func TestDeleteRow(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 	db := GetCass()
 	//DELETE
 	sql := `DELETE FROM t_users WHERE id=?`

@@ -31,7 +31,6 @@ type LoginRequest struct {
 }
 
 var (
-	benchFlg bool = false
 	//test data
 	dInt   int           = 10
 	dInt64 int64         = 99999

@@ -2,25 +2,18 @@ package hash_test
 
 import (
 	. "github.com/hiromaily/golibs/cipher/hash"
-	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
+	//lg "github.com/hiromaily/golibs/log"
+	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
 )
-
-var benchFlg bool = false
 
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	//Here is [slower] than included file's init()
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[HASH_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[HASH]")
 }
 
 func setup() {
@@ -79,7 +72,7 @@ func TestGetMD5Plus(t *testing.T) {
 }
 
 func TestGetScrypt(t *testing.T) {
-	//t.Skip("skipping TestGetScrypt")
+	//tu.SkipLog(t)
 
 	testData := "password"
 	result := GetScrypt(testData)

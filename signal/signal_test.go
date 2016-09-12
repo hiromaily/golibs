@@ -1,10 +1,12 @@
-package utils_test
+package signal_test
 
 import (
-	lg "github.com/hiromaily/golibs/log"
+	. "github.com/hiromaily/golibs/signal"
+	//lg "github.com/hiromaily/golibs/log"
+	"fmt"
 	tu "github.com/hiromaily/golibs/testutil"
-	. "github.com/hiromaily/golibs/utils"
 	"os"
+	"sync"
 	"testing"
 )
 
@@ -13,7 +15,7 @@ import (
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	tu.InitializeTest("[Utils]")
+	tu.InitializeTest("[Signal]")
 }
 
 func setup() {
@@ -39,37 +41,28 @@ func TestMain(m *testing.M) {
 //-----------------------------------------------------------------------------
 // Test
 //-----------------------------------------------------------------------------
-func TestCheckInterface(t *testing.T) {
-	val1 := 10
-	lg.Debug(CheckInterface(val1))
+func TestSignal(t *testing.T) {
+	wg := &sync.WaitGroup{}
 
-	val2 := "aaaaa"
-	lg.Debug(CheckInterface(val2))
+	go StartSignal()
+	fmt.Println("Input Ctrl + c")
 
-	//if err != nil {
-	//}
-}
+	wg.Add(1)
+	go func() {
+		count := 0
+		for {
+			fmt.Println(count)
+			count++
+		}
+	}()
 
-func TestCheckInterfaceByIf(t *testing.T) {
-	val1 := 10
-	lg.Debug(CheckInterface(val1))
-
-	val2 := "aaaaa"
-	lg.Debug(CheckInterface(val2))
-}
-
-func TestSearchString(t *testing.T) {
-	data := []string{"aaaa", "bbbb", "cccc", "dddd", "eeee"}
-	ret := SearchString(data, "cccc")
-	if ret != 2 {
-		t.Errorf("SearchString is wrong: %d", ret)
-	}
+	wg.Wait()
 }
 
 //-----------------------------------------------------------------------------
 // Benchmark
 //-----------------------------------------------------------------------------
-func BenchmarkUtils(b *testing.B) {
+func BenchmarkSignal(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		//

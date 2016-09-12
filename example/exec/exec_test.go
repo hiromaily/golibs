@@ -2,6 +2,7 @@ package exec_test
 
 import (
 	. "github.com/hiromaily/golibs/example/exec"
+	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
@@ -35,7 +36,7 @@ func TestMain(m *testing.M) {
 // Test
 //-----------------------------------------------------------------------------
 func TestExec(t *testing.T) {
-	tu.SkipLog(t)
+	//tu.SkipLog(t)
 
 	err := Exec("ls", "-al")
 	if err != nil {
@@ -49,35 +50,37 @@ func TestExec(t *testing.T) {
 }
 
 func TestGetExec(t *testing.T) {
-	tu.SkipLog(t)
+	//tu.SkipLog(t)
 
 	result, err := GetExec("ls", "-al")
 	if err != nil {
 		t.Errorf("TestExec[01] error: %s", err)
 	}
-	t.Logf("GetExec ls -al: %v", result)
+	lg.Debugf("GetExec ls -al: %v", result)
 
 	result, err = GetExec("ls", "-a -l")
 	if err != nil {
 		t.Errorf("TestExec[02] error: %s", err)
 	}
-	t.Logf("GetExec ls -a -l: %v", result)
+	lg.Debugf("GetExec ls -a -l: %v", result)
 }
 
 func TestCurl(t *testing.T) {
+	//TODO:work in progress
 	tu.SkipLog(t)
 
-	option := `'http://www.google.co.jp' -H 'Cookie: xxxx=uuuu"`
+	//option := `'http://www.google.co.jp' -H 'Cookie: xxxx=uuuu'`
+	option := `'http://www.yahoo.co.jp/'`
 	result, err := GetExec("curl", option)
 	if err != nil {
 		t.Errorf("TestCurl: error: %s", err)
 	}
-	t.Logf("TestCurl xxxx: %v", result)
+	lg.Debugf("TestCurl xxxx: %v", result)
 }
 
 func TestExecSh(t *testing.T) {
 	goPath := os.Getenv("GOPATH")
-	result, err := GetExec(goPath+"/src/github.com/hiromaily/golibs/exec/sh/test.sh", "")
+	result, err := GetExec(goPath+"/src/github.com/hiromaily/golibs/example/exec/sh/test.sh", "")
 	if err != nil {
 		t.Errorf("TestExecSh: error: %s", err)
 	}
@@ -86,7 +89,7 @@ func TestExecSh(t *testing.T) {
 
 func TestAsyncExecSh(t *testing.T) {
 	goPath := os.Getenv("GOPATH")
-	err := AsyncExec(goPath+"/src/github.com/hiromaily/golibs/exec/sh/test.sh", "")
+	err := AsyncExec(goPath+"/src/github.com/hiromaily/golibs/example/exec/sh/test.sh", "")
 	if err != nil {
 		t.Errorf("TestAsyncExecSh: error: %s", err)
 	}

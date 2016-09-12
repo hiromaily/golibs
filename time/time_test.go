@@ -9,10 +9,6 @@ import (
 	"time"
 )
 
-var (
-	benchFlg bool = false
-)
-
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
@@ -41,8 +37,6 @@ func TestMain(m *testing.M) {
 // Check
 //-----------------------------------------------------------------------------
 func TestBasic(t *testing.T) {
-	//t.Skip("skipping TestBasic")
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 	tu.SkipLog(t)
 
 	ti := time.Now()

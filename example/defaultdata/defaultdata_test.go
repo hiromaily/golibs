@@ -80,7 +80,7 @@ func TestDefault(t *testing.T) {
 	strData := []string{"a", "b", "c", "d", "e"}
 	ChangeValOnSlice(strData)
 	//t.Logf("ChangeValOnSlice: %v", strData)
-	if strData[0] != "a" {
+	if strData[0] == "a" {
 		t.Errorf("ChangeValOnSlice value: %v", strData)
 	}
 	//changed!
@@ -88,7 +88,7 @@ func TestDefault(t *testing.T) {
 	mapInt := map[string]int{"apple": 100, "lemon": 200, "banana": 300}
 	ChangeValOnMap(mapInt)
 	//t.Logf("ChangeValOnMap: %v", mapInt)
-	if mapInt["apple"] != 100 {
+	if mapInt["apple"] == 100 {
 		t.Errorf("ChangeValOnMap value: %v", mapInt)
 	}
 	//changed!
@@ -102,7 +102,7 @@ func TestDefault(t *testing.T) {
 
 	//set address as pointer
 	ChangeValOnPointer(&strData2)
-	if strData2 != "before" {
+	if strData2 == "before" {
 		t.Errorf("ChangeValOnPointer value: %v", strData2)
 	}
 	//changed!

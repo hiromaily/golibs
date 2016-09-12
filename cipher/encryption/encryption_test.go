@@ -2,25 +2,18 @@ package encryption_test
 
 import (
 	. "github.com/hiromaily/golibs/cipher/encryption"
-	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
+	//lg "github.com/hiromaily/golibs/log"
+	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
 )
-
-var benchFlg bool = false
 
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	//Here is [slower] than included file's init()
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[ENCRYPTION_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[Encryption]")
 }
 
 func setup() {
@@ -43,7 +36,7 @@ func TestMain(m *testing.M) {
 // Test
 //-----------------------------------------------------------------------------
 func TestEncryption(t *testing.T) {
-	//t.Skip("skipping TestExec")
+	//tu.SkipLog(t)
 
 	size := 16
 	key := "8#75F%R+&a5ZvM_<"
@@ -54,37 +47,13 @@ func TestEncryption(t *testing.T) {
 	NewCrypt(size, key, iv)
 	crypt := GetCrypt()
 
-	/*
-		tmp := crypt.Encrypt([]byte(str))
-		//when assert byte type to string, be careful.
-		result := string(tmp[:])
-		if result != "xxxx" {
-			//result is not readable
-			t.Errorf("TestEncryption[01] result: %s", result)
-		}
-	*/
-
-	result2 := crypt.EncryptBase64(str)
-	if result2 != "GY+hCmXh+xJekHSnpuy6fe7s7adFBqWqfgeuMnBv9GQ=" {
-		t.Errorf("TestEncryption[02] result: %s", result2)
+	result1 := crypt.EncryptBase64(str)
+	if result1 != "GY+hCmXh+xJekHSnpuy6fe7s7adFBqWqfgeuMnBv9GQ=" {
+		t.Errorf("[01]EncryptBase64 result: %s", result1)
 	}
 
-	result3, _ := crypt.DecryptBase64(result2)
-	if result3 != str {
-		t.Errorf("TestEncryption[03] result: %s", result3)
+	result2, _ := crypt.DecryptBase64(result1)
+	if result2 != str {
+		t.Errorf("[02]DecryptBase64 result: %s", result2)
 	}
-
-	/*
-		key := "bardzotrudnykluczszyfrujący"
-		aes, err := simpleaes.New(16, key)
-		if err != nil {
-			panic(err)
-		}
-		phrase := "czy nie mają koty na nietoperze ochoty?"
-		buf := aes.Encrypt([]byte(phrase))
-		fmt.Println(buf)
-		buf = aes.Decrypt(buf)
-		fmt.Println(string(buf))
-	*/
-
 }

@@ -145,6 +145,8 @@ func New(level, fileLevel uint8, logFmt int, prefix, fileName string) *Object {
 
 	//Log Format
 	if logFmt == 0 {
+		//date and file is not shown.
+	} else if logFmt == 99 {
 		//logFmt = log.Ltime                               //2
 		logFmt = log.Ltime | log.Lshortfile //18
 		//logFmt = log.LstdFlags | log.Lshortfile          //19

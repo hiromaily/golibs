@@ -6,7 +6,7 @@ import (
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/mongodb"
 	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
+	tu "github.com/hiromaily/golibs/testutil"
 	//r "github.com/hiromaily/golibs/runtimes"
 	"gopkg.in/mgo.v2/bson"
 	"os"
@@ -64,6 +64,8 @@ var (
 	testColUser    string = "user"
 	testColCompany string = "company"
 	testColTeacher string = "teacher"
+
+	savedUserID string
 )
 
 //-----------------------------------------------------------------------------
@@ -71,13 +73,7 @@ var (
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	flag.Parse()
-
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[MongoDB_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[MongoDB]")
 }
 
 func setup() {
@@ -146,8 +142,7 @@ func CreateCompanyData() error {
 // Preparation
 //-----------------------------------------------------------------------------
 func TestCreateDatabase(t *testing.T) {
-	//fmt.Sprintf("skipping %s", r.CurrentFunc(1))
-	//t.Skip("skipping TestCreateDatabase")
+	//tu.SkipLog(t)
 
 	mg := GetMongo()
 
@@ -157,7 +152,7 @@ func TestCreateDatabase(t *testing.T) {
 
 /*
 func TestCreateCollection(t *testing.T) {
-	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	tu.SkipLog(t)
 	mg := GetMongo()
 
 	err := mg.CreateCol(testColUser)
@@ -170,7 +165,8 @@ func TestCreateCollection(t *testing.T) {
 
 //set expire index
 func TestSetExpireOnCollection(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
+
 	mg := GetMongo()
 	mg.GetCol(testColUser)
 
@@ -190,7 +186,7 @@ func TestSetExpireOnCollection(t *testing.T) {
 //-----------------------------------------------------------------------------
 // insert one record
 func TestInsertOne(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -208,16 +204,16 @@ func TestInsertOne(t *testing.T) {
 
 	// check length
 	cnt, err := mg.C.Count()
-	t.Logf("count:%d, err = %s", cnt, err)
+	lg.Debugf("count:%d, err = %s", cnt, err)
 
 	//TODO: Local Time
 	//time:2016-07-14 16:57:39.550187911 +0900 JST
-	t.Logf("time:%v", user.CreatedAt.Local())
+	lg.Debugf("time:%v", user.CreatedAt.Local())
 }
 
 // insert multiple record at once
 func TestBulkInsert(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -253,14 +249,14 @@ func TestBulkInsert(t *testing.T) {
 
 // insert from json file
 func TestInsertJsonFile(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	//json
 	if *jsonFile == "" {
 		t.Fatal("json file is required.")
 	}
 
-	fileData, err := LoadJsonFile(*jsonFile)
+	fileData, err := LoadJSONFile(*jsonFile)
 	if err != nil {
 		t.Fatal("Loading json file was failed.")
 	}
@@ -287,7 +283,7 @@ func TestInsertJsonFile(t *testing.T) {
 // READ
 //-----------------------------------------------------------------------------
 func TestGetOneDataByColumn(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -304,19 +300,23 @@ func TestGetOneDataByColumn(t *testing.T) {
 		//error:not found
 	}
 
-	t.Logf("user_id is %v", user.ID)
-	t.Logf("result user by find: %v", *user)
+	lg.Debugf("user_id is %v", user.ID)
+	lg.Debugf("result user by find: %v", *user)
+
+	//save
+	savedUserID = GetObjectID(user.ID)
+	lg.Debugf("savedUserID is %s", savedUserID)
 }
 
 func TestGetOneDataById(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
 
 	//This value is changeable as processing
-	userId := "5785f375340e7601939628b5"
-
+	//userId := "5785f375340e7601939628b5"
+	userId := savedUserID
 	user := new(User)
 
 	//find
@@ -327,12 +327,12 @@ func TestGetOneDataById(t *testing.T) {
 		t.Errorf("mg.C.Find(bson.M{\"_id\": bson.ObjectIdHex(userId)}).One(user) / error:%s", err)
 	}
 
-	t.Logf("user_id is %v", user.ID)
-	t.Logf("result user by find: %v", *user)
+	lg.Debugf("user_id is %v", user.ID)
+	lg.Debugf("result user by find: %v", *user)
 }
 
 func TestGetAllDataByColumn(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -348,8 +348,8 @@ func TestGetAllDataByColumn(t *testing.T) {
 	if len(users) == 0 {
 		t.Error("mg.C.Find(colQuerier).All(&users) / no data")
 	}
-	t.Logf("result users by find.all: length is %d,\n %+v", len(users), users)
-	t.Log("- - - - - - - - - - - - - - - - - -")
+	lg.Debugf("result users by find.all: length is %d,\n %+v", len(users), users)
+	lg.Debug("- - - - - - - - - - - - - - - - - -")
 
 	//#2 target is nested element
 	users = nil
@@ -361,8 +361,8 @@ func TestGetAllDataByColumn(t *testing.T) {
 	if len(users) == 0 {
 		t.Error("mg.C.Find(colQuerier).All(&users) / no data")
 	}
-	t.Logf("result users by find.all: length is %d,\n %+v", len(users), users)
-	t.Log("- - - - - - - - - - - - - - - - - -")
+	lg.Debugf("result users by find.all: length is %d,\n %+v", len(users), users)
+	lg.Debug("- - - - - - - - - - - - - - - - - -")
 
 	//#3 target is nested and array element
 	users = nil
@@ -378,11 +378,11 @@ func TestGetAllDataByColumn(t *testing.T) {
 	if len(users) == 0 {
 		t.Error("mg.C.Find(colQuerier).All(&users) / no data")
 	}
-	t.Logf("result users by find.all: length is %d,\n %+v", len(users), users)
+	lg.Debugf("result users by find.all: length is %d,\n %+v", len(users), users)
 }
 
 func TestGetAllData(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -404,15 +404,15 @@ func TestGetAllData(t *testing.T) {
 		t.Errorf("mg.C.Find(nil).All(&v) / error:%s", err)
 		//result argument must be a slice address
 	}
-	t.Logf("result unclear map data by find.all: %+v", v)
-	t.Logf("result url: %s", v[0]["url"])
+	lg.Debugf("result unclear map data by find.all: %+v", v)
+	lg.Debugf("result url: %s", v[0]["url"])
 }
 
 //-----------------------------------------------------------------------------
 // UPDATE
 //-----------------------------------------------------------------------------
 func TestUpdateOneDataByColumn(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 	//when condition is by column, you sould use UpdateAll()
 
 	mg := GetMongo()
@@ -431,11 +431,11 @@ func TestUpdateOneDataByColumn(t *testing.T) {
 	// check
 	user := new(User)
 	mg.FindOne(bson.M{"name": searchName}, user)
-	t.Logf("result user by find: %v", *user)
+	lg.Debugf("result user by find: %v", *user)
 }
 
 func TestUpdateAllDataByColumn(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -451,16 +451,20 @@ func TestUpdateAllDataByColumn(t *testing.T) {
 	// check
 	var users []User
 	mg.C.Find(bson.M{"age": 26}).All(&users)
-	t.Logf("result user by find: %v", users)
+	lg.Debugf("result user by find: %v", users)
 }
 
 func TestUpdateOneDataById(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
 
-	userId := "57871a3e340e7601939628e1"
+	//TODO:this is must be gotten automatically
+	//get top record
+
+	//userId := "57871a3e340e7601939628e1"
+	userId := savedUserID
 
 	idQueryier := bson.ObjectIdHex(userId)
 
@@ -479,8 +483,8 @@ func TestUpdateOneDataById(t *testing.T) {
 	// check
 	user := new(User)
 	mg.C.Find(bson.M{"_id": bson.ObjectIdHex(userId)}).One(user)
-	t.Logf("result user by find id: %v", *user)
-	t.Log("- - - - - - - - - - - - - - - - - -")
+	lg.Debugf("result user by find id: %v", *user)
+	lg.Debug("- - - - - - - - - - - - - - - - - -")
 
 	// #2. Update (nested element)
 	updateData = bson.M{"$set": bson.M{"address.country": "UK", "createdAt": time.Now()}}
@@ -491,8 +495,8 @@ func TestUpdateOneDataById(t *testing.T) {
 	// check
 	user2 := new(User)
 	mg.C.Find(bson.M{"_id": bson.ObjectIdHex(userId)}).One(user2)
-	t.Logf("result user by find id: %v", *user2)
-	t.Log("- - - - - - - - - - - - - - - - - -")
+	lg.Debugf("result user by find id: %v", *user2)
+	lg.Debug("- - - - - - - - - - - - - - - - - -")
 
 	// #3. Update (update by adding element on array)
 	updateData = bson.M{"$push": bson.M{"works": bson.M{"occupation": "banker", "company_id": 9}}}
@@ -502,15 +506,15 @@ func TestUpdateOneDataById(t *testing.T) {
 	}
 	// check
 	mg.C.Find(bson.M{"_id": bson.ObjectIdHex(userId)}).One(user2)
-	t.Logf("result user by find id: %v", *user2)
-	t.Log("- - - - - - - - - - - - - - - - - -")
+	lg.Debugf("result user by find id: %v", *user2)
+	lg.Debug("- - - - - - - - - - - - - - - - - -")
 }
 
 //-----------------------------------------------------------------------------
 // BULK UPDATE
 //-----------------------------------------------------------------------------
 func TestBulkUpdateByColumn(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -536,7 +540,7 @@ func TestBulkUpdateByColumn(t *testing.T) {
 // UPSERT
 //-----------------------------------------------------------------------------
 func TestUpsertOneData(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
@@ -559,34 +563,34 @@ func TestUpsertOneData(t *testing.T) {
 // DELETE
 //-----------------------------------------------------------------------------
 func TestDeleteOneData(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
 
 	//Delete
 	//Even if there are multiple result, one record is deleted.
-	err := mg.C.Remove(bson.M{"name": "Harry"})
+	err := mg.C.Remove(bson.M{"name": "Ken"})
 	if err != nil {
 		t.Errorf("TestDeleteData:Remove / Error: %s", err)
 	}
 }
 
 func TestDeleteMultipleData(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	mg := GetMongo()
 	mg.GetCol(testColUser)
 
 	//Delete Multiple
-	_, err := mg.C.RemoveAll(bson.M{"name": "Harry"})
+	_, err := mg.C.RemoveAll(bson.M{"name": "Ken"})
 	if err != nil {
 		t.Errorf("TestDeleteMultipleData:RemoveAll / Error: %s", err)
 	}
 }
 
 func TestDeleteAllData(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	mg := GetMongo()
 
@@ -609,7 +613,7 @@ func TestDeleteAllData(t *testing.T) {
 // Cleanup
 //-----------------------------------------------------------------------------
 func TestDropCollection(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	mg := GetMongo()
 

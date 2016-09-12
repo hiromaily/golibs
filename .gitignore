@@ -3,4 +3,5 @@
 *.out
 *.log
 *.test
-exec/sh/*.sh
+example/exec/sh/*.sh
+boltdb

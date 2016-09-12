@@ -3,8 +3,8 @@ package config_test
 import (
 	"flag"
 	. "github.com/hiromaily/golibs/config"
-	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
+	//lg "github.com/hiromaily/golibs/log"
+	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
 )
@@ -15,8 +15,7 @@ type User struct {
 }
 
 var (
-	confFile      = flag.String("fp", "", "Config File Path")
-	benchFlg bool = false
+	confFile = flag.String("fp", "", "Config File Path")
 )
 
 //-----------------------------------------------------------------------------
@@ -24,19 +23,13 @@ var (
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	//Here is [slower] than included file's init()
-	flag.Parse()
+	tu.InitializeTest("[Config]")
 
 	if *confFile == "" {
 		os.Exit(1)
 		return
 	}
 
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[CONFIG_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
 }
 
 func setup() {
@@ -59,8 +52,7 @@ func TestMain(m *testing.M) {
 // Test
 //-----------------------------------------------------------------------------
 func TestConfig(t *testing.T) {
-	//t.Skip("skipping TestEncodeStruct")
-	//*
+	//tu.SkipLog(t)
 
 	New(*confFile)
 	conf := GetConf()
@@ -68,7 +60,7 @@ func TestConfig(t *testing.T) {
 	t.Logf("conf.Environment: %v", conf.Environment)
 	t.Logf("conf.Aws.AccessKey: %v", conf.Aws.AccessKey)
 	t.Logf("conf.Mail.Address: %v", conf.Mail.Address)
-	t.Logf("conf.Mail.Smtp.Server: %v", conf.Mail.Smtp.Server)
+	t.Logf("conf.Mail.Smtp.Server: %v", conf.Mail.SMTP.Server)
 	t.Logf("conf.Mail.Content[0].Subject: %v", conf.Mail.Content[0].Subject)
 	t.Logf("conf.MySQL.Host: %v", conf.MySQL.Host)
 
@@ -76,7 +68,6 @@ func TestConfig(t *testing.T) {
 }
 
 func TestConfig2(t *testing.T) {
-	//${GOPATH}/src/github.com/hiromaily/golibs/settings.toml
 	tomlPath := os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/settings.default.toml"
 
 	SetTOMLPath(tomlPath)

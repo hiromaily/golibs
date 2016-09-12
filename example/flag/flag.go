@@ -5,26 +5,18 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strings"
 )
-
-var (
-	intVal = flag.Int("iv", 0, "this is just check val for int")
-	strVal = flag.String("sv", "", "this is just check val for string")
-)
-
-var usage = `Usage: %s [options...] <url>
-
-Options:
-  -iv  Number of something.
-  -sv  String of something
-       bra bra bra.
-`
 
 // SetUsage is to set usage
 func SetUsage(msg string) {
+	//msg
+	///var/folders/0b/v5tdhbhj58v9x_r2nxtfd_w00000gn/T/go-build296316815/command-line-arguments/_test/flag.test
+	strs := strings.Split(os.Args[0], "/")
+
 	// -h option
 	flag.Usage = func() {
-		fmt.Fprint(os.Stderr, fmt.Sprintf(msg, os.Args[0]))
+		fmt.Fprint(os.Stderr, fmt.Sprintf(msg, strs[len(strs)-1]))
 	}
 }
 

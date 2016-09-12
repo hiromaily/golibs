@@ -57,3 +57,9 @@ func SkipLog(t *testing.T) {
 	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
 	t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(2)))
 }
+
+// SkipBLog is to skip test with func name
+func SkipBLog(b *testing.B) {
+	//b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(2)))
+}

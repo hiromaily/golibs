@@ -15,15 +15,21 @@ type CassInfo struct {
 var cassInfo CassInfo
 
 // New is to create Cassandora instance
-func New(hosts []string, keyspace string) {
+func New(hosts []string, port int, keyspace string) (err error) {
 	// connect to the cluster
 	//cluster := gocql.NewCluster("192.168.1.1", "192.168.1.2", "192.168.1.3")
 	cluster := gocql.NewCluster(hosts...)
 	cluster.Keyspace = keyspace
-	cluster.Port = 9042
+	if port == 0 {
+		cluster.Port = 9042
+	} else {
+		cluster.Port = port
+	}
 	cluster.ProtoVersion = 4
 	cluster.Consistency = gocql.Quorum
-	cassInfo.Session, _ = cluster.CreateSession()
+
+	cassInfo.Session, err = cluster.CreateSession()
+	return err
 }
 
 // GetCass is to get Cassandora instance singleton architecture

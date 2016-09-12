@@ -10,10 +10,6 @@ import (
 	"testing"
 )
 
-var (
-	benchFlg bool = false
-)
-
 var htmlData string = `
 <!DOCTYPE html>
 <html>

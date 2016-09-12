@@ -207,9 +207,11 @@ func ConvertDateTime() {
 	//user.CreatedAt.Local()
 }
 
-//-----------------------------------------------------------------------------
-// Load Json
-//-----------------------------------------------------------------------------
+// GetObjectID is to get ObjectId as string
+func GetObjectID(ID bson.ObjectId) string {
+	//bson.ObjectId
+	return ID.Hex()
+}
 
 // LoadJSONFile is to load JSON file
 func LoadJSONFile(filePath string) ([]byte, error) {

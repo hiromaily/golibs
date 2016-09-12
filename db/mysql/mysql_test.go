@@ -6,8 +6,8 @@ import (
 	. "github.com/hiromaily/golibs/db/mysql"
 	"github.com/hiromaily/golibs/db/redis"
 	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
 	r "github.com/hiromaily/golibs/runtimes"
+	tu "github.com/hiromaily/golibs/testutil"
 	u "github.com/hiromaily/golibs/utils"
 	"os"
 	"testing"
@@ -23,9 +23,8 @@ type MySQL2 struct {
 }
 
 var (
-	benchFlg bool = false
-	db       MySQL
-	db2      MySQL2
+	db  MySQL
+	db2 MySQL2
 	//cahce
 	cacheData map[string][]map[string]interface{}
 )
@@ -35,15 +34,11 @@ var (
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[MySQL_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[MySQL]")
 }
 
 func setup() {
-	if !benchFlg {
+	if !tu.BenchFlg {
 		//New("localhost", "hiromaily", "root", "", 3306)
 		NewMySQL()
 
@@ -54,7 +49,7 @@ func setup() {
 }
 
 func teardown() {
-	if !benchFlg {
+	if !tu.BenchFlg {
 		GetMySQLInstance().Db.Close()
 	}
 }
@@ -185,7 +180,7 @@ func (ms *MySQL) getSimpleSQL2(id int) ([]map[string]interface{}, error) {
 // Test
 //-----------------------------------------------------------------------------
 func TestGetUserList(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	data, err := GetMySQLInstance().getUserList()
 	if err != nil {
@@ -195,12 +190,12 @@ func TestGetUserList(t *testing.T) {
 	if u.Itos(data[0]["first_name"]) != "harry" {
 		t.Errorf(" GetMySQLInstance().getUserList() result: %#v", data[0])
 	} else {
-		t.Logf("result: %+v", data[0])
+		lg.Debugf("result: %+v", data[0])
 	}
 }
 
 func TestSelect(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	sql := "SELECT user_id, first_name, last_name, create_datetime FROM t_users WHERE delete_flg=?"
 	data, _, err := GetMySQLInstance().Db.Select(sql, 0)
@@ -211,12 +206,12 @@ func TestSelect(t *testing.T) {
 	if u.Itos(data[0]["first_name"]) != "harry" {
 		t.Errorf("GetMySQLInstance().Db.Select(sql, 0) result: %#v", data[0])
 	} else {
-		t.Logf("result: %+v", data[0])
+		lg.Debugf("result: %+v", data[0])
 	}
 }
 
 func TestSelectInsScanOne(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	type Person struct {
 		UserId    int    `db:"id"`
@@ -237,11 +232,11 @@ func TestSelectInsScanOne(t *testing.T) {
 	}
 
 	for db.ScanOne(&person) {
-		//t.Log(person)
-		//t.Logf("person.UserId: %d", person.UserId)
-		//t.Logf("person.FirstName: %s", person.FirstName)
-		//t.Logf("person.LastName: %s", person.LastName)
-		//t.Logf("person.DateTime: %s", person.DateTime)
+		//lg.Debugf(person)
+		//lg.Debugf("person.UserId: %d", person.UserId)
+		//lg.Debugf("person.FirstName: %s", person.FirstName)
+		//lg.Debugf("person.LastName: %s", person.LastName)
+		//lg.Debugf("person.DateTime: %s", person.DateTime)
 	}
 	if db.Err != nil {
 		t.Fatalf("[1]db.ScanOne(): %s", db.Err)
@@ -259,7 +254,7 @@ func TestSelectInsScanOne(t *testing.T) {
 }
 
 func TestSelectInsScan(t *testing.T) {
-	//t.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	//tu.SkipLog(t)
 
 	type Person struct {
 		UserId    int    `db:"id"`
@@ -300,7 +295,7 @@ func TestSelectInsScan(t *testing.T) {
 // ConnectionPool VS Not use it
 //-----------------------------------------------------------------------------
 func BenchmarkConnectionPool(b *testing.B) {
-	b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	tu.SkipBLog(b)
 
 	//BenchmarkConnectionPool-4
 	b.ResetTimer()
@@ -320,7 +315,7 @@ func BenchmarkConnectionPool(b *testing.B) {
 }
 
 func BenchmarkOpenClose(b *testing.B) {
-	b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	tu.SkipBLog(b)
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -339,7 +334,7 @@ func BenchmarkOpenClose(b *testing.B) {
 // ComplicatedSQL VS MultiSimpleSQL(Don't use it)
 //-----------------------------------------------------------------------------
 func BenchmarkComplicatedSQL(b *testing.B) {
-	b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	tu.SkipBLog(b)
 
 	b.ResetTimer()
 	NewMySQL()
@@ -354,7 +349,7 @@ func BenchmarkComplicatedSQL(b *testing.B) {
 }
 
 func BenchmarkMultiSimpleSQL(b *testing.B) {
-	b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	tu.SkipBLog(b)
 
 	b.ResetTimer()
 	NewMySQL()
@@ -376,7 +371,7 @@ func BenchmarkMultiSimpleSQL(b *testing.B) {
 //-----------------------------------------------------------------------------
 //TODO:work in progress
 func BenchmarkSetStruct(b *testing.B) {
-	b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	tu.SkipBLog(b)
 
 	type Person struct {
 		UserId    int    `db:"id"`
@@ -409,7 +404,7 @@ func BenchmarkSetStruct(b *testing.B) {
 //   Use for only heavy query
 //-----------------------------------------------------------------------------
 func BenchmarkCacheResponse(b *testing.B) {
-	b.Skip(fmt.Sprintf("skipping %s", r.CurrentFunc(1)))
+	tu.SkipBLog(b)
 
 	b.ResetTimer()
 	NewMySQL()

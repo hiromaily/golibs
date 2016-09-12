@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	. "github.com/hiromaily/golibs/example/json"
+	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
@@ -53,7 +54,7 @@ var jsonData string = `
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	tu.InitializeTest("[EXEC]")
+	tu.InitializeTest("[JSON]")
 
 	if *jsonFile == "" {
 		fmt.Println("json parameter is required to run.")
@@ -89,71 +90,66 @@ func TestMain(m *testing.M) {
 // Test
 //-----------------------------------------------------------------------------
 func TestJsonAsStruct(t *testing.T) {
-	funcName := "TestJsonAsStruct"
 
 	//defined as struct
 	var siteInfo SiteInfo
 
 	err := json.Unmarshal(fileData, &siteInfo)
 	if err != nil {
-		t.Fatalf("%s[01] error: %s", funcName, err)
+		t.Fatalf("[01] Unmarshal error: %s", err)
 	}
 
 	if siteInfo.Url != "http://eikaiwa.dmm.com/" {
-		t.Errorf("%s[02] siteInfo: %#v", funcName, siteInfo)
+		t.Errorf("[02] siteInfo: %#v", siteInfo)
 	}
 }
 
 func TestJsonAsMap(t *testing.T) {
-	funcName := "TestJsonAsMap"
 
 	//defined as map
 	var siteInfo map[string]interface{}
 
 	err := json.Unmarshal(fileData, &siteInfo)
 	if err != nil {
-		t.Fatalf("%s[01] error: %s", funcName, err)
+		t.Fatalf("[01] Unmarshal error: %s", err)
 	}
 
 	if siteInfo["url"] != "http://eikaiwa.dmm.com/" {
-		t.Errorf("%s[02] siteInfo: %#v", funcName, siteInfo)
+		t.Errorf("[02] siteInfo: %#v", siteInfo)
 	}
 }
 
 func TestJsonAsInterface(t *testing.T) {
-	funcName := "TestJsonAsInterface"
 
 	//defined as interface{}
 	var siteInfo interface{}
 
 	err := json.Unmarshal(fileData, &siteInfo)
 	if err != nil {
-		t.Fatalf("%s[01] error: %s", funcName, err)
+		t.Fatalf("[01] Unmarshal error: %s", err)
 	}
 
 	if siteInfo.(map[string]interface{})["url"].(string) != "http://eikaiwa.dmm.com/" {
-		t.Errorf("%s[02] siteInfo: %#v", funcName, siteInfo)
+		t.Errorf("[02] siteInfo: %#v", siteInfo)
 	}
 }
 
 func TestEmbededJsonData(t *testing.T) {
-	funcName := "TestEmbededJsonData"
 
 	//defined as interface{}
 	var person Person
 
 	err := json.Unmarshal([]byte(jsonData), &person)
 	if err != nil {
-		t.Fatalf("%s[01] error: %s", funcName, err)
+		t.Fatalf("[01] Unmarshal error: %s", err)
 	}
 
 	if person.Name != "Tit Petric" {
-		t.Errorf("%s[02] siteInfo: %#v", funcName, person)
+		t.Errorf("[02] siteInfo: %#v", person)
 	}
 }
 
 func TestMarshalJson(t *testing.T) {
-	funcName := "TestMarshalJson"
 
 	//it can't work
 	//missing type in composite literal
@@ -165,17 +161,13 @@ func TestMarshalJson(t *testing.T) {
 		Teachers: []TeacherInfo{{Id: 123, Name: "Harry", Country: "Japan"}, {Id: 456, Name: "Taro", Country: "America"}}}
 	b, err := json.Marshal(siteInfo)
 	if err != nil {
-		t.Fatalf("%s[01] error: %s", funcName, err)
+		t.Fatalf("[01] error: %s", err)
 	}
-	if string(b) != "test" {
-		t.Errorf("%s[02] siteInfo: %s", funcName, string(b))
-	}
+	lg.Debugf("siteInfo: %s", string(b))
 
 	b2, err := json.MarshalIndent(siteInfo, "", "\t")
 	if err != nil {
-		t.Fatalf("%s[03] error: %s", funcName, err)
+		t.Fatalf("[02] error: %s", err)
 	}
-	if string(b2) != "test" {
-		t.Errorf("%s[04] siteInfo: %s", funcName, string(b2))
-	}
+	lg.Debugf("siteInfo: %s", string(b2))
 }

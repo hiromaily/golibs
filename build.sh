@@ -7,10 +7,10 @@
 #export GOTRACEBACK=all
 #CURRENTDIR=`pwd`
 
-JSONPATH=${GOPATH}/src/github.com/hiromaily/go-book-teacher/settings.json
+JSONPATH=${GOPATH}/src/github.com/hiromaily/go-book-teacher/json/teachers.json
 TOMLPATH=${GOPATH}/src/github.com/hiromaily/golibs/settings.toml
-XMLPATH=${GOPATH}/src/github.com/hiromaily/golibs/xml/rssfeeds/
-BOLTPATH=${GOPATH}/src/github.com/hiromaily/golibs/boltdb
+XMLPATH=${GOPATH}/src/github.com/hiromaily/golibs/example/xml/rssfeeds/
+BOLTPATH=${GOPATH}/src/github.com/hiromaily/golibs/db/boltdb/boltdb
 
 TEST_MODE=2  #0:off, 1:run all test, 2:test for specific one
 BENCH=0
@@ -21,7 +21,7 @@ LOGLEVEL=1 #0: don't show t.Log() and log level is over or equal to INFO
            #1: show t.Log() and log level is DEBUG
 
 GO_GET=0
-GO_LINT=0
+GO_LINT=1
 
 # when using go 1.7 for the first time, delete all inside pkg directory and run go install.
 #go install -v ./...
@@ -63,6 +63,7 @@ fi
 ###########################################################
 #go get -u github.com/golang/lint/golint
 if [ $GO_LINT -eq 1 ]; then
+    echo '============== golint; =============='
     #golint ./...
     #golint `go list ./... | grep -v '/vendor/'`
     golint ./... | grep -v '^vendor\/' || true
@@ -88,35 +89,39 @@ fi
 if [ $TEST_MODE -eq 1 ]; then
     #t.LogのON/OFF
     echo '============== test =============='
-    go test -v cipher/encryption/encryption_test.go
-    go test -v cipher/hash/hash_test.go
-    go test -v compress/compress_test.go
-    go test -v config/config_test.go -fp ${TOMLPATH}
-
-    go test -v db/boltdb/boltdb_test.go -fp ${BOLTPATH}
-    go test -v db/cassandra/cassandra_test.go
-    go test -v db/gorm/gorm_test.go
-    go test -v db/gorp/gorp_test.go
-    go test -v db/mongodb/mongodb_test.go -fp ${JSONPATH}
-    go test -v db/mysql/mysql_test.go
-    go test -v db/redis/redis_test.go
-
-    go test -v defaultdata/defaultdata_test.go
-    go test -v draw/draw_test.go
-    go test -v exec/exec_test.go
-    go test -v -race files/files_test.go
-    go test -v flag/flag_test.go -iv 1 -sv abcde
-    go test -v -race goroutine/goroutine_test.go
-    go test -v heroku/heroku_test.go
-    go test -v http/http_test.go
-    go test -v html/html_test.go
-    go test -v json/json_test.go -fp ${JSONPATH}
-    go test -v log/log_test.go
+    #go test -v html/html_test.go
 
     #Check OK
+    #
+    go test -v auth/jwt/jwt_test.go -log ${LOGLEVEL}
+    go test -v cipher/encryption/encryption_test.go -log ${LOGLEVEL}
+    go test -v cipher/hash/hash_test.go -log ${LOGLEVEL}
+    go test -v compress/compress_test.go -log ${LOGLEVEL}
+    go test -v config/config_test.go -fp ${TOMLPATH} -log ${LOGLEVEL}
+
+    #db
+    go test -v db/boltdb/boltdb_test.go -fp ${BOLTPATH} -log ${LOGLEVEL}
+    go test -v db/cassandra/cassandra_test.go -log ${LOGLEVEL}
+    go test -v db/gorm/gorm_test.go -log ${LOGLEVEL}
+    go test -v db/gorp/gorp_test.go -log ${LOGLEVEL}
+    go test -v db/mongodb/mongodb_test.go -fp ${JSONPATH} -log ${LOGLEVEL}
+    go test -v db/mysql/mysql_test.go -log ${LOGLEVEL}
+    go test -v db/redis/redis_test.go -log ${LOGLEVEL}
+
+
+    #example
+    go test -v example/defaultdata/defaultdata_test.go
+    go test -v example/exec/exec_test.go
+    go test -v example/flag/flag_test.go -log ${LOGLEVEL} -iv 1 -sv abcde
+    go test -v example/http/http_test.go -log ${LOGLEVEL}
+    go test -v example/json/json_test.go -fp ${JSONPATH} -log ${LOGLEVEL}
     go test -v example/xml/xml_test.go -fp ./rssfeeds/techcrunch.xml -log ${LOGLEVEL}
 
-
+    #
+    go test -v -race files/files_test.go -log ${LOGLEVEL}
+    go test -v -race goroutine/goroutine_test.go -log ${LOGLEVEL}
+    go test -v heroku/heroku_test.go -log ${LOGLEVEL}
+    go test -v log/log_test.go -log ${LOGLEVEL}
     go test -v mail/mail_test.go -log ${LOGLEVEL} -fp ${TOMLPATH}
 
     # messaging
@@ -134,19 +139,13 @@ if [ $TEST_MODE -eq 1 ]; then
     go test -v testutil/testutil_test.go -log ${LOGLEVEL}
     go test -v time/time_test.go -log ${LOGLEVEL}
     go test -v tmpl/tmpl_test.go -log ${LOGLEVEL}
-
+    go test -v utils/utils_test.go -log ${LOGLEVEL}
     go test -v validator/validator_test.go -log ${LOGLEVEL}
     go test -v web/context/context_test.go -log ${LOGLEVEL}
     go test -v web/session/session_test.go -log ${LOGLEVEL}
 
 elif [ $TEST_MODE -eq 2 ]; then
-    #go test -v auth/jwt/jwt_test.go -log ${LOGLEVEL}
-    #go test -v heroku/heroku_test.go
-
-    go test -v os/os_test.go -log ${LOGLEVEL}
-
-
-    #go test -v utils/utils_test.go -log ${LOGLEVEL}
+    go test -v utils/utils_test.go -log ${LOGLEVEL}
 
 fi
 

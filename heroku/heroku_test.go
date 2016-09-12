@@ -3,13 +3,9 @@ package heroku_test
 import (
 	. "github.com/hiromaily/golibs/heroku"
 	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
+	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
-)
-
-var (
-	benchFlg bool = false
 )
 
 //-----------------------------------------------------------------------------
@@ -17,11 +13,7 @@ var (
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[Heroku_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[HEROKU]")
 }
 
 func setup() {
@@ -50,10 +42,10 @@ func TestGetMySQLInfo(t *testing.T) {
 		//unexpected EOF
 		t.Errorf("GetMySQLInfo error: %s", err)
 	}
-	t.Logf("host: %s", host)
-	t.Logf("dbname: %s", dbname)
-	t.Logf("user: %s", user)
-	t.Logf("pass: %s", pass)
+	lg.Debugf("host: %s", host)
+	lg.Debugf("dbname: %s", dbname)
+	lg.Debugf("user: %s", user)
+	lg.Debugf("pass: %s", pass)
 }
 
 func TestGetRedisInfo(t *testing.T) {
@@ -62,9 +54,9 @@ func TestGetRedisInfo(t *testing.T) {
 	if err != nil {
 		t.Errorf("GetRedisInfo error: %s", err)
 	}
-	t.Logf("host: %s", host)
-	t.Logf("pass: %s", pass)
-	t.Logf("port: %d", port)
+	lg.Debugf("host: %s", host)
+	lg.Debugf("pass: %s", pass)
+	lg.Debugf("port: %d", port)
 }
 
 func TestGetMongoInfo(t *testing.T) {
@@ -74,11 +66,11 @@ func TestGetMongoInfo(t *testing.T) {
 		//unexpected EOF
 		t.Errorf("GetMongoInfo error: %s", err)
 	}
-	t.Logf("host: %s", host)
-	t.Logf("dbname: %s", dbname)
-	t.Logf("user: %s", user)
-	t.Logf("pass: %s", pass)
-	t.Logf("port: %d", port)
+	lg.Debugf("host: %s", host)
+	lg.Debugf("dbname: %s", dbname)
+	lg.Debugf("user: %s", user)
+	lg.Debugf("pass: %s", pass)
+	lg.Debugf("port: %d", port)
 }
 
 //-----------------------------------------------------------------------------

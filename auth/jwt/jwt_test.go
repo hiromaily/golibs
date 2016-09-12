@@ -3,14 +3,10 @@ package jwt_test
 import (
 	. "github.com/hiromaily/golibs/auth/jwt"
 	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
+	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
 	"time"
-)
-
-var (
-	benchFlg bool = false
 )
 
 //-----------------------------------------------------------------------------
@@ -18,17 +14,15 @@ var (
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[Jwt_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[JWT]")
 }
 
 func setup() {
 	//
-	priKey := os.Getenv("HOME") + "/.ssh/jwt_rsa"
-	pubKey := os.Getenv("HOME") + "/.ssh/jwt_rsa.pub"
+	path := os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/testdata/key/"
+
+	priKey := path + "jwt_rsa"
+	pubKey := path + "jwt_rsa.pub"
 	err := InitKeys(priKey, pubKey)
 	if err != nil {
 		panic(err)
@@ -59,7 +53,7 @@ func createToken(t *testing.T, mode uint8) {
 	if err != nil {
 		t.Errorf("[%d] CreateBasicToken() error: %s", mode, err)
 	}
-	t.Logf("[%d]token: %s", mode, token)
+	lg.Debugf("[%d]token: %s", mode, token)
 
 	err = JudgeJWTWithClaim(token, "client123", "harry")
 	if err != nil {
@@ -84,7 +78,7 @@ func createUserToken(t *testing.T, mode uint8) {
 	if err != nil {
 		t.Errorf("[%d] CreateToken() error: %s", mode, err)
 	}
-	t.Logf("[%d]token: %s", mode, token)
+	lg.Debugf("[%d]token: %s", mode, token)
 
 	err = JudgeJWTWithCustomClaim(token, "client123", "harry", "option555")
 	if err != nil {

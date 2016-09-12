@@ -57,6 +57,7 @@ type MySQLConfig struct {
 type RedisConfig struct {
 	Host string `toml:"host"`
 	Port uint16 `toml:"port"`
+	Pass string `toml:"pass"`
 }
 
 // MongoConfig is for MongoDB server

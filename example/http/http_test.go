@@ -3,6 +3,7 @@ package http_test
 import (
 	"encoding/json"
 	. "github.com/hiromaily/golibs/example/http"
+	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
@@ -41,7 +42,7 @@ func TestMain(m *testing.M) {
 // Test
 //-----------------------------------------------------------------------------
 func TestGetRequest(t *testing.T) {
-	tu.SkipLog(t)
+	//tu.SkipLog(t)
 	status, _, err := GetRequestSimple("https://www.google.co.jp/")
 
 	if err != nil {
@@ -57,14 +58,14 @@ func TestGetRequest(t *testing.T) {
 }
 
 func TestGetRequest2(t *testing.T) {
-	status, body, err := GetRequestWithData("http://www.yahoo.co.jpp/")
+	status, _, err := GetRequestWithData("http://www.yahoo.co.jp/")
 	if err != nil {
 		t.Fatalf("TestGetRequest2[1]: %s", err)
 	}
 	if status != 200 {
 		t.Errorf("TestGetRequest2[2]: %d", status)
 	}
-	t.Logf("body: %v", body)
+	//lg.Debugf("body: %v", body)
 }
 
 func TestPostRequest(t *testing.T) {
@@ -86,5 +87,5 @@ func TestPostRequest(t *testing.T) {
 	if status != 200 {
 		t.Errorf("TestPostRequest2: %d", status)
 	}
-	t.Logf("byteBody: %v", byteBody)
+	lg.Debugf("byteBody: %v", byteBody)
 }

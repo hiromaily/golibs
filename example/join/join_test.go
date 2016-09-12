@@ -13,8 +13,7 @@ import (
 //http://qiita.com/ono_matope/items/d5e70d8a9ff2b54d5c37
 
 var (
-	benchFlg bool = false
-	m             = []string{
+	m = []string{
 		"AAAAAAAAAAAAAAAAAAAAAAAAAA",
 		"BBBBBBBBBBBBBBBBBBBBBBBBBB",
 		"CCCCCCCCCCCCCCCCCCCCCCCCCC",

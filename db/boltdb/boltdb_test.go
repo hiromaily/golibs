@@ -3,15 +3,14 @@ package boltdb_test
 import (
 	"flag"
 	. "github.com/hiromaily/golibs/db/boltdb"
-	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
+	//lg "github.com/hiromaily/golibs/log"
+	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
 )
 
 var (
-	path          = flag.String("fp", "", "BoltDB File Path")
-	benchFlg bool = false
+	path = flag.String("fp", "", "BoltDB File Path")
 )
 
 //-----------------------------------------------------------------------------
@@ -19,22 +18,15 @@ var (
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	flag.Parse()
-
+	tu.InitializeTest("[BoltDB]")
 	if *path == "" {
 		os.Exit(1)
 		return
 	}
-
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[BoltDB_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
 }
 
 func setup() {
-	if !benchFlg {
+	if !tu.BenchFlg {
 		New(*path)
 	}
 }

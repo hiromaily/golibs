@@ -4,7 +4,7 @@ import (
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/gorp"
 	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
+	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
 )
@@ -15,8 +15,7 @@ type MySQL struct {
 }
 
 var (
-	benchFlg bool = false
-	db       MySQL
+	db MySQL
 )
 
 //-----------------------------------------------------------------------------
@@ -24,22 +23,18 @@ var (
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[GORP_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[Gorp]")
 }
 
 func setup() {
-	if !benchFlg {
+	if !tu.BenchFlg {
 		//New("localhost", "hiromaily", "root", "", 3306)
 		NewMySQL()
 	}
 }
 
 func teardown() {
-	if !benchFlg {
+	if !tu.BenchFlg {
 		GetMySQLInstance().Close()
 	}
 }
@@ -88,7 +83,7 @@ func TestSelectUser(t *testing.T) {
 	rows, _ := GetMySQLInstance().DB.Select(&User{}, "SELECT user_id, first_name, last_name FROM t_users WHERE delete_flg=?", "0")
 	for _, row := range rows {
 		user := *row.(*User)
-		t.Logf("%d, %s %s\n", user.Id, user.FirstName, user.LastName)
+		lg.Debugf("%d, %s %s\n", user.Id, user.FirstName, user.LastName)
 	}
 }
 
