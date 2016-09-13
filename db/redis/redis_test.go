@@ -1,12 +1,10 @@
 package redis_test
 
 import (
-	"fmt"
 	"github.com/garyburd/redigo/redis"
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/redis"
 	lg "github.com/hiromaily/golibs/log"
-	r "github.com/hiromaily/golibs/runtimes"
 	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
@@ -33,10 +31,10 @@ func setup() {
 	c := conf.GetConf().Redis
 
 	//New("localhost", 6379)
-	New(c.Host, c.Port, c.Pass)
-	if !tu.BenchFlg {
-		GetRedis().Connection(0)
-	}
+	New(c.Host, c.Port, c.Pass, 0)
+	//if !tu.BenchFlg {
+	//	GetRedis().Connection(0)
+	//}
 }
 
 func teardown() {

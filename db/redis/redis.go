@@ -13,44 +13,57 @@ import (
 type RD struct {
 	Pool *redis.Pool
 	Conn redis.Conn
-	DbNo uint8
 }
 
 var rdInfo RD
 
 // New is to create instance
-func New(host string, port uint16, pass string) *RD{
+func New(host string, port uint16, pass string, dbNo int) *RD {
 	if rdInfo.Pool == nil {
-		rdInfo.Pool = &redis.Pool{
-			MaxIdle:   80,
-			MaxActive: 12000, // max number of connections
-			Dial: func() (redis.Conn, error) {
-				var c redis.Conn
-				var err error
-				if pass != "" {
-					//plus password
-					c, err = redis.Dial("tcp", fmt.Sprintf("%s:%d", host, port), redis.DialPassword(pass))
-				} else {
-					c, err = redis.Dial("tcp", fmt.Sprintf("%s:%d", host, port))
-				}
-				if err != nil {
-					panic(err.Error())
-				}
-				return c, err
-			},
-		}
+		rdInfo.setPool(host, port, pass)
 	}
-	rdInfo.DbNo = 0
+	rdInfo.Connection(dbNo)
+
 	return &rdInfo
 }
 
+// NewIns make a new instance
+func NewIns(host string, port uint16, pass string) *RD {
+	rd := &RD{}
+	rd.setPool(host, port, pass)
+	return rd
+}
+
 // GetRedis is to get instance. singleton architecture
+//  This is for singleton design pattern
 func GetRedis() *RD {
 	if rdInfo.Pool == nil {
 		//panic("Before call this, call New in addition to arguments")
 		return nil
 	}
 	return &rdInfo
+}
+
+// Connection is to connect Redis server
+func (rd *RD) setPool(host string, port uint16, pass string) {
+	rd.Pool = &redis.Pool{
+		MaxIdle:   80,
+		MaxActive: 12000, // max number of connections
+		Dial: func() (redis.Conn, error) {
+			var c redis.Conn
+			var err error
+			if pass != "" {
+				//plus password
+				c, err = redis.Dial("tcp", fmt.Sprintf("%s:%d", host, port), redis.DialPassword(pass))
+			} else {
+				c, err = redis.Dial("tcp", fmt.Sprintf("%s:%d", host, port))
+			}
+			if err != nil {
+				panic(err.Error())
+			}
+			return c, err
+		},
+	}
 }
 
 // Connection is to connect Redis server
