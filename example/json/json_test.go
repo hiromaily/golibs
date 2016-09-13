@@ -34,7 +34,7 @@ type SiteInfo struct {
 }
 
 var (
-	jsonFile = flag.String("fp", "", "Json File Path")
+	jsonFile = flag.String("jfp", "", "Json File Path")
 	fileData []byte
 )
 

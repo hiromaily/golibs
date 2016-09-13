@@ -1,7 +1,9 @@
 package cassandra_test
 
 import (
+	"flag"
 	"github.com/gocql/gocql"
+	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/cassandra"
 	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
@@ -10,7 +12,10 @@ import (
 	"time"
 )
 
-var keyspace = "hiromaily"
+var (
+	keyspace = "hiromaily"
+	confFile = flag.String("fp", "", "Config File Path")
+)
 
 //-----------------------------------------------------------------------------
 // Test Framework
@@ -18,6 +23,11 @@ var keyspace = "hiromaily"
 // Initialize
 func init() {
 	tu.InitializeTest("[Cassandra]")
+
+	if *confFile == "" {
+		*confFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/config/settings.toml"
+	}
+	conf.New(*confFile, false)
 }
 
 func setup() {
@@ -48,10 +58,11 @@ func createKeySpace() {
 }
 
 func connection() {
-	//keyspace := "hiromaily"
-	hosts := []string{"localhost"}
-	port := 9042
-	err := New(hosts, port, keyspace)
+	c := conf.GetConf().Cassa
+
+	hosts := []string{c.Host}
+	//port := 9042
+	err := New(hosts, int(c.Port), c.KeySpace)
 	if err != nil {
 		lg.Errorf("New() error: %s", err)
 	}

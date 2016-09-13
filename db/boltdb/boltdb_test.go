@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	path = flag.String("fp", "", "BoltDB File Path")
+	path = flag.String("bfp", "", "BoltDB File Path")
 )
 
 //-----------------------------------------------------------------------------

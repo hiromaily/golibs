@@ -1,6 +1,7 @@
 package gorm_test
 
 import (
+	"flag"
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/gorm"
 	lg "github.com/hiromaily/golibs/log"
@@ -14,7 +15,8 @@ type MySQL struct {
 }
 
 var (
-	db MySQL
+	db       MySQL
+	confFile = flag.String("fp", "", "Config File Path")
 )
 
 //-----------------------------------------------------------------------------
@@ -23,6 +25,11 @@ var (
 // Initialize
 func init() {
 	tu.InitializeTest("[Gorm]")
+
+	if *confFile == "" {
+		*confFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/config/settings.toml"
+	}
+	conf.New(*confFile, false)
 }
 
 func setup() {
@@ -52,7 +59,6 @@ func TestMain(m *testing.M) {
 // functions
 //-----------------------------------------------------------------------------
 func NewMySQL() {
-	conf.SetTOMLPath("../../settings.toml")
 	c := conf.GetConf().MySQL
 
 	New(c.Host, c.DbName, c.User, c.Pass, c.Port)

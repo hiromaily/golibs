@@ -55,8 +55,8 @@ type User struct {
 }
 
 var (
-	jsonFile      = flag.String("fp", "", "Json File Path")
-	benchFlg bool = false
+	jsonFile = flag.String("jfp", "", "Json File Path")
+	confFile = flag.String("fp", "", "Config File Path")
 	//Database Name For test
 	testDbName string = "testdb01"
 
@@ -74,14 +74,15 @@ var (
 // Initialize
 func init() {
 	tu.InitializeTest("[MongoDB]")
+
+	if *confFile == "" {
+		*confFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/config/settings.toml"
+	}
+	conf.New(*confFile, false)
 }
 
 func setup() {
-	//New("localhost")
-	conf.SetTOMLPath("../../settings.toml")
 	c := conf.GetConf().Mongo
-
-	//NewMongo("localhost")
 
 	New(c.Host, c.DbName, c.User, c.Pass, c.Port)
 	if c.DbName != "" {

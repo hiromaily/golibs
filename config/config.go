@@ -7,9 +7,10 @@ import (
 	enc "github.com/hiromaily/golibs/cipher/encryption"
 	u "github.com/hiromaily/golibs/utils"
 	"io/ioutil"
+	"os"
 )
 
-var tomlFileName = "./settings.toml"
+var tomlFileName = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/config/settings.toml"
 
 var conf *Config
 
@@ -19,6 +20,7 @@ type Config struct {
 	MySQL       *MySQLConfig
 	Redis       *RedisConfig
 	Mongo       *MongoConfig `toml:"mongodb"`
+	Cassa       *CassaConfig `toml:"cassandra"`
 	Mail        *MailConfig
 	Aws         *AwsConfig
 }
@@ -49,6 +51,14 @@ type MongoConfig struct {
 	DbName    string `toml:"dbname"`
 	User      string `toml:"user"`
 	Pass      string `toml:"pass"`
+}
+
+// CassaConfig is for Cassandra server
+type CassaConfig struct {
+	Encrypted bool   `toml:"encrypted"`
+	Host      string `toml:"host"`
+	Port      uint16 `toml:"port"`
+	KeySpace  string `toml:"keyspace"`
 }
 
 // MailConfig is for mail
@@ -114,6 +124,10 @@ var checkTomlKeys = [][]string{
 	{"mongodb", "dbname"},
 	{"mongodb", "user"},
 	{"mongodb", "pass"},
+	{"cassandra", "encrypted"},
+	{"cassandra", "host"},
+	{"cassandra", "port"},
+	{"cassandra", "keyspace"},
 	{"mail", "encrypted"},
 	{"mail", "address"},
 	{"mail", "password"},

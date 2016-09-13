@@ -32,7 +32,7 @@ func init() {
 
 	//conf
 	if *confFile == "" {
-		*confFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/settings.toml"
+		*confFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/config/settings.toml"
 	}
 	conf.New(*confFile, true)
 }

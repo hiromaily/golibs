@@ -10,18 +10,18 @@
 PROJECT_ROOT=${GOPATH}/src/github.com/hiromaily/golibs
 
 JSONPATH=${PROJECT_ROOT}/testdata/json/teachers.json
-TOMLPATH=${PROJECT_ROOT}/settings.toml
+TOMLPATH=${PROJECT_ROOT}/config/travis.toml
 XMLPATH=${PROJECT_ROOT}/example/xml/rssfeeds/
 BOLTPATH=${PROJECT_ROOT}}/db/boltdb/boltdb
 
-TEST_MODE=2  #0:off, 1:run all test, 2:test for specific one
+TEST_MODE=1  #0:off, 1:run all test, 2:test for specific one
 BENCH=0
 
 COVERAGRE=0
 
 PROFILE=0
 
-LOGLEVEL=1 #0: don't show t.Log() and log level is over or equal to INFO
+LOGLEVEL=0 #0: don't show t.Log() and log level is over or equal to INFO
            #1: show t.Log() and log level is DEBUG
 
 GO_GET=0
@@ -105,11 +105,11 @@ if [ $TEST_MODE -eq 1 ]; then
     go test -v config/config_test.go -fp ${TOMLPATH} -log ${LOGLEVEL}
 
     #db
-    go test -v db/boltdb/boltdb_test.go -fp ${BOLTPATH} -log ${LOGLEVEL}
+    go test -v db/boltdb/boltdb_test.go -bfp ${BOLTPATH} -log ${LOGLEVEL}
     go test -v db/cassandra/cassandra_test.go -log ${LOGLEVEL}
     go test -v db/gorm/gorm_test.go -log ${LOGLEVEL}
     go test -v db/gorp/gorp_test.go -log ${LOGLEVEL}
-    go test -v db/mongodb/mongodb_test.go -fp ${JSONPATH} -log ${LOGLEVEL}
+    go test -v db/mongodb/mongodb_test.go -jfp ${JSONPATH} -log ${LOGLEVEL}
     go test -v db/mysql/mysql_test.go -log ${LOGLEVEL}
     go test -v db/redis/redis_test.go -log ${LOGLEVEL}
 
@@ -119,7 +119,7 @@ if [ $TEST_MODE -eq 1 ]; then
     go test -v example/exec/exec_test.go
     go test -v example/flag/flag_test.go -log ${LOGLEVEL} -iv 1 -sv abcde
     go test -v example/http/http_test.go -log ${LOGLEVEL}
-    go test -v example/json/json_test.go -fp ${JSONPATH} -log ${LOGLEVEL}
+    go test -v example/json/json_test.go -jfp ${JSONPATH} -log ${LOGLEVEL}
     go test -v example/xml/xml_test.go -fp ./rssfeeds/techcrunch.xml -log ${LOGLEVEL}
 
     #
@@ -156,7 +156,7 @@ elif [ $TEST_MODE -eq 2 ]; then
 
     #go test -v db/mysql/mysql_test.go -log ${LOGLEVEL}
     #go test -v db/redis/redis_test.go -log ${LOGLEVEL}
-    go test -v db/mongodb/mongodb_test.go -fp ${JSONPATH} -log ${LOGLEVEL}
+    go test -v db/mongodb/mongodb_test.go -jfp ${JSONPATH} -log ${LOGLEVEL}
 
 fi
 
