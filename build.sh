@@ -155,7 +155,8 @@ elif [ $TEST_MODE -eq 2 ]; then
     #go test -v compress/compress_test.go -log ${LOGLEVEL}
 
     #go test -v db/mysql/mysql_test.go -log ${LOGLEVEL}
-    go test -v db/redis/redis_test.go -log ${LOGLEVEL}
+    #go test -v db/redis/redis_test.go -log ${LOGLEVEL}
+    go test -v db/mongodb/mongodb_test.go -fp ${JSONPATH} -log ${LOGLEVEL}
 
 fi
 
