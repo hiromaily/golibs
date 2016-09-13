@@ -1,10 +1,10 @@
 package html_test
 
 import (
-	. "github.com/hiromaily/golibs/html"
+	. "github.com/hiromaily/golibs/workinprogress/html"
 	//ht "github.com/hiromaily/golibs/http"
-	lg "github.com/hiromaily/golibs/log"
-	o "github.com/hiromaily/golibs/os"
+	//lg "github.com/hiromaily/golibs/log"
+	tu "github.com/hiromaily/golibs/testutil"
 	"net/http"
 	"os"
 	"testing"
@@ -28,11 +28,7 @@ var htmlData string = `
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
-	lg.InitializeLog(lg.DEBUG_STATUS, lg.LOG_OFF_COUNT, 0, "[Html_TEST]", "/var/log/go/test.log")
-	if o.FindParam("-test.bench") {
-		lg.Debug("This is bench test.")
-		benchFlg = true
-	}
+	tu.InitializeTest("[HTML]")
 }
 
 func setup() {
