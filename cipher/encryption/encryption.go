@@ -6,8 +6,8 @@ import (
 	"crypto/cipher"
 	cph "crypto/cipher"
 	"encoding/base64"
-	"io"
 	"fmt"
+	"io"
 	"os"
 )
 
@@ -55,7 +55,8 @@ func NewCrypt(size int, key, iv string) (*Crypt, error) {
 	return &cryptInfo, nil
 }
 
-func NewCryptDefault() (*Crypt, error){
+// NewCryptDefault is setup with default settings.
+func NewCryptDefault() (*Crypt, error) {
 	size := 16
 	key := os.Getenv("ENC_KEY")
 	iv := os.Getenv("ENC_IV")
