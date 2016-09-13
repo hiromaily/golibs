@@ -24,16 +24,17 @@ var (
 func init() {
 	tu.InitializeTest("[Mail]")
 
-	if *confFile == "" {
-		*confFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/settings.toml"
-		//os.Exit(1)
-		return
-	}
-
-	setupCipher()
+	//crypt
+	enc.NewCryptDefault()
 
 	crypt := enc.GetCrypt()
 	mailTo, _ = crypt.DecryptBase64(mailTo)
+
+	//conf
+	if *confFile == "" {
+		*confFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/settings.toml"
+	}
+	conf.New(*confFile, true)
 }
 
 func setup() {
@@ -55,17 +56,6 @@ func TestMain(m *testing.M) {
 //-----------------------------------------------------------------------------
 // functions
 //-----------------------------------------------------------------------------
-func setupCipher() {
-	size := 16
-	key := os.Getenv("ENC_KEY")
-	iv := os.Getenv("ENC_IV")
-
-	if key == "" || iv == "" {
-		panic("set Environment Variable: ENC_KEY, ENC_IV")
-	}
-
-	enc.NewCrypt(size, key, iv)
-}
 
 //-----------------------------------------------------------------------------
 // Test
@@ -77,8 +67,6 @@ func TestMail(t *testing.T) {
 		FromName string
 	}
 
-	conf.New(*confFile, true)
-	//conf.Cipher()
 	conf := conf.GetConf().Mail
 
 	//subject
