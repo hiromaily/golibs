@@ -1,12 +1,10 @@
 package mysql_test
 
 import (
-	"fmt"
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/mysql"
 	"github.com/hiromaily/golibs/db/redis"
 	lg "github.com/hiromaily/golibs/log"
-	r "github.com/hiromaily/golibs/runtimes"
 	tu "github.com/hiromaily/golibs/testutil"
 	u "github.com/hiromaily/golibs/utils"
 	"os"
@@ -35,22 +33,22 @@ var (
 // Initialize
 func init() {
 	tu.InitializeTest("[MySQL]")
+
+	conf.New("../../settings.toml", false)
 }
 
 func setup() {
 	if !tu.BenchFlg {
-		//New("localhost", "hiromaily", "root", "", 3306)
-		NewMySQL()
+		newMySQL()
 
 		//Redis
-		redis.New("localhost", 6379, "")
-		//redis.GetRedisInstance().Connection(0)
+		newRedis()
 	}
 }
 
 func teardown() {
 	if !tu.BenchFlg {
-		GetMySQLInstance().Db.Close()
+		getMySQL().Db.Close()
 	}
 }
 
@@ -67,8 +65,7 @@ func TestMain(m *testing.M) {
 //-----------------------------------------------------------------------------
 // functions
 //-----------------------------------------------------------------------------
-func NewMySQL() {
-	conf.SetTOMLPath("../../settings.toml")
+func newMySQL() {
 	c := conf.GetConf().MySQL
 
 	New(c.Host, c.DbName, c.User, c.Pass, c.Port)
@@ -78,7 +75,7 @@ func NewMySQL() {
 }
 
 //For embedded type
-func NewMySQL2() {
+func newMySQL2() {
 	conf.SetTOMLPath("../../settings.toml")
 	c := conf.GetConf().MySQL
 
@@ -88,18 +85,25 @@ func NewMySQL2() {
 	db2.MS = GetDB()
 }
 
+func newRedis() {
+	r := conf.GetConf().Redis
+
+	redis.New(r.Host, r.Port, r.Pass, 0)
+	//redis.GetRedisInstance().Connection(0)
+}
+
 //using singleton design pattern
-func GetMySQLInstance() *MySQL {
+func getMySQL() *MySQL {
 	if db.Db == nil {
-		NewMySQL()
+		newMySQL()
 	}
 	return &db
 }
 
-func GetMySQL2Instance() *MySQL2 {
+func getMySQL2() *MySQL2 {
 	if db2.MS == nil {
 		//db2.DB, err = db2.Connection()
-		NewMySQL2()
+		newMySQL2()
 	}
 	return &db2
 }
@@ -182,13 +186,13 @@ func (ms *MySQL) getSimpleSQL2(id int) ([]map[string]interface{}, error) {
 func TestGetUserList(t *testing.T) {
 	//tu.SkipLog(t)
 
-	data, err := GetMySQLInstance().getUserList()
+	data, err := getMySQL().getUserList()
 	if err != nil {
-		t.Fatalf("GetMySQLInstance().getUserList() error: %s", err)
+		t.Fatalf("getMySQL().getUserList() error: %s", err)
 	}
 
 	if u.Itos(data[0]["first_name"]) != "harry" {
-		t.Errorf(" GetMySQLInstance().getUserList() result: %#v", data[0])
+		t.Errorf(" getMySQL().getUserList() result: %#v", data[0])
 	} else {
 		lg.Debugf("result: %+v", data[0])
 	}
@@ -198,13 +202,13 @@ func TestSelect(t *testing.T) {
 	//tu.SkipLog(t)
 
 	sql := "SELECT user_id, first_name, last_name, create_datetime FROM t_users WHERE delete_flg=?"
-	data, _, err := GetMySQLInstance().Db.Select(sql, 0)
+	data, _, err := getMySQL().Db.Select(sql, 0)
 	if err != nil {
-		t.Fatalf("GetMySQLInstance().Db.Select(sql, 0) error: %s", err)
+		t.Fatalf("getMySQL().Db.Select(sql, 0) error: %s", err)
 	}
 
 	if u.Itos(data[0]["first_name"]) != "harry" {
-		t.Errorf("GetMySQLInstance().Db.Select(sql, 0) result: %#v", data[0])
+		t.Errorf("getMySQL().Db.Select(sql, 0) result: %#v", data[0])
 	} else {
 		lg.Debugf("result: %+v", data[0])
 	}
@@ -221,7 +225,7 @@ func TestSelectInsScanOne(t *testing.T) {
 		DateTime string `db:"create_datetime"`
 	}
 
-	db := GetMySQLInstance().Db
+	db := getMySQL().Db
 
 	//1.Single data
 	var person Person
@@ -265,7 +269,7 @@ func TestSelectInsScan(t *testing.T) {
 	}
 
 	//db := GetDBInstance()
-	db := GetMySQLInstance().Db
+	db := getMySQL().Db
 
 	//2. Get All Data
 	var persons []Person
@@ -299,15 +303,15 @@ func BenchmarkConnectionPool(b *testing.B) {
 
 	//BenchmarkConnectionPool-4
 	b.ResetTimer()
-	NewMySQL()
-	GetMySQLInstance().Db.SetMaxIdleConns(100)
-	GetMySQLInstance().Db.SetMaxOpenConns(10000)
+	newMySQL()
+	getMySQL().Db.SetMaxIdleConns(100)
+	getMySQL().Db.SetMaxOpenConns(10000)
 	for i := 0; i < b.N; i++ {
 		//
-		_, _ = GetMySQLInstance().getUserList()
+		_, _ = getMySQL().getUserList()
 		//
 	}
-	GetMySQLInstance().Db.Close()
+	getMySQL().Db.Close()
 	b.StopTimer()
 
 	//20000000	        87.1 ns/op (93.8 ns/op)
@@ -319,11 +323,11 @@ func BenchmarkOpenClose(b *testing.B) {
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		NewMySQL()
+		newMySQL()
 		//performance for select query
-		_, _ = GetMySQLInstance().getUserList()
+		_, _ = getMySQL().getUserList()
 		//
-		GetMySQLInstance().Db.Close()
+		getMySQL().Db.Close()
 	}
 	b.StopTimer()
 	//100000	     24609 ns/op (19178 ns/op)
@@ -337,13 +341,13 @@ func BenchmarkComplicatedSQL(b *testing.B) {
 	tu.SkipBLog(b)
 
 	b.ResetTimer()
-	NewMySQL()
+	newMySQL()
 	for i := 0; i < b.N; i++ {
 		//
-		_, _ = GetMySQLInstance().getComplicatedSQL()
+		_, _ = getMySQL().getComplicatedSQL()
 		//
 	}
-	GetMySQLInstance().Db.Close()
+	getMySQL().Db.Close()
 	b.StopTimer()
 	//94.2 ns/op
 }
@@ -352,16 +356,16 @@ func BenchmarkMultiSimpleSQL(b *testing.B) {
 	tu.SkipBLog(b)
 
 	b.ResetTimer()
-	NewMySQL()
+	newMySQL()
 	for i := 0; i < b.N; i++ {
 		//
-		_, _ = GetMySQLInstance().getSimpleSQL1()
-		_, _ = GetMySQLInstance().getSimpleSQL2(9)
-		_, _ = GetMySQLInstance().getSimpleSQL2(13)
-		_, _ = GetMySQLInstance().getSimpleSQL2(21)
+		_, _ = getMySQL().getSimpleSQL1()
+		_, _ = getMySQL().getSimpleSQL2(9)
+		_, _ = getMySQL().getSimpleSQL2(13)
+		_, _ = getMySQL().getSimpleSQL2(21)
 		//
 	}
-	GetMySQLInstance().Db.Close()
+	getMySQL().Db.Close()
 	b.StopTimer()
 	//375 ns/op
 }
@@ -380,8 +384,8 @@ func BenchmarkSetStruct(b *testing.B) {
 	}
 
 	b.ResetTimer()
-	NewMySQL()
-	//db := GetMySQLInstance().Db
+	newMySQL()
+	//db := getMySQL().Db
 
 	//single data
 	var person Person
@@ -389,11 +393,11 @@ func BenchmarkSetStruct(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 		//
-		GetMySQLInstance().Db.SelectIns(sql, "0").ScanOne(&person)
+		getMySQL().Db.SelectIns(sql, "0").ScanOne(&person)
 		//db.SelectSQLAllFieldIns(sql, "0")
 		//
 	}
-	GetMySQLInstance().Db.Close()
+	getMySQL().Db.Close()
 	b.StopTimer()
 
 	//20000000	        87.1 ns/op (93.8 ns/op)
@@ -407,13 +411,13 @@ func BenchmarkCacheResponse(b *testing.B) {
 	tu.SkipBLog(b)
 
 	b.ResetTimer()
-	NewMySQL()
+	newMySQL()
 	for i := 0; i < b.N; i++ {
 		//
-		_, _ = GetMySQLInstance().getUserListOnCache()
+		_, _ = getMySQL().getUserListOnCache()
 		//
 	}
-	GetMySQLInstance().Db.Close()
+	getMySQL().Db.Close()
 	b.StopTimer()
 
 	//20000000	        87.1 ns/op (93.8 ns/op)
