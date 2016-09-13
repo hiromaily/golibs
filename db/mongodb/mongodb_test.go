@@ -2,7 +2,6 @@ package mongodb_test
 
 import (
 	"encoding/json"
-	"flag"
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/mongodb"
 	lg "github.com/hiromaily/golibs/log"
@@ -55,8 +54,6 @@ type User struct {
 }
 
 var (
-	jsonFile = flag.String("jfp", "", "Json File Path")
-	confFile = flag.String("fp", "", "Config File Path")
 	//Database Name For test
 	testDbName string = "testdb01"
 
@@ -74,11 +71,6 @@ var (
 // Initialize
 func init() {
 	tu.InitializeTest("[MongoDB]")
-
-	if *confFile == "" {
-		*confFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/config/settings.toml"
-	}
-	conf.New(*confFile, false)
 }
 
 func setup() {
@@ -253,13 +245,7 @@ func TestInsertJsonFile(t *testing.T) {
 	//tu.SkipLog(t)
 
 	//json
-	if *jsonFile == "" {
-		//default
-		*jsonFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/testdata/json/teachers.json"
-		//t.Fatal("json file is required.")
-	}
-
-	fileData, err := LoadJSONFile(*jsonFile)
+	fileData, err := LoadJSONFile(*tu.JSONFile)
 	if err != nil {
 		t.Fatal("Loading json file was failed.")
 	}

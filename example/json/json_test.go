@@ -2,7 +2,6 @@ package json_test
 
 import (
 	"encoding/json"
-	"flag"
 	"fmt"
 	. "github.com/hiromaily/golibs/example/json"
 	lg "github.com/hiromaily/golibs/log"
@@ -34,7 +33,6 @@ type SiteInfo struct {
 }
 
 var (
-	jsonFile = flag.String("jfp", "", "Json File Path")
 	fileData []byte
 )
 
@@ -55,19 +53,11 @@ var jsonData string = `
 // Initialize
 func init() {
 	tu.InitializeTest("[JSON]")
-
-	if *jsonFile == "" {
-		//default
-		*jsonFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/testdata/json/teachers.json"
-		//fmt.Println("json parameter is required to run.")
-		//os.Exit(1)
-		return
-	}
 }
 
 func setup() {
 	var err error
-	fileData, err = LoadJSONFile(*jsonFile)
+	fileData, err = LoadJSONFile(*tu.JSONFile)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)

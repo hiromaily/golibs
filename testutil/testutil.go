@@ -4,15 +4,22 @@ package testutil
 import (
 	"flag"
 	"fmt"
+	enc "github.com/hiromaily/golibs/cipher/encryption"
+	conf "github.com/hiromaily/golibs/config"
 	lg "github.com/hiromaily/golibs/log"
 	o "github.com/hiromaily/golibs/os"
 	r "github.com/hiromaily/golibs/runtimes"
+	"os"
 	"testing"
 )
 
 var (
 	//LogFlg is for switch to output log or not
 	LogFlg = flag.Int("log", 0, "Log Flg: 0:OFF, 1:ON")
+	//ConfFile is toml file path
+	ConfFile = flag.String("fp", "", "Config File Path")
+	//JSONFile is json file path
+	JSONFile = flag.String("jfp", "", "Json File Path")
 	//BenchFlg is when benchmark test, value is true
 	BenchFlg = false
 )
@@ -27,6 +34,21 @@ func InitializeTest(prefix string) {
 		logLevel = lg.DebugStatus
 	}
 	lg.InitializeLog(logLevel, lg.LogOff, 0, prefix, "/var/log/go/test.log")
+
+	//crypt
+	enc.NewCryptDefault()
+
+	//conf
+	if *ConfFile == "" {
+		*ConfFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/config/settings.toml"
+	}
+	conf.New(*ConfFile, true)
+
+	//json
+	if *JSONFile == "" {
+		//default
+		*JSONFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/testdata/json/teachers.json"
+	}
 
 	//bench
 	if o.FindParam("-test.bench") {

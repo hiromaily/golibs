@@ -1,7 +1,6 @@
 package cassandra_test
 
 import (
-	"flag"
 	"github.com/gocql/gocql"
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/cassandra"
@@ -14,7 +13,6 @@ import (
 
 var (
 	keyspace = "hiromaily"
-	confFile = flag.String("fp", "", "Config File Path")
 )
 
 //-----------------------------------------------------------------------------
@@ -23,11 +21,6 @@ var (
 // Initialize
 func init() {
 	tu.InitializeTest("[Cassandra]")
-
-	if *confFile == "" {
-		*confFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/config/settings.toml"
-	}
-	conf.New(*confFile, false)
 }
 
 func setup() {

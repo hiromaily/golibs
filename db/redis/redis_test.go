@@ -1,7 +1,6 @@
 package redis_test
 
 import (
-	"flag"
 	"github.com/garyburd/redigo/redis"
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/redis"
@@ -18,19 +17,12 @@ import (
 //TODO:Sorted sets type on Redis, it's easy to total
 //http://redis.shibu.jp/commandreference/sortedsets.html
 
-var confFile = flag.String("fp", "", "Config File Path")
-
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
 	tu.InitializeTest("[REDIS]")
-
-	if *confFile == "" {
-		*confFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/config/settings.toml"
-	}
-	conf.New(*confFile, false)
 }
 
 func setup() {

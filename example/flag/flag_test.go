@@ -2,10 +2,8 @@ package flag_test
 
 import (
 	"flag"
-	"fmt"
 	. "github.com/hiromaily/golibs/example/flag"
 	lg "github.com/hiromaily/golibs/log"
-	r "github.com/hiromaily/golibs/runtimes"
 	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"

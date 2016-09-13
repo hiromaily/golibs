@@ -1,7 +1,6 @@
 package config_test
 
 import (
-	"flag"
 	. "github.com/hiromaily/golibs/config"
 	//lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
@@ -14,23 +13,16 @@ type User struct {
 	Name string
 }
 
-var (
-	confFile = flag.String("fp", "", "Config File Path")
-)
-
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
 // Initialize
 func init() {
 	tu.InitializeTest("[Config]")
-
-	if *confFile == "" {
-		*confFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/config/settings.toml"
-	}
 }
 
 func setup() {
+	ResetConf()
 }
 
 func teardown() {
@@ -85,7 +77,7 @@ func TestConfig2(t *testing.T) {
 }
 
 func TestConfig3(t *testing.T) {
-	tomlPath := os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/config/tavis.toml"
+	tomlPath := os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/config/travis.toml"
 
 	SetTOMLPath(tomlPath)
 	conf := GetConf()

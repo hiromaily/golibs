@@ -1,5 +1,7 @@
 # golibs
 
+[![Build Status](https://travis-ci.org/hiromaily/golibs.svg?branch=master)](https://travis-ci.org/hiromaily/golibs)
+[![Coverage Status](https://coveralls.io/repos/github/hiromaily/golibs/badge.svg?branch=master)](https://coveralls.io/github/hiromaily/golibs?branch=master)
 [![Go Report Card](https://goreportcard.com/badge/github.com/hiromaily/golibs)](https://goreportcard.com/report/github.com/hiromaily/golibs)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/hiromaily/golibs/master/LICENSE)
 
@@ -70,42 +72,6 @@ golang version is limited some packages.
 
 #### textindex
 * For check how to use textindex package. (It's not started to develop yet.)
-
-----
-### ■ example
-* These packages are for just check
-
-#### ■ defaultdata
-* For check how nil is treated in each Type through Test.
-* And how each type is treated on Interface{} type. 
-
-----
-#### ■ draw
-* For drawing library. (It's not started to develop yet.)
-
-----
-#### ■ exec
-* For check how to use "os/exec" package.
-
-----
-#### ■ flag
-* For check how to use "flag" package.
-
-----
-#### ■ http
-* It's just check how to use "net/http" package. (It works in progress.)
-
-----
-#### ■ join
-* For check which way is most efficient to join strings on testing package.
-
-----
-#### ■ json
-* For check how to use "json" package.
-
-----
-#### ■ xml
-* For handling xml.
 
 ----
 ### ■ files
@@ -193,3 +159,40 @@ golang version is limited some packages.
 * Control session on the web. (It works in progress.)
 
 ----
+
+## libraries (example)  
+### ■ example
+* These packages are for just check
+
+#### ■ defaultdata
+* For check how nil is treated in each Type through Test.
+* And how each type is treated on Interface{} type. 
+
+----
+#### ■ draw
+* For drawing library. (It's not started to develop yet.)
+
+----
+#### ■ exec
+* For check how to use "os/exec" package.
+
+----
+#### ■ flag
+* For check how to use "flag" package.
+
+----
+#### ■ http
+* It's just check how to use "net/http" package. (It works in progress.)
+
+----
+#### ■ join
+* For check which way is most efficient to join strings on testing package.
+
+----
+#### ■ json
+* For check how to use "json" package.
+
+----
+#### ■ xml
+* For handling xml.
+

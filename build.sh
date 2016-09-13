@@ -12,7 +12,7 @@ PROJECT_ROOT=${GOPATH}/src/github.com/hiromaily/golibs
 JSONPATH=${PROJECT_ROOT}/testdata/json/teachers.json
 TOMLPATH=${PROJECT_ROOT}/config/travis.toml
 XMLPATH=${PROJECT_ROOT}/example/xml/rssfeeds/
-BOLTPATH=${PROJECT_ROOT}}/db/boltdb/boltdb
+#BOLTPATH=${PROJECT_ROOT}}/db/boltdb/boltdb
 
 TEST_MODE=1  #0:off, 1:run all test, 2:test for specific one
 BENCH=0
@@ -105,7 +105,7 @@ if [ $TEST_MODE -eq 1 ]; then
     go test -v config/config_test.go -fp ${TOMLPATH} -log ${LOGLEVEL}
 
     #db
-    go test -v db/boltdb/boltdb_test.go -bfp ${BOLTPATH} -log ${LOGLEVEL}
+    go test -v db/boltdb/boltdb_test.go -log ${LOGLEVEL}
     go test -v db/cassandra/cassandra_test.go -log ${LOGLEVEL}
     go test -v db/gorm/gorm_test.go -log ${LOGLEVEL}
     go test -v db/gorp/gorp_test.go -log ${LOGLEVEL}

@@ -1,7 +1,6 @@
 package boltdb_test
 
 import (
-	"flag"
 	. "github.com/hiromaily/golibs/db/boltdb"
 	//lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
@@ -10,7 +9,7 @@ import (
 )
 
 var (
-	path = flag.String("bfp", "", "BoltDB File Path")
+	path = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/db/boltdb/boltdb"
 )
 
 //-----------------------------------------------------------------------------
@@ -19,17 +18,11 @@ var (
 // Initialize
 func init() {
 	tu.InitializeTest("[BoltDB]")
-	if *path == "" {
-		//os.Exit(1)
-		//default
-		*path = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/db/boltdb/boltdb"
-		return
-	}
 }
 
 func setup() {
 	if !tu.BenchFlg {
-		New(*path)
+		New(path)
 	}
 }
 
@@ -73,7 +66,7 @@ func TestSetAndGetData01(t *testing.T) {
 // Benchmark
 //-----------------------------------------------------------------------------
 func BenchmarkSetData01(b *testing.B) {
-	New(*path)
+	New(path)
 
 	data := "testdayo"
 
@@ -88,7 +81,7 @@ func BenchmarkSetData01(b *testing.B) {
 }
 
 func BenchmarkGetData01(b *testing.B) {
-	New(*path)
+	New(path)
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {

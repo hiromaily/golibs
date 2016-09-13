@@ -1,7 +1,6 @@
 package mail_test
 
 import (
-	"flag"
 	enc "github.com/hiromaily/golibs/cipher/encryption"
 	conf "github.com/hiromaily/golibs/config"
 	lg "github.com/hiromaily/golibs/log"
@@ -13,8 +12,7 @@ import (
 )
 
 var (
-	confFile = flag.String("fp", "", "Config File Path")
-	mailTo   = "FcQjhb5ErsSBlh6EDwe69eLdcW/eJPKWtnTWmDPoAAM=" //encrypted mail address
+	mailTo = "FcQjhb5ErsSBlh6EDwe69eLdcW/eJPKWtnTWmDPoAAM=" //encrypted mail address
 )
 
 //-----------------------------------------------------------------------------
@@ -24,17 +22,9 @@ var (
 func init() {
 	tu.InitializeTest("[Mail]")
 
-	//crypt
-	enc.NewCryptDefault()
-
+	//encrypt
 	crypt := enc.GetCrypt()
 	mailTo, _ = crypt.DecryptBase64(mailTo)
-
-	//conf
-	if *confFile == "" {
-		*confFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/config/settings.toml"
-	}
-	conf.New(*confFile, true)
 }
 
 func setup() {

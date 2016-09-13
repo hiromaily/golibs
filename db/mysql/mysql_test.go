@@ -1,7 +1,6 @@
 package mysql_test
 
 import (
-	"flag"
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/mysql"
 	"github.com/hiromaily/golibs/db/redis"
@@ -26,7 +25,6 @@ var (
 	db2 MySQL2
 	//cahce
 	cacheData map[string][]map[string]interface{}
-	confFile  = flag.String("fp", "", "Config File Path")
 )
 
 //-----------------------------------------------------------------------------
@@ -35,11 +33,6 @@ var (
 // Initialize
 func init() {
 	tu.InitializeTest("[MySQL]")
-
-	if *confFile == "" {
-		*confFile = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/config/settings.toml"
-	}
-	conf.New(*confFile, false)
 }
 
 func setup() {

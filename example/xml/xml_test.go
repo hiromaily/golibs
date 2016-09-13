@@ -5,7 +5,7 @@ import (
 	"encoding/xml"
 	"errors"
 	"flag"
-	lg "github.com/hiromaily/golibs/log"
+	//lg "github.com/hiromaily/golibs/log"
 	//. "github.com/hiromaily/golibs/xml"
 	tu "github.com/hiromaily/golibs/testutil"
 	"io/ioutil"
