@@ -19,7 +19,7 @@ type RD struct {
 var rdInfo RD
 
 // New is to create instance
-func New(host string, port uint16, pass string) {
+func New(host string, port uint16, pass string) *RD{
 	if rdInfo.Pool == nil {
 		rdInfo.Pool = &redis.Pool{
 			MaxIdle:   80,
@@ -41,6 +41,7 @@ func New(host string, port uint16, pass string) {
 		}
 	}
 	rdInfo.DbNo = 0
+	return &rdInfo
 }
 
 // GetRedis is to get instance. singleton architecture
