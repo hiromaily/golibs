@@ -17,7 +17,7 @@ type RD struct {
 
 var rdInfo RD
 
-// New is to create instance
+// New is to create instance for singleton
 func New(host string, port uint16, pass string, dbNo int) *RD {
 	if rdInfo.Pool == nil {
 		rdInfo.setPool(host, port, pass)
