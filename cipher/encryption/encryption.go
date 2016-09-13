@@ -7,6 +7,8 @@ import (
 	cph "crypto/cipher"
 	"encoding/base64"
 	"io"
+	"fmt"
+	"os"
 )
 
 //https://github.com/tadzik/simpleaes/blob/master/simpleaes.go
@@ -51,6 +53,18 @@ func NewCrypt(size int, key, iv string) (*Crypt, error) {
 	cryptInfo = Crypt{aes, bIv}
 
 	return &cryptInfo, nil
+}
+
+func NewCryptDefault() (*Crypt, error){
+	size := 16
+	key := os.Getenv("ENC_KEY")
+	iv := os.Getenv("ENC_IV")
+
+	if key == "" || iv == "" {
+		return nil, fmt.Errorf("%s", "set Environment Variable: ENC_KEY, ENC_IV")
+	}
+
+	return NewCrypt(size, key, iv)
 }
 
 // GetCrypt is to get crypt instance

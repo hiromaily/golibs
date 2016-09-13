@@ -16,7 +16,9 @@ BOLTPATH=${PROJECT_ROOT}}/db/boltdb/boltdb
 
 TEST_MODE=2  #0:off, 1:run all test, 2:test for specific one
 BENCH=0
+
 COVERAGRE=0
+
 PROFILE=0
 
 LOGLEVEL=1 #0: don't show t.Log() and log level is over or equal to INFO
@@ -148,8 +150,9 @@ if [ $TEST_MODE -eq 1 ]; then
     go test -v web/session/session_test.go -log ${LOGLEVEL}
 
 elif [ $TEST_MODE -eq 2 ]; then
-    go test -v -race files/files_test.go -log ${LOGLEVEL}
+    #go test -v -race files/files_test.go -log ${LOGLEVEL}
     #go test -v mail/mail_test.go -log ${LOGLEVEL} -fp ${TOMLPATH}
+    go test -v compress/compress_test.go -log ${LOGLEVEL}
 
 fi
 
@@ -158,27 +161,19 @@ fi
 ###########################################################
 if [ $BENCH -eq 1 ]; then
     echo '============== benchmark =============='
-    #OK
-    cd serial/;go test -bench . -benchmem;cd ../;
-
 
     #cd cast/;go test -bench=. -benchmem;cd ../;
 
-    cd flag/;go test -bench=. -benchmem -iv 1 -sv abcde;cd ../;
+    #cd db/mysql/;go test -bench=. -benchmem;cd ../;
+    #cd db/redis/;go test -bench=. -benchmem;cd ../;
+    #cd db/boltdb/;go test -bench=. -benchmem -fp ${BOLTPATH};cd ../;
+
+    #cd example/flag/;go test -bench=. -benchmem -iv 1 -sv abcde;cd ../;
+    #cd example/join/;go test -bench . -benchmem;cd ../;
+    #cd example/join/;go test -bench=. -benchmem;cd ../;
 
     #cd files/;go test -bench=. -benchmem;
-
-    #cd join/;go test -bench . -benchmem;cd ../;
-    #cd join/;go test -bench=. -benchmem;cd ../;
-
     #cd serial/;go test -bench . -benchmem;cd ../;
-    #cd serial/;go test -bench=. -benchmem;cd ../;
-
-    #cd db/mysql/;go test -bench=. -benchmem;cd ../;
-
-    #cd db/redis/;go test -bench=. -benchmem;cd ../;
-
-    #cd db/boltdb/;go test -bench=. -benchmem -fp ${BOLTPATH};cd ../;
 fi
 
 ###########################################################
@@ -191,9 +186,10 @@ if [ $COVERAGRE -eq 1 ]; then
     #go tool cover
 
     #it doesn't work below
-    #go test -coverprofile=cover.out -v cipher/hash/hash_test.go
+    # go test -coverprofile=cover.out -v cipher/hash/hash_test.go
+
     #instead of it, exec below
-    #cd cipher/hash/;go test -coverprofile=cover.out;cd ../../;
+    # cd cipher/hash/;go test -coverprofile=cover.out;cd ../../;
 
     #check result on the web
     #go tool cover -html=cipher/hash/cover.out
