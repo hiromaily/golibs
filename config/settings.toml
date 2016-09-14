@@ -30,8 +30,6 @@ keyspace = "hiromaily"
 
 [mail]
 encrypted = true
-#address = "hirokichimusic@gmail.com"
-#password = "Zdk5kd99DjgEi49jflKG"
 address = "NnrrawdLR5gZ+YD0wtsIjwQf5UPBDVXDeej1GrYW8+E="
 password = "2kh28ukhCnQ6uCdlt9BK9tklGK21r7uZrEZSe1HqOx4="
 
@@ -39,7 +37,6 @@ timeout = "10s"
 
 [mail.smtp]
 # smtp server
-#server = "smtp.gmail.com"
 server = "o4jKKaglwawhX58iGLqBvg=="
 port = 587
 

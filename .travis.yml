@@ -4,8 +4,8 @@ go:
   - tip
 
 services:
-  - mysql
-  - redis-server
+  - docker
+  - mongodb
 
 env:
   global:
@@ -15,15 +15,16 @@ before_install:
   - go get github.com/tools/godep
   - go get github.com/mattn/goveralls
   - go get golang.org/x/tools/cmd/cover
+  - cd ${PROJ_PATH}; ./docker-create.sh
 
 script:
   - go fmt ./...
   - go vet $(go list ./... | grep -v /vendor/)
-  - go test -v auth/jwt/jwt_test.go -log 0
-  #- cd ${PROJ_PATH};sh coverage.sh
+  #- go test -v auth/jwt/jwt_test.go -log 0
+  - cd ${PROJ_PATH}; ./coverage.sh
 
 after_success:
-  #- cd ${PROJ_PATH};goveralls -coverprofile=profile.cov -service=travis-ci
+  - cd ${PROJ_PATH};goveralls -coverprofile=profile.cov -service=travis-ci
 
 branches:
   only:

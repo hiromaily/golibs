@@ -6,3 +6,5 @@
 example/exec/sh/*.sh
 boltdb
 docker_build/mysql/db_data/
+docker_build/redis/data/appendonly.aof
+profile.cov

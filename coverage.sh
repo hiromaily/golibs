@@ -12,8 +12,6 @@ JSONPATH=${PROJECT_ROOT}/testdata/json/teachers.json
 ###############################################################################
 # DOCKER
 ###############################################################################
-docker exec -it lib-cassandra bash /hy/init.sh
-
 # GET Kafka port
 #docker ps -f name=lib-kafka1 --format "{{.Ports}}" | sed -e 's/[0-9]\{5\}//g'
 KAFKA_IP=`docker ps -f name=lib-kafka1 --format "{{.Ports}}" | sed -e 's/0.0.0.0://g' | sed -e 's/->9092\/tcp//g'`
@@ -45,7 +43,7 @@ prof=${1:-"profile.cov"}
 echo "mode: count" > $prof
 gopath1=$(echo $GOPATH | cut -d: -f1)
 #go list ./... | grep -v '/example\|workinprogress\|web/'
-for pkg in $(go list ./... | grep -v '/example\|workinprogress\|web|signal/'); do
+for pkg in $(go list ./... | grep -v '/example\|workinprogress\|web\|signal\|rabbitmq\|kafka'); do
   tmpprof=$gopath1/src/$pkg/profile.tmp
   go test -covermode=count -coverprofile=$tmpprof $pkg -log 0 -fp ${TOMLPATH} -jfp ${JSONPATH} -kip ${KAFKA_IP}
   if [ -f $tmpprof ]; then

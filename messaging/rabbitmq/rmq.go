@@ -5,6 +5,7 @@ import (
 	"fmt"
 	lg "github.com/hiromaily/golibs/log"
 	"github.com/streadway/amqp"
+	"time"
 )
 
 // RM is struct of RabitMQ object
@@ -104,13 +105,20 @@ func (r *RM) CreateConsume(name string, chBody chan []byte) (<-chan amqp.Deliver
 
 // CreateReceiver is for consumer
 func (r *RM) CreateReceiver(name string, chBody chan []byte) {
+	retry := 5
+	var err error
+	var msgs <-chan amqp.Delivery
 
-	msgs, err := r.CreateConsume(name, chBody)
-	if err != nil {
-		//re try only once
+	for i := 0; i < retry; i++ {
 		msgs, err = r.CreateConsume(name, chBody)
+		if err == nil {
+			break
+		}
+		time.Sleep(time.Second * 1)
 	}
-	failOnError(err, "Failed to register a consumer")
+	if err != nil{
+		failOnError(err, "Failed to register a consumer")
+	}
 
 	for d := range msgs {
 		chBody <- d.Body

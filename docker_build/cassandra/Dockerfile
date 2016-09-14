@@ -12,6 +12,7 @@ RUN mkdir -p /hy
 
 COPY ./init/init.sh /hy
 COPY ./init/init.sql /hy
+COPY ./docker-entrypoint.sh /
 #VOLUME ./docker_build/cassandra:/hy
 
 WORKDIR /hy

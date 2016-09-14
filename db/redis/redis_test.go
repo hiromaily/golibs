@@ -103,7 +103,7 @@ func TestCommonUsingDo(t *testing.T) {
 	lg.Debugf("TTL is %v", s)
 
 	//sleep
-	time.Sleep(time.Duration(sleepS) * time.Second)
+	time.Sleep(time.Duration(sleepS+1) * time.Second)
 
 	s, _ = redis.Int(c.Do("TTL", "key1"))
 	lg.Debugf("TTL is %v", s)

@@ -7,6 +7,7 @@ import (
 	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
+	"time"
 )
 
 var (
@@ -51,6 +52,8 @@ func startReceiver(chWait chan bool) {
 			reveiver.CreateReceiver(queueName, chBody)
 		}
 	}()
+	//TODO:this is provisional. channel is better.
+	time.Sleep(time.Second * 3)
 
 	var body []byte
 	for {
@@ -75,6 +78,8 @@ func TestSend(t *testing.T) {
 
 	//receiver
 	go startReceiver(chWait)
+	//TODO:this is provisional. channel is better.
+	time.Sleep(time.Second * 3)
 
 	//sender
 	sender := New("localhost", "hiromaily", "hiropass", 5672)

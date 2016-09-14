@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ###############################################################################
 # For golibs
@@ -58,15 +58,46 @@ mongorestore -h 127.0.0.1:${MONGO_PORT} --db hiromaily docker_build/mongo/dump/h
 # Cassandra
 # TODO: Why it fails at this time??
 #docker exec -it lib-cassandra bash /hy/init.sh
+#docker cp lib-cassandra:/docker-entrypoint.sh /Users/hy/work/go/src/github.com/hiromaily/golibs/docker_build/cassandra/
+#docker logs lib-cassandra --tail 5 | grep "Starting listening for CQL clients on /0.0.0.0:9042"
 
-# RabbitMQ
-#testQueue
+#wait to be ready
+echo '[cassandra] starting cassandra now.'
+sleep 10s
+while :
+do
+    LOGS=`docker logs lib-cassandra --tail 5 | grep "Starting listening for CQL clients on /0.0.0.0:9042"`
+    echo $LOGS
+    if [ ${#LOGS} -ne 0 ]; then
+        docker exec -it lib-cassandra bash /hy/init.sh
+        break
+    else
+        echo 'running...'
+        sleep 1s
+    fi
+done
+echo '[cassandra] done!'
+
+#kafka
+echo '[kafka] starting kafka now.'
+while :
+do
+    LOGS=`docker logs lib-kafka1 --tail 5 | grep "Kafka Server 1001], started"`
+    echo $LOGS
+    if [ ${#LOGS} -ne 0 ]; then
+        break
+    else
+        echo 'running...'
+        sleep 1s
+    fi
+done
+echo '[kafka] done!'
 
 ###############################################################################
 # Docker-compose / check
 ###############################################################################
 docker-compose ps
-docker-compose logs
+#docker-compose logs
 
 
 ###############################################################################
