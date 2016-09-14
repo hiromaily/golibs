@@ -42,6 +42,7 @@ func TestMain(m *testing.M) {
 // Test
 //-----------------------------------------------------------------------------
 func TestSignal(t *testing.T) {
+	tu.SkipLog(t)
 	wg := &sync.WaitGroup{}
 
 	go StartSignal()

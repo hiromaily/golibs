@@ -7,25 +7,28 @@
 #export GOTRACEBACK=all
 #CURRENTDIR=`pwd`
 
+GO_GET=0
+GO_LINT=1
+DOCKER_MODE=0
+
+TEST_MODE=2  #0:off, 1:run all test, 2:test for specific one
+BENCH=0
+COVERAGRE=0
+PROFILE=0
+
+
+# For text variable
 PROJECT_ROOT=${GOPATH}/src/github.com/hiromaily/golibs
 
 JSONPATH=${PROJECT_ROOT}/testdata/json/teachers.json
 TOMLPATH=${PROJECT_ROOT}/config/travis.toml
 XMLPATH=${PROJECT_ROOT}/example/xml/rssfeeds/
-#BOLTPATH=${PROJECT_ROOT}}/db/boltdb/boltdb
 
-TEST_MODE=1  #0:off, 1:run all test, 2:test for specific one
-BENCH=0
-
-COVERAGRE=0
-
-PROFILE=0
+KAFKA_IP=`docker ps -f name=lib-kafka1 --format "{{.Ports}}" | sed -e 's/0.0.0.0://g' | sed -e 's/->9092\/tcp//g'`
 
 LOGLEVEL=0 #0: don't show t.Log() and log level is over or equal to INFO
            #1: show t.Log() and log level is DEBUG
 
-GO_GET=0
-GO_LINT=1
 
 # when using go 1.7 for the first time, delete all inside pkg directory and run go install.
 #go install -v ./...
@@ -93,6 +96,14 @@ fi
 
 
 ###########################################################
+# Docker
+###########################################################
+if [ $DOCKER_MODE -eq 1 ]; then
+    sh ./docker-create.sh
+    #docker exec -it lib-cassandra bash /hy/init.sh
+fi
+
+###########################################################
 # go test
 ###########################################################
 if [ $TEST_MODE -eq 1 ]; then
@@ -130,7 +141,7 @@ if [ $TEST_MODE -eq 1 ]; then
     go test -v mail/mail_test.go -log ${LOGLEVEL} -fp ${TOMLPATH}
 
     # messaging
-    go test -v messaging/kafka/kafka_test.go -log ${LOGLEVEL}
+    go test -v messaging/kafka/kafka_test.go -kip ${KAFKA_IP} -log ${LOGLEVEL}
     go test -v messaging/nats/nats_test.go -log ${LOGLEVEL}
     go test -v messaging/rabbitmq/rmq_test.go -log ${LOGLEVEL}
 
@@ -156,7 +167,8 @@ elif [ $TEST_MODE -eq 2 ]; then
 
     #go test -v db/mysql/mysql_test.go -log ${LOGLEVEL}
     #go test -v db/redis/redis_test.go -log ${LOGLEVEL}
-    go test -v db/mongodb/mongodb_test.go -jfp ${JSONPATH} -log ${LOGLEVEL}
+    #go test -v db/mongodb/mongodb_test.go -jfp ${JSONPATH} -log ${LOGLEVEL}
+    go test -v messaging/rabbitmq/rmq_test.go -log ${LOGLEVEL}
 
 fi
 

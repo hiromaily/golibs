@@ -89,9 +89,9 @@ func (r *RM) Declare(name string) *amqp.Queue {
 	return &q
 }
 
-// CreateReceiver is for consumer
-func (r *RM) CreateReceiver(name string, chBody chan []byte) {
-	msgs, err := r.Ch.Consume(
+// CreateConsume is to create Consume
+func (r *RM) CreateConsume(name string, chBody chan []byte) (<-chan amqp.Delivery, error) {
+	return r.Ch.Consume(
 		name,  // queue
 		"",    // consumer
 		true,  // auto-ack
@@ -100,6 +100,16 @@ func (r *RM) CreateReceiver(name string, chBody chan []byte) {
 		false, // no-wait
 		nil,   // args
 	)
+}
+
+// CreateReceiver is for consumer
+func (r *RM) CreateReceiver(name string, chBody chan []byte) {
+
+	msgs, err := r.CreateConsume(name, chBody)
+	if err != nil {
+		//re try only once
+		msgs, err = r.CreateConsume(name, chBody)
+	}
 	failOnError(err, "Failed to register a consumer")
 
 	for d := range msgs {

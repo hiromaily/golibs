@@ -12,7 +12,7 @@ import (
 var (
 	topicName string = "topic"
 	host      string = "127.0.0.1"
-	port      int    = 32768 //TODO:this port number may change.
+	//port      int    = 32768 //TODO:this port number may change.
 )
 
 var msgTests = []struct {
@@ -69,7 +69,7 @@ func TestKafka(t *testing.T) {
 
 	//
 	//1.Consumer(Receiver)
-	c, err := CreateConsumer(host, port)
+	c, err := CreateConsumer(host, *tu.KafkaIP)
 	if err != nil {
 		t.Errorf("CreateConsumer() error: %s", err)
 	}
@@ -81,7 +81,7 @@ func TestKafka(t *testing.T) {
 
 	//
 	//2.Producer(Sender)
-	p, err := CreateProducer(host, port)
+	p, err := CreateProducer(host, *tu.KafkaIP)
 	if err != nil {
 		t.Errorf("CreateProducer() error: %s", err)
 	}

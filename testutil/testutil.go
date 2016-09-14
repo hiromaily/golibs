@@ -20,6 +20,9 @@ var (
 	ConfFile = flag.String("fp", "", "Config File Path")
 	//JSONFile is json file path
 	JSONFile = flag.String("jfp", "", "Json File Path")
+	//KafkaIP is IP for kafka server
+	KafkaIP = flag.Int("kip", 9092, "Json File Path")
+
 	//BenchFlg is when benchmark test, value is true
 	BenchFlg = false
 )
