@@ -1,0 +1,94 @@
+#docker-compose.yml
+#- mysql:5.7
+#- redis:3.2
+#- mongo:3.3
+#- cassandra from Dockerfile
+#- nats:0.9.4
+#- rabbitmq:3.6
+#- kafka from Dockerfile
+
+version: '2'
+services:
+  # MySQL
+  mysql:
+    #env_file: .env
+    image: mysql:5.7
+    container_name: lib-mysql
+    ports:
+      - "23306:3306"
+    volumes:
+      - ./docker_build/mysql/conf:/etc/mysql/conf.d
+      - ./docker_build/mysql/db_data:/var/lib/mysql
+      - ./docker_build/mysql/init.d:/docker-entrypoint-initdb.d
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: hiromaily
+      MYSQL_USER: hiromaily
+      MYSQL_PASSWORD: 12345678
+  # Redis
+  redis:
+    image: redis:3.2
+    container_name: lib-redis
+    ports:
+      - "26379:6379"
+    volumes:
+      - ./docker_build/redis/data:/data
+    restart: always
+    command: redis-server --requirepass password --appendonly yes
+  # Mongo
+  mongo:
+    image: mongo:3.3
+    container_name: lib-mongo
+    ports:
+      - "30017:27017"
+  # Cassandra
+  cassandra:
+    build:
+      context: ./docker_build/cassandra/
+      dockerfile: Dockerfile
+      #args:
+      #  redisHostName: redis-server
+      #  mysqlHostName: mysql-server
+    image: lib-cassandra:v1.0
+    container_name: lib-cassandra
+    ports:
+      - "19042:9042"
+  # NATS
+  nats:
+    image: nats:0.9.4
+    container_name: lib-nats1
+    ports:
+      - "4222:4222"
+      - "6222:6222"
+      - "8222:8222"
+  # RabbitMQ
+  rmq:
+    image: rabbitmq:3.6-management
+    container_name: lib-rmq1
+    ports:
+      - "4369:4369"
+      - "5671:5671"
+      - "5672:5672"
+      - "15671:15671"
+      - "15672:15672"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: abcabcabcabc
+      RABBITMQ_DEFAULT_USER: hiromaily
+      RABBITMQ_DEFAULT_PASS: hiropass
+  # Kafka
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: lib-zookeeper1
+    ports:
+      - "2181:2181"
+  kafka:
+    build: ./docker_build/kafka/files/
+    container_name: lib-kafka1
+    ports:
+      - "9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 100.69.18.116
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

@@ -5,3 +5,4 @@
 *.test
 example/exec/sh/*.sh
 boltdb
+docker_build/mysql/db_data/
