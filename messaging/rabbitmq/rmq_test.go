@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	queueName string = "testQueue"
+	queueName string = "testQueue99"
 )
 
 //-----------------------------------------------------------------------------
@@ -52,8 +52,6 @@ func startReceiver(chWait chan bool) {
 			reveiver.CreateReceiver(queueName, chBody)
 		}
 	}()
-	//TODO:this is provisional. channel is better.
-	time.Sleep(time.Second * 3)
 
 	var body []byte
 	for {
@@ -63,28 +61,26 @@ func startReceiver(chWait chan bool) {
 			chWait <- true
 		}
 	}
-
 }
 
 //-----------------------------------------------------------------------------
 // Test
 //-----------------------------------------------------------------------------
 func TestSend(t *testing.T) {
-	//if err != nil {
-	//	t.Errorf("TestSend error: %s", err)
-	//}
 
 	chWait := make(chan bool)
 
+	//sender
+	//first, queue have to be made.
+	sender := New("localhost", "hiromaily", "hiropass", 5672)
+	q := sender.Declare(queueName)
+
 	//receiver
 	go startReceiver(chWait)
-	//TODO:this is provisional. channel is better.
-	time.Sleep(time.Second * 3)
+	//wait
+	time.Sleep(time.Second * 1)
 
-	//sender
-	sender := New("localhost", "hiromaily", "hiropass", 5672)
-
-	q := sender.Declare(queueName)
+	//send
 	body := "aaaaabbbbbcccccdddddeeeeefffffggggg"
 	sender.Send([]byte(body), q)
 

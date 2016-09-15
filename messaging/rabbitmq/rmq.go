@@ -116,7 +116,7 @@ func (r *RM) CreateReceiver(name string, chBody chan []byte) {
 		}
 		time.Sleep(time.Second * 1)
 	}
-	if err != nil{
+	if err != nil {
 		failOnError(err, "Failed to register a consumer")
 	}
 
