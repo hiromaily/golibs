@@ -42,10 +42,6 @@ func TestLogf(t *testing.T) {
 	Logf(t, "Logf test: %s", "12345")
 
 	Log(t, "Log test.")
-
-	//if err != nil {
-	//	t.Errorf("TestTestutil error: %s", err)
-	//}
 }
 
 func TestSkipLog(t *testing.T) {

@@ -15,7 +15,7 @@ import (
 
 var (
 	//LogFlg is for switch to output log or not
-	LogFlg = flag.Int("log", 0, "Log Flg: 0:OFF, 1:ON")
+	LogFlg = flag.Uint("log", 1, "Log Flg: 0:OFF, 1:ON")
 	//ConfFile is toml file path
 	ConfFile = flag.String("fp", "", "Config File Path")
 	//JSONFile is json file path
@@ -32,11 +32,12 @@ func InitializeTest(prefix string) {
 	flag.Parse()
 
 	//log
-	logLevel := lg.InfoStatus
-	if *LogFlg == 1 {
-		logLevel = lg.DebugStatus
+	lg.InitializeLog(uint8(*LogFlg), lg.LogOff, 0, prefix, "/var/log/go/test.log")
+
+	//-v : to show Logs.(-test.v=true)
+	if o.FindParam("-test.v") {
+		lg.Debug("This test can show log in detail.")
 	}
-	lg.InitializeLog(logLevel, lg.LogOff, 0, prefix, "/var/log/go/test.log")
 
 	//crypt
 	enc.NewCryptDefault()
