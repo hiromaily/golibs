@@ -1,10 +1,14 @@
 .DS_Store
 .idea/
+
 *.out
 *.log
 *.test
-example/exec/sh/*.sh
+profile.cov
 boltdb
+
+example/exec/sh/*.sh
+
 docker_build/mysql/db_data/
 docker_build/redis/data/appendonly.aof
-profile.cov
+docker_build/rmq/

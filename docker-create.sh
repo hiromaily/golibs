@@ -56,11 +56,6 @@ mongo 127.0.0.1:${MONGO_PORT}/admin --eval "var port = ${MONGO_PORT};" ./docker_
 mongorestore -h 127.0.0.1:${MONGO_PORT} --db hiromaily docker_build/mongo/dump/hiromaily
 
 # Cassandra
-# TODO: Why it fails at this time??
-#docker exec -it lib-cassandra bash /hy/init.sh
-#docker cp lib-cassandra:/docker-entrypoint.sh /Users/hy/work/go/src/github.com/hiromaily/golibs/docker_build/cassandra/
-#docker logs lib-cassandra --tail 5 | grep "Starting listening for CQL clients on /0.0.0.0:9042"
-
 #wait to be ready
 echo '[cassandra] starting cassandra now.'
 sleep 10s
@@ -92,6 +87,9 @@ do
     fi
 done
 echo '[kafka] done!'
+
+#RabbitMQ create queue
+
 
 ###############################################################################
 # Docker-compose / check
