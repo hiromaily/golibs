@@ -26,9 +26,11 @@ XMLPATH=${PROJECT_ROOT}/example/xml/rssfeeds/
 
 KAFKA_IP=`docker ps -f name=lib-kafka1 --format "{{.Ports}}" | sed -e 's/0.0.0.0://g' | sed -e 's/->9092\/tcp//g'`
 
-LOGLEVEL=0 #0: don't show t.Log() and log level is over or equal to INFO
-           #1: show t.Log() and log level is DEBUG
-
+LOGLEVEL=1 #1:Debug, 2:Info, 3:Error, 4:Fatal, 5:No Log
+LOG_ARG='-v'
+if [ $LOGLEVEL -eq 5 ]; then
+    LOG_ARG=''
+fi
 
 # when using go 1.7 for the first time, delete all inside pkg directory and run go install.
 #go install -v ./...
@@ -168,7 +170,11 @@ elif [ $TEST_MODE -eq 2 ]; then
     #go test -v db/mysql/mysql_test.go -log ${LOGLEVEL}
     #go test -v db/redis/redis_test.go -log ${LOGLEVEL}
     #go test -v db/mongodb/mongodb_test.go -jfp ${JSONPATH} -log ${LOGLEVEL}
-    go test -v messaging/rabbitmq/rmq_test.go -log ${LOGLEVEL}
+    #go test -v messaging/rabbitmq/rmq_test.go -log ${LOGLEVEL}
+
+    #go test -v example/defaultdata/defaultdata_test.go -run "ExampleHello"
+    #go test example/defaultdata/defaultdata_test.go -run "ExampleHello"
+    go test ${LOG_ARG} testutil/testutil_test.go -log ${LOGLEVEL}
 
 fi
 
