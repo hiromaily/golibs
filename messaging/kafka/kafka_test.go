@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	topicName string = "topic"
+	topicName string = "Topic1"
 	host      string = "127.0.0.1"
 	//port      int    = 32768 //TODO:this port number may change.
 )

@@ -58,7 +58,7 @@ func Consumer(c sarama.Consumer, topic string, ch ChReceive) {
 
 	// Create consumer object for TestTopic
 	//TODO:panic: failed to get ConsumePartition:
-	// kafka server: Request was for a topic or partition that does not exist on this broker.
+	//TODO: kafka server: Request was for a topic or partition that does not exist on this broker.
 	pc, err := c.ConsumePartition(topic, 0, sarama.OffsetNewest)
 	if err != nil {
 		//return errors.New(fmt.Sprintf("Failed to get ConsumePartition:%s", err))

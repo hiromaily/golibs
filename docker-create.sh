@@ -75,18 +75,24 @@ echo '[cassandra] done!'
 
 #kafka
 echo '[kafka] starting kafka now.'
-while :
-do
-    LOGS=`docker logs lib-kafka1 --tail 5 | grep "Kafka Server 1001], started"`
-    echo $LOGS
-    if [ ${#LOGS} -ne 0 ]; then
-        break
-    else
-        echo 'running...'
-        sleep 1s
-    fi
-done
+#while :
+#do
+#    LOGS=`docker logs lib-kafka1 --tail 5 | grep "Kafka Server 1001], started"`
+#    echo $LOGS
+#    if [ ${#LOGS} -ne 0 ]; then
+#        break
+#    else
+#        echo 'running...'
+#        sleep 1s
+#    fi
+#done
+
+#docker exec -it lib-kafka1 bash -c 'echo $KAFKA_HOME'
+docker exec -it lib-kafka1 bash -c '$KAFKA_HOME/bin/kafka-topics.sh --create --topic NewTopic100 --partitions 1 --zookeeper zookeeper:2181 --replication-factor 1'
+docker exec -it lib-kafka1 bash -c '$KAFKA_HOME/bin/kafka-topics.sh --list --zookeeper zookeeper:2181'
+
 echo '[kafka] done!'
+
 
 #RabbitMQ create queue
 
