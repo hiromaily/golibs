@@ -73,13 +73,7 @@ func TestKafka(t *testing.T) {
 	if err != nil {
 		t.Errorf("CreateConsumer() error: %s", err)
 	}
-	go Consumer(c, topicName, ch)
 
-	lg.Debug("wait Reveiver()")
-	<-ch.ChWait //After being ready.
-	lg.Debug("go after Reveiver()")
-
-	//
 	//2.Producer(Sender)
 	p, err := CreateProducer(host, *tu.KafkaIP)
 	if err != nil {
@@ -87,6 +81,14 @@ func TestKafka(t *testing.T) {
 	}
 	defer p.Close()
 
+	//1.Consumer(Receiver)
+	go Consumer(c, topicName, ch)
+
+	lg.Debug("wait Reveiver()")
+	<-ch.ChWait //After being ready.
+	lg.Debug("go after Reveiver()")
+
+	//2.Producer(Sender)
 	go func() {
 		for i, tt := range msgTests {
 			msg := CreateMsg(topicName, tt.key, tt.value)
