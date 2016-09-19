@@ -43,8 +43,8 @@ prof=${1:-"profile.cov"}
 echo "mode: count" > $prof
 gopath1=$(echo $GOPATH | cut -d: -f1)
 #go list ./... | grep -v '/example\|workinprogress\|web/'
-#for pkg in $(go list ./... | grep -v '/example\|workinprogress\|web\|signal\|kafka'); do
-for pkg in $(go list ./... | grep -v '/example\|workinprogress\|web\|signal'); do
+for pkg in $(go list ./... | grep -v '/example\|workinprogress\|web\|signal\|kafka'); do
+#for pkg in $(go list ./... | grep -v '/example\|workinprogress\|web\|signal'); do
   tmpprof=$gopath1/src/$pkg/profile.tmp
   go test -covermode=count -coverprofile=$tmpprof $pkg -log 5 -fp ${TOMLPATH} -jfp ${JSONPATH} -kip ${KAFKA_IP}
   if [ -f $tmpprof ]; then
