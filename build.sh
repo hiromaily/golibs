@@ -11,7 +11,7 @@ GO_GET=0
 GO_LINT=1
 DOCKER_MODE=0
 
-TEST_MODE=2  #0:off, 1:run all test, 2:test for specific one
+TEST_MODE=0  #0:off, 1:run all test, 2:test for specific one
 BENCH=0
 COVERAGRE=0
 PROFILE=0
