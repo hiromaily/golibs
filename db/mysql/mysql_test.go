@@ -9,6 +9,7 @@ import (
 	u "github.com/hiromaily/golibs/utils"
 	"os"
 	"testing"
+	"encoding/json"
 )
 
 type MySQL struct {
@@ -39,8 +40,10 @@ func setup() {
 	if !tu.BenchFlg {
 		newMySQL()
 
-		//Redis
-		newRedis()
+		if tu.BenchFlg {
+			//Redis
+			newRedis()
+		}
 	}
 }
 
@@ -181,6 +184,7 @@ func (ms *MySQL) getSimpleSQL2(id int) ([]map[string]interface{}, error) {
 //-----------------------------------------------------------------------------
 // Test
 //-----------------------------------------------------------------------------
+// to get map data of string
 func TestGetUserList(t *testing.T) {
 	//tu.SkipLog(t)
 
@@ -196,6 +200,7 @@ func TestGetUserList(t *testing.T) {
 	}
 }
 
+// to get map data of string
 func TestSelect(t *testing.T) {
 	//tu.SkipLog(t)
 
@@ -212,7 +217,134 @@ func TestSelect(t *testing.T) {
 	}
 }
 
-func TestSelectInsScanOne(t *testing.T) {
+// using default QueryRow func
+func TestSelectOne(t *testing.T) {
+	db := getMySQL().Db
+
+	//1
+	var userID int
+	err := db.DB.QueryRow("SELECT user_id FROM t_users WHERE delete_flg=?", 0).Scan(&userID)
+	if err != nil {
+		t.Fatalf("[1]db.DB.QueryRow(): %s", db.Err)
+	}
+	lg.Debugf("user_id is %d", userID)
+
+	//2
+	err = db.DB.QueryRow("SELECT user_id FROM t_users").Scan(&userID)
+	if err != nil {
+		t.Fatalf("[2]db.DB.QueryRow(): %s", db.Err)
+	}
+	lg.Debugf("user_id is %d", userID)
+
+}
+
+//without placeholder
+func TestSelectInsScanOne1(t *testing.T) {
+	db := getMySQL().Db
+
+	//1.int
+	var userID int
+	sql := "SELECT user_id FROM t_users"
+	b := db.SelectIns(sql).ScanOne(&userID)
+	if db.Err != nil {
+		t.Fatalf("[1]db.SelectIns(): %s", db.Err)
+	}
+	lg.Debugf("user_id is %d, result is %v", userID, b)
+
+	//2.string
+	var firstName string
+	sql = "SELECT first_name FROM t_users"
+	b = db.SelectIns(sql).ScanOne(&firstName)
+	if db.Err != nil {
+		t.Fatalf("[2]db.SelectIns(): %s", db.Err)
+	}
+	lg.Debugf("firstName is %s, result is %v", firstName, b)
+
+
+}
+
+//plus placeholder
+func TestSelectInsScanOne2(t *testing.T) {
+	db := getMySQL().Db
+
+	//1.int
+	var userID int
+	sql := "SELECT user_id FROM t_users WHERE delete_flg=?"
+	b := db.SelectIns(sql, 0).ScanOne(&userID)
+	if db.Err != nil {
+		t.Fatalf("[1]db.SelectIns(): %s", db.Err)
+	}
+	lg.Debugf("user_id is %d, result is %v", userID, b)
+
+	//2.string
+	var firstName string
+	sql = "SELECT first_name FROM t_users WHERE delete_flg=?"
+	b = db.SelectIns(sql, 0).ScanOne(&firstName)
+	if db.Err != nil {
+		t.Fatalf("[2]db.SelectIns(): %s", db.Err)
+	}
+	lg.Debugf("firstName is %s, result is %v", firstName, b)
+
+	//3.string
+	var updated string
+	sql = "SELECT update_datetime FROM t_users WHERE delete_flg=?"
+	b = db.SelectIns(sql, 0).ScanOne(&updated)
+	if db.Err != nil {
+		t.Fatalf("[3]db.SelectIns(): %s", db.Err)
+	}
+	lg.Debugf("update_datetime is %s, result is %v", updated, b)
+}
+
+//pass struct and without placeholder
+//TODO:this pattern doesn't work yet
+//TODO:SelectInsにパラメータがないと動かん・・・
+//panic: reflect.Set: value of type string is not assignable to type int [recovered]
+//panic: reflect.Set: value of type string is not assignable to type int
+func TestSelectInsScanOne3(t *testing.T) {
+	tu.SkipLog(t)
+
+	type Person struct {
+		UserId    int    `db:"id"`
+		FirstName string `db:"first_name"`
+		LastName  string `db:"last_name"`
+		//DateTime  time.Time `db:"create_datetime"`
+		DateTime string `db:"create_datetime"`
+	}
+
+	db := getMySQL().Db
+
+	//1.Single data
+	var person Person
+	sql := "SELECT user_id, first_name, last_name, create_datetime FROM t_users"
+	db.SelectIns(sql)
+	if db.Err != nil {
+		t.Fatalf("[1]db.SelectIns(): %s", db.Err)
+	}
+
+	for db.ScanOne(&person) {
+		//lg.Debugf(person)
+		//lg.Debugf("person.UserId: %d", person.UserId)
+		//lg.Debugf("person.FirstName: %s", person.FirstName)
+		//lg.Debugf("person.LastName: %s", person.LastName)
+		//lg.Debugf("person.DateTime: %s", person.DateTime)
+	}
+	if db.Err != nil {
+		t.Fatalf("[1]db.ScanOne(): %s", db.Err)
+	}
+
+	//When result is nothing -> nodata
+	var person2 Person
+	b := db.SelectIns(sql, "1").ScanOne(&person2)
+	if db.Err != nil {
+		t.Fatalf("[2]db.SelectIns(): %s", db.Err)
+	}
+	if b {
+		t.Error("[2]db.ScanOne(): return bool may be wrong.")
+	}
+}
+
+//pass struct and plus placeholder
+func TestSelectInsScanOne4(t *testing.T) {
 	//tu.SkipLog(t)
 
 	type Person struct {
@@ -255,7 +387,42 @@ func TestSelectInsScanOne(t *testing.T) {
 	}
 }
 
-func TestSelectInsScan(t *testing.T) {
+//without placeholder
+//TODO:this pattern doesn't work yet
+//TODO:SelectInsにパラメータがないと動かん・・・
+//panic: reflect.Set: value of type string is not assignable to type int [recovered]
+func TestSelectInsScan1(t *testing.T) {
+	tu.SkipLog(t)
+
+	db := getMySQL().Db
+
+	var userIDs []int
+
+	sql := "SELECT user_id FROM t_users"
+	db.SelectIns(sql).Scan(&userIDs)
+	if db.Err != nil {
+		t.Errorf("[1]db.SelectIns(sql, 0).Scan(): %s", db.Err)
+	}
+	lg.Debugf("userIDs is %v", userIDs)
+}
+
+//plus placeholder
+func TestSelectInsScan2(t *testing.T) {
+
+	db := getMySQL().Db
+
+	var userIDs []int
+
+	sql := "SELECT user_id FROM t_users WHERE delete_flg=?"
+	db.SelectIns(sql, 0).Scan(&userIDs)
+	if db.Err != nil {
+		t.Errorf("[1]db.SelectIns(sql, 0).Scan(): %s", db.Err)
+	}
+	lg.Debugf("userIDs is %v", userIDs)
+}
+
+//struct plus placeholder
+func TestSelectInsScan3(t *testing.T) {
 	//tu.SkipLog(t)
 
 	type Person struct {
@@ -288,6 +455,56 @@ func TestSelectInsScan(t *testing.T) {
 	if b {
 		t.Errorf("[2]db.SelectIns(sql, 1).Scan(): number of result is %d", len(persons2))
 	}
+}
+
+//JSON Type without placeholder
+func TestSelectInsScanOneJSON(t *testing.T) {
+	tu.SkipLog(t)
+
+	db := getMySQL().Db
+
+	//1.Json Data as string
+	var memo string
+	sql := "SELECT memo2 FROM t_invoices"
+	b := db.SelectIns(sql).ScanOne(&memo)
+	if db.Err != nil {
+		t.Fatalf("[1]db.SelectIns(): %s", db.Err)
+	}
+	lg.Debugf("memo2 is %s, result is %v", memo, b)
+
+	//convert string to slice
+	var converted []int
+	json.Unmarshal([]byte(memo), &converted)
+	lg.Debugf("converted memo2 is %v", converted)
+
+
+	//2.Json Data as Array (This is not correct)
+	var memo2 []int
+	sql = "SELECT memo2 FROM t_invoices"
+	b = db.SelectIns(sql).ScanOne(&memo2)
+	if db.Err != nil {
+		t.Fatalf("[2]db.SelectIns(): %s", db.Err)
+	}
+	lg.Debugf("memo2 is %s, result is %v", memo2, b)
+
+}
+
+//Insert JSON Type
+func TestInsertJSON(t *testing.T) {
+	tu.SkipLog(t)
+
+	db := getMySQL().Db
+
+	JsonBase := []int{10, 20, 30, 40, 50}
+	retByte, _ := json.Marshal(JsonBase)
+
+	// Insert
+	sql := "INSERT INTO t_invoices (user_id, memo2) VALUES (1, ?)"
+	newID, err := db.Insert(sql, string(retByte))
+	if err != nil {
+		t.Fatalf("[1]db.Insert(): %s", db.Err)
+	}
+	lg.Debugf("newID is %d", newID)
 }
 
 //-----------------------------------------------------------------------------

@@ -11,7 +11,7 @@ GO_GET=0
 GO_LINT=1
 DOCKER_MODE=0
 
-TEST_MODE=0  #0:off, 1:run all test, 2:test for specific one
+TEST_MODE=2  #0:off, 1:run all test, 2:test for specific one
 BENCH=0
 COVERAGRE=0
 PROFILE=0
@@ -175,7 +175,10 @@ elif [ $TEST_MODE -eq 2 ]; then
     #go test example/defaultdata/defaultdata_test.go -run "ExampleHello"
     #go test ${LOG_ARG} testutil/testutil_test.go -log ${LOGLEVEL}
     #go test -v messaging/rabbitmq/rmq_test.go -log ${LOGLEVEL}
-    go test -v messaging/kafka/kafka_test.go -kip ${KAFKA_IP} -log ${LOGLEVEL}
+    #go test -v messaging/kafka/kafka_test.go -kip ${KAFKA_IP} -log ${LOGLEVEL}
+
+    #go test -v db/mysql/mysql_test.go -run TestSelectInsScanOne1 -log ${LOGLEVEL}
+    go test -v db/mysql/mysql_test.go -log ${LOGLEVEL}
 
 fi
 
