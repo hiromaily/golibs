@@ -156,8 +156,8 @@ func validateStructAndColumns(ms *MS, values []interface{}) error {
 func scanStruct(values []interface{}, v reflect.Value) {
 	structType := v.Type()
 	for i := 0; i < structType.NumField(); i++ {
-		val := reflect.ValueOf(values[i])
-
+		//val := reflect.ValueOf(values[i])
+		val := reflect.TypeOf(values[i])
 		switch val.Kind() {
 		case reflect.Invalid:
 		//nil: for now, it skips.
@@ -299,7 +299,7 @@ func (ms *MS) ScanOne(x interface{}) bool {
 
 		//ms.Err = ms.Rows.Scan(v)
 		scanStruct(values, v.Elem())
-	}else{
+	} else {
 		// rows.Scan()
 		ms.Err = ms.Rows.Scan(x)
 		if ms.Err != nil {

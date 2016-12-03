@@ -1,6 +1,7 @@
 package mysql_test
 
 import (
+	"encoding/json"
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/mysql"
 	"github.com/hiromaily/golibs/db/redis"
@@ -9,7 +10,6 @@ import (
 	u "github.com/hiromaily/golibs/utils"
 	"os"
 	"testing"
-	"encoding/json"
 )
 
 type MySQL struct {
@@ -260,7 +260,6 @@ func TestSelectInsScanOne1(t *testing.T) {
 	}
 	lg.Debugf("firstName is %s, result is %v", firstName, b)
 
-
 }
 
 //plus placeholder
@@ -476,7 +475,6 @@ func TestSelectInsScanOneJSON(t *testing.T) {
 	var converted []int
 	json.Unmarshal([]byte(memo), &converted)
 	lg.Debugf("converted memo2 is %v", converted)
-
 
 	//2.Json Data as Array (This is not correct)
 	var memo2 []int

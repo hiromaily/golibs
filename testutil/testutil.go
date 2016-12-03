@@ -20,6 +20,9 @@ var (
 	ConfFile = flag.String("fp", "", "Config File Path")
 	//JSONFile is json file path
 	JSONFile = flag.String("jfp", "", "Json File Path")
+	//YAMLFile is json file path
+	YAMLFile = flag.String("yfp", "", "YAML File Path")
+
 	//KafkaIP is IP for kafka server
 	KafkaIP = flag.Int("kip", 9092, "Json File Path")
 
