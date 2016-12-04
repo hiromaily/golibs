@@ -238,7 +238,7 @@ func TestYAMLTable(t *testing.T) {
 
 		//2. using struct data
 		//2-1. unmarshal yaml
-		//TODO: assert interdace to specific type
+		//TODO: assert interface to specific type
 		if val, ok := tt.typeValue.(T1); ok {
 			//TODO: this code is ugly.
 			err := yml.Unmarshal(data, &val)

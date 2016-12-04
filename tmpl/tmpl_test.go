@@ -1,14 +1,17 @@
 package tmpl_test
 
 import (
+	"fmt"
 	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
 	. "github.com/hiromaily/golibs/tmpl"
-	//ht "html/template"
 	"os"
 	"testing"
 	tt "text/template"
 )
+
+//TODO
+//http://stackoverflow.com/questions/11467731/is-it-possible-to-have-nested-templates-in-go-using-the-standard-library-googl
 
 type TeachrInfo struct {
 	Id      int
@@ -16,7 +19,7 @@ type TeachrInfo struct {
 	Country string
 }
 
-type SiteInfo struct {
+type Teachers struct {
 	Url      string
 	Teachers []TeachrInfo
 }
@@ -26,8 +29,10 @@ type Site struct {
 	Pages []int
 }
 
-var tmplTeachers string = `
-	//1. just dot
+var (
+	//test1
+	tmplTeachers string = `
+	//1. use  dot
 	{{.}}
 
 	//2. variable
@@ -41,8 +46,8 @@ var tmplTeachers string = `
 	{{end}}
 	-----------------------------------
 `
-
-var tmplTeachers2 string = `
+	//test2
+	tmplTeachers2 string = `
 	//1. range
 	{{range $index, $value := .Teachers}}
 	- Index:{{$index}}
@@ -60,8 +65,32 @@ var tmplTeachers2 string = `
 	* A ge B -> A >= B
 	-----------------------------------
 `
+	//test3
+	tmplVariable string = `
+	{{$test := "test"}}
+	{{if eq $test "test"}}
+		{{$test}}
+		{{printf "This is %s" $test}}
+	{{end}}
+`
 
-var tmplTeachers3 string = `
+	//test4
+	tmplSite string = `
+	{{range .Pages}}
+		<li><a href="{{.}}">{{.}}</a></li>
+	{{end}}
+`
+
+	//test5
+	innerOuter string = `
+	{{with .Inner}}
+	  Outer: {{$.OuterValue}}
+	  Inner: {{.InnerValue}}
+	{{end}}
+`
+
+	//test6
+	tmplTeachers3 string = `
 	//1. range
 	{{range .Teachers}}
 	- Id:{{.Id | plus10}}
@@ -70,8 +99,8 @@ var tmplTeachers3 string = `
 	{{end}}
 	-----------------------------------
 `
-
-var tmplTeachers4 string = `
+	//test7
+	tmplTeachers4 string = `
 	//1. range
 	{{range $index, $value := .Teachers}}
 	{{if .Name}}
@@ -92,19 +121,27 @@ var tmplTeachers4 string = `
 	{{end}}
 	-----------------------------------
 `
+)
 
-var tmplSite string = `
-	{{range .Pages}}
-		<li><a href="{{.}}">{{.}}</a></li>
-	{{end}}
-`
+// For table test
+var tmpleTests = []struct {
+	tmplName   string
+	tmplString string
+}{
+	{"tmplTeachers", tmplTeachers},
+	{"tmplTeachers2", tmplTeachers2},
+	{"tmplVariable", tmplVariable},
+	//{"tmplSite", tmplSite},
+	//{"innerOuter", innerOuter},
+}
 
-var innerOuter string = `
-{{with .Inner}}
-  Outer: {{$.OuterValue}}
-  Inner: {{.InnerValue}}
-{{end}}
-`
+var tmpleTests2 = []struct {
+	tmplName   string
+	tmplString string
+}{
+	{"tmplTeachers3", tmplTeachers3},
+	{"tmplTeachers4", tmplTeachers4},
+}
 
 //-----------------------------------------------------------------------------
 // Test Framework
@@ -137,15 +174,15 @@ func plus10(num int) int {
 	return num + 10
 }
 
-func getTestData() *SiteInfo {
-	siteInfo := &SiteInfo{Url: "http://google.com",
+func getTeathers() *Teachers {
+	teachers := &Teachers{Url: "http://google.com",
 		Teachers: []TeachrInfo{{Id: 1, Name: "Harry", Country: "Japan"},
 			{Id: 2, Name: "Harry", Country: "Japan"},
 			{Id: 3, Name: "Taro", Country: "UK"},
 			{Id: 4, Name: "", Country: "Germany"},
 			{Id: 5, Name: "Saburo", Country: "America"}}}
 
-	return siteInfo
+	return teachers
 }
 
 //-----------------------------------------------------------------------------
@@ -154,46 +191,32 @@ func getTestData() *SiteInfo {
 func TestTextTemplate(t *testing.T) {
 	//t.Skip("skipping TestTextTemplate")
 
-	siteInfo := getTestData()
+	teachers := getTeathers()
 
-	//
-	tmpl, err := tt.New("siteInfoText").Parse(tmplTeachers)
-	if err != nil {
-		t.Fatalf("[01] template.New() error: %s", err)
-	}
-	err = tmpl.Execute(os.Stdout, siteInfo)
-	if err != nil {
-		t.Fatalf("[02] template.Execute() error: %s", err)
-	}
+	//normal
+	for i, td := range tmpleTests {
+		fmt.Printf("[%d] name:%s\n", i+1, td.tmplName)
 
-	//2
-	tmpl2, err := tt.New("siteInfoText2").Parse(tmplTeachers2)
-	if err != nil {
-		t.Fatalf("[03] template.New() error: %s", err)
-	}
-	err = tmpl2.Execute(os.Stdout, siteInfo)
-	if err != nil {
-		t.Fatalf("[04] template.Execute() error: %s", err)
+		tmpl, err := tt.New(td.tmplName).Parse(td.tmplString)
+		if err != nil {
+			t.Fatalf("[%d] template.New(%s) error: %s", i+1, td.tmplName, err)
+		}
+		err = tmpl.Execute(os.Stdout, teachers)
+		if err != nil {
+			t.Fatalf("[%d] template.Execute(%s) error: %s", i+1, td.tmplName, err)
+		}
 	}
 
-	//3
-	tmpl3, err := tt.New("siteInfoText3").Funcs(tt.FuncMap{"plus10": plus10}).Parse(tmplTeachers3)
-	if err != nil {
-		t.Fatalf("[05] template.New() error: %s", err)
-	}
-	err = tmpl3.Execute(os.Stdout, siteInfo)
-	if err != nil {
-		t.Fatalf("[06] template.Execute() error: %s", err)
-	}
-
-	//4
-	tmpl4, err := tt.New("siteInfoText4").Funcs(tt.FuncMap{"plus10": plus10}).Parse(tmplTeachers4)
-	if err != nil {
-		t.Fatalf("[07] template.New() error: %s", err)
-	}
-	err = tmpl4.Execute(os.Stdout, siteInfo)
-	if err != nil {
-		t.Fatalf("[08] template.Execute() error: %s", err)
+	//with func
+	for i, td := range tmpleTests2 {
+		tmpl, err := tt.New("td.tmplName").Funcs(tt.FuncMap{"plus10": plus10}).Parse(td.tmplString)
+		if err != nil {
+			t.Fatalf("[%d] template.New(%s) error: %s", i+1, td.tmplName, err)
+		}
+		err = tmpl.Execute(os.Stdout, teachers)
+		if err != nil {
+			t.Fatalf("[%d] template.Execute(%s) error: %s", i+1, td.tmplName, err)
+		}
 	}
 }
 
@@ -201,7 +224,7 @@ func TestTextTemplate(t *testing.T) {
 // Test
 //-----------------------------------------------------------------------------
 func TestFilePathParser(t *testing.T) {
-	siteInfo := getTestData()
+	siteInfo := getTeathers()
 
 	path := os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/tmpl/file/sample1.tmpl"
 	result, err := FilePathParser(path, siteInfo)
@@ -212,7 +235,7 @@ func TestFilePathParser(t *testing.T) {
 }
 
 func TestFileTemplate(t *testing.T) {
-	siteInfo := getTestData()
+	siteInfo := getTeathers()
 
 	goPath := os.Getenv("GOPATH")
 	tpl, err := tt.ParseFiles(goPath + "/src/github.com/hiromaily/golibs/tmpl/file/sample1.tmpl")
@@ -225,4 +248,8 @@ func TestFileTemplate(t *testing.T) {
 		t.Fatalf("[02] FileTempParser() error: %s", err)
 	}
 	lg.Debug(result)
+}
+
+func TestTmplPlusI18n(t *testing.T) {
+
 }

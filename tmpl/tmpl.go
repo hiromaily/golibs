@@ -2,12 +2,12 @@ package tmpl
 
 import (
 	"bytes"
-	tt "text/template"
 	//ht "html/template"
+	tt "text/template"
 )
 
 // StrTempParser is to get string of template for string
-// It's just sample
+// It's just example
 func StrTempParser(temp string, params interface{}) (string, error) {
 	var parseResult bytes.Buffer
 

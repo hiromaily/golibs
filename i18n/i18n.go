@@ -3,6 +3,8 @@ package i18n
 import (
 	"fmt"
 	"github.com/nicksnyder/go-i18n/i18n"
+	"gopkg.in/guregu/null.v3"
+	ht "html/template"
 	"os"
 )
 
@@ -61,4 +63,35 @@ func (t Translation) Map() map[string]string {
 // String is to get string data
 func (t Translation) String(lang string) string {
 	return MustTfunc(t.msgID, t.args...)(lang)
+}
+
+// GetFuncMap is for calling from template
+func GetFuncMap(lang string) ht.FuncMap {
+	funcMap := ht.FuncMap{
+		"gettext": func(id string) string {
+			return T(id).String(lang)
+		},
+		"gettext2": func(id string, args ...interface{}) ht.HTML {
+			text := T(id, args...).String(lang)
+			return ht.HTML(text)
+		},
+		"getAsMap": func(args ...interface{}) map[string]interface{} {
+			//key: value
+			maps := map[string]interface{}{}
+			var val string
+			for i := 0; i < len(args); i += 2 {
+				key, _ := args[i].(string)
+				//check for null.String type as possibility
+				if v, ok := args[i+1].(null.String); ok {
+					val = v.String
+				} else {
+					val, _ = args[i+1].(string)
+				}
+				maps[key] = val
+			}
+			return maps
+		},
+		"unescape": func(text string) ht.HTML { return ht.HTML(text) },
+	}
+	return funcMap
 }
