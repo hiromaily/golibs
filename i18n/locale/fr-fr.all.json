@@ -1,0 +1,14 @@
+[
+  {
+    "id": "message1",
+    "translation": "Welcome to Amsterdam!"
+  },
+  {
+    "id": "message2",
+    "translation": "Hi, My Name is {{.Name}}."
+  },
+  {
+    "id": "message3",
+    "translation": "I'm {{.Age}} year old."
+  }
+]
