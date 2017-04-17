@@ -1,7 +1,7 @@
 package context_test
 
 import (
-	//. "github.com/hiromaily/golibs/web/context"
+	. "github.com/hiromaily/golibs/web/context"
 	//lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
 	"os"
@@ -35,10 +35,15 @@ func TestMain(m *testing.M) {
 //-----------------------------------------------------------------------------
 // Test
 //-----------------------------------------------------------------------------
-func TestContext(t *testing.T) {
+func TestContextCancel(t *testing.T) {
+	ContextWithCancel()
 	//if err != nil {
 	//	t.Errorf("TestContext error: %s", err)
 	//}
+}
+
+func TestContextWithTimeout(t *testing.T) {
+	ContextWithTimeout()
 }
 
 //-----------------------------------------------------------------------------
