@@ -26,6 +26,13 @@ up_product:
 dcbld:
 	docker-compose build --no-cache
 
+mysql:
+	docker-compose up mysql
+
+pg:
+	docker-compose up pg
+
+
 ###############################################################################
 # PKG Dependencies
 ###############################################################################

@@ -7,7 +7,11 @@
 #- rabbitmq:3.6
 #- kafka from Dockerfile
 
-version: '2'
+version: '2.1'
+
+volumes:
+  db: {}
+
 services:
   # MySQL
   mysql:
@@ -26,6 +30,29 @@ services:
       MYSQL_DATABASE: hiromaily
       MYSQL_USER: hiromaily
       MYSQL_PASSWORD: 12345678
+  # PostgreSQL
+  pg:
+    image: mdillon/postgis:9.6
+    read_only: true
+    container_name: lib-pg
+    ports:
+      - "${DB_PORT:-5434}:5432"
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_USER: hiromaily
+      POSTGRES_PASSWORD: hiromaily
+    tmpfs:
+      - /tmp
+      - /run/postgresql
+    volumes:
+      - db:/var/lib/postgresql/data/pgdata
+      - ./docker_build/postgresql/init.d:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: "1k"
+        max-file: "5"
+
   # Redis
   redis:
     image: redis:3.2
