@@ -7,7 +7,7 @@ import (
 	// mysql driver
 	// TODO:it may cause error on golang 1.8.3 or some version
 	// panic: sql: Register called twice for driver mysql
-	//_ "github.com/go-sql-driver/mysql"
+	_ "github.com/go-sql-driver/mysql"
 	lg "github.com/hiromaily/golibs/log"
 	tm "github.com/hiromaily/golibs/time"
 	u "github.com/hiromaily/golibs/utils"
