@@ -180,7 +180,9 @@ func TestCalcTime(t *testing.T) {
 	//tu.SkipLog(t)
 	//00:00:10,950
 	timeStr := "00:00:10,950"
-	addedTime := -6.2
+	//addedTime := -6.2
+	//addedTime := 6.2
+	addedTime := 0.6
 
 	tims := strings.Split(strings.Replace(timeStr, ",", ":", -1), ":")
 	timI := u.ConvertToInt(tims)
