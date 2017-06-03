@@ -1,9 +1,12 @@
 package files_test
 
 import (
+	"bufio"
+	"fmt"
 	. "github.com/hiromaily/golibs/files"
 	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
+	"io/ioutil"
 	"os"
 	"testing"
 )
@@ -35,9 +38,86 @@ func TestMain(m *testing.M) {
 }
 
 //-----------------------------------------------------------------------------
+// Example
+//-----------------------------------------------------------------------------
+func TestWriteFile1(t *testing.T) {
+	//tu.SkipLog(t)
+
+	//1
+	d1 := []byte("hello\ngo\n")
+	err := ioutil.WriteFile("./test1.txt", d1, 0644)
+	if err != nil {
+		lg.Error(err)
+	}
+
+	//2 (overwrite)
+	d1 = []byte("hello\ngo\n")
+	err = ioutil.WriteFile("./test1.txt", d1, 0644)
+	if err != nil {
+		lg.Error(err)
+	}
+}
+
+func TestWriteFile2(t *testing.T) {
+	//tu.SkipLog(t)
+	f, err := os.Create("./test2.txt")
+	if err != nil {
+		lg.Error(err)
+	}
+	defer f.Close()
+
+	//1
+	d2 := []byte{115, 111, 109, 101, 10}
+	n2, err := f.Write(d2)
+	if err != nil {
+		lg.Error(err)
+	}
+	fmt.Printf("wrote %d bytes\n", n2)
+
+	//2
+	n3, err := f.WriteString("writes\n")
+	if err != nil {
+		lg.Error(err)
+	}
+	fmt.Printf("wrote %d bytes\n", n3)
+
+	f.Sync()
+}
+
+func TestWriteFile3(t *testing.T) {
+	//tu.SkipLog(t)
+
+	f, err := os.Create("./test3.txt")
+	if err != nil {
+		lg.Error(err)
+	}
+	defer f.Close()
+
+	w := bufio.NewWriter(f)
+
+	//1
+	n4, err := w.WriteString("buffered\n")
+	if err != nil {
+		lg.Error(err)
+	}
+	fmt.Printf("wrote %d bytes\n", n4)
+
+	//2
+	n4, err = w.WriteString("buffered\n")
+	if err != nil {
+		lg.Error(err)
+	}
+	fmt.Printf("wrote %d bytes\n", n4)
+
+	w.Flush()
+}
+
+//-----------------------------------------------------------------------------
 // Test
 //-----------------------------------------------------------------------------
 func TestGetFileList(t *testing.T) {
+	tu.SkipLog(t)
+
 	ext := []string{"tmpl"}
 
 	files := GetFileList(basePath, ext)
@@ -47,6 +127,8 @@ func TestGetFileList(t *testing.T) {
 }
 
 func TestGetFileList2(t *testing.T) {
+	tu.SkipLog(t)
+
 	ext := []string{"tmpl"}
 
 	files := GetFileListSingle(basePath, ext)

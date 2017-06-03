@@ -92,6 +92,10 @@ solo:
 strings:
 	go test -v example/strings/strings_test.go -log 1
 
+fil:
+	go test -v files/files_test.go -log 1
+
+
 test:
 	#
 	go test -v auth/jwt/jwt_test.go -log ${LOGLEVEL}
