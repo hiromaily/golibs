@@ -95,6 +95,9 @@ strings:
 fil:
 	go test -v files/files_test.go -log 1
 
+tim:
+	go test -v time/time_test.go -log 1
+
 
 test:
 	#
