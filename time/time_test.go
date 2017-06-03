@@ -5,11 +5,11 @@ import (
 	tu "github.com/hiromaily/golibs/testutil"
 	. "github.com/hiromaily/golibs/time"
 	u "github.com/hiromaily/golibs/utils"
+	"math"
 	"os"
 	"strings"
 	"testing"
 	"time"
-	"math"
 )
 
 //-----------------------------------------------------------------------------
@@ -188,7 +188,7 @@ func TestCalcTime(t *testing.T) {
 	//lg.Debug(950e6, timI[3], timI[3] * (10^6), timI[3] * int(math.Pow10(6))) //9.5e+08 950 -9498
 	//1.2Ｅ＋08 = 1.2×10^8（120,000,000)
 	//ti := GetFormatTime2(timI[0], timI[1], timI[2], 950e6)
-	ti := GetFormatTime2(timI[0], timI[1], timI[2], timI[3] * int(math.Pow10(6)))
+	ti := GetFormatTime2(timI[0], timI[1], timI[2], timI[3]*int(math.Pow10(6)))
 	lg.Debug(ti.Format("15:04:05.000"))
 	//00:00:10.950
 
@@ -197,13 +197,13 @@ func TestCalcTime(t *testing.T) {
 	lg.Debug(integerVal) //-6
 	lg.Debug(decimalVal) //-200
 	//ti2 := ti.Add(1 * time.Minute)
-	if integerVal != 0{
+	if integerVal != 0 {
 		ti = ti.Add(time.Duration(integerVal) * time.Second)
 		lg.Debug(ti.Format("15:04:05.000"))
 		//00:00:04.950
 	}
-	if decimalVal != 0{
-		ti = ti.Add(time.Duration(int(decimalVal) * int(math.Pow10(6))) * time.Nanosecond)
+	if decimalVal != 0 {
+		ti = ti.Add(time.Duration(int(decimalVal)*int(math.Pow10(6))) * time.Nanosecond)
 		lg.Debug(ti.Format("15:04:05.000"))
 		//00:00:04.750
 	}
