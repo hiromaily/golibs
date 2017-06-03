@@ -171,6 +171,7 @@ func TestFieldsFunc(t *testing.T) {
 	lg.Debugf("[1]strings.FieldsFunc():%q", strings.FieldsFunc("  foo1;bar2,baz3...", f)) //["foo1" "bar2" "baz3"]
 }
 
+//TODO:It's useful!!
 func TestHasPrefix(t *testing.T) {
 	tu.SkipLog(t)
 	ret := strings.HasPrefix("Gopher", "Go")
@@ -186,8 +187,9 @@ func TestHasPrefix(t *testing.T) {
 	lg.Debugf("[4]strings.HasPrefix():%v", ret) //true
 }
 
+//TODO:It's useful!!
 func TestHasSuffix(t *testing.T) {
-	//tu.SkipLog(t)
+	tu.SkipLog(t)
 	ret := strings.HasSuffix("GopherMIX", "MIX")
 	lg.Debugf("[1]strings.HasSuffix():%v", ret) //true
 
@@ -201,18 +203,195 @@ func TestHasSuffix(t *testing.T) {
 	lg.Debugf("[4]strings.HasSuffix():%v", ret) //true
 }
 
+//TODO:It's useful!!
+func TestIndex(t *testing.T) {
+	tu.SkipLog(t)
+	ret := strings.Index("chicken", "ken")
+	lg.Debugf("[1]strings.Index():%v", ret) // 4
 
-//func TestContains(t *testing.T) {
-//	tu.SkipLog(t)
-//}
+	ret = strings.Index("chicken", "den")
+	lg.Debugf("[2]strings.Index():%v", ret) // -1
+}
 
-//func TestContains(t *testing.T) {
-//	tu.SkipLog(t)
-//}
+func TestIndexAny(t *testing.T) {
+	tu.SkipLog(t)
+	ret := strings.IndexAny("chicken", "aeiouy")
+	lg.Debugf("[1]strings.IndexAny():%v", ret) // 2
 
-//func TestContains(t *testing.T) {
-//	tu.SkipLog(t)
-//}
+	ret = strings.IndexAny("crwth", "aeiouy")
+	lg.Debugf("[2]strings.IndexAny():%v", ret) // -1
+}
+
+func TestIndexByte(t *testing.T) {
+	tu.SkipLog(t)
+	//func IndexByte(s string, c byte) int
+}
+
+//IndexFunc returns the index into s of the first Unicode code point satisfying f(c), or -1 if none do.
+//日本語が混じっているのかどうか、調べることができる
+func TestIndexFunc(t *testing.T) {
+	tu.SkipLog(t)
+	f := func(c rune) bool {
+		return unicode.Is(unicode.Han, c)
+	}
+	ret := strings.IndexFunc("Hello, 世界", f)
+	lg.Debugf("[1]strings.IndexFunc():%v", ret) // 7
+
+	ret = strings.IndexFunc("Hello, world", f)
+	lg.Debugf("[1]strings.IndexFunc():%v", ret) // -1
+}
+
+func TestIndexRune(t *testing.T) {
+	tu.SkipLog(t)
+	ret := strings.IndexRune("chicken", 'k')
+	lg.Debugf("[1]strings.IndexRune():%v", ret) // 4
+
+	ret = strings.IndexRune("chicken", 'd')
+	lg.Debugf("[2]strings.IndexRune():%v", ret) // -1
+}
+
+//複数検索文字が存在する時に、その最後に発見されたものの、indexを返す。
+func TestLastIndex(t *testing.T) {
+	tu.SkipLog(t)
+	ret := strings.Index("go gopher", "go")
+	lg.Debugf("[0]strings.Index():%v", ret) // 0
+
+	ret = strings.LastIndex("go gopher", "go")
+	lg.Debugf("[1]strings.LastIndex():%v", ret) // 3
+
+	ret = strings.LastIndex("go gopher", "rodent")
+	lg.Debugf("[2]strings.LastIndex():%v", ret) // -1
+}
+
+func TestLastIndexAny(t *testing.T) {
+	tu.SkipLog(t)
+	//func LastIndexAny(s, chars string) int
+}
+
+func TestLastIndexByte(t *testing.T) {
+	tu.SkipLog(t)
+	//func LastIndexByte(s string, c byte) int
+}
+
+func TestLastIndexFunc(t *testing.T) {
+	tu.SkipLog(t)
+	//func LastIndexFunc(s string, f func(rune) bool) int
+}
+
+//TODO:It's useful!!
+func TestMap(t *testing.T) {
+	tu.SkipLog(t)
+	rot13 := func(r rune) rune {
+		switch {
+		case r >= 'A' && r <= 'Z':
+			return 'A' + (r-'A'+13)%26
+		case r >= 'a' && r <= 'z':
+			return 'a' + (r-'a'+13)%26
+		}
+		return r
+	}
+	reverse := func(r rune) rune {
+		switch {
+		case r >= 'A' && r <= 'Z':
+			//return 'A' + (r-'A'+13)%26
+			return r ^ 32 //A => a
+		case r >= 'a' && r <= 'z':
+			//return 'a' + (r-'a'+13)%26
+			return r ^ 32 //a => A
+		}
+		return r
+	}
+
+	ret := strings.Map(rot13, "'Twas brillig and the slithy gopher...")
+	lg.Debugf("[1]strings.Map():%v", ret) //
+
+	ret = strings.Map(reverse, "'i like golang and devops...")
+	lg.Debugf("[2]strings.Map():%v", ret) //
+}
+
+//TODO:It's useful!!
+func TestRepeat(t *testing.T) {
+	tu.SkipLog(t)
+
+	ret := strings.Repeat("na", 2)
+	lg.Debugf("[1]strings.Repeat():%v", ret) //nana
+}
+
+//TODO:It's useful!!
+func TestReplace(t *testing.T) {
+	tu.SkipLog(t)
+
+	ret := strings.Replace("oink oink oink", "k", "ky", 2)
+	lg.Debugf("[1]strings.Replace():%v", ret) //oinky oinky oink
+
+	ret = strings.Replace("oink oink oink", "k", "ky", -1)
+	lg.Debugf("[2]strings.Replace():%v", ret) //oinky oinky oinky
+}
+
+//TODO:It's useful!!
+func TestSplit(t *testing.T) {
+	tu.SkipLog(t)
+
+	ret := strings.Split("a,b,c", ",")
+	lg.Debugf("[1]strings.Split():%q", ret) //["a" "b" "c"]
+
+	ret = strings.Split("a man a plan a canal panama", "a ")
+	lg.Debugf("[2]strings.Split():%q", ret) //["" "man " "plan " "canal panama"]
+
+	ret = strings.Split(" xyz ", "")
+	lg.Debugf("[3]strings.Split():%q", ret) //[" " "x" "y" "z" " "]
+
+	ret = strings.Split("", "Bernardo O'Higgins")
+	lg.Debugf("[4]strings.Split():%q", ret) //[""]
+}
+
+//TODO:It's useful!!
+//SplitAfter slices s into all substrings after each instance of sep and returns a slice of those substrings.
+func TestSplitAfter(t *testing.T) {
+	tu.SkipLog(t)
+
+	ret := strings.SplitAfter("a,b,c", ",")
+	lg.Debugf("[1]strings.SplitAfter():%q", ret) //["a," "b," "c"]
+}
+
+//後ろの要素のほうが大きくなる、つまり前から分割していく。
+func TestSplitAfterN(t *testing.T) {
+	tu.SkipLog(t)
+
+	ret := strings.SplitAfterN("a,b,c,d,e", ",", 1)
+	lg.Debugf("[1]strings.SplitAfterN():%q", ret) //["a,b,c,d,e"]
+
+	ret = strings.SplitAfterN("a,b,c,d,e", ",", 2)
+	lg.Debugf("[1]strings.SplitAfterN():%q", ret) //["a," "b,c,d,e"]
+
+	ret = strings.SplitAfterN("a,b,c,d,e", ",", 3)
+	lg.Debugf("[1]strings.SplitAfterN():%q", ret) //["a," "b," "c,d,e"]
+
+	ret = strings.SplitAfterN("a,b,c,d,e", ",", 4)
+	lg.Debugf("[1]strings.SplitAfterN():%q", ret) //["a," "b," "c," "d,e"]
+
+	ret = strings.SplitAfterN("a,b,c,d,e", ",", 5)
+	lg.Debugf("[1]strings.SplitAfterN():%q", ret) //["a," "b," "c," "d," "e"]
+}
+
+func TestSplitN(t *testing.T) {
+	tu.SkipLog(t)
+
+	ret := strings.SplitN("a,b,c,d,e", ",", 1)
+	lg.Debugf("[1]strings.SplitN():%q", ret) //["a,b,c,d,e"]
+
+	ret = strings.SplitN("a,b,c,d,e", ",", 2)
+	lg.Debugf("[1]strings.SplitN():%q", ret) //["a," "b,c,d,e"]
+
+	ret = strings.SplitN("a,b,c,d,e", ",", 3)
+	lg.Debugf("[1]strings.SplitN():%q", ret) //["a," "b," "c,d,e"]
+
+	ret = strings.SplitN("a,b,c,d,e", ",", 4)
+	lg.Debugf("[1]strings.SplitN():%q", ret) //["a," "b," "c," "d,e"]
+
+	ret = strings.SplitN("a,b,c,d,e", ",", 5)
+	lg.Debugf("[1]strings.SplitN():%q", ret) //["a," "b," "c," "d," "e"]
+}
 
 //func TestContains(t *testing.T) {
 //	tu.SkipLog(t)
