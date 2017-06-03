@@ -3,6 +3,7 @@ package utils
 import (
 	"errors"
 	"fmt"
+	"math/rand"
 	"os"
 	"reflect"
 	"runtime"
@@ -359,6 +360,104 @@ func SliceMapToInterface(dataSlice []map[string]int) []interface{} {
 		interfaceSlice[i] = d
 	}
 	return interfaceSlice
+}
+
+//**********************************************************
+// Slice2
+//**********************************************************
+// CopySlice is to copy slice
+func CopySlice(arr []int) []int {
+	//ret := arr[:] //これは参照コピーだった。。。
+	ret := make([]int, len(arr))
+	copy(ret, arr)
+	return ret
+}
+
+func CopySlice32(arr []int32) []int32 {
+	//ret := arr[:] //これは参照コピーだった。。。
+	ret := make([]int32, len(arr))
+	copy(ret, arr)
+	return ret
+}
+
+// GenerateIntData is to return randam number of array
+func GenerateIntData(num int, max int) (values []int) {
+	//t := time.Now().Unix()
+	//s := rand.NewSource(t)
+	//r := rand.New(s)
+	rand.Seed(time.Now().UnixNano())
+
+	// create randam array
+	values = make([]int, num)
+	for i := 0; i < num; i++ {
+		values[i] = rand.Intn(max)
+		fmt.Printf("generated number is %d\n", values[i])
+	}
+	return
+}
+
+func GenerateUniquieArray(num, min, max int) []int {
+	ret := []int{}
+	for i := 0; ; {
+		n := GenerateRandam(min, max)
+		if !searchNumber(ret, n) {
+			ret = append(ret, n)
+			i++
+			if i == num {
+				break
+			}
+		}
+	}
+	return ret
+}
+
+func searchNumber(arr []int, n int) bool {
+	for _, v := range arr {
+		if v == n {
+			return true
+		}
+	}
+	return false
+}
+
+func GenerateRandam(min, max int) int {
+	//TODO:max may need to add 1 more.
+	max++
+	rand.Seed(time.Now().Unix())
+	return rand.Intn(max-min) + min
+}
+
+func DeleteElement(arr []int, n int) []int {
+	ret := []int{}
+	for _, value := range arr {
+		if value != n {
+			ret = append(ret, value)
+		}
+	}
+	return ret
+}
+
+// Convet string array into int array
+func ConvertToInt(arr []string) []int {
+	arrint := make([]int, len(arr))
+
+	//change string to int
+	for i, value := range arr {
+		arrint[i], _ = strconv.Atoi(value)
+	}
+	return arrint
+
+}
+
+//**********************************************************
+// Swap
+//**********************************************************
+func SwapString(x, y string) (string, string) {
+	return y, x
+}
+
+func SwapInt(x, y int) (int, int) {
+	return y, x
 }
 
 //**********************************************************
