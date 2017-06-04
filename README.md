@@ -4,6 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/hiromaily/golibs/badge.svg?branch=master)](https://coveralls.io/github/hiromaily/golibs?branch=master)
 [![Go Report Card](https://goreportcard.com/badge/github.com/hiromaily/golibs)](https://goreportcard.com/report/github.com/hiromaily/golibs)
 [![codebeat badge](https://codebeat.co/badges/233e0a28-9066-450e-acd6-8fdeb58d993a)](https://codebeat.co/projects/github-com-hiromaily-golibs-master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/21ed549b80d04ba0b09618c04f793dd7)](https://www.codacy.com/app/hiromaily2/golibs?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hiromaily/golibs&amp;utm_campaign=Badge_Grade)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/hiromaily/golibs/master/LICENSE)
 
 Golang libraries 
