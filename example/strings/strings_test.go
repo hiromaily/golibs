@@ -345,7 +345,6 @@ func TestSplit(t *testing.T) {
 	lg.Debugf("[4]strings.Split():%q", ret) //[""]
 }
 
-//TODO:It's useful!!
 //SplitAfter slices s into all substrings after each instance of sep and returns a slice of those substrings.
 func TestSplitAfter(t *testing.T) {
 	tu.SkipLog(t)
@@ -354,7 +353,7 @@ func TestSplitAfter(t *testing.T) {
 	lg.Debugf("[1]strings.SplitAfter():%q", ret) //["a," "b," "c"]
 }
 
-//後ろの要素のほうが大きくなる、つまり前から分割していく。
+//with separated stirng
 func TestSplitAfterN(t *testing.T) {
 	tu.SkipLog(t)
 
@@ -362,18 +361,19 @@ func TestSplitAfterN(t *testing.T) {
 	lg.Debugf("[1]strings.SplitAfterN():%q", ret) //["a,b,c,d,e"]
 
 	ret = strings.SplitAfterN("a,b,c,d,e", ",", 2)
-	lg.Debugf("[1]strings.SplitAfterN():%q", ret) //["a," "b,c,d,e"]
+	lg.Debugf("[2]strings.SplitAfterN():%q", ret) //["a," "b,c,d,e"]
 
 	ret = strings.SplitAfterN("a,b,c,d,e", ",", 3)
-	lg.Debugf("[1]strings.SplitAfterN():%q", ret) //["a," "b," "c,d,e"]
+	lg.Debugf("[3]strings.SplitAfterN():%q", ret) //["a," "b," "c,d,e"]
 
 	ret = strings.SplitAfterN("a,b,c,d,e", ",", 4)
-	lg.Debugf("[1]strings.SplitAfterN():%q", ret) //["a," "b," "c," "d,e"]
+	lg.Debugf("[4]strings.SplitAfterN():%q", ret) //["a," "b," "c," "d,e"]
 
 	ret = strings.SplitAfterN("a,b,c,d,e", ",", 5)
-	lg.Debugf("[1]strings.SplitAfterN():%q", ret) //["a," "b," "c," "d," "e"]
+	lg.Debugf("[5]strings.SplitAfterN():%q", ret) //["a," "b," "c," "d," "e"]
 }
 
+//without separated stirng
 func TestSplitN(t *testing.T) {
 	tu.SkipLog(t)
 
@@ -381,34 +381,130 @@ func TestSplitN(t *testing.T) {
 	lg.Debugf("[1]strings.SplitN():%q", ret) //["a,b,c,d,e"]
 
 	ret = strings.SplitN("a,b,c,d,e", ",", 2)
-	lg.Debugf("[1]strings.SplitN():%q", ret) //["a," "b,c,d,e"]
+	lg.Debugf("[2]strings.SplitN():%q", ret) //["a" "b,c,d,e"]
 
 	ret = strings.SplitN("a,b,c,d,e", ",", 3)
-	lg.Debugf("[1]strings.SplitN():%q", ret) //["a," "b," "c,d,e"]
+	lg.Debugf("[3]strings.SplitN():%q", ret) //["a" "b" "c,d,e"]
 
 	ret = strings.SplitN("a,b,c,d,e", ",", 4)
-	lg.Debugf("[1]strings.SplitN():%q", ret) //["a," "b," "c," "d,e"]
+	lg.Debugf("[4]strings.SplitN():%q", ret) //["a" "b" "c" "d,e"]
 
 	ret = strings.SplitN("a,b,c,d,e", ",", 5)
-	lg.Debugf("[1]strings.SplitN():%q", ret) //["a," "b," "c," "d," "e"]
+	lg.Debugf("[5]strings.SplitN():%q", ret) //["a" "b" "c" "d" "e"]
 }
 
-//func TestContains(t *testing.T) {
-//	tu.SkipLog(t)
-//}
+//Title returns a copy of the string s with all Unicode letters that begin words mapped to their title case.
+func TestTitle(t *testing.T) {
+	tu.SkipLog(t)
 
-//func TestContains(t *testing.T) {
-//	tu.SkipLog(t)
-//}
+	ret := strings.Title("her royal highness")
+	lg.Debugf("[1]strings.Title():%s", ret) //Her Royal Highness
 
-//func TestContains(t *testing.T) {
-//	tu.SkipLog(t)
-//}
+	ret = strings.Title("This is a pen")
+	lg.Debugf("[2]strings.Title():%s", ret) //This Is A Pen
+}
 
-//func TestContains(t *testing.T) {
-//	tu.SkipLog(t)
-//}
+func TestToLower(t *testing.T) {
+	tu.SkipLog(t)
 
-//func TestContains(t *testing.T) {
-//	tu.SkipLog(t)
+	ret := strings.ToLower("Gopher Go Go")
+	lg.Debugf("[1]strings.ToLower():%s", ret) //gopher go go
+}
+
+func TestToTitle(t *testing.T) {
+	tu.SkipLog(t)
+
+	ret := strings.ToTitle("loud noises")
+	lg.Debugf("[1]strings.ToTitle():%s", ret) //LOUD NOISES
+}
+
+func TestToUpper(t *testing.T) {
+	tu.SkipLog(t)
+
+	ret := strings.ToUpper("Gopher Go Go")
+	lg.Debugf("[1]strings.ToUpper():%s", ret) //GOPHER GO GO
+}
+
+//TODO:It's useful!!
+//it can remove only both ends of string by cutset letters.
+func TestTrim(t *testing.T) {
+	tu.SkipLog(t)
+
+	ret := strings.Trim(" !!! Achtung! Achtung! !!! ", "! ")
+	lg.Debugf("[1]strings.Trim():%s", ret) //Achtung! Achtung
+
+	ret = strings.Trim("aabbccddee", "ab")
+	lg.Debugf("[2]strings.Trim():%s", ret) //ccddee
+
+	ret = strings.Trim("aabbccddee", "bd")
+	lg.Debugf("[3]strings.Trim():%s", ret) //aabbccddee
+
+	ret = strings.Trim("aa bb cc dd ee", "be")
+	lg.Debugf("[4]strings.Trim():%s", ret) //aa bb cc dd
+}
+
+func TestTrimLeft(t *testing.T) {
+	tu.SkipLog(t)
+
+	ret := strings.TrimLeft(" !!! Achtung! Achtung! !!! ", "! ")
+	lg.Debugf("[1]strings.TrimLeft():%s", ret) //Achtung! Achtung! !!!
+
+	ret = strings.TrimLeft("aabbccddee", "ab")
+	lg.Debugf("[2]strings.TrimLeft():%s", ret) //ccddee
+
+	ret = strings.TrimLeft("aabbccddee", "bd")
+	lg.Debugf("[3]strings.TrimLeft():%s", ret) //aabbccddee
+
+	ret = strings.TrimLeft("aa bb cc dd ee", "be")
+	lg.Debugf("[4]strings.TrimLeft():%s", ret) //aa bb cc dd ee
+}
+
+func TestTrimRight(t *testing.T) {
+	tu.SkipLog(t)
+
+	ret := strings.TrimRight(" !!! Achtung! Achtung! !!! ", "! ")
+	lg.Debugf("[1]strings.TrimRight():%s", ret) // !!! Achtung! Achtung
+
+	ret = strings.TrimRight("aabbccddee", "ab")
+	lg.Debugf("[2]strings.TrimRight():%s", ret) //aabbccddee
+
+	ret = strings.TrimRight("aabbccddee", "bd")
+	lg.Debugf("[3]strings.TrimRight():%s", ret) //aabbccddee
+
+	ret = strings.TrimRight("aa bb cc dd ee", "be")
+	lg.Debugf("[4]strings.TrimRight():%s", ret) //aa bb cc dd
+}
+
+func TestTrimSpace(t *testing.T) {
+	tu.SkipLog(t)
+
+	ret := strings.TrimSpace(" \t\n a lone gopher \n\t\r\n")
+	lg.Debugf("[1]strings.TrimSpace():%s", ret) //a lone gopher
+}
+
+func TestTrimPrefix(t *testing.T) {
+	tu.SkipLog(t)
+	var s = "Goodbye,, world!"
+	s = strings.TrimPrefix(s, "Goodbye,")
+	lg.Debugf("[1]strings.TrimPrefix():%s", s) //, world!
+	s = strings.TrimPrefix(s, "Howdy,")
+	lg.Debugf("[2]strings.TrimPrefix():%s", s) //, world!
+	s = strings.TrimPrefix(s, ", ")
+	lg.Debugf("[2]strings.TrimPrefix():%s", s) //world!
+}
+
+func TestTrimSuffix(t *testing.T) {
+	//tu.SkipLog(t)
+
+	var s = "Hello, goodbye, etc!"
+	s = strings.TrimSuffix(s, "goodbye, etc!")
+	lg.Debugf("[1]strings.TrimSuffix():%s", s) //Hello,
+	s = strings.TrimSuffix(s, "planet")
+	lg.Debugf("[2]strings.TrimSuffix():%s", s) //Hello,
+	s = strings.TrimSuffix(s, ", ")
+	lg.Debugf("[2]strings.TrimSuffix():%s", s) //Hello
+}
+
+//func TestTrimFunc(t *testing.T) {
+//	//TrimFunc(s string, f func(rune) bool)
 //}
