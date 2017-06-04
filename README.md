@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/hiromaily/golibs.svg?branch=master)](https://travis-ci.org/hiromaily/golibs)
 [![Coverage Status](https://coveralls.io/repos/github/hiromaily/golibs/badge.svg?branch=master)](https://coveralls.io/github/hiromaily/golibs?branch=master)
 [![Go Report Card](https://goreportcard.com/badge/github.com/hiromaily/golibs)](https://goreportcard.com/report/github.com/hiromaily/golibs)
+[![codebeat badge](https://codebeat.co/badges/233e0a28-9066-450e-acd6-8fdeb58d993a)](https://codebeat.co/projects/github-com-hiromaily-golibs-master)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/hiromaily/golibs/master/LICENSE)
 
 Golang libraries 
