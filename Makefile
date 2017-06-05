@@ -89,6 +89,9 @@ install:
 solo:
 	go test -v web/context/context_test.go -log 1
 
+util:
+	go test -v utils/utils_test.go -log 1
+
 strings:
 	go test -v example/strings/strings_test.go -log 1
 

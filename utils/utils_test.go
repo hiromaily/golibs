@@ -40,30 +40,107 @@ func TestMain(m *testing.M) {
 // Test
 //-----------------------------------------------------------------------------
 func TestCheckInterface(t *testing.T) {
-	val1 := 10
-	lg.Debug(CheckInterface(val1))
+	tu.SkipLog(t)
 
-	val2 := "aaaaa"
-	lg.Debug(CheckInterface(val2))
+	lg.Debug(CheckInterface(10)) //int
 
-	//if err != nil {
-	//}
+	lg.Debug(CheckInterface(5.4)) //default
+
+	lg.Debug(CheckInterface("aaaaa")) //string
+
+	lg.Debug(CheckInterface('A')) //int
+
+	lg.Debug(CheckInterface(true)) //bool
+
+	lg.Debug(CheckInterface([]byte("hello"))) //[]uint8
+
+	lg.Debug(CheckInterface([]int{1, 2, 3})) //default
+
+	lg.Debug(CheckInterface(func() { return })) //default
+
 }
 
 func TestCheckInterfaceByIf(t *testing.T) {
-	val1 := 10
-	lg.Debug(CheckInterface(val1))
+	tu.SkipLog(t)
 
-	val2 := "aaaaa"
-	lg.Debug(CheckInterface(val2))
+	lg.Debug(CheckInterfaceByIf(10)) //int
+
+	lg.Debug(CheckInterfaceByIf(5.4)) //float64
+
+	lg.Debug(CheckInterfaceByIf("aaaaa")) //string
+
+	lg.Debug(CheckInterfaceByIf('A')) //int32
+
+	lg.Debug(CheckInterfaceByIf(true)) //bool
+
+	lg.Debug(CheckInterfaceByIf([]byte("hello"))) //slice
+
+	lg.Debug(CheckInterfaceByIf([]int{1, 2, 3})) //slice
+
+	lg.Debug(CheckInterfaceByIf(func() { return })) //func
+}
+
+func TestStoType(t *testing.T) {
+	tu.SkipLog(t)
+
+	//return reflect.Kind
+	lg.Debug(StoType("int")) //int
 }
 
 func TestSearchString(t *testing.T) {
-	data := []string{"aaaa", "bbbb", "cccc", "dddd", "eeee"}
-	ret := SearchString(data, "cccc")
-	if ret != 2 {
-		t.Errorf("SearchString is wrong: %d", ret)
-	}
+	tu.SkipLog(t)
+
+	data := []string{"ABC", "Abc", "abc"}
+	lg.Debug(SearchString(data, "abc")) //2
+}
+
+func TestSearchStringLower(t *testing.T) {
+	tu.SkipLog(t)
+
+	data := []string{"ABC", "Abc", "abc"}
+	lg.Debug(SearchStringLower(data, "abc")) //0
+}
+
+func TestSlice(t *testing.T) {
+	tu.SkipLog(t)
+
+	data := "0123456789"
+	lg.Debug(Slice(data, 3))    //3456789
+	lg.Debug(Slice(data, -2))   //89
+	lg.Debug(Slice(data, 1, 5)) //12345
+}
+
+func TestSubstr(t *testing.T) {
+	tu.SkipLog(t)
+
+	data := "0123456789"
+	lg.Debug(Substr(data, 3))     //3456789
+	lg.Debug(Substr(data, 1, 5))  //12345
+	lg.Debug(Substr(data, -5, 3)) //567
+}
+
+func TestOperateSlice(t *testing.T) {
+	tu.SkipLog(t)
+
+	data := []int{1,2,3,4,5,6,7,8,9}
+	lg.Debug(PopInt(data))             //[1 2 3 4 5 6 7 8] 9 is gone
+	lg.Debug(PushInt(data, 10))   //[1 2 3 4 5 6 7 8 9 10] 10 is added
+	lg.Debug(ShiftInt(data))           //[2 3 4 5 6 7 8 9] 1 is gone
+	lg.Debug(UnshiftInt(data, 0)) //[0 1 2 3 4 5 6 7 8 9] 0 is added
+	lg.Debug(SpliceInt(data, 1, 99)) //[1 99 2 3 4 5 6 7 8 9]
+	lg.Debug(DeleteInt(data, 1,3))      //[1 4 5 6 7 8 9]
+}
+
+func TestOperateSlice2(t *testing.T) {
+	//tu.SkipLog(t)
+
+	data2 := "abcdefghijk"
+	lg.Debug(PopStr(data2))                //abcdefghij => k is gone
+	lg.Debug(PushStr(data2, "l"))      //abcdefghijkl => l is added
+	lg.Debug(ShiftStr(data2))              //bcdefghijk => a is gone
+	lg.Debug(UnshiftStr(data2, "x"))   //xabcdefghijk
+	lg.Debug(SpliceStr(data2, "xyz", 1)) //axyzbcdefghijk => xyz is added
+	lg.Debug(DeleteStr(data2, 1,3))      //aefghijk
 }
 
 //-----------------------------------------------------------------------------
