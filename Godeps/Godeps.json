@@ -133,8 +133,8 @@
 		},
 		{
 			"ImportPath": "github.com/boltdb/bolt",
-			"Comment": "v1.2.1-15-g94c8db5",
-			"Rev": "94c8db596809690a3f7046fa83c7b0dda13a3222"
+			"Comment": "v1.3.0-58-ge9cf4fa",
+			"Rev": "e9cf4fae01b5a8ff89d0ec6b32f0d9c9f79aefdd"
 		},
 		{
 			"ImportPath": "github.com/coopernurse/gorp",

@@ -43,6 +43,7 @@ update:
 	go get -u github.com/client9/misspell/cmd/misspell
 	go get -u github.com/gordonklaus/ineffassign
 	go get -u github.com/pilu/fresh
+	go get -u github.com/tools/godep
 
 	go get -u github.com/alecthomas/gometalinter
 	#gometalinter --install
@@ -53,10 +54,6 @@ update:
 ###############################################################################
 # Managing Dependencies
 ###############################################################################
-update:
-	go get -u -v ./...
-	go get -u github.com/tools/godep
-
 godep:
 	rm -rf Godeps
 	rm -rf ./vendor
