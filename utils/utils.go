@@ -234,9 +234,26 @@ func ItoBS(val interface{}) string {
 	return ""
 }
 
+// ItoByte is to convert byte[] of interface{} to string
+func ItoByte(val interface{}) []byte {
+	if b, ok := val.([]byte); ok {
+		return b
+	}
+	return nil
+}
+
 // ItoMsi is to convert map[string] of interface{} to map[string]int
 func ItoMsi(val interface{}) map[string]int {
 	msi, ok := val.(map[string]int)
+	if !ok {
+		return nil
+	}
+	return msi
+}
+
+// ItoMsif is to convert map[string] of interface{} to map[string]interface{}
+func ItoMsif(val interface{}) map[string]interface{} {
+	msi, ok := val.(map[string]interface{})
 	if !ok {
 		return nil
 	}
