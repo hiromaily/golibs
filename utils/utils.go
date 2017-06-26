@@ -153,7 +153,7 @@ func StoType(typeStr string) reflect.Kind {
 }
 
 //**********************************************************
-// Convert type to other type
+// Convert interface{} type to other type
 //**********************************************************
 
 // Itos is to convert interface{} to string
@@ -163,6 +163,22 @@ func Itos(val interface{}) string {
 		return ""
 	}
 	return str
+}
+
+// ItoBS is to convert byte[] of interface{} to string
+func ItoBS(val interface{}) string {
+	if b, ok := val.([]byte); ok {
+		return string(b)
+	}
+	return ""
+}
+
+// ItoByte is to convert byte[] of interface{} to string
+func ItoByte(val interface{}) []byte {
+	if b, ok := val.([]byte); ok {
+		return b
+	}
+	return nil
 }
 
 // Itob is to convert interface{} to bool
@@ -226,20 +242,13 @@ func ItoUI(val interface{}) uint {
 	return 0
 }
 
-// ItoBS is to convert byte[] of interface{} to string
-func ItoBS(val interface{}) string {
-	if b, ok := val.([]byte); ok {
-		return string(b)
+// ItoMsi is to convert map[string] of interface{} to map[string]int
+func ItoSI(val interface{}) []interface{} {
+	si, ok := val.([]interface{})
+	if !ok {
+		return nil
 	}
-	return ""
-}
-
-// ItoByte is to convert byte[] of interface{} to string
-func ItoByte(val interface{}) []byte {
-	if b, ok := val.([]byte); ok {
-		return b
-	}
-	return nil
+	return si
 }
 
 // ItoMsi is to convert map[string] of interface{} to map[string]int
@@ -275,6 +284,10 @@ func ItoTS(val interface{}) string {
 	}
 	return ""
 }
+
+//**********************************************************
+// Convert type to other type
+//**********************************************************
 
 // Stoe is to convert string to error
 func Stoe(val string) error {
