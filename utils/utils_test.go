@@ -122,25 +122,53 @@ func TestSubstr(t *testing.T) {
 func TestOperateSlice(t *testing.T) {
 	tu.SkipLog(t)
 
-	data := []int{1,2,3,4,5,6,7,8,9}
-	lg.Debug(PopInt(data))             //[1 2 3 4 5 6 7 8] 9 is gone
-	lg.Debug(PushInt(data, 10))   //[1 2 3 4 5 6 7 8 9 10] 10 is added
-	lg.Debug(ShiftInt(data))           //[2 3 4 5 6 7 8 9] 1 is gone
-	lg.Debug(UnshiftInt(data, 0)) //[0 1 2 3 4 5 6 7 8 9] 0 is added
+	data := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	lg.Debug(PopInt(data))           //[1 2 3 4 5 6 7 8] 9 is gone
+	lg.Debug(PushInt(data, 10))      //[1 2 3 4 5 6 7 8 9 10] 10 is added
+	lg.Debug(ShiftInt(data))         //[2 3 4 5 6 7 8 9] 1 is gone
+	lg.Debug(UnshiftInt(data, 0))    //[0 1 2 3 4 5 6 7 8 9] 0 is added
 	lg.Debug(SpliceInt(data, 1, 99)) //[1 99 2 3 4 5 6 7 8 9]
-	lg.Debug(DeleteInt(data, 1,3))      //[1 4 5 6 7 8 9]
+	lg.Debug(DeleteInt(data, 1, 3))  //[1 4 5 6 7 8 9]
 }
 
 func TestOperateSlice2(t *testing.T) {
-	//tu.SkipLog(t)
+	tu.SkipLog(t)
 
 	data2 := "abcdefghijk"
-	lg.Debug(PopStr(data2))                //abcdefghij => k is gone
-	lg.Debug(PushStr(data2, "l"))      //abcdefghijkl => l is added
-	lg.Debug(ShiftStr(data2))              //bcdefghijk => a is gone
-	lg.Debug(UnshiftStr(data2, "x"))   //xabcdefghijk
+	lg.Debug(PopStr(data2))              //abcdefghij => k is gone
+	lg.Debug(PushStr(data2, "l"))        //abcdefghijkl => l is added
+	lg.Debug(ShiftStr(data2))            //bcdefghijk => a is gone
+	lg.Debug(UnshiftStr(data2, "x"))     //xabcdefghijk
 	lg.Debug(SpliceStr(data2, "xyz", 1)) //axyzbcdefghijk => xyz is added
-	lg.Debug(DeleteStr(data2, 1,3))      //aefghijk
+	lg.Debug(DeleteStr(data2, 1, 3))     //aefghijk
+}
+
+func TestRandom(t *testing.T) {
+	//tu.SkipLog(t)
+	CheckRandam()
+}
+
+func TestGenerateIntData(t *testing.T) {
+	tu.SkipLog(t)
+
+	lg.Debug(GenerateIntData(4, 10))         //[9,1,9,4]
+	lg.Debug(GenerateUniquieArray(3, 5, 10)) //[7,6,10]
+	lg.Debug(GenerateRandam(6, 9))           //7
+
+	arr := []int{1, 2, 3, 4, 5}
+	lg.Debug(DeleteElement(arr, 3)) //1,2,4,5
+}
+
+func TestPickOneFromEnum(t *testing.T) {
+	tu.SkipLog(t)
+
+	enumData := []string{"apple", "grape", "strawberry"}
+	lg.Debug(PickOneFromEnum(enumData))
+	lg.Debug(PickOneFromEnum(enumData))
+
+	enumData2 := []string{"apple"}
+	lg.Debug(PickOneFromEnum(enumData2))
+	lg.Debug(PickOneFromEnum(enumData2))
 }
 
 //-----------------------------------------------------------------------------

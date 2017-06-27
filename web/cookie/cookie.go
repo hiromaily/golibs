@@ -51,7 +51,7 @@ func (c *Cookie) DecryptedValue() string {
 	return ""
 }
 
-func callerSample(){
+func callerSample() {
 	domain := "localhost"
 	PrintCookies(domain)
 
@@ -67,11 +67,11 @@ func PrintCookies(url string) {
 	//localhost/cookiename: xxxxxx
 }
 
-func GetValue(url, key string) string{
+func GetValue(url, key string) string {
 	password = getPassword()
 
 	for _, cookie := range getCookies(url) {
-		if cookie.Key == key{
+		if cookie.Key == key {
 			return cookie.DecryptedValue()
 		}
 	}

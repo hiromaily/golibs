@@ -332,7 +332,7 @@ func Unshift(base []interface{}, val interface{}) []interface{} {
 
 //---Int---
 // Pop is to remove element from end of slice
-func PopInt(val []int) []int{
+func PopInt(val []int) []int {
 	return val[:len(val)-1]
 }
 
@@ -342,7 +342,7 @@ func PushInt(base []int, val int) []int {
 }
 
 // Shift is to remove element from first of slice
-func ShiftInt(val []int) []int{
+func ShiftInt(val []int) []int {
 	return val[1:]
 }
 
@@ -353,18 +353,18 @@ func UnshiftInt(base []int, val int) []int {
 
 // Splice is to add element to designated index
 // This is like `Insert`
-func SpliceInt(base []int, idx, val int) []int{
+func SpliceInt(base []int, idx, val int) []int {
 	return append(base[:idx], append([]int{val}, base[idx:]...)...)
 }
 
 // same to Slice
-func DeleteInt(data []int, from, to int) []int{
+func DeleteInt(data []int, from, to int) []int {
 	return append(data[:from], data[to+1:]...)
 }
 
 //---String---
 // Pop is to remove element from end of slice
-func PopStr(val string) string{
+func PopStr(val string) string {
 	return val[:len(val)-1]
 }
 
@@ -374,7 +374,7 @@ func PushStr(base, val string) string {
 }
 
 // Shift is to remove element from first of slice
-func ShiftStr(val string) string{
+func ShiftStr(val string) string {
 	return val[1:]
 }
 
@@ -385,12 +385,12 @@ func UnshiftStr(base, val string) string {
 
 // Splice is to add element to designated index
 // This is like `Insert`
-func SpliceStr(base, val string, idx int) string{
+func SpliceStr(base, val string, idx int) string {
 	return base[:idx] + val + base[idx:]
 }
 
 // same to Slice
-func DeleteStr(data string, from, to int) string{
+func DeleteStr(data string, from, to int) string {
 	return data[:from] + data[to+1:]
 }
 
@@ -496,8 +496,18 @@ func CopySlice32(arr []int32) []int32 {
 //**********************************************************
 // Slice Generate random data
 //**********************************************************
+func CheckRandam() {
+	rand.Seed(time.Now().UnixNano())
+
+	// create randam array
+	for i := 0; i < 100; i++ {
+		fmt.Printf("generated number is %d\n", rand.Intn(10))
+		//range is 0 to 9
+	}
+}
 
 // GenerateIntData is to return randam number of array
+// range is 0 to (max-1)
 func GenerateIntData(num int, max int) (values []int) {
 	//t := time.Now().Unix()
 	//s := rand.NewSource(t)
@@ -508,9 +518,16 @@ func GenerateIntData(num int, max int) (values []int) {
 	values = make([]int, num)
 	for i := 0; i < num; i++ {
 		values[i] = rand.Intn(max)
-		fmt.Printf("generated number is %d\n", values[i])
+		//fmt.Printf("generated number is %d\n", values[i])
 	}
 	return
+}
+
+func GenerateRandam(min, max int) int {
+	//TODO:max may need to add 1 more.
+	max++
+	rand.Seed(time.Now().Unix())
+	return rand.Intn(max-min) + min
 }
 
 func GenerateUniquieArray(num, min, max int) []int {
@@ -537,13 +554,6 @@ func searchNumber(arr []int, n int) bool {
 	return false
 }
 
-func GenerateRandam(min, max int) int {
-	//TODO:max may need to add 1 more.
-	max++
-	rand.Seed(time.Now().Unix())
-	return rand.Intn(max-min) + min
-}
-
 func DeleteElement(arr []int, n int) []int {
 	ret := []int{}
 	for _, value := range arr {
@@ -552,6 +562,14 @@ func DeleteElement(arr []int, n int) []int {
 		}
 	}
 	return ret
+}
+
+func PickOneFromEnum(arr []string) string {
+	rand.Seed(time.Now().UnixNano())
+	idx := rand.Intn(len(arr))
+	fmt.Println(idx)
+
+	return arr[idx]
 }
 
 //**********************************************************
@@ -569,7 +587,7 @@ func SwapInt(x, y int) (int, int) {
 // Strings (these model javascript)
 //**********************************************************
 //str: target string, idx[0]: start index, idx[1]: end index
-func Slice(str string, idx ...int) string{
+func Slice(str string, idx ...int) string {
 	//var str = "0123456789";
 	//str.slice(3); //"3456789"
 	//str.slice(-2); //"89"
@@ -577,17 +595,17 @@ func Slice(str string, idx ...int) string{
 	if str == "" || len(idx) == 0 || len(idx) > 2 {
 		return ""
 	}
-	if len(idx) == 1{
+	if len(idx) == 1 {
 		idx = append(idx, len(str)-1)
 	}
-	if idx[0] < 0{
-		idx[0] = len(str)+idx[0]
+	if idx[0] < 0 {
+		idx[0] = len(str) + idx[0]
 	}
-	if idx[1] < 0{
-		idx[1] = len(str)+idx[1]
+	if idx[1] < 0 {
+		idx[1] = len(str) + idx[1]
 	}
 
-	return str[idx[0]:idx[1]+1]
+	return str[idx[0] : idx[1]+1]
 }
 
 //str: target string, idx[0]: start index, idx[1]: length
@@ -598,22 +616,22 @@ func Substr(str string, idx ...int) string {
 	if str == "" || len(idx) == 0 || len(idx) > 2 {
 		return ""
 	}
-	if idx[0] < 0{
-		idx[0] = len(str)+idx[0]
+	if idx[0] < 0 {
+		idx[0] = len(str) + idx[0]
 	}
-	if len(idx) == 1{
+	if len(idx) == 1 {
 		idx = append(idx, len(str)-idx[0])
 	}
 
 	//length
-	if idx[1] < 0{
+	if idx[1] < 0 {
 		//it's error argument
-		idx[1] = len(str)+idx[1]
-	}else{
-		idx[1] = idx[0] + (idx[1]-1)
+		idx[1] = len(str) + idx[1]
+	} else {
+		idx[1] = idx[0] + (idx[1] - 1)
 	}
 
-	return str[idx[0]:idx[1]+1]
+	return str[idx[0] : idx[1]+1]
 }
 
 //**********************************************************
