@@ -111,6 +111,9 @@ fil:
 tim:
 	go test -v time/time_test.go -log 1
 
+texec:
+	go test -v example/exec/exec_test.go -run TestExecParams -log 1
+
 
 test:
 	#

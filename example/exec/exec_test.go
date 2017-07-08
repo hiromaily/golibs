@@ -6,6 +6,10 @@ import (
 	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
+	"os/exec"
+	"strings"
+	"log"
+	"fmt"
 )
 
 //-----------------------------------------------------------------------------
@@ -36,7 +40,7 @@ func TestMain(m *testing.M) {
 // Test
 //-----------------------------------------------------------------------------
 func TestExec(t *testing.T) {
-	//tu.SkipLog(t)
+	tu.SkipLog(t)
 
 	err := Exec("ls", "-al")
 	if err != nil {
@@ -49,8 +53,41 @@ func TestExec(t *testing.T) {
 	}
 }
 
-func TestGetExec(t *testing.T) {
+func TestExecParams(t *testing.T) {
 	//tu.SkipLog(t)
+	//cmd := "./example/exec/tool/cmdtool"
+	var cmd *exec.Cmd
+	cmdName := "./tool/cmdtool"
+	strParam := "-s bbbb -n 999 -b true"
+
+	params := strings.Split(strParam, " ")
+
+	cmd = exec.Command(cmdName, params...)
+
+	//stderr, err := cmd.StderrPipe()
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	//
+	//stdout, err := cmd.StdoutPipe()
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+
+	//err := cmd.Start()
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+
+	out, err := cmd.Output()
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(string(out))
+}
+
+func TestGetExec(t *testing.T) {
+	tu.SkipLog(t)
 
 	result, err := GetExec("ls", "-al")
 	if err != nil {
@@ -79,6 +116,8 @@ func TestCurl(t *testing.T) {
 }
 
 func TestExecSh(t *testing.T) {
+	tu.SkipLog(t)
+
 	goPath := os.Getenv("GOPATH")
 	result, err := GetExec(goPath+"/src/github.com/hiromaily/golibs/example/exec/sh/test.sh", "")
 	if err != nil {
@@ -88,6 +127,8 @@ func TestExecSh(t *testing.T) {
 }
 
 func TestAsyncExecSh(t *testing.T) {
+	tu.SkipLog(t)
+
 	goPath := os.Getenv("GOPATH")
 	err := AsyncExec(goPath+"/src/github.com/hiromaily/golibs/example/exec/sh/test.sh", "")
 	if err != nil {
