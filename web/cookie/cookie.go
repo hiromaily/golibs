@@ -71,7 +71,7 @@ func GetValue(url, key string) string {
 	password = getPassword()
 
 	for _, cookie := range getCookies(url) {
-		if cookie.Key == key {
+		if cookie.Domain == url && cookie.Key == key {
 			return cookie.DecryptedValue()
 		}
 	}
