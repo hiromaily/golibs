@@ -567,7 +567,6 @@ func DeleteElement(arr []int, n int) []int {
 func PickOneFromEnum(arr []string) string {
 	rand.Seed(time.Now().UnixNano())
 	idx := rand.Intn(len(arr))
-	fmt.Println(idx)
 
 	return arr[idx]
 }
