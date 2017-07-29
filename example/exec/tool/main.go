@@ -1,8 +1,8 @@
 package main
 
-import(
-	"fmt"
+import (
 	"flag"
+	"fmt"
 )
 
 var (
@@ -15,7 +15,7 @@ func init() {
 	flag.Parse()
 }
 
-func main(){
+func main() {
 	fmt.Printf("[Debug]str is %s\n", *str)
 	fmt.Printf("[Debug]num is %d\n", *num)
 
