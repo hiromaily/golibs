@@ -26,7 +26,7 @@ type ServerInfo struct {
 var dbInfo GR
 
 // New is for create instance
-func New(host, dbname, user, pass string, port uint16) {
+func New(host, dbname, user, pass string, port uint16) error{
 
 	var err error
 	if dbInfo.DB == nil {
@@ -40,10 +40,11 @@ func New(host, dbname, user, pass string, port uint16) {
 	}
 	fmt.Printf("dbInfo.db %#v\n", *dbInfo.DB)
 	if err != nil {
-		panic(err.Error())
+		//panic(err.Error())
+		return err
 	}
 
-	return
+	return nil
 }
 
 // GetDB is to get instance. singleton architecture
