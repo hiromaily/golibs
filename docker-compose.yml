@@ -7,10 +7,13 @@
 #- rabbitmq:3.6
 #- kafka from Dockerfile
 # NOTE! docker-compose version 2.1 can not be used in Travis...
-version: '2'
+version: '3.0'
 
 volumes:
   db: {}
+  pdb: {}
+  rdb: {}
+  mdb: {}
 
 services:
   # MySQL
@@ -19,10 +22,10 @@ services:
     image: mysql:5.7
     container_name: lib-mysql
     ports:
-      - "23306:3306"
+      - "3306"
     volumes:
+      - db:/var/lib/mysql
       - ./docker_build/mysql/conf:/etc/mysql/conf.d
-      #- ./docker_build/mysql/db_data:/var/lib/mysql
       - ./docker_build/mysql/init.d:/docker-entrypoint-initdb.d
     restart: always
     environment:
@@ -30,13 +33,14 @@ services:
       MYSQL_DATABASE: hiromaily
       MYSQL_USER: hiromaily
       MYSQL_PASSWORD: 12345678
+
   # PostgreSQL
   pg:
     image: mdillon/postgis:9.6
     read_only: true
     container_name: lib-pg
     ports:
-      - "5434:5432"
+      - "5432"
     environment:
       PGDATA: /var/lib/postgresql/data/pgdata
       POSTGRES_USER: hiromaily
@@ -45,7 +49,7 @@ services:
       - /tmp
       - /run/postgresql
     volumes:
-      - db:/var/lib/postgresql/data/pgdata
+      - pdb:/var/lib/postgresql/data/pgdata
       - ./docker_build/postgresql/init.d:/docker-entrypoint-initdb.d
     restart: unless-stopped
     logging:
@@ -58,17 +62,19 @@ services:
     image: redis:3.2
     container_name: lib-redis
     ports:
-      - "26379:6379"
-    #volumes:
-    #  - ./docker_build/redis/data:/data
+      - "6379"
+    volumes:
+      - rdb:/data
     restart: always
     command: redis-server --requirepass password --appendonly yes
+
   # Mongo
   mongo:
     image: mongo:3.3
     container_name: lib-mongo
     ports:
-      - "30017:27017"
+      - "27017"
+
   # Cassandra
   cassandra:
     build:
@@ -80,7 +86,8 @@ services:
     image: lib-cassandra:v1.0
     container_name: lib-cassandra
     ports:
-      - "19042:9042"
+      - "9042"
+
   # NATS
   nats:
     image: nats:0.9.4
@@ -89,6 +96,7 @@ services:
       - "4222:4222"
       - "6222:6222"
       - "8222:8222"
+
   # RabbitMQ
   rmq:
     image: rabbitmq:3.6-management
@@ -103,12 +111,14 @@ services:
       RABBITMQ_ERLANG_COOKIE: abcabcabcabc
       RABBITMQ_DEFAULT_USER: hiromaily
       RABBITMQ_DEFAULT_PASS: hiropass
+
   # Kafka
   zookeeper:
     image: wurstmeister/zookeeper
     container_name: lib-zookeeper1
     ports:
       - "2181:2181"
+
   kafka:
     build: ./docker_build/kafka/files/
     container_name: lib-kafka1

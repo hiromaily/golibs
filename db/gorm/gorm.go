@@ -26,7 +26,7 @@ type ServerInfo struct {
 var dbInfo GR
 
 // New is for create instance
-func New(host, dbname, user, pass string, port uint16) error{
+func New(host, dbname, user, pass string, port uint16) error {
 
 	var err error
 	if dbInfo.DB == nil {

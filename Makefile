@@ -9,29 +9,9 @@ KAFKA_IP=`docker ps -f name=lib-kafka1 --format "{{.Ports}}" | sed -e 's/0.0.0.0
 
 LOGLEVEL=1 #1:Debug, 2:Info, 3:Error, 4:Fatal, 5:No Log
 LOG_ARG='-v'
-
-
-###############################################################################
-# Docker
-###############################################################################
-docker:
-	sh ./docker-create.sh
-
-up:
-	docker-compose up
-
-up_product:
-	docker-compose -f docker-compose.yml up
-
-dcbld:
-	docker-compose build --no-cache
-
-mysql:
-	docker-compose up mysql
-
-pg:
-	docker-compose up pg
-
+if [ $LOGLEVEL -eq 5 ]; then
+    LOG_ARG=''
+fi
 
 ###############################################################################
 # PKG Dependencies
@@ -48,7 +28,7 @@ update:
 	go get -u github.com/alecthomas/gometalinter
 	#gometalinter --install
 
-	go get -u -v ./...
+	go get -u -d -v ./...
 
 
 ###############################################################################
@@ -58,6 +38,16 @@ godep:
 	rm -rf Godeps
 	rm -rf ./vendor
 	godep save ./...
+
+
+###############################################################################
+# Clean
+###############################################################################
+cln:
+	go clean -n
+
+clnok:
+	go clean
 
 
 ###############################################################################
@@ -85,12 +75,29 @@ chk:
 	misspell `find . -name "*.go" | grep -v '/vendor/'`
 	ineffassign .
 
+ins:
+    go install -v ./...
 
 ###############################################################################
-# Install
+# Docker
 ###############################################################################
-install:
-	go install -v ./...
+docker:
+	sh ./docker-create.sh
+
+up:
+	docker-compose up
+
+up_product:
+	docker-compose -f docker-compose.yml up
+
+dcbld:
+	docker-compose build --no-cache
+
+mysql:
+	docker-compose up mysql
+
+pg:
+	docker-compose up pg
 
 
 ###############################################################################
@@ -186,13 +193,4 @@ bench:
 	#cd files/;go test -bench=. -benchmem;
 	#cd serial/;go test -bench . -benchmem;cd ../;
 
-
-###############################################################################
-# Clean
-###############################################################################
-cln:
-	go clean -n
-
-clnok:
-	go clean
 

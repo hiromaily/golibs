@@ -9,6 +9,4 @@ db/boltdb/boltdb
 
 example/exec/sh/*.sh
 
-docker_build/mysql/db_data/
-docker_build/redis/data/appendonly.aof
 docker_build/rmq/

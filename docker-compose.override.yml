@@ -1,0 +1,36 @@
+#docker-compose.yml
+#- mysql:5.7
+#- redis:3.2
+#- mongo:3.3
+#- cassandra from Dockerfile
+#- nats:0.9.4
+#- rabbitmq:3.6
+#- kafka from Dockerfile
+# NOTE! docker-compose version 2.1 can not be used in Travis...
+version: '3.0'
+
+services:
+  # MySQL
+  mysql:
+    ports:
+      - "${MYSQL_PORT:-23306}:3306"
+
+  # PostgreSQL
+  pg:
+    ports:
+      - "${POSTGRE_PORT:-5433}:5432"
+
+  # Redis
+  redis:
+    ports:
+      - "${REDIS_PORT:-26379}:6379"
+
+  # Mongo
+  mongo:
+    ports:
+      - "${MONGODB_PORT:-30017}:27017"
+
+  # Cassandra
+  cassandra:
+    ports:
+      - "${CASANDRA_PORT:-19042}:9042"

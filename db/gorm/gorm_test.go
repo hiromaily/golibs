@@ -51,11 +51,11 @@ func TestMain(m *testing.M) {
 //-----------------------------------------------------------------------------
 // functions
 //-----------------------------------------------------------------------------
-func NewMySQL() error{
+func NewMySQL() error {
 	c := conf.GetConf().MySQL
 
 	err := New(c.Host, c.DbName, c.User, c.Pass, c.Port)
-	if err != nil{
+	if err != nil {
 		return err
 	}
 
@@ -68,7 +68,7 @@ func NewMySQL() error{
 func GetMySQLInstance() *MySQL {
 	if db.GR == nil {
 		err := NewMySQL()
-		if err != nil{
+		if err != nil {
 			return nil
 		}
 	}
