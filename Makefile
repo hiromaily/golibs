@@ -9,9 +9,9 @@ KAFKA_IP=`docker ps -f name=lib-kafka1 --format "{{.Ports}}" | sed -e 's/0.0.0.0
 
 LOGLEVEL=1 #1:Debug, 2:Info, 3:Error, 4:Fatal, 5:No Log
 LOG_ARG='-v'
-if [ $LOGLEVEL -eq 5 ]; then
-    LOG_ARG=''
-fi
+#if [ $LOGLEVEL -eq 5 ]; then
+#    LOG_ARG=''
+#fi
 
 ###############################################################################
 # PKG Dependencies
@@ -76,7 +76,7 @@ chk:
 	ineffassign .
 
 ins:
-    go install -v ./...
+	go install -v ./...
 
 ###############################################################################
 # Docker

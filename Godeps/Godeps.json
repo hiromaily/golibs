@@ -8,8 +8,8 @@
 	"Deps": [
 		{
 			"ImportPath": "github.com/BurntSushi/toml",
-			"Comment": "v0.2.0-37-gd94612f",
-			"Rev": "d94612f9fc140360834f9742158c70b5c5b5535b"
+			"Comment": "v0.3.0-7-ga368813",
+			"Rev": "a368813c5e648fee92e5f6c30e3944ff9d5e8895"
 		},
 		{
 			"ImportPath": "github.com/Shopify/sarama",
@@ -147,8 +147,8 @@
 		},
 		{
 			"ImportPath": "github.com/dgrijalva/jwt-go",
-			"Comment": "v3.0.0-17-g2268707",
-			"Rev": "2268707a8f0843315e2004ee4f1d021dc08baedf"
+			"Comment": "v3.0.0-20-ga539ee1",
+			"Rev": "a539ee1a749a2b895533f979515ac7e6e0f5b650"
 		},
 		{
 			"ImportPath": "github.com/eapache/go-resiliency/breaker",
@@ -166,13 +166,13 @@
 		},
 		{
 			"ImportPath": "github.com/garyburd/redigo/internal",
-			"Comment": "v1.0.0-21-g0d253a6",
-			"Rev": "0d253a66e6e1349f4581d6d2b300ee434ee2da9f"
+			"Comment": "v1.1.0-8-g9e66b83",
+			"Rev": "9e66b83d15a259978be267d0b61838c42c3904e3"
 		},
 		{
 			"ImportPath": "github.com/garyburd/redigo/redis",
-			"Comment": "v1.0.0-21-g0d253a6",
-			"Rev": "0d253a66e6e1349f4581d6d2b300ee434ee2da9f"
+			"Comment": "v1.1.0-8-g9e66b83",
+			"Rev": "9e66b83d15a259978be267d0b61838c42c3904e3"
 		},
 		{
 			"ImportPath": "github.com/go-ini/ini",
@@ -242,6 +242,11 @@
 			"Rev": "e182dc4027e2ded4b19396d638610f2653295f36"
 		},
 		{
+			"ImportPath": "github.com/mattn/go-sqlite3",
+			"Comment": "v1.2.0-105-g6654e41",
+			"Rev": "6654e412c3c7eabb310d920cf73a2102dbf8c632"
+		},
+		{
 			"ImportPath": "github.com/moul/http2curl",
 			"Rev": "b1479103caacaa39319f75e7f57fc545287fca0d"
 		},
@@ -298,35 +303,35 @@
 		},
 		{
 			"ImportPath": "github.com/ugorji/go/codec",
-			"Rev": "708a42d246822952f38190a8d8c4e6b16a0e600c"
+			"Rev": "5efa3251c7f7d05e5d9704a69a984ec9f1386a40"
 		},
 		{
 			"ImportPath": "golang.org/x/crypto/pbkdf2",
-			"Rev": "96846453c37f0876340a66a47f3f75b1f3a6cd2d"
+			"Rev": "b176d7def5d71bdd214203491f89843ed217f420"
 		},
 		{
 			"ImportPath": "golang.org/x/crypto/scrypt",
-			"Rev": "96846453c37f0876340a66a47f3f75b1f3a6cd2d"
+			"Rev": "b176d7def5d71bdd214203491f89843ed217f420"
 		},
 		{
 			"ImportPath": "golang.org/x/net/context",
-			"Rev": "ffcf1bedda3b04ebb15a168a59800a73d6dc0f4d"
+			"Rev": "1c05540f6879653db88113bc4a2b70aec4bd491f"
 		},
 		{
 			"ImportPath": "golang.org/x/net/html",
-			"Rev": "ffcf1bedda3b04ebb15a168a59800a73d6dc0f4d"
+			"Rev": "1c05540f6879653db88113bc4a2b70aec4bd491f"
 		},
 		{
 			"ImportPath": "golang.org/x/net/html/atom",
-			"Rev": "ffcf1bedda3b04ebb15a168a59800a73d6dc0f4d"
+			"Rev": "1c05540f6879653db88113bc4a2b70aec4bd491f"
 		},
 		{
 			"ImportPath": "golang.org/x/net/publicsuffix",
-			"Rev": "ffcf1bedda3b04ebb15a168a59800a73d6dc0f4d"
+			"Rev": "1c05540f6879653db88113bc4a2b70aec4bd491f"
 		},
 		{
 			"ImportPath": "golang.org/x/sys/unix",
-			"Rev": "d9157a9621b69ad1d8d77a1933590c416593f24f"
+			"Rev": "47bdb838cce8879fca08207206a5dfde2f2538bc"
 		},
 		{
 			"ImportPath": "gopkg.in/guregu/null.v3",
@@ -365,7 +370,7 @@
 		},
 		{
 			"ImportPath": "gopkg.in/yaml.v2",
-			"Rev": "a3f3340b5840cee44f372bddb5880fcbc419b46a"
+			"Rev": "eb3733d160e74a9c7e442f435eb3bea458e1d19f"
 		}
 	]
 }
