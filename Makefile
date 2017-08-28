@@ -121,6 +121,9 @@ tim:
 texec:
 	go test -v example/exec/exec_test.go -run TestExecParams -log 1
 
+enc:
+	go test -v cipher/encryption/encryption_test.go -log 1
+
 
 test:
 	#
