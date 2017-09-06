@@ -6,6 +6,7 @@ import (
 	//u "github.com/hiromaily/golibs/utils"
 	"errors"
 	"io/ioutil"
+	"os"
 )
 
 //https://ukiahsmith.com/blog/go-marshal-and-unmarshal-json-with-time-and-url-data/
@@ -55,4 +56,20 @@ func LoadJSONFile(filePath string) ([]byte, error) {
 		return nil, err
 	}
 	return file, nil
+}
+
+// LoadWithDecode is to read file and then decode it.
+func LoadWithDecode(filePath string, data interface{}) error {
+	file, err := os.Open(filePath)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	// Decode the file into a slice of pointers
+	// pass pointer to Decode
+	//var feeds []*Feed
+	err = json.NewDecoder(file).Decode(data)
+
+	return err
 }

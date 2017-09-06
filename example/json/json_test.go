@@ -163,3 +163,12 @@ func TestMarshalJson(t *testing.T) {
 	}
 	lg.Debugf("siteInfo: %s", string(b2))
 }
+
+func TestLoadWithDecode(t *testing.T) {
+	var siteInfo SiteInfo
+	err := LoadWithDecode(*tu.JSONFile, &siteInfo)
+	if err != nil {
+		t.Fatalf("[01] error: %s", err)
+	}
+	lg.Debugf("siteInfo: %#v", siteInfo)
+}
