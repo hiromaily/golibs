@@ -8,6 +8,8 @@ import (
 	"fmt"
 	//lg "github.com/hiromaily/golibs/log"
 	"github.com/ugorji/go/codec"
+	"bufio"
+	"os"
 )
 
 //-----------------------------------------------------------------------------
@@ -73,6 +75,43 @@ func FromGOB64(str string, tData interface{}) error {
 		return err
 	}
 	return nil
+}
+
+// SaveToFile is to save object to file. data should be pointer.
+func SaveToFile(filepath string, data interface{}) error{
+	fp, err := os.Create(filepath)
+	if err != nil {
+		return err
+	}
+	defer fp.Close()
+
+	w := bufio.NewWriter(fp)
+	encoder := gob.NewEncoder(w)
+
+	//data should be pointer
+	err = encoder.Encode(data)
+
+	return err
+}
+
+// RestoreFromFile is to restore data from file
+func RestoreFromFile(filepath string, data interface{}) error {
+	fp, err := os.OpenFile(filepath, os.O_CREATE, 0664)
+	if err != nil {
+		return err
+	}
+	defer fp.Close()
+
+	r := bufio.NewReader(fp)
+	decoder := gob.NewDecoder(r)
+
+	//data should be pointer
+	err = decoder.Decode(data)
+	if err != nil && err.Error() == "EOF" {
+		err = nil
+	}
+
+	return err
 }
 
 //-----------------------------------------------------------------------------

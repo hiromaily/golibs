@@ -124,6 +124,9 @@ texec:
 enc:
 	go test -v cipher/encryption/encryption_test.go -log 1
 
+json:
+	go test -v example/json/json_test.go -run TestLoadWithDecode -jfp ${JSONPATH} -log 1
+
 
 test:
 	#
