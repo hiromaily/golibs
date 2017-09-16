@@ -7,8 +7,8 @@ import (
 	"encoding/hex"
 	"fmt"
 	//lg "github.com/hiromaily/golibs/log"
-	"github.com/ugorji/go/codec"
 	"bufio"
+	"github.com/ugorji/go/codec"
 	"os"
 )
 
@@ -78,7 +78,7 @@ func FromGOB64(str string, tData interface{}) error {
 }
 
 // SaveToFile is to save object to file. data should be pointer.
-func SaveToFile(filepath string, data interface{}) error{
+func SaveToFile(filepath string, data interface{}) error {
 	fp, err := os.Create(filepath)
 	if err != nil {
 		return err
