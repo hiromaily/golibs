@@ -78,6 +78,16 @@ func GetValue(url, key string) string {
 	return ""
 }
 
+func GetAllValue(url string) map[string]string {
+	password = getPassword()
+
+	cookies := make(map[string]string)
+	for _, cookie := range getCookies(url) {
+		cookies[cookie.Key] = cookie.DecryptedValue()
+	}
+	return cookies
+}
+
 func decryptValue(encryptedValue []byte) string {
 	key := pbkdf2.Key([]byte(password), []byte(salt), iterations, length, sha1.New)
 	block, err := aes.NewCipher(key)
