@@ -2,9 +2,51 @@ package runtimes
 
 import (
 	"bytes"
+	"fmt"
+	"regexp"
 	"runtime"
 	"strings"
 )
+
+var (
+	re = regexp.MustCompile(`^(\S.+)\.(\S.+)$`)
+)
+
+type CallerInfo struct {
+	PackageName  string
+	FunctionName string
+	FileName     string
+	FileLine     int
+}
+
+func dump() (callerInfo []*CallerInfo) {
+	for i := 1; ; i++ {
+		pc, _, _, ok := runtime.Caller(i) // https://golang.org/pkg/runtime/#Caller
+		if !ok {
+			break
+		}
+
+		fn := runtime.FuncForPC(pc)
+		fileName, fileLine := fn.FileLine(pc)
+
+		_fn := re.FindStringSubmatch(fn.Name())
+		callerInfo = append(callerInfo, &CallerInfo{
+			PackageName:  _fn[1],
+			FunctionName: _fn[2],
+			FileName:     fileName,
+			FileLine:     fileLine,
+		})
+	}
+	return
+}
+
+func TraceAllHistory() {
+	info := dump()
+	for i := len(info) - 1; i > -1; i-- {
+		v := info[i]
+		fmt.Printf("%02d: %s.%s@%s:%d\n", i, v.PackageName, v.FunctionName, v.FileName, v.FileLine)
+	}
+}
 
 // CurrentFunc is to get current func name
 func CurrentFunc(skip int) string {

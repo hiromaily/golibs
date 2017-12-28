@@ -10,11 +10,6 @@ import (
 	"testing"
 )
 
-type User struct {
-	Id   int
-	Name string
-}
-
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
@@ -100,4 +95,8 @@ func TestCurrentFunc(t *testing.T) {
 
 	b := CurrentFuncV2()
 	lg.Debugf("CurrentFunc2() :%s", b)
+}
+
+func TestTraceAllHistory(t *testing.T) {
+	TraceAllHistory()
 }
