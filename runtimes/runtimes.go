@@ -29,10 +29,10 @@ func dump() (callerInfo []*CallerInfo) {
 		fn := runtime.FuncForPC(pc)
 		fileName, fileLine := fn.FileLine(pc)
 
-		_fn := re.FindStringSubmatch(fn.Name())
+		additionalInfo := re.FindStringSubmatch(fn.Name())
 		callerInfo = append(callerInfo, &CallerInfo{
-			PackageName:  _fn[1],
-			FunctionName: _fn[2],
+			PackageName:  additionalInfo[1],
+			FunctionName: additionalInfo[2],
 			FileName:     fileName,
 			FileLine:     fileLine,
 		})
@@ -44,7 +44,8 @@ func TraceAllHistory() {
 	info := dump()
 	for i := len(info) - 1; i > -1; i-- {
 		v := info[i]
-		fmt.Printf("%02d: %s.%s@%s:%d\n", i, v.PackageName, v.FunctionName, v.FileName, v.FileLine)
+		//fmt.Printf("%02d: %s%s@%s:%d\n", i, v.PackageName, v.FunctionName, v.FileName, v.FileLine)
+		fmt.Printf("%02d: [Function]%s [File]%s:%d\n", i, v.FunctionName, v.FileName, v.FileLine)
 	}
 }
 
