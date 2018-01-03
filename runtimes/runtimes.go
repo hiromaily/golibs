@@ -3,6 +3,7 @@ package runtimes
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"regexp"
 	"runtime"
 	"strings"
@@ -19,7 +20,15 @@ type CallerInfo struct {
 	FileLine     int
 }
 
-func dump() (callerInfo []*CallerInfo) {
+func formatPath(path, separator string) string {
+	ret := strings.Split(path, separator)
+	if len(ret) > 1 {
+		return fmt.Sprintf(".%s", ret[len(ret)-1])
+	}
+	return path
+}
+
+func dumpStackTrace(separator string) (callerInfo []*CallerInfo) {
 	for i := 1; ; i++ {
 		pc, _, _, ok := runtime.Caller(i) // https://golang.org/pkg/runtime/#Caller
 		if !ok {
@@ -28,6 +37,11 @@ func dump() (callerInfo []*CallerInfo) {
 
 		fn := runtime.FuncForPC(pc)
 		fileName, fileLine := fn.FileLine(pc)
+
+		// format path
+		if separator != "" {
+			fileName = formatPath(fileName, separator)
+		}
 
 		additionalInfo := re.FindStringSubmatch(fn.Name())
 		callerInfo = append(callerInfo, &CallerInfo{
@@ -40,12 +54,18 @@ func dump() (callerInfo []*CallerInfo) {
 	return
 }
 
-func TraceAllHistory() {
-	info := dump()
+func GetStackTrace(separator string) []*CallerInfo {
+	info := dumpStackTrace(separator)
+	return info
+}
+
+func TraceAllHistory(w io.Writer, separator string) {
+	info := dumpStackTrace(separator)
 	for i := len(info) - 1; i > -1; i-- {
 		v := info[i]
 		//fmt.Printf("%02d: %s%s@%s:%d\n", i, v.PackageName, v.FunctionName, v.FileName, v.FileLine)
-		fmt.Printf("%02d: [Function]%s [File]%s:%d\n", i, v.FunctionName, v.FileName, v.FileLine)
+		//fmt.Printf("%02d: [Function]%s [File]%s:%d\n", i, v.FunctionName, v.FileName, v.FileLine)
+		fmt.Fprintf(w, "%02d: [Function]%s [File]%s:%d\n", i, v.FunctionName, v.FileName, v.FileLine)
 	}
 }
 

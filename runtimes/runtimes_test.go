@@ -1,6 +1,7 @@
 package runtimes_test
 
 import (
+	"fmt"
 	lg "github.com/hiromaily/golibs/log"
 	. "github.com/hiromaily/golibs/runtimes"
 	tu "github.com/hiromaily/golibs/testutil"
@@ -97,6 +98,24 @@ func TestCurrentFunc(t *testing.T) {
 	lg.Debugf("CurrentFunc2() :%s", b)
 }
 
+func TestGetStackTrace(t *testing.T) {
+	info := GetStackTrace("hiromaily")
+	for i := len(info) - 1; i > -1; i-- {
+		v := info[i]
+		fmt.Printf("%02d: [Function]%s [File]%s:%d\n", i, v.FunctionName, v.FileName, v.FileLine)
+	}
+	// Output
+	// 03: [Function]goexit [File]/usr/local/Cellar/go/1.9.2/libexec/src/runtime/asm_amd64.s:2337
+	// 02: [Function]tRunner [File]/usr/local/Cellar/go/1.9.2/libexec/src/testing/testing.go:746
+	// 01: [Function]TestGetStackTrace [File]./golibs/runtimes/runtimes_test.go:102
+	// 00: [Function]GetStackTrace [File]./golibs/runtimes/runtimes.go:58
+}
+
 func TestTraceAllHistory(t *testing.T) {
-	TraceAllHistory()
+	TraceAllHistory(os.Stdout, "hiromaily")
+	// Output
+	//03: [Function]goexit [File]/usr/local/Cellar/go/1.9.2/libexec/src/runtime/asm_amd64.s:2337
+	//02: [Function]tRunner [File]/usr/local/Cellar/go/1.9.2/libexec/src/testing/testing.go:746
+	//01: [Function]TestTraceAllHistory [File]./golibs/runtimes/runtimes_test.go:115
+	//00: [Function]TraceAllHistory [File]./golibs/runtimes/runtimes.go:63}
 }
