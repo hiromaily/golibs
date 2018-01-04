@@ -51,7 +51,7 @@ func dumpStackTrace(separator string) (callerInfo []*CallerInfo) {
 			FileLine:     fileLine,
 		})
 	}
-	return
+	return callerInfo[1:]
 }
 
 func GetStackTrace(separator string) []*CallerInfo {
