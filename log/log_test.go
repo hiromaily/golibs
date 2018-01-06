@@ -93,6 +93,25 @@ func TestInitializedLog(t *testing.T) {
 	Fatalf("New->Fatalf: %d - %s", 1, "test fatalf")
 }
 
+func TestInitializedLog2(t *testing.T) {
+	InitializeLog(DebugStatus, LogOff, 99, "[LOG_INIT_TEST]", "/var/log/go/test.log")
+
+	Debug("New->Debug: test debug")
+	Debugf("New->Debugf: %d - %s", 1, "test debugf")
+
+	Info("New->Info: test info")
+	Infof("New->Infof: %d - %s", 1, "test infof")
+
+	Warn("New->Warn: test warn")
+	Warnf("New->Warnf: %d - %s", 1, "test warnf")
+
+	Error("New->Error: test error")
+	Errorf("New->Errorf: %d - %s", 1, "test errorf")
+
+	Fatal("New->Fatal: test fatal")
+	Fatalf("New->Fatalf: %d - %s", 1, "test fatalf")
+}
+
 //-----------------------------------------------------------------------------
 // Benchmark
 //-----------------------------------------------------------------------------
