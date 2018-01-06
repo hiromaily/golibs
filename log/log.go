@@ -4,7 +4,6 @@ import (
 	"fmt"
 	c "github.com/hiromaily/golibs/color"
 	u "github.com/hiromaily/golibs/utils"
-	//"github.com/shiena/ansicolor"
 	"log"
 	"os"
 	"runtime"
@@ -129,7 +128,6 @@ func openFile(logger *log.Logger, fileName string) {
 
 // setColor is to set color
 func setColor(key, val string) string {
-	//logStdOut.SetOutput(ansicolor.NewAnsiColorWriter(os.Stdout))
 	switch key {
 	case "Debug", "Debugf":
 		return c.Add(val, c.SkyBlue)
@@ -183,7 +181,7 @@ func (lo *Object) Out(key string, v ...interface{}) {
 
 	if lo.logLevel <= getStatus(key) {
 		if lo.logFileLevel <= getStatus(key) {
-			lo.loggerFile.Output(2, fmt.Sprint(nv...))
+			lo.loggerFile.Output(3, fmt.Sprint(nv...))
 		} else {
 			lo.loggerStd.Output(3, setColor(key, fmt.Sprint(nv...)))
 		}
@@ -194,7 +192,7 @@ func (lo *Object) Out(key string, v ...interface{}) {
 func (lo *Object) Outf(key, format string, v ...interface{}) {
 	if lo.logLevel <= getStatus(key) {
 		if lo.logFileLevel <= getStatus(key) {
-			lo.loggerFile.Output(2, fmt.Sprintf(getPrefix(key)+format, v...))
+			lo.loggerFile.Output(3, fmt.Sprintf(getPrefix(key)+format, v...))
 		} else {
 			lo.loggerStd.Output(3, setColor(key, fmt.Sprintf(getPrefix(key)+format, v...)))
 		}
