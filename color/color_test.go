@@ -4,6 +4,7 @@ import (
 	"fmt"
 	c "github.com/hiromaily/golibs/color"
 	tu "github.com/hiromaily/golibs/testutil"
+	"testing"
 )
 
 //-----------------------------------------------------------------------------
@@ -28,4 +29,8 @@ func ExampleAddf() {
 	fmt.Println(str)
 	// Output
 	// This is Yellow
+}
+
+func TestCheck(t *testing.T) {
+	c.Check()
 }
