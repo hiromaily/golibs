@@ -130,15 +130,15 @@ func openFile(logger *log.Logger, fileName string) {
 func setColor(key, val string) string {
 	switch key {
 	case "Debug", "Debugf":
-		return c.Add(val, c.SkyBlue)
+		return c.Add(c.SkyBlue, val)
 	case "Info", "Infof":
-		return c.Add(val, c.Green)
+		return c.Add(c.Green, val)
 	case "Warn", "Warnf":
-		return c.Add(val, c.Yellow)
+		return c.Add(c.Yellow, val)
 	case "Error", "Errorf":
-		return c.Add(val, c.DeepPink)
+		return c.Add(c.DeepPink, val)
 	case "Fatal", "Fatalf":
-		return c.Add(val, c.Red)
+		return c.Add(c.Red, val)
 	default:
 		return val
 	}
