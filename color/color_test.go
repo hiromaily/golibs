@@ -19,13 +19,13 @@ func init() {
 // Test
 //-----------------------------------------------------------------------------
 func ExampleAdd() {
-	fmt.Println(c.Add("This is Blue", c.Blue))
+	fmt.Println(c.Add(c.Blue, "This is Blue"))
 	// Output
 	// This is Blue
 }
 
 func ExampleAddf() {
-	str := c.Addf("This is %s", c.Yellow, "Yellow")
+	str := c.Addf(c.Yellow, "This is %s", "Yellow")
 	fmt.Println(str)
 	// Output
 	// This is Yellow

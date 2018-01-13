@@ -25,16 +25,16 @@ var (
 	White       Col = "\x1B[38;5;15m"
 )
 
-func Addf(format string, c Col, a ...interface{}) string {
-	return Add(fmt.Sprintf(format, a...), c)
+func Addf(c Col, format string, a ...interface{}) string {
+	return Add(c, fmt.Sprintf(format, a...))
 }
 
-func Add(str string, c Col) string {
+func Add(c Col, str string) string {
 	return string(c) + str + string(Reset)
 }
 
 func Check() {
 	for i := 1; i < 256; i++ {
-		fmt.Println(Add(fmt.Sprintf("Number %d:", i), Col(fmt.Sprintf("\x1B[38;5;%dm", i))))
+		fmt.Println(Add(Col(fmt.Sprintf("\x1B[38;5;%dm", i)), fmt.Sprintf("Number %d:", i)))
 	}
 }
