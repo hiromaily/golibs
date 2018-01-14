@@ -34,13 +34,6 @@ func post(reqURL string, body *strings.Reader) (int, error) {
 }
 
 func SendMessage(url, text string) (int, error) {
-	//var url = 'https://xxxxx.ngrok.io/google-home-notifier';
-	//var urlFetchOption = {
-	//	'method' : 'post',
-	//	'contentType' : 'application/x-www-form-urlencoded',
-	//	'payload' : { 'text' : text}
-	//};
-
 	//application/x-www-form-urlencoded
 	values := url.Values{}
 	values.Set("text", text)
