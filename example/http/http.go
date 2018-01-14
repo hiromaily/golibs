@@ -8,7 +8,7 @@ import (
 	"encoding/base64"
 	"fmt"
 	lg "github.com/hiromaily/golibs/log"
-	u "github.com/hiromaily/golibs/utils"
+	//u "github.com/hiromaily/golibs/utils"
 	"github.com/parnurzeal/gorequest"
 	"io/ioutil"
 	"net/http"
