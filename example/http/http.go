@@ -119,7 +119,10 @@ func PostRequest(reqURL string, bytesMessage []byte) (int, string, error) {
 		reqURL,
 		bytes.NewBuffer(bytesMessage),
 	)
-	u.ShowErrorWhenError(err)
+	if err != nil {
+		return 0, "", err
+	}
+
 	//Set Http Headers
 	setHTTPHeadersWithContentLength(req, strconv.Itoa(len(bytesMessage)))
 
@@ -135,7 +138,7 @@ func PostRequest(reqURL string, bytesMessage []byte) (int, string, error) {
 	if err != nil {
 		//err e.g.
 		//error: xxx socket: too many open files
-		//-> $ulimit -n 2048
+		//-> $ ulimit -n 2048
 		return resp.StatusCode, "", err
 	}
 
