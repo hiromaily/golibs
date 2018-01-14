@@ -26,7 +26,7 @@ func post(reqURL string, body *strings.Reader) (int, error) {
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return resp.StatusCode, err
+		return 0, err
 	}
 	defer resp.Body.Close()
 
