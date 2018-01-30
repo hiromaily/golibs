@@ -2,6 +2,7 @@ package regexp_test
 
 import (
 	//lg "github.com/hiromaily/golibs/log"
+	"fmt"
 	. "github.com/hiromaily/golibs/regexp"
 	tu "github.com/hiromaily/golibs/testutil"
 	"os"
@@ -58,6 +59,9 @@ var regExpData = []struct {
 	{`^http(s)?:\/\/`, "http://google.com", true},
 	{`^http(s)?:\/\/`, "https://google.com", true},
 	{`^-test.bench`, "-test.bench=.", true},
+	//
+	{`^.*\/filter$`, "http://www.test.com/de/berlin/filter", true},
+	{`^.*\/filter$`, "http://www.test.com/de/berlin/filter", true},
 }
 
 //-----------------------------------------------------------------------------
@@ -171,4 +175,33 @@ func TestIsStaticFile(t *testing.T) {
 			t.Errorf("[%d]IsStaticFile()NG data doens't work yet.", idx)
 		}
 	}
+}
+
+func TestReplace(t *testing.T) {
+	//remove last filter
+	fmt.Println("01:", Replace("/nl/amsterdam/area1/filter-aaa", `^.*\/filter-aaa$`, "$1"))             //
+	fmt.Println("02:", Replace("/nl/amsterdam/area1/filter-aaa", `\/filter-aaa$`, "$1"))                // /nl/amsterdam/area1
+	fmt.Println("03:", Replace("/nl/amsterdam/area1/filter-aaa", `\/filter-aaa$|\/filter-ccc$|`, "$1")) // /nl/amsterdam/area1
+	fmt.Println("04:", Replace("/nl/amsterdam/area1/filter-bbb", `\/filter-aaa$|\/filter-ccc$|`, "$1")) // /nl/amsterdam/area1/filter-bbb
+	fmt.Println("05:", Replace("/nl/amsterdam/area1/filter-ccc", `\/filter-aaa$|\/filter-ccc$|`, "$1")) // /nl/amsterdam/area1
+
+	//if wanna remove not only last, in the middle of path,
+	fmt.Println("10:", Replace("/nl/amsterdam/area1", `\/area1(/|\z)`, "$1"))          // /nl/amsterdam
+	fmt.Println("11:", Replace("/nl/amsterdam/area111", `\/area1(/|\z)`, "$1"))        // /nl/amsterdam/area111
+	fmt.Println("12:", Replace("/nl/amsterdam/area1/filter", `\/area1(/|\z)`, "$1"))   // /nl/amsterdam/filter
+	fmt.Println("13:", Replace("/nl/amsterdam/area111/filter", `\/area1(/|\z)`, "$1")) // /nl/amsterdam/area111/filter
+
+	fmt.Println("14:", Replace("/nl/amsterdam/area1", `\/(?:area1|area2)(/|\z)`, "$1"))        // /nl/amsterdam
+	fmt.Println("15:", Replace("/nl/amsterdam/area1/filter", `\/(?:area1|area2)(/|\z)`, "$1")) // /nl/amsterdam/filter
+	fmt.Println("16:", Replace("/nl/amsterdam/area2", `\/(?:area1|area2)(/|\z)`, "$1"))        // /nl/amsterdam
+	fmt.Println("17:", Replace("/nl/amsterdam/area2/filter", `\/(?:area1|area2)(/|\z)`, "$1")) // /nl/amsterdam/filter
+
+	fmt.Println("20:", Replace("/be/luik/spa/bornevenlig-hotel", `\/(?:bornevenlig-hotel|area2)(/|\z)`, "$1")) // /be/luik/spa
+
+	// /([^/]+)/(area1|area2|area3|area4)$
+	fmt.Println("21:", Replace("/be/luik/spa/area1", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1"))          // /be/luik/spa
+	fmt.Println("22:", Replace("/be/luik/spa/area1/filter", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1"))   // /be/luik/spa
+	fmt.Println("23:", Replace("/be/luik/spa/aarea1", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1"))         // /be/luik/spa
+	fmt.Println("24:", Replace("/be/luik/spa/area111/filter", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1")) // /be/luik/spa
+
 }
