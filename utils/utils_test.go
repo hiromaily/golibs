@@ -1,6 +1,7 @@
 package utils_test
 
 import (
+	"fmt"
 	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
 	. "github.com/hiromaily/golibs/utils"
@@ -169,6 +170,11 @@ func TestPickOneFromEnum(t *testing.T) {
 	enumData2 := []string{"apple"}
 	lg.Debug(PickOneFromEnum(enumData2))
 	lg.Debug(PickOneFromEnum(enumData2))
+}
+
+func TestUniqueStringSlice(t *testing.T) {
+	tu.SkipLog(t)
+	fmt.Println(UniqueStringSlice([]string{"aaa", "bbb", "ccc", "bbb"}))
 }
 
 //-----------------------------------------------------------------------------
