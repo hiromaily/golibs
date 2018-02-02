@@ -187,9 +187,9 @@ func TestReplace(t *testing.T) {
 
 	//if wanna remove not only last, in the middle of path,
 	fmt.Println("10:", Replace("/nl/amsterdam/area1", `\/area1(/|\z)`, "$1"))          // /nl/amsterdam
-	fmt.Println("11:", Replace("/nl/amsterdam/area111", `\/area1(/|\z)`, "$1"))        // /nl/amsterdam/area111
+	fmt.Println("11:", Replace("/nl/amsterdam/area111", `\/area1(/|\z)`, "$1"))        // /nl/amsterdam/area111 => error
 	fmt.Println("12:", Replace("/nl/amsterdam/area1/filter", `\/area1(/|\z)`, "$1"))   // /nl/amsterdam/filter
-	fmt.Println("13:", Replace("/nl/amsterdam/area111/filter", `\/area1(/|\z)`, "$1")) // /nl/amsterdam/area111/filter
+	fmt.Println("13:", Replace("/nl/amsterdam/area111/filter", `\/area1(/|\z)`, "$1")) // /nl/amsterdam/area111/filter => error
 
 	fmt.Println("14:", Replace("/nl/amsterdam/area1", `\/(?:area1|area2)(/|\z)`, "$1"))        // /nl/amsterdam
 	fmt.Println("15:", Replace("/nl/amsterdam/area1/filter", `\/(?:area1|area2)(/|\z)`, "$1")) // /nl/amsterdam/filter
@@ -200,8 +200,9 @@ func TestReplace(t *testing.T) {
 
 	// /([^/]+)/(area1|area2|area3|area4)$
 	fmt.Println("21:", Replace("/be/luik/spa/area1", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1"))          // /be/luik/spa
-	fmt.Println("22:", Replace("/be/luik/spa/area1/filter", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1"))   // /be/luik/spa
-	fmt.Println("23:", Replace("/be/luik/spa/aarea1", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1"))         // /be/luik/spa
-	fmt.Println("24:", Replace("/be/luik/spa/area111/filter", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1")) // /be/luik/spa
+	fmt.Println("22:", Replace("/be/luik/spa/area1/filter", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1"))   // /be/luik/spa => error
+	fmt.Println("23:", Replace("/be/luik/spa/aarea1", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1"))         // /be/luik/spa => error
+	fmt.Println("24:", Replace("/be/luik/spa/area111/filter", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1")) // /be/luik/spa => error
 
+	fmt.Println("30:", Replace("https://www.hotelspecials.dk/at/week", `(https?://)([^:^/]*)(:\\d*)?(.*)?`, "$1, $2, $3, $4")) // https://, www.hotelspecials.dk, , /at/week
 }
