@@ -113,7 +113,7 @@ func TestDefault(t *testing.T) {
 //-----------------------------------------------------------------------------
 // Example
 //-----------------------------------------------------------------------------
-func ExampleHello() {
-	fmt.Println("hello")
-	// Output: hello
-}
+//func ExampleHello() {
+//	fmt.Println("hello")
+//	// Output: hello
+//}
