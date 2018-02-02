@@ -1,7 +1,6 @@
 package defaultdata_test
 
 import (
-	"fmt"
 	. "github.com/hiromaily/golibs/example/defaultdata"
 	tu "github.com/hiromaily/golibs/testutil"
 	"os"
