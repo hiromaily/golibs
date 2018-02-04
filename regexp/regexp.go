@@ -55,3 +55,8 @@ func Replace(path, from, to string) string {
 	}
 	return "error"
 }
+
+func Replace2(path, from, to string) string {
+	reg := re.MustCompile(from)
+	return reg.ReplaceAllString(path, to)
+}

@@ -130,6 +130,9 @@ runtime:
 json:
 	go test -v example/json/json_test.go -run TestLoadWithDecode -jfp ${JSONPATH} -log 1
 
+regex:
+	go test -v regexp/regexp_test.go -run TestReplace -log 1
+
 
 test:
 	#

@@ -177,32 +177,133 @@ func TestIsStaticFile(t *testing.T) {
 	}
 }
 
-func TestReplace(t *testing.T) {
-	//remove last filter
-	fmt.Println("01:", Replace("/nl/amsterdam/area1/filter-aaa", `^.*\/filter-aaa$`, "$1"))             //
-	fmt.Println("02:", Replace("/nl/amsterdam/area1/filter-aaa", `\/filter-aaa$`, "$1"))                // /nl/amsterdam/area1
-	fmt.Println("03:", Replace("/nl/amsterdam/area1/filter-aaa", `\/filter-aaa$|\/filter-ccc$|`, "$1")) // /nl/amsterdam/area1
-	fmt.Println("04:", Replace("/nl/amsterdam/area1/filter-bbb", `\/filter-aaa$|\/filter-ccc$|`, "$1")) // /nl/amsterdam/area1/filter-bbb
-	fmt.Println("05:", Replace("/nl/amsterdam/area1/filter-ccc", `\/filter-aaa$|\/filter-ccc$|`, "$1")) // /nl/amsterdam/area1
+func TestReplaceResult(t *testing.T) {
+	// for removing last
+	fmt.Println(Replace("/last", `\/last$|\/first$|`, "$1"))
+	// Output:
 
-	//if wanna remove not only last, in the middle of path,
-	fmt.Println("10:", Replace("/nl/amsterdam/area1", `\/area1(/|\z)`, "$1"))          // /nl/amsterdam
-	fmt.Println("11:", Replace("/nl/amsterdam/area111", `\/area1(/|\z)`, "$1"))        // /nl/amsterdam/area111 => error
-	fmt.Println("12:", Replace("/nl/amsterdam/area1/filter", `\/area1(/|\z)`, "$1"))   // /nl/amsterdam/filter
-	fmt.Println("13:", Replace("/nl/amsterdam/area111/filter", `\/area1(/|\z)`, "$1")) // /nl/amsterdam/area111/filter => error
+	// for removing any positions
+	fmt.Println(Replace("/nl/amsterdam/area2/filter", `\/(?:area1|area2)(/|\z)`, "$1"))
+	// Output: /nl/amsterdam/filter
+}
 
-	fmt.Println("14:", Replace("/nl/amsterdam/area1", `\/(?:area1|area2)(/|\z)`, "$1"))        // /nl/amsterdam
-	fmt.Println("15:", Replace("/nl/amsterdam/area1/filter", `\/(?:area1|area2)(/|\z)`, "$1")) // /nl/amsterdam/filter
-	fmt.Println("16:", Replace("/nl/amsterdam/area2", `\/(?:area1|area2)(/|\z)`, "$1"))        // /nl/amsterdam
-	fmt.Println("17:", Replace("/nl/amsterdam/area2/filter", `\/(?:area1|area2)(/|\z)`, "$1")) // /nl/amsterdam/filter
+func TestReplace01(t *testing.T) {
+	// Remove only last path can be target.
 
-	fmt.Println("20:", Replace("/be/luik/spa/bornevenlig-hotel", `\/(?:bornevenlig-hotel|area2)(/|\z)`, "$1")) // /be/luik/spa
+	fmt.Println(Replace("/nl/amsterdam/area1/filter-aaa", `\/filter-aaa$`, "$1"))
+	// Output: /nl/amsterdam/area1
 
-	// /([^/]+)/(area1|area2|area3|area4)$
-	fmt.Println("21:", Replace("/be/luik/spa/area1", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1"))          // /be/luik/spa
-	fmt.Println("22:", Replace("/be/luik/spa/area1/filter", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1"))   // /be/luik/spa => error
-	fmt.Println("23:", Replace("/be/luik/spa/aarea1", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1"))         // /be/luik/spa => error
-	fmt.Println("24:", Replace("/be/luik/spa/area111/filter", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1")) // /be/luik/spa => error
+	fmt.Println(Replace("/nl/amsterdam/area1/filter-aaa", `\/filter-aaa$|\/filter-ccc$|`, "$1"))
+	// Output: /nl/amsterdam/area1
 
-	fmt.Println("30:", Replace("https://www.hotelspecials.dk/at/week", `(https?://)([^:^/]*)(:\\d*)?(.*)?`, "$1, $2, $3, $4")) // https://, www.hotelspecials.dk, , /at/week
+	fmt.Println(Replace("/nl/amsterdam/area1/filter-bbb", `\/filter-aaa$|\/filter-ccc$|`, "$1"))
+	// Output: /nl/amsterdam/area1/filter-bbb
+
+	fmt.Println(Replace("/nl/amsterdam/area1/filter-ccc", `\/filter-aaa$|\/filter-ccc$|`, "$1"))
+	// Output: /nl/amsterdam/area1
+
+	fmt.Println(Replace("/nl/amsterdam/area1/filter-ccc/last", `\/filter-aaa$|\/filter-ccc$|`, "$1"))
+	// Output: /nl/amsterdam/area1/filter-ccc/last
+
+	fmt.Println(Replace("/last", `\/last$|\/first$|`, "$1"))
+	// Output:
+}
+
+func TestReplace02(t *testing.T) {
+	// This pattern seems that only last path can be target.
+	// And multiple targets can be set
+
+	fmt.Println(Replace("/be/luik/spa/area1", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1"))
+	// Output: /be/luik/spa
+
+	fmt.Println(Replace("/be/luik/spa/area1/filter", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1"))
+	// Output: /be/luik/spa => error
+
+	fmt.Println(Replace("/be/luik/spa/Xarea1", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1"))
+	// Output: /be/luik/spa => error
+
+	fmt.Println(Replace("/be/luik/spa/area123/filter", `/([^/]+)/(area1|area2|area3|area4)$`, "/$1"))
+	// Output: /be/luik/spa => error
+
+	fmt.Println(Replace("/last", `/([^/]+)/(last|first)$`, "/$1"))
+	// Output: error => this result indicates this regexp is risky.
+}
+
+func TestReplace03(t *testing.T) {
+	// Both last and in the middle of path can be target
+
+	fmt.Println(Replace("/nl/amsterdam/area1", `\/area1(/|\z)`, "$1"))
+	// Output: /nl/amsterdam
+
+	fmt.Println(Replace("/nl/amsterdam/area111", `\/area1(/|\z)`, "$1"))
+	// Output: /nl/amsterdam/area111 => error
+
+	fmt.Println(Replace("/nl/amsterdam/area1/filter", `\/area1(/|\z)`, "$1"))
+	// Output: /nl/amsterdam/filter
+
+	fmt.Println(Replace("/nl/amsterdam/area111/filter", `\/area1(/|\z)`, "$1"))
+	// Output: /nl/amsterdam/area111/filter => error
+}
+
+func TestReplace04(t *testing.T) {
+	// Both last and in the middle of path can be target
+	// And multiple targets can be set
+
+	fmt.Println(Replace("/nl/amsterdam/area1", `\/(?:area1|area2)(/|\z)`, "$1"))
+	// Output: /nl/amsterdam
+
+	fmt.Println(Replace("/nl/amsterdam/area1/filter", `\/(?:area1|area2)(/|\z)`, "$1"))
+	// Output: /nl/amsterdam/filter
+
+	fmt.Println(Replace("/nl/amsterdam/area2", `\/(?:area1|area2)(/|\z)`, "$1"))
+	// Output: /nl/amsterdam
+
+	fmt.Println(Replace("/nl/amsterdam/area2/filter", `\/(?:area1|area2)(/|\z)`, "$1"))
+	// Output: /nl/amsterdam/filter
+
+	fmt.Println(Replace("/nl/amsterdam/area2/area1", `\/(?:area1|area2)(/|\z)`, "$1"))
+	// Output: /nl/amsterdam/area1
+
+}
+
+func TestReplace05(t *testing.T) {
+	// wanna apply recursively.
+	fmt.Println(Replace("/nl/amsterdam/area2/area1", `\/+(?:area1|area2).+(/|\z)`, "$1"))
+	// Output: /nl/amsterdam
+
+	//TODO: what is wrong??
+	fmt.Println(Replace("/nl/amsterdam/area2", `\/+(?:area1|area2).+(/|\z)`, "$1"))
+	// Output: error
+
+	//it's came from TestReplace04
+	fmt.Println(Replace("/nl/amsterdam/area2", `\/+(?:area1|area2)(/|\z)`, "$1"))
+	// Output: /nl/amsterdam
+
+	//TODO:ongoing
+	fmt.Println(Replace2("/nl/amsterdam/area2", `\/+(?:area1|area2)+(/|\z)`, "$1"))
+	// Output: /nl/amsterdam
+
+	fmt.Println(Replace2("/nl/amsterdam/area2/area1", `(?:/(?:area1|area2))+(/|\z)`, "$1"))
+	//
+
+	fmt.Println(Replace2("/nl/amsterdam/area2", `(?:/(?:area1|area2))+(/|\z)`, "$1"))
+	// Output: /nl/amsterdam
+	//(?:/(?:area1|area2))+(/|$)
+}
+
+func TestReplace06(t *testing.T) {
+	fmt.Println(Replace("https://www.hotelspecials.dk/at/week", `(https?://)([^:^/]*)(:\\d*)?(.*)?`, "$1"))
+	// Output: https://
+
+	fmt.Println(Replace("https://www.hotelspecials.dk/at/week", `(https?://)([^:^/]*)(:\\d*)?(.*)?`, "$2"))
+	// Output: www.hotelspecials.dk
+
+	fmt.Println(Replace("https://www.hotelspecials.dk/at/week", `(https?://)([^:^/]*)(:\\d*)?(.*)?`, "$3"))
+	// Output:
+
+	fmt.Println(Replace("https://www.hotelspecials.dk/at/week", `(https?://)([^:^/]*)(:\\d*)?(.*)?`, "$4"))
+	// Output: /at/week
+
+	fmt.Println(Replace("https://www.hotelspecials.dk/at/week?param=1", `(https?://)([^:^/]*)(:\\d*)?(.*)?`, "$5"))
+	// Output:
 }
