@@ -307,3 +307,14 @@ func TestReplace06(t *testing.T) {
 	fmt.Println(Replace("https://www.hotelspecials.dk/at/week?param=1", `(https?://)([^:^/]*)(:\\d*)?(.*)?`, "$5"))
 	// Output:
 }
+
+func TestReplace07(t *testing.T) {
+	fmt.Println(Replace("/dk/syddanmark/soenderborg/weekendophold", `^/dk/syddanmark/soenderborg(/|\z)`, "/dk/syddanmark/sonderborg$1"))
+	// Output: /dk/syddanmark/sonderborg/weekendophold
+
+	fmt.Println(Replace("/bohuslaen/romance", `^/bohuslaen(/|\z)`, "/se/bohusla$1"))
+	// Output: /se/bohusla/romance
+
+	fmt.Println(Replace("/se/bohuslaen/romance", `^/(?:bohuslaen|se/bohuslaen)(/|\z)`, "/se/bohusla$1"))
+	// Output: /se/bohusla/romance
+}
