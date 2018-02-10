@@ -89,7 +89,7 @@ func allocateBody(key, version int16) protocolBody {
 	case 1:
 		return &FetchRequest{}
 	case 2:
-		return &OffsetRequest{}
+		return &OffsetRequest{Version: version}
 	case 3:
 		return &MetadataRequest{}
 	case 8:
@@ -114,6 +114,8 @@ func allocateBody(key, version int16) protocolBody {
 		return &SaslHandshakeRequest{}
 	case 18:
 		return &ApiVersionsRequest{}
+	case 37:
+		return &CreatePartitionsRequest{}
 	}
 	return nil
 }
