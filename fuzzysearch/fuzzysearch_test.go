@@ -13,13 +13,13 @@ var testData01 = []struct {
 	compared string
 	distance int
 }{
-	{base01, "/dk/sjaelland",6},
-	{base01, "/dk/sjaelland/koge",1},
-	{base01, "/dk/sjaelland/korsor",4},
-	{base01, "/dk/sjaelland/kge",2},
-	{base01, "/dk/sjaelland/faxe",4},
-	{base01, "/dk/sjaelland/rdby",5},
-	{base01, "/dk/sjaelland/koge",1},
+	{base01, "/dk/sjaelland", 6},
+	{base01, "/dk/sjaelland/koge", 1},
+	{base01, "/dk/sjaelland/korsor", 4},
+	{base01, "/dk/sjaelland/kge", 2},
+	{base01, "/dk/sjaelland/faxe", 4},
+	{base01, "/dk/sjaelland/rdby", 5},
+	{base01, "/dk/sjaelland/koge", 1},
 }
 
 //-----------------------------------------------------------------------------
