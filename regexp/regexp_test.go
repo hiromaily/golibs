@@ -304,8 +304,15 @@ func TestReplace06(t *testing.T) {
 	fmt.Println(Replace("https://www.hotelspecials.dk/at/week", `(https?://)([^:^/]*)(:\\d*)?(.*)?`, "$4"))
 	// Output: /at/week
 
-	fmt.Println(Replace("https://www.hotelspecials.dk/at/week?param=1", `(https?://)([^:^/]*)(:\\d*)?(.*)?`, "$5"))
-	// Output:
+	fmt.Println(Replace("https://www.hotelspecials.dk/at/week?param=1", `(https?://)([^:^/]*)(:\\d*)?(.*)?`, "$4"))
+	// Output: /at/week?param=1
+
+	//remove path
+	fmt.Println(Replace("/at/week?param=1&param2=2", `([^\?]+)(\?.*)?`, "$1"))
+	// Output: /at/week
+
+	fmt.Println(Replace("/at/week?param=1&param2=2", `([^\?]+)(\?.*)?`, "$2"))
+	// Output: ?param=1&param2=2
 }
 
 func TestReplace07(t *testing.T) {
