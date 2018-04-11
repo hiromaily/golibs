@@ -505,6 +505,31 @@ func TestInsertJSON(t *testing.T) {
 	lg.Debugf("newID is %d", newID)
 }
 
+//Insert JSON Type
+//func TestCallStored(t *testing.T) {
+//	tu.SkipLog(t)
+//
+//	var result string
+//
+//	//var outArg string
+//	//_, err := db.ExecContext(ctx, "ProcName", sql.Named("Arg1", Out{Dest: &outArg}))
+//
+//	sql := `CALL proc_search_slug('%s', '%s', @result);`
+//	sql = fmt.Sprintf(sql, path, lastPath)
+//
+//	_, err := f.db.Exec(sql)
+//	if err != nil {
+//		return "", err
+//	}
+//
+//	sql = `SELECT @result;`
+//	err = f.db.Get(&result, sql)
+//	if err != nil {
+//		return "", err
+//	}
+//
+//	return result, nil
+//}
 //-----------------------------------------------------------------------------
 // Benchmark
 //-----------------------------------------------------------------------------
