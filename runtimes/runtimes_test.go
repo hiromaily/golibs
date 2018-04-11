@@ -8,6 +8,7 @@ import (
 	"os"
 	"runtime"
 	"runtime/debug"
+	"sync"
 	"testing"
 )
 
@@ -118,4 +119,23 @@ func TestTraceAllHistory(t *testing.T) {
 	//02: [Function]tRunner [File]/usr/local/Cellar/go/1.9.2/libexec/src/testing/testing.go:746
 	//01: [Function]TestTraceAllHistory [File]./golibs/runtimes/runtimes_test.go:115
 	//00: [Function]TraceAllHistory [File]./golibs/runtimes/runtimes.go:63}
+}
+
+func TestDebugStack(t *testing.T) {
+	fmt.Println("TestDebugStack")
+	wg := &sync.WaitGroup{}
+
+	wg.Add(1)
+	go func() {
+		DebugStack()
+		wg.Done()
+	}()
+
+	wg.Add(1)
+	go func() {
+		DebugPrintStack()
+		wg.Done()
+	}()
+
+	wg.Wait()
 }

@@ -6,6 +6,7 @@ import (
 	"io"
 	"regexp"
 	"runtime"
+	"runtime/debug"
 	"strings"
 )
 
@@ -97,4 +98,15 @@ func CurrentFuncV2() []byte {
 	}
 
 	return b[:i]
+}
+
+func DebugStack() {
+	// Stack returns a formatted stack trace of the goroutine that calls it.
+	// It calls runtime.Stack with a large enough buffer to capture the entire trace.
+	fmt.Println(string(debug.Stack()))
+}
+
+func DebugPrintStack() {
+	// PrintStack prints to standard error the stack trace returned by runtime.Stack.
+	debug.PrintStack()
 }
