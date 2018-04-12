@@ -2,6 +2,7 @@ package tmpl
 
 import (
 	"bytes"
+	"encoding/json"
 	//ht "html/template"
 	tt "text/template"
 )
@@ -13,6 +14,13 @@ func StrTempParser(temp string, params interface{}) (string, error) {
 
 	funcMap := tt.FuncMap{
 		"add": func(a, b int) int { return a + b },
+		"dump": func(in interface{}) string {
+			jsonData, err := json.MarshalIndent(in, "", "  ")
+			if err != nil {
+				return err.Error()
+			}
+			return string(jsonData)
+		},
 	}
 
 	tpl := tt.Must(tt.New("tpl").Funcs(funcMap).Parse(temp))
