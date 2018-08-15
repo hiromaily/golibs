@@ -36,6 +36,7 @@ func createPDFFromFile(filePath, output string, config *ConfigPDF) {
 
 // Though prefix is Test, actually it's just Example
 func TestNewPDFGenerator_FromURL(t *testing.T) {
+	t.SkipNow()
 	//2.35s
 	url := "https://godoc.org/github.com/SebastiaanKlippert/go-wkhtmltopdf"
 	output := "from_url.pdf"
@@ -45,6 +46,7 @@ func TestNewPDFGenerator_FromURL(t *testing.T) {
 
 // Though prefix is Test, actually it's just Example
 func TestNewPDFGenerator_FromFile(t *testing.T) {
+	t.SkipNow()
 	//1.47s
 	path := os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/pdf/cmd/"
 	filePath := path + "testfiles/tables/index.html"
