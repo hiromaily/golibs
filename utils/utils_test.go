@@ -177,6 +177,10 @@ func TestUniqueStringSlice(t *testing.T) {
 	fmt.Println(UniqueStringSlice([]string{"aaa", "bbb", "ccc", "bbb"}))
 }
 
+func TestSortStructSlice(t *testing.T) {
+	SortStructSlice()
+}
+
 //-----------------------------------------------------------------------------
 // Benchmark
 //-----------------------------------------------------------------------------
