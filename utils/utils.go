@@ -449,6 +449,7 @@ func SortStructSlice() {
 	exams[4] = ExamResult{Name: "Jan", Score: 92}
 
 	sort.Slice(exams, func(i, j int) bool {
+		//small to big
 		return exams[i].Score < exams[j].Score
 	})
 
