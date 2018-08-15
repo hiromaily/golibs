@@ -39,6 +39,12 @@ godep:
 	rm -rf ./vendor
 	godep save ./...
 
+dep:
+	dep ensure
+
+dep-update:
+	dep ensure -update
+
 
 ###############################################################################
 # Clean

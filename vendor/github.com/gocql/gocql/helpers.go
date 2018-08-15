@@ -39,6 +39,8 @@ func goType(t TypeInfo) reflect.Type {
 		return reflect.TypeOf(*new(int))
 	case TypeSmallInt:
 		return reflect.TypeOf(*new(int16))
+	case TypeTinyInt:
+		return reflect.TypeOf(*new(int8))
 	case TypeDecimal:
 		return reflect.TypeOf(*new(*inf.Dec))
 	case TypeUUID, TypeTimeUUID:
@@ -55,6 +57,8 @@ func goType(t TypeInfo) reflect.Type {
 		return reflect.TypeOf(make([]interface{}, len(tuple.Elems)))
 	case TypeUDT:
 		return reflect.TypeOf(make(map[string]interface{}))
+	case TypeDate:
+		return reflect.TypeOf(*new(time.Time))
 	default:
 		return nil
 	}
@@ -64,7 +68,7 @@ func dereference(i interface{}) interface{} {
 	return reflect.Indirect(reflect.ValueOf(i)).Interface()
 }
 
-func getCassandraType(name string) Type {
+func getCassandraBaseType(name string) Type {
 	switch name {
 	case "ascii":
 		return TypeAscii
@@ -88,8 +92,10 @@ func getCassandraType(name string) Type {
 		return TypeTimestamp
 	case "uuid":
 		return TypeUUID
-	case "varchar", "text":
+	case "varchar":
 		return TypeVarchar
+	case "text":
+		return TypeText
 	case "varint":
 		return TypeVarint
 	case "timeuuid":
@@ -105,16 +111,50 @@ func getCassandraType(name string) Type {
 	case "TupleType":
 		return TypeTuple
 	default:
-		if strings.HasPrefix(name, "set") {
-			return TypeSet
-		} else if strings.HasPrefix(name, "list") {
-			return TypeList
-		} else if strings.HasPrefix(name, "map") {
-			return TypeMap
-		} else if strings.HasPrefix(name, "tuple") {
-			return TypeTuple
-		}
 		return TypeCustom
+	}
+}
+
+func getCassandraType(name string) TypeInfo {
+	if strings.HasPrefix(name, "frozen<") {
+		return getCassandraType(strings.TrimPrefix(name[:len(name)-1], "frozen<"))
+	} else if strings.HasPrefix(name, "set<") {
+		return CollectionType{
+			NativeType: NativeType{typ: TypeSet},
+			Elem:       getCassandraType(strings.TrimPrefix(name[:len(name)-1], "set<")),
+		}
+	} else if strings.HasPrefix(name, "list<") {
+		return CollectionType{
+			NativeType: NativeType{typ: TypeList},
+			Elem:       getCassandraType(strings.TrimPrefix(name[:len(name)-1], "list<")),
+		}
+	} else if strings.HasPrefix(name, "map<") {
+		names := strings.Split(strings.TrimPrefix(name[:len(name)-1], "map<"), ", ")
+		if len(names) != 2 {
+			panic(fmt.Sprintf("invalid map type: %v", name))
+		}
+
+		return CollectionType{
+			NativeType: NativeType{typ: TypeMap},
+			Key:        getCassandraType(names[0]),
+			Elem:       getCassandraType(names[1]),
+		}
+	} else if strings.HasPrefix(name, "tuple<") {
+		names := strings.Split(strings.TrimPrefix(name[:len(name)-1], "tuple<"), ", ")
+		types := make([]TypeInfo, len(names))
+
+		for i, name := range names {
+			types[i] = getCassandraType(name)
+		}
+
+		return TupleTypeInfo{
+			NativeType: NativeType{typ: TypeTuple},
+			Elems:      types,
+		}
+	} else {
+		return NativeType{
+			typ: getCassandraBaseType(name),
+		}
 	}
 }
 
@@ -201,28 +241,41 @@ func (iter *Iter) RowData() (RowData, error) {
 		return RowData{}, iter.err
 	}
 
-	columns := make([]string, 0)
-	values := make([]interface{}, 0)
+	columns := make([]string, 0, len(iter.Columns()))
+	values := make([]interface{}, 0, len(iter.Columns()))
 
 	for _, column := range iter.Columns() {
-
-		switch c := column.TypeInfo.(type) {
-		case TupleTypeInfo:
+		if c, ok := column.TypeInfo.(TupleTypeInfo); !ok {
+			val := column.TypeInfo.New()
+			columns = append(columns, column.Name)
+			values = append(values, val)
+		} else {
 			for i, elem := range c.Elems {
 				columns = append(columns, TupleColumnName(column.Name, i))
 				values = append(values, elem.New())
 			}
-		default:
-			val := column.TypeInfo.New()
-			columns = append(columns, column.Name)
-			values = append(values, val)
 		}
 	}
+
 	rowData := RowData{
 		Columns: columns,
 		Values:  values,
 	}
+
 	return rowData, nil
+}
+
+// TODO(zariel): is it worth exporting this?
+func (iter *Iter) rowMap() (map[string]interface{}, error) {
+	if iter.err != nil {
+		return nil, iter.err
+	}
+
+	rowData, _ := iter.RowData()
+	iter.Scan(rowData.Values...)
+	m := make(map[string]interface{}, len(rowData.Columns))
+	rowData.rowMap(m)
+	return m, nil
 }
 
 // SliceMap is a helper function to make the API easier to use
@@ -236,7 +289,7 @@ func (iter *Iter) SliceMap() ([]map[string]interface{}, error) {
 	rowData, _ := iter.RowData()
 	dataToReturn := make([]map[string]interface{}, 0)
 	for iter.Scan(rowData.Values...) {
-		m := make(map[string]interface{})
+		m := make(map[string]interface{}, len(rowData.Columns))
 		rowData.rowMap(m)
 		dataToReturn = append(dataToReturn, m)
 	}
@@ -248,6 +301,42 @@ func (iter *Iter) SliceMap() ([]map[string]interface{}, error) {
 
 // MapScan takes a map[string]interface{} and populates it with a row
 // that is returned from cassandra.
+//
+// Each call to MapScan() must be called with a new map object.
+// During the call to MapScan() any pointers in the existing map
+// are replaced with non pointer types before the call returns
+//
+//	iter := session.Query(`SELECT * FROM mytable`).Iter()
+//	for {
+//		// New map each iteration
+//		row = make(map[string]interface{})
+//		if !iter.MapScan(row) {
+//			break
+//		}
+//		// Do things with row
+//		if fullname, ok := row["fullname"]; ok {
+//			fmt.Printf("Full Name: %s\n", fullname)
+//		}
+//	}
+//
+// You can also pass pointers in the map before each call
+//
+//	var fullName FullName // Implements gocql.Unmarshaler and gocql.Marshaler interfaces
+//	var address net.IP
+//	var age int
+//	iter := session.Query(`SELECT * FROM scan_map_table`).Iter()
+//	for {
+//		// New map each iteration
+//		row := map[string]interface{}{
+//			"fullname": &fullName,
+//			"age":      &age,
+//			"address":  &address,
+//		}
+//		if !iter.MapScan(row) {
+//			break
+//		}
+//		fmt.Printf("First: %s Age: %d Address: %q\n", fullName.FirstName, age, address)
+//	}
 func (iter *Iter) MapScan(m map[string]interface{}) bool {
 	if iter.err != nil {
 		return false
