@@ -187,7 +187,7 @@ func handleCmdline() {
 
 //init
 func init() {
-	lg.InitializeLog(lg.DebugStatus, lg.LogOff, 0, "[SQL]", "/var/log/go/test.log")
+	lg.InitializeLog(lg.DebugStatus, lg.NoDateNoFile, "[SQL]", "")
 
 	//handle command line
 	handleCmdline()

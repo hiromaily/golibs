@@ -39,7 +39,7 @@ func TestMain(m *testing.M) {
 // Test
 //-----------------------------------------------------------------------------
 func TestNewLog(t *testing.T) {
-	logObj := New(DebugStatus, LogOff, 0, "[LOG_NEW_TEST]", "/var/log/go/test2.log")
+	logObj := New(DebugStatus, NoDateNoFile, "[LOG_NEW_TEST]", "/var/log/go/test2.log")
 	logObj.Debug("New->Debug: test debug")
 	logObj.Debugf("New->Debugf: %d - %s", 1, "test debugf")
 
@@ -57,7 +57,25 @@ func TestNewLog(t *testing.T) {
 }
 
 func TestNewLog2(t *testing.T) {
-	logObj := New(DebugStatus, LogOff, 99, "[LOG_NEW_TEST]", "/var/log/go/test2.log")
+	logObj := New(DebugStatus, TimeShortFile, "[LOG_NEW_TEST]", "/var/log/go/test2.log")
+	logObj.Debug("New->Debug: test debug")
+	logObj.Debugf("New->Debugf: %d - %s", 1, "test debugf")
+
+	logObj.Info("New->Info: test info")
+	logObj.Infof("New->Infof: %d - %s", 1, "test infof")
+
+	logObj.Warn("New->Warn: test warn")
+	logObj.Warnf("New->Warnf: %d - %s", 1, "test warnf")
+
+	logObj.Error("New->Error: test error")
+	logObj.Errorf("New->Errorf: %d - %s", 1, "test errorf")
+
+	logObj.Fatal("New->Fatal: test fatal")
+	logObj.Fatalf("New->Fatalf: %d - %s", 1, "test fatalf")
+}
+
+func TestNewLog3(t *testing.T) {
+	logObj := New(DebugStatus, TimeShortFile, "[LOG_NEW_TEST]", "")
 	logObj.Debug("New->Debug: test debug")
 	logObj.Debugf("New->Debugf: %d - %s", 1, "test debugf")
 
@@ -75,7 +93,7 @@ func TestNewLog2(t *testing.T) {
 }
 
 func TestInitializedLog(t *testing.T) {
-	InitializeLog(DebugStatus, LogOff, 0, "[LOG_INIT_TEST]", "/var/log/go/test.log")
+	InitializeLog(DebugStatus, TimeShortFile, "[LOG_INIT_TEST]", "/var/log/go/test.log")
 
 	Debug("New->Debug: test debug")
 	Debugf("New->Debugf: %d - %s", 1, "test debugf")
@@ -94,7 +112,7 @@ func TestInitializedLog(t *testing.T) {
 }
 
 func TestInitializedLog2(t *testing.T) {
-	InitializeLog(DebugStatus, LogOff, 99, "[LOG_INIT_TEST]", "/var/log/go/test.log")
+	InitializeLog(DebugStatus, TimeShortFile, "[LOG_INIT_TEST]", "/var/log/go/test.log")
 
 	Debug("New->Debug: test debug")
 	Debugf("New->Debugf: %d - %s", 1, "test debugf")

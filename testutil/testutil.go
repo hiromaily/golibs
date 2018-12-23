@@ -35,7 +35,8 @@ func InitializeTest(prefix string) {
 	flag.Parse()
 
 	//log
-	lg.InitializeLog(uint8(*LogFlg), lg.LogOff, 0, prefix, "/var/log/go/test.log")
+	//lg.InitializeLog(uint8(*LogFlg), lg.LogOff, 0, prefix, "/var/log/go/test.log")
+	lg.InitializeLog(lg.LogStatus(*LogFlg), lg.NoDateNoFile, prefix, "/var/log/go/test.log")
 
 	//-v : to show Logs.(-test.v=true)
 	if o.FindParam("-test.v") {
