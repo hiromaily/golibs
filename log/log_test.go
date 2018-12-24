@@ -39,7 +39,7 @@ func TestMain(m *testing.M) {
 // Test
 //-----------------------------------------------------------------------------
 func TestNewLog(t *testing.T) {
-	logObj := New(DebugStatus, NoDateNoFile, "[LOG_NEW_TEST]", "/var/log/go/test2.log")
+	logObj := New(DebugStatus, NoDateNoFile, "[LOG_NEW_TEST]", "/var/log/go/test2.log", "hiromaily")
 	logObj.Debug("New->Debug: test debug")
 	logObj.Debugf("New->Debugf: %d - %s", 1, "test debugf")
 
@@ -57,7 +57,7 @@ func TestNewLog(t *testing.T) {
 }
 
 func TestNewLog2(t *testing.T) {
-	logObj := New(DebugStatus, TimeShortFile, "[LOG_NEW_TEST]", "/var/log/go/test2.log")
+	logObj := New(DebugStatus, TimeShortFile, "[LOG_NEW_TEST]", "/var/log/go/test2.log", "hiromaily")
 	logObj.Debug("New->Debug: test debug")
 	logObj.Debugf("New->Debugf: %d - %s", 1, "test debugf")
 
@@ -75,7 +75,7 @@ func TestNewLog2(t *testing.T) {
 }
 
 func TestNewLog3(t *testing.T) {
-	logObj := New(DebugStatus, TimeShortFile, "", "")
+	logObj := New(DebugStatus, TimeShortFile, "", "", "hiromaily")
 	logObj.Debug("New->Debug: test debug")
 	logObj.Debugf("New->Debugf: %d - %s", 1, "test debugf")
 
@@ -93,7 +93,7 @@ func TestNewLog3(t *testing.T) {
 }
 
 func TestInitializedLog(t *testing.T) {
-	InitializeLog(DebugStatus, TimeShortFile, "[LOG_INIT_TEST]", "/var/log/go/test.log")
+	InitializeLog(DebugStatus, TimeShortFile, "[LOG_INIT_TEST]", "/var/log/go/test.log", "hiromaily")
 
 	Debug("New->Debug: test debug")
 	Debugf("New->Debugf: %d - %s", 1, "test debugf")
@@ -112,7 +112,7 @@ func TestInitializedLog(t *testing.T) {
 }
 
 func TestInitializedLog2(t *testing.T) {
-	InitializeLog(DebugStatus, DateTimeShortFile, "", "")
+	InitializeLog(DebugStatus, DateTimeShortFile, "", "", "hiromaily")
 
 	Debug("New->Debug: test debug")
 	Debugf("New->Debugf: %d - %s", 1, "test debugf")

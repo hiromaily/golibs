@@ -187,7 +187,7 @@ func handleCmdline() {
 
 //init
 func init() {
-	lg.InitializeLog(lg.DebugStatus, lg.NoDateNoFile, "[SQL]", "")
+	lg.InitializeLog(lg.DebugStatus, lg.NoDateNoFile, "[SQL]", "", "hiromaily")
 
 	//handle command line
 	handleCmdline()

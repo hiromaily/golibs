@@ -4,8 +4,8 @@ import (
 	"testing"
 
 	"fmt"
-	r "github.com/hiromaily/golibs/runtimes"
 	lg "github.com/hiromaily/golibs/log"
+	r "github.com/hiromaily/golibs/runtimes"
 	"github.com/pkg/errors"
 )
 
@@ -52,7 +52,7 @@ func third() error {
 }
 
 func TestError(t *testing.T) {
-	lg.InitializeLog(lg.DebugStatus, lg.DateTimeShortFile, "", "")
+	lg.InitializeLog(lg.DebugStatus, lg.DateTimeShortFile, "", "", "hiromaily")
 
 	err := first()
 	if err != nil {

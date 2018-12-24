@@ -33,7 +33,7 @@ var (
 
 func init() {
 	//log
-	lg.InitializeLog(lg.DebugStatus, lg.NoDateNoFile, "[JWT]", "")
+	lg.InitializeLog(lg.DebugStatus, lg.NoDateNoFile, "[JWT]", "", "hiromaily")
 }
 
 // InitAudience is to set audience

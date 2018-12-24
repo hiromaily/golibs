@@ -87,15 +87,17 @@ const (
 
 // Logger is for log object
 type Logger struct {
-	logger   *log.Logger
-	logLevel LogStatus
-	logType  LogType
+	logger    *log.Logger
+	logLevel  LogStatus
+	logType   LogType
+	separator string
 }
 
 var (
-	logger   *log.Logger
-	logLevel LogStatus = 1
-	logType  LogType
+	logger    *log.Logger
+	logLevel  LogStatus = 1
+	logType   LogType
+	separator string
 )
 
 //-----------------------------------------------------------------------------
@@ -186,9 +188,10 @@ func currentFunc(skip int) string {
 //-----------------------------------------------------------------------------
 
 // New is to create new log object
-func New(level LogStatus, logFmt LogFmt, prefix, fileName string) *Logger {
+func New(level LogStatus, logFmt LogFmt, prefix, fileName, delimiter string) *Logger {
 	logConf := &Logger{}
 	logConf.logLevel = level
+	logConf.separator = delimiter
 
 	logConf.logger = log.New(os.Stderr, prefix, logFmt.Int())
 
@@ -288,13 +291,27 @@ func (lo *Logger) Fatalf(format string, v ...interface{}) {
 	lo.Outf(key, format, v...)
 }
 
+// Stack is to call output func for stack trace
+func (lo *Logger) Stack() {
+	info := r.GetStackTrace(lo.separator)
+	msg := "\n"
+	for i := len(info) - 2; i > 0; i-- {
+		v := info[i]
+		msg += fmt.Sprintf("%02d: [Function]%s [File]%s:%d\n", i, v.FunctionName, v.FileName, v.FileLine)
+	}
+
+	key := currentFunc(1)
+	lo.Out(key, msg)
+}
+
 //-----------------------------------------------------------------------------
 // singleton object
 //-----------------------------------------------------------------------------
 
 // InitializeLog is to initialize base log object using default setting
-func InitializeLog(level LogStatus, logFmt LogFmt, prefix, fileName string) {
+func InitializeLog(level LogStatus, logFmt LogFmt, prefix, fileName, delimiter string) {
 	logLevel = level
+	separator = delimiter
 
 	//Log Object
 	logger = log.New(os.Stderr, prefix, logFmt.Int())
@@ -396,7 +413,7 @@ func Fatalf(format string, v ...interface{}) {
 
 // Stack is to call output func for stack trace
 func Stack() {
-	info := r.GetStackTrace("hiromaily")
+	info := r.GetStackTrace(separator)
 	msg := "\n"
 	for i := len(info) - 2; i > 0; i-- {
 		v := info[i]
