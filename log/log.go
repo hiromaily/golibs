@@ -2,18 +2,21 @@ package log
 
 import (
 	"fmt"
-	c "github.com/hiromaily/golibs/color"
-	u "github.com/hiromaily/golibs/utils"
 	"log"
 	"os"
 	"runtime"
 	"strings"
+
+	c "github.com/hiromaily/golibs/color"
+	r "github.com/hiromaily/golibs/runtimes"
+	u "github.com/hiromaily/golibs/utils"
 )
 
 //Output e.g.
 //[GOWEB]20:33:18 [DEBUG]conf environment : local
 //[GOWEB]2016/05/17 20:09:32 log.go:132: [DEBUG]conf environment : local
 
+// LogStatus is logStatus
 type LogStatus uint8
 
 const (
@@ -27,6 +30,8 @@ const (
 	ErrorStatus
 	// FatalStatus is at fatal level
 	FatalStatus
+	// StackStatus is at stack level
+	StackStatus
 	// LogOff is at no log
 	LogOff
 )
@@ -42,8 +47,11 @@ const (
 	ErrorPrefix string = "[ERROR]"
 	// FatalPrefix is of fatal prefix
 	FatalPrefix string = "[FATAL]"
+	// StackPrefix is of fatal prefix
+	StackPrefix string = "[STACK]"
 )
 
+// LogFmt is log format
 type LogFmt int
 
 const (
@@ -53,6 +61,7 @@ const (
 	DateTimeShortFile LogFmt = log.LstdFlags | log.Lshortfile
 )
 
+// Int is to convert to type int
 func (lf LogFmt) Int() int {
 	return int(lf)
 }
@@ -68,6 +77,7 @@ func (lf LogFmt) Int() int {
 
 */
 
+// LogType is console or file to output
 type LogType uint8
 
 const (
@@ -83,10 +93,9 @@ type Logger struct {
 }
 
 var (
-	logger       *log.Logger
-	logLevel     LogStatus = 1
-	logType      LogType
-	filePathName string
+	logger   *log.Logger
+	logLevel LogStatus = 1
+	logType  LogType
 )
 
 //-----------------------------------------------------------------------------
@@ -105,6 +114,8 @@ func getStatus(key string) LogStatus {
 		return ErrorStatus
 	case "Fatal", "Fatalf":
 		return FatalStatus
+	case "Stack":
+		return StackStatus
 	default:
 		return 0
 	}
@@ -122,6 +133,8 @@ func getPrefix(key string) string {
 		return ErrorPrefix
 	case "Fatal", "Fatalf":
 		return FatalPrefix
+	case "Stack":
+		return StackPrefix
 	default:
 		return ""
 	}
@@ -379,4 +392,17 @@ func Fatal(v ...interface{}) {
 func Fatalf(format string, v ...interface{}) {
 	key := currentFunc(1)
 	outf(key, format, v...)
+}
+
+// Stack is to call output func for stack trace
+func Stack() {
+	info := r.GetStackTrace("hiromaily")
+	msg := "\n"
+	for i := len(info) - 2; i > 0; i-- {
+		v := info[i]
+		msg += fmt.Sprintf("%02d: [Function]%s [File]%s:%d\n", i, v.FunctionName, v.FileName, v.FileLine)
+	}
+
+	key := currentFunc(1)
+	out(key, msg)
 }

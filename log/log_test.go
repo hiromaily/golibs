@@ -75,7 +75,7 @@ func TestNewLog2(t *testing.T) {
 }
 
 func TestNewLog3(t *testing.T) {
-	logObj := New(DebugStatus, TimeShortFile, "[LOG_NEW_TEST]", "")
+	logObj := New(DebugStatus, TimeShortFile, "", "")
 	logObj.Debug("New->Debug: test debug")
 	logObj.Debugf("New->Debugf: %d - %s", 1, "test debugf")
 
@@ -112,7 +112,7 @@ func TestInitializedLog(t *testing.T) {
 }
 
 func TestInitializedLog2(t *testing.T) {
-	InitializeLog(DebugStatus, TimeShortFile, "[LOG_INIT_TEST]", "/var/log/go/test.log")
+	InitializeLog(DebugStatus, DateTimeShortFile, "", "")
 
 	Debug("New->Debug: test debug")
 	Debugf("New->Debugf: %d - %s", 1, "test debugf")
@@ -128,6 +128,8 @@ func TestInitializedLog2(t *testing.T) {
 
 	Fatal("New->Fatal: test fatal")
 	Fatalf("New->Fatalf: %d - %s", 1, "test fatalf")
+
+	Stack()
 }
 
 //-----------------------------------------------------------------------------

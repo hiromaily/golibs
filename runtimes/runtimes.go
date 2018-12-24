@@ -65,7 +65,6 @@ func TraceAllHistory(w io.Writer, separator string) {
 	for i := len(info) - 1; i > -1; i-- {
 		v := info[i]
 		//fmt.Printf("%02d: %s%s@%s:%d\n", i, v.PackageName, v.FunctionName, v.FileName, v.FileLine)
-		//fmt.Printf("%02d: [Function]%s [File]%s:%d\n", i, v.FunctionName, v.FileName, v.FileLine)
 		fmt.Fprintf(w, "%02d: [Function]%s [File]%s:%d\n", i, v.FunctionName, v.FileName, v.FileLine)
 	}
 }
