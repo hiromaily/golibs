@@ -38,13 +38,12 @@ func TestMain(m *testing.M) {
 func TestEncryption(t *testing.T) {
 	//tu.SkipLog(t)
 
-	size := 16
 	key := "8#75F%R+&a5ZvM_<"
 	iv := "@~wp-7hPs<WEx@R4"
 
 	str := "abcdefg@gmail.com"
 
-	NewCrypt(size, key, iv)
+	NewCrypt(key, iv)
 	crypt := GetCrypt()
 
 	result1 := crypt.EncryptBase64(str)

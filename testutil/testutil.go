@@ -43,7 +43,7 @@ func InitializeTest(prefix string) {
 	}
 
 	//crypt
-	enc.NewCryptDefault()
+	enc.NewCryptWithEnv()
 
 	//conf
 	if *ConfFile == "" {
