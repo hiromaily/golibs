@@ -58,9 +58,10 @@ func init() {
 		}
 	case "linux":
 		iterations = 1
-		//password, err = getPasswordLinux()
-		//password = "peanuts"
-		password = "OYWKNQnpmNfdKIQkNSL0SA=="
+		password, err = getPasswordLinux()
+		if err != nil {
+			log.Printf("failed to call getPassword: %s", err)
+		}
 	default:
 		//not supported
 	}
@@ -187,7 +188,7 @@ func getPasswordMac() (string, error) {
 	return strings.Trim(string(out), "\n"), nil
 }
 
-func GetPasswordLinux() (string, error) {
+func getPasswordLinux() (string, error) {
 	//this command is for only Linux and `libsecret-tools` is required
 	//`sudo apt install libsecret-tools`
 	parts := strings.Fields("secret-tool search application chrome")
