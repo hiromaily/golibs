@@ -2,6 +2,7 @@ package cookie
 
 import (
 	"golang.org/x/crypto/pbkdf2"
+	"runtime"
 
 	"crypto/aes"
 	"crypto/cipher"
@@ -19,6 +20,12 @@ import (
 // Inspiration
 // http://n8henrie.com/2013/11/use-chromes-cookies-for-easier-downloading-with-python-requests/
 // https://gist.github.com/dacort/bd6a5116224c594b14db
+
+// This path would be changed by environment even same OS
+var cookieBaseDir = map[string]string{
+	"darwin": "%s/Library/Application Support/Google/Chrome/Default/Cookies", //mac
+	"linux":  "%s/.config/google-chrome/Default/Cookies",
+}
 
 // Chromium Mac os_crypt:  http://dacort.me/1ynPMgx
 var (
@@ -135,7 +142,13 @@ func getPassword() string {
 
 func getCookies(domain string) (cookies []Cookie) {
 	usr, _ := user.Current()
-	cookiesFile := fmt.Sprintf("%s/Library/Application Support/Google/Chrome/Default/Cookies", usr.HomeDir)
+
+	var cookiesFile string
+	if val, ok := cookieBaseDir[runtime.GOOS]; ok {
+		cookiesFile = fmt.Sprintf(val, usr.HomeDir)
+	} else {
+		log.Fatal("os is not set in coolie path")
+	}
 
 	db, err := sql.Open("sqlite3", cookiesFile)
 	if err != nil {

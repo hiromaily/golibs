@@ -87,6 +87,10 @@ func TestArchEnv(t *testing.T) {
 //-----------------------------------------------------------------------------
 // Test
 //-----------------------------------------------------------------------------
+func TestGetOS(t *testing.T) {
+	fmt.Println(GetOS())
+}
+
 func TestCurrentFunc(t *testing.T) {
 	//tu.SkipLog(t)
 	s := CurrentFunc(1)
