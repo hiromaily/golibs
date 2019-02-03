@@ -157,10 +157,12 @@ func decryptValue(encryptedValue []byte) (string, error) {
 // have a value equal to the padding length, always in (1,16]
 func aesStripPadding(data []byte) ([]byte, error) {
 	if len(data)%BlockSize != 0 {
+		log.Fatalf("decrypted data block length is not a multiple of %d", BlockSize)
 		return nil, errors.Errorf("decrypted data block length is not a multiple of %d", BlockSize)
 	}
 	paddingLen := int(data[len(data)-1])
 	if paddingLen > BlockSize {
+		log.Fatalf("invalid last block padding length: %d", paddingLen)
 		return nil, errors.Errorf("invalid last block padding length: %d", paddingLen)
 	}
 	return data[:len(data)-paddingLen], nil
