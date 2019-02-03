@@ -58,7 +58,8 @@ func init() {
 		}
 	case "linux":
 		iterations = 1
-		password = "peanuts"
+		//password = "peanuts"
+		password = "OYWKNQnpmNfdKIQkNSL0SA=="
 	default:
 		//not supported
 	}
@@ -80,6 +81,7 @@ func PrintCookies(url string) error {
 	for _, cookie := range cookies {
 		decrypted, err := cookie.DecryptedValue()
 		if err != nil {
+			log.Println(err)
 			continue
 		}
 		fmt.Printf("%s/%s: %s\n", cookie.Domain, cookie.Key, decrypted)
@@ -114,6 +116,7 @@ func GetAllValue(url string) (map[string]string, error) {
 	for _, cookie := range cookies {
 		decrypted, err := cookie.DecryptedValue()
 		if err != nil {
+			log.Println(err)
 			continue
 		}
 		decryptedCookies[cookie.Key] = decrypted
@@ -157,12 +160,12 @@ func decryptValue(encryptedValue []byte) (string, error) {
 // have a value equal to the padding length, always in (1,16]
 func aesStripPadding(data []byte) ([]byte, error) {
 	if len(data)%BlockSize != 0 {
-		log.Fatalf("decrypted data block length is not a multiple of %d", BlockSize)
+		//log.Printf("decrypted data block length is not a multiple of %d", BlockSize)
 		return nil, errors.Errorf("decrypted data block length is not a multiple of %d", BlockSize)
 	}
 	paddingLen := int(data[len(data)-1])
 	if paddingLen > BlockSize {
-		log.Fatalf("invalid last block padding length: %d", paddingLen)
+		//log.Printf("invalid last block padding length: %d", paddingLen)
 		return nil, errors.Errorf("invalid last block padding length: %d", paddingLen)
 	}
 	return data[:len(data)-paddingLen], nil
