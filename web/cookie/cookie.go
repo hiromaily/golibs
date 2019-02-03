@@ -203,7 +203,7 @@ func getPasswordLinux() (string, error) {
 
 	//retrieve
 	//label = Chrome Safe Storage
-	//secret = OYWKNQnpmNfdKIQkNSL0SA==
+	//secret = xxxxxxxxxxxxx
 	//created = 2019-01-08 03:32:22
 	//modified = 2019-01-08 03:32:22
 	//schema = chrome_libsecret_os_crypt_password_v2
