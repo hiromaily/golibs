@@ -1,9 +1,6 @@
 package cookie
 
 import (
-	"golang.org/x/crypto/pbkdf2"
-	"runtime"
-
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/sha1"
@@ -12,9 +9,12 @@ import (
 	"log"
 	"os/exec"
 	"os/user"
+	"runtime"
 	"strings"
 
 	_ "github.com/mattn/go-sqlite3"
+	"github.com/pkg/errors"
+	"golang.org/x/crypto/pbkdf2"
 )
 
 // Inspiration
@@ -23,6 +23,8 @@ import (
 // https://stackoverflow.com/questions/23153159/decrypting-chromium-cookies/23727331#23727331
 
 // This code works on only Mac OS
+
+const BlockSize = 16
 
 // This path would be changed by environment even same OS
 var cookieBaseDir = map[string]string{
@@ -34,7 +36,6 @@ var cookieBaseDir = map[string]string{
 var (
 	salt       = "saltysalt"
 	iv         = "                "
-	length     = 16
 	password   = ""
 	iterations = 1003
 )
@@ -48,9 +49,13 @@ type Cookie struct {
 }
 
 func init() {
+	var err error
 	switch runtime.GOOS {
 	case "darwin":
-		password = getPassword()
+		password, err = getPassword()
+		if err != nil {
+			log.Printf("failed to call getPassword: %s", err)
+		}
 	case "linux":
 		iterations = 1
 		password = "peanuts"
@@ -66,34 +71,60 @@ func init() {
 //	_ = GetValue(domain, "key")
 //}
 
-func PrintCookies(url string) {
-	for _, cookie := range getCookies(url) {
-		fmt.Printf("%s/%s: %s\n", cookie.Domain, cookie.Key, cookie.DecryptedValue())
+func PrintCookies(url string) error {
+	cookies, err := getCookies(url)
+	if err != nil {
+		return err
+	}
+
+	for _, cookie := range cookies {
+		decrypted, err := cookie.DecryptedValue()
+		if err != nil {
+			continue
+		}
+		fmt.Printf("%s/%s: %s\n", cookie.Domain, cookie.Key, decrypted)
 	}
 	//localhost/cookiename: xxxxxx
+
+	return nil
 }
 
-func GetValue(url, key string) string {
-	for _, cookie := range getCookies(url) {
+func GetValue(url, key string) (string, error) {
+	cookies, err := getCookies(url)
+	if err != nil {
+		return "", err
+	}
+
+	for _, cookie := range cookies {
 		if cookie.Domain == url && cookie.Key == key {
 			return cookie.DecryptedValue()
 		}
 	}
-	return ""
+	return "", nil
 }
 
-func GetAllValue(url string) map[string]string {
-	cookies := make(map[string]string)
-	for _, cookie := range getCookies(url) {
-		cookies[cookie.Key] = cookie.DecryptedValue()
+func GetAllValue(url string) (map[string]string, error) {
+	decryptedCookies := make(map[string]string)
+
+	cookies, err := getCookies(url)
+	if err != nil {
+		return nil, err
 	}
-	return cookies
+
+	for _, cookie := range cookies {
+		decrypted, err := cookie.DecryptedValue()
+		if err != nil {
+			continue
+		}
+		decryptedCookies[cookie.Key] = decrypted
+	}
+	return decryptedCookies, nil
 }
 
 // DecryptedValue - Get the unencrypted value of a Chrome cookie
-func (c *Cookie) DecryptedValue() string {
+func (c *Cookie) DecryptedValue() (string, error) {
 	if c.Value > "" {
-		return c.Value
+		return c.Value, nil
 	}
 
 	if len(c.EncryptedValue) > 0 {
@@ -101,14 +132,14 @@ func (c *Cookie) DecryptedValue() string {
 		return decryptValue(encryptedValue)
 	}
 
-	return ""
+	return "", nil
 }
 
-func decryptValue(encryptedValue []byte) string {
-	key := pbkdf2.Key([]byte(password), []byte(salt), iterations, length, sha1.New)
+func decryptValue(encryptedValue []byte) (string, error) {
+	key := pbkdf2.Key([]byte(password), []byte(salt), iterations, BlockSize, sha1.New)
 	block, err := aes.NewCipher(key)
 	if err != nil {
-		log.Fatal(err)
+		return "", err
 	}
 
 	decrypted := make([]byte, len(encryptedValue))
@@ -117,27 +148,26 @@ func decryptValue(encryptedValue []byte) string {
 
 	plainText, err := aesStripPadding(decrypted)
 	if err != nil {
-		fmt.Println("Error decrypting:", err)
-		return ""
+		return "", errors.Errorf("Error decrypting: %s", err)
 	}
-	return string(plainText)
+	return string(plainText), nil
 }
 
 // In the padding scheme the last <padding length> bytes
 // have a value equal to the padding length, always in (1,16]
 func aesStripPadding(data []byte) ([]byte, error) {
-	if len(data)%length != 0 {
-		return nil, fmt.Errorf("decrypted data block length is not a multiple of %d", length)
+	if len(data)%BlockSize != 0 {
+		return nil, errors.Errorf("decrypted data block length is not a multiple of %d", BlockSize)
 	}
 	paddingLen := int(data[len(data)-1])
-	if paddingLen > 16 {
-		return nil, fmt.Errorf("invalid last block padding length: %d", paddingLen)
+	if paddingLen > BlockSize {
+		return nil, errors.Errorf("invalid last block padding length: %d", paddingLen)
 	}
 	return data[:len(data)-paddingLen], nil
 }
 
-func getPassword() string {
-	//this command is for only mac
+func getPassword() (string, error) {
+	//this command is for only MacOS
 	parts := strings.Fields("security find-generic-password -wga Chrome")
 
 	cmd := parts[0]
@@ -145,31 +175,32 @@ func getPassword() string {
 
 	out, err := exec.Command(cmd, parts...).Output()
 	if err != nil {
-		log.Fatal("error finding password ", err)
+		return "", errors.Errorf("failed to call security command to find password: %s", err)
 	}
 
-	return strings.Trim(string(out), "\n")
+	return strings.Trim(string(out), "\n"), nil
 }
 
-func getCookies(domain string) (cookies []Cookie) {
+func getCookies(domain string) ([]Cookie, error) {
+	var cookies []Cookie
 	usr, _ := user.Current()
 
 	var cookiesFile string
 	if val, ok := cookieBaseDir[runtime.GOOS]; ok {
 		cookiesFile = fmt.Sprintf(val, usr.HomeDir)
 	} else {
-		log.Fatal("os is not set in coolie path")
+		return nil, errors.Errorf("os[%s] is not supported ", runtime.GOOS)
 	}
 
 	db, err := sql.Open("sqlite3", cookiesFile)
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 	defer db.Close()
 
 	rows, err := db.Query("SELECT name, value, host_key, encrypted_value FROM cookies WHERE host_key like ?", fmt.Sprintf("%%%s%%", domain))
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 
 	defer rows.Close()
@@ -180,5 +211,5 @@ func getCookies(domain string) (cookies []Cookie) {
 		cookies = append(cookies, Cookie{hostKey, name, value, encryptedValue})
 	}
 
-	return
+	return cookies, nil
 }
