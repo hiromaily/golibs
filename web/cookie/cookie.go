@@ -20,6 +20,9 @@ import (
 // Inspiration
 // http://n8henrie.com/2013/11/use-chromes-cookies-for-easier-downloading-with-python-requests/
 // https://gist.github.com/dacort/bd6a5116224c594b14db
+// https://stackoverflow.com/questions/23153159/decrypting-chromium-cookies/23727331#23727331
+
+// This code works on only Mac OS
 
 // This path would be changed by environment even same OS
 var cookieBaseDir = map[string]string{
@@ -44,6 +47,49 @@ type Cookie struct {
 	EncryptedValue []byte
 }
 
+func init() {
+	switch runtime.GOOS {
+	case "darwin":
+		password = getPassword()
+	case "linux":
+		iterations = 1
+		password = "peanuts"
+	default:
+		//not supported
+	}
+}
+
+//func callerSample() {
+//	domain := "localhost"
+//	PrintCookies(domain)
+//
+//	_ = GetValue(domain, "key")
+//}
+
+func PrintCookies(url string) {
+	for _, cookie := range getCookies(url) {
+		fmt.Printf("%s/%s: %s\n", cookie.Domain, cookie.Key, cookie.DecryptedValue())
+	}
+	//localhost/cookiename: xxxxxx
+}
+
+func GetValue(url, key string) string {
+	for _, cookie := range getCookies(url) {
+		if cookie.Domain == url && cookie.Key == key {
+			return cookie.DecryptedValue()
+		}
+	}
+	return ""
+}
+
+func GetAllValue(url string) map[string]string {
+	cookies := make(map[string]string)
+	for _, cookie := range getCookies(url) {
+		cookies[cookie.Key] = cookie.DecryptedValue()
+	}
+	return cookies
+}
+
 // DecryptedValue - Get the unencrypted value of a Chrome cookie
 func (c *Cookie) DecryptedValue() string {
 	if c.Value > "" {
@@ -56,43 +102,6 @@ func (c *Cookie) DecryptedValue() string {
 	}
 
 	return ""
-}
-
-func callerSample() {
-	domain := "localhost"
-	PrintCookies(domain)
-
-	_ = GetValue(domain, "key")
-}
-
-func PrintCookies(url string) {
-	password = getPassword()
-
-	for _, cookie := range getCookies(url) {
-		fmt.Printf("%s/%s: %s\n", cookie.Domain, cookie.Key, cookie.DecryptedValue())
-	}
-	//localhost/cookiename: xxxxxx
-}
-
-func GetValue(url, key string) string {
-	password = getPassword()
-
-	for _, cookie := range getCookies(url) {
-		if cookie.Domain == url && cookie.Key == key {
-			return cookie.DecryptedValue()
-		}
-	}
-	return ""
-}
-
-func GetAllValue(url string) map[string]string {
-	password = getPassword()
-
-	cookies := make(map[string]string)
-	for _, cookie := range getCookies(url) {
-		cookies[cookie.Key] = cookie.DecryptedValue()
-	}
-	return cookies
 }
 
 func decryptValue(encryptedValue []byte) string {
@@ -128,7 +137,9 @@ func aesStripPadding(data []byte) ([]byte, error) {
 }
 
 func getPassword() string {
+	//this command is for only mac
 	parts := strings.Fields("security find-generic-password -wga Chrome")
+
 	cmd := parts[0]
 	parts = parts[1:len(parts)]
 
