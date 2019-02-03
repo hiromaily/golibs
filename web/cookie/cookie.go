@@ -52,12 +52,13 @@ func init() {
 	var err error
 	switch runtime.GOOS {
 	case "darwin":
-		password, err = getPassword()
+		password, err = getPasswordMac()
 		if err != nil {
 			log.Printf("failed to call getPassword: %s", err)
 		}
 	case "linux":
 		iterations = 1
+		//password, err = getPasswordLinux()
 		//password = "peanuts"
 		password = "OYWKNQnpmNfdKIQkNSL0SA=="
 	default:
@@ -171,7 +172,7 @@ func aesStripPadding(data []byte) ([]byte, error) {
 	return data[:len(data)-paddingLen], nil
 }
 
-func getPassword() (string, error) {
+func getPasswordMac() (string, error) {
 	//this command is for only MacOS
 	parts := strings.Fields("security find-generic-password -wga Chrome")
 
@@ -184,6 +185,39 @@ func getPassword() (string, error) {
 	}
 
 	return strings.Trim(string(out), "\n"), nil
+}
+
+func GetPasswordLinux() (string, error) {
+	//this command is for only Linux and `libsecret-tools` is required
+	//`sudo apt install libsecret-tools`
+	parts := strings.Fields("secret-tool search application chrome")
+
+	cmd := parts[0]
+	parts = parts[1:len(parts)]
+
+	out, err := exec.Command(cmd, parts...).Output()
+	if err != nil {
+		return "", errors.Errorf("failed to call secret-tool command to find password: %s\n `sudo apt install libsecret-tools`", err)
+	}
+
+	//retrieve
+	//label = Chrome Safe Storage
+	//secret = OYWKNQnpmNfdKIQkNSL0SA==
+	//created = 2019-01-08 03:32:22
+	//modified = 2019-01-08 03:32:22
+	//schema = chrome_libsecret_os_crypt_password_v2
+	//attribute.application = chrome
+	ret := strings.Split(string(out), "\n")
+	for _, val := range ret {
+		tmp := strings.Split(val, " = ")
+		if len(tmp) != 2 {
+			continue
+		}
+		if tmp[0] == "secret" {
+			return tmp[1], nil
+		}
+	}
+	return "", errors.New("password is not found")
 }
 
 func getCookies(domain string) ([]Cookie, error) {
