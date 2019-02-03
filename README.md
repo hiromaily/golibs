@@ -160,6 +160,12 @@ golang version is limited some packages.
 #### ■ session
 * Control session on the web. (It works in progress.)
 
+#### ■ cookie
+* For retrieving cookie from Chrome
+On linux environment, install `libsecret-tools`
+```
+sudo apt install libsecret-tools
+```
 ----
 
 ## libraries (example)  
