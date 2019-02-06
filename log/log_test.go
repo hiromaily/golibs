@@ -93,7 +93,8 @@ func TestNewLog3(t *testing.T) {
 }
 
 func TestInitializedLog(t *testing.T) {
-	InitializeLog(DebugStatus, TimeShortFile, "[LOG_INIT_TEST]", "/var/log/go/test.log", "hiromaily")
+	//InitializeLog(DebugStatus, TimeShortFile, "[LOG_INIT_TEST]", "/var/log/go/test.log", "hiromaily")
+	InitializeLog(DebugStatus, TimeShortFile, "[LOG_INIT_TEST]", "", "hiromaily")
 
 	Debug("New->Debug: test debug")
 	Debugf("New->Debugf: %d - %s", 1, "test debugf")
