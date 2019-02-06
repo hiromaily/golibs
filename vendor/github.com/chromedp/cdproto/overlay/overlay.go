@@ -135,6 +135,7 @@ type HighlightNodeParams struct {
 	NodeID          cdp.NodeID             `json:"nodeId,omitempty"`        // Identifier of the node to highlight.
 	BackendNodeID   cdp.BackendNodeID      `json:"backendNodeId,omitempty"` // Identifier of the backend node to highlight.
 	ObjectID        runtime.RemoteObjectID `json:"objectId,omitempty"`      // JavaScript object id of the node to be highlighted.
+	Selector        string                 `json:"selector,omitempty"`      // Selectors to highlight relevant nodes.
 }
 
 // HighlightNode highlights DOM node with given id or with the given
@@ -163,6 +164,12 @@ func (p HighlightNodeParams) WithBackendNodeID(backendNodeID cdp.BackendNodeID) 
 // WithObjectID JavaScript object id of the node to be highlighted.
 func (p HighlightNodeParams) WithObjectID(objectID runtime.RemoteObjectID) *HighlightNodeParams {
 	p.ObjectID = objectID
+	return &p
+}
+
+// WithSelector selectors to highlight relevant nodes.
+func (p HighlightNodeParams) WithSelector(selector string) *HighlightNodeParams {
+	p.Selector = selector
 	return &p
 }
 
@@ -284,6 +291,28 @@ func (p *SetInspectModeParams) Do(ctxt context.Context, h cdp.Executor) (err err
 	return h.Execute(ctxt, CommandSetInspectMode, p, nil)
 }
 
+// SetShowAdHighlightsParams highlights owner element of all frames detected
+// to be ads.
+type SetShowAdHighlightsParams struct {
+	Show bool `json:"show"` // True for showing ad highlights
+}
+
+// SetShowAdHighlights highlights owner element of all frames detected to be
+// ads.
+//
+// parameters:
+//   show - True for showing ad highlights
+func SetShowAdHighlights(show bool) *SetShowAdHighlightsParams {
+	return &SetShowAdHighlightsParams{
+		Show: show,
+	}
+}
+
+// Do executes Overlay.setShowAdHighlights against the provided context.
+func (p *SetShowAdHighlightsParams) Do(ctxt context.Context, h cdp.Executor) (err error) {
+	return h.Execute(ctxt, CommandSetShowAdHighlights, p, nil)
+}
+
 // SetPausedInDebuggerMessageParams [no description].
 type SetPausedInDebuggerMessageParams struct {
 	Message string `json:"message,omitempty"` // The message to display, also triggers resume and step over controls.
@@ -391,6 +420,28 @@ func (p *SetShowScrollBottleneckRectsParams) Do(ctxt context.Context, h cdp.Exec
 	return h.Execute(ctxt, CommandSetShowScrollBottleneckRects, p, nil)
 }
 
+// SetShowHitTestBordersParams requests that backend shows hit-test borders
+// on layers.
+type SetShowHitTestBordersParams struct {
+	Show bool `json:"show"` // True for showing hit-test borders
+}
+
+// SetShowHitTestBorders requests that backend shows hit-test borders on
+// layers.
+//
+// parameters:
+//   show - True for showing hit-test borders
+func SetShowHitTestBorders(show bool) *SetShowHitTestBordersParams {
+	return &SetShowHitTestBordersParams{
+		Show: show,
+	}
+}
+
+// Do executes Overlay.setShowHitTestBorders against the provided context.
+func (p *SetShowHitTestBordersParams) Do(ctxt context.Context, h cdp.Executor) (err error) {
+	return h.Execute(ctxt, CommandSetShowHitTestBorders, p, nil)
+}
+
 // SetShowViewportSizeOnResizeParams paints viewport size upon main frame
 // resize.
 type SetShowViewportSizeOnResizeParams struct {
@@ -443,11 +494,13 @@ const (
 	CommandHighlightQuad                = "Overlay.highlightQuad"
 	CommandHighlightRect                = "Overlay.highlightRect"
 	CommandSetInspectMode               = "Overlay.setInspectMode"
+	CommandSetShowAdHighlights          = "Overlay.setShowAdHighlights"
 	CommandSetPausedInDebuggerMessage   = "Overlay.setPausedInDebuggerMessage"
 	CommandSetShowDebugBorders          = "Overlay.setShowDebugBorders"
 	CommandSetShowFPSCounter            = "Overlay.setShowFPSCounter"
 	CommandSetShowPaintRects            = "Overlay.setShowPaintRects"
 	CommandSetShowScrollBottleneckRects = "Overlay.setShowScrollBottleneckRects"
+	CommandSetShowHitTestBorders        = "Overlay.setShowHitTestBorders"
 	CommandSetShowViewportSizeOnResize  = "Overlay.setShowViewportSizeOnResize"
 	CommandSetSuspended                 = "Overlay.setSuspended"
 )

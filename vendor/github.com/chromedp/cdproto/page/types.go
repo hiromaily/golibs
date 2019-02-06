@@ -6,104 +6,21 @@ import (
 	"errors"
 
 	"github.com/chromedp/cdproto/cdp"
+	"github.com/chromedp/cdproto/network"
 	"github.com/mailru/easyjson"
 	"github.com/mailru/easyjson/jlexer"
 	"github.com/mailru/easyjson/jwriter"
 )
 
-// ResourceType resource type as it was perceived by the rendering engine.
-type ResourceType string
-
-// String returns the ResourceType as string value.
-func (t ResourceType) String() string {
-	return string(t)
-}
-
-// ResourceType values.
-const (
-	ResourceTypeDocument           ResourceType = "Document"
-	ResourceTypeStylesheet         ResourceType = "Stylesheet"
-	ResourceTypeImage              ResourceType = "Image"
-	ResourceTypeMedia              ResourceType = "Media"
-	ResourceTypeFont               ResourceType = "Font"
-	ResourceTypeScript             ResourceType = "Script"
-	ResourceTypeTextTrack          ResourceType = "TextTrack"
-	ResourceTypeXHR                ResourceType = "XHR"
-	ResourceTypeFetch              ResourceType = "Fetch"
-	ResourceTypeEventSource        ResourceType = "EventSource"
-	ResourceTypeWebSocket          ResourceType = "WebSocket"
-	ResourceTypeManifest           ResourceType = "Manifest"
-	ResourceTypeSignedExchange     ResourceType = "SignedExchange"
-	ResourceTypePing               ResourceType = "Ping"
-	ResourceTypeCSPViolationReport ResourceType = "CSPViolationReport"
-	ResourceTypeOther              ResourceType = "Other"
-)
-
-// MarshalEasyJSON satisfies easyjson.Marshaler.
-func (t ResourceType) MarshalEasyJSON(out *jwriter.Writer) {
-	out.String(string(t))
-}
-
-// MarshalJSON satisfies json.Marshaler.
-func (t ResourceType) MarshalJSON() ([]byte, error) {
-	return easyjson.Marshal(t)
-}
-
-// UnmarshalEasyJSON satisfies easyjson.Unmarshaler.
-func (t *ResourceType) UnmarshalEasyJSON(in *jlexer.Lexer) {
-	switch ResourceType(in.String()) {
-	case ResourceTypeDocument:
-		*t = ResourceTypeDocument
-	case ResourceTypeStylesheet:
-		*t = ResourceTypeStylesheet
-	case ResourceTypeImage:
-		*t = ResourceTypeImage
-	case ResourceTypeMedia:
-		*t = ResourceTypeMedia
-	case ResourceTypeFont:
-		*t = ResourceTypeFont
-	case ResourceTypeScript:
-		*t = ResourceTypeScript
-	case ResourceTypeTextTrack:
-		*t = ResourceTypeTextTrack
-	case ResourceTypeXHR:
-		*t = ResourceTypeXHR
-	case ResourceTypeFetch:
-		*t = ResourceTypeFetch
-	case ResourceTypeEventSource:
-		*t = ResourceTypeEventSource
-	case ResourceTypeWebSocket:
-		*t = ResourceTypeWebSocket
-	case ResourceTypeManifest:
-		*t = ResourceTypeManifest
-	case ResourceTypeSignedExchange:
-		*t = ResourceTypeSignedExchange
-	case ResourceTypePing:
-		*t = ResourceTypePing
-	case ResourceTypeCSPViolationReport:
-		*t = ResourceTypeCSPViolationReport
-	case ResourceTypeOther:
-		*t = ResourceTypeOther
-
-	default:
-		in.AddError(errors.New("unknown ResourceType value"))
-	}
-}
-
-// UnmarshalJSON satisfies json.Unmarshaler.
-func (t *ResourceType) UnmarshalJSON(buf []byte) error {
-	return easyjson.Unmarshal(buf, t)
-}
-
 // FrameResource information about the Resource on the page.
 type FrameResource struct {
-	URL          string              `json:"url"`                    // Resource URL.
-	Type         ResourceType        `json:"type"`                   // Type of this resource.
-	MimeType     string              `json:"mimeType"`               // Resource mimeType as determined by the browser.
-	LastModified *cdp.TimeSinceEpoch `json:"lastModified,omitempty"` // last-modified timestamp as reported by server.
-	ContentSize  float64             `json:"contentSize,omitempty"`  // Resource content size.
-	Failed       bool                `json:"failed,omitempty"`       // True if the resource failed to load.
-	Canceled     bool                `json:"canceled,omitempty"`     // True if the resource was canceled during loading.
+	URL          string               `json:"url"`                    // Resource URL.
+	Type         network.ResourceType `json:"type"`                   // Type of this resource.
+	MimeType     string               `json:"mimeType"`               // Resource mimeType as determined by the browser.
+	LastModified *cdp.TimeSinceEpoch  `json:"lastModified,omitempty"` // last-modified timestamp as reported by server.
+	ContentSize  float64              `json:"contentSize,omitempty"`  // Resource content size.
+	Failed       bool                 `json:"failed,omitempty"`       // True if the resource failed to load.
+	Canceled     bool                 `json:"canceled,omitempty"`     // True if the resource was canceled during loading.
 }
 
 // FrameResourceTree information about the Frame hierarchy along with their
@@ -140,6 +57,7 @@ func (t TransitionType) String() string {
 const (
 	TransitionTypeLink             TransitionType = "link"
 	TransitionTypeTyped            TransitionType = "typed"
+	TransitionTypeAddressBar       TransitionType = "address_bar"
 	TransitionTypeAutoBookmark     TransitionType = "auto_bookmark"
 	TransitionTypeAutoSubframe     TransitionType = "auto_subframe"
 	TransitionTypeManualSubframe   TransitionType = "manual_subframe"
@@ -169,6 +87,8 @@ func (t *TransitionType) UnmarshalEasyJSON(in *jlexer.Lexer) {
 		*t = TransitionTypeLink
 	case TransitionTypeTyped:
 		*t = TransitionTypeTyped
+	case TransitionTypeAddressBar:
+		*t = TransitionTypeAddressBar
 	case TransitionTypeAutoBookmark:
 		*t = TransitionTypeAutoBookmark
 	case TransitionTypeAutoSubframe:
@@ -286,21 +206,22 @@ type LayoutViewport struct {
 
 // VisualViewport visual viewport position, dimensions, and scale.
 type VisualViewport struct {
-	OffsetX      float64 `json:"offsetX"`      // Horizontal offset relative to the layout viewport (CSS pixels).
-	OffsetY      float64 `json:"offsetY"`      // Vertical offset relative to the layout viewport (CSS pixels).
-	PageX        float64 `json:"pageX"`        // Horizontal offset relative to the document (CSS pixels).
-	PageY        float64 `json:"pageY"`        // Vertical offset relative to the document (CSS pixels).
-	ClientWidth  float64 `json:"clientWidth"`  // Width (CSS pixels), excludes scrollbar if present.
-	ClientHeight float64 `json:"clientHeight"` // Height (CSS pixels), excludes scrollbar if present.
-	Scale        float64 `json:"scale"`        // Scale relative to the ideal viewport (size at width=device-width).
+	OffsetX      float64 `json:"offsetX"`        // Horizontal offset relative to the layout viewport (CSS pixels).
+	OffsetY      float64 `json:"offsetY"`        // Vertical offset relative to the layout viewport (CSS pixels).
+	PageX        float64 `json:"pageX"`          // Horizontal offset relative to the document (CSS pixels).
+	PageY        float64 `json:"pageY"`          // Vertical offset relative to the document (CSS pixels).
+	ClientWidth  float64 `json:"clientWidth"`    // Width (CSS pixels), excludes scrollbar if present.
+	ClientHeight float64 `json:"clientHeight"`   // Height (CSS pixels), excludes scrollbar if present.
+	Scale        float64 `json:"scale"`          // Scale relative to the ideal viewport (size at width=device-width).
+	Zoom         float64 `json:"zoom,omitempty"` // Page zoom factor (CSS to device independent pixels ratio).
 }
 
 // Viewport viewport for capturing screenshot.
 type Viewport struct {
-	X      float64 `json:"x"`      // X offset in CSS pixels.
-	Y      float64 `json:"y"`      // Y offset in CSS pixels
-	Width  float64 `json:"width"`  // Rectangle width in CSS pixels
-	Height float64 `json:"height"` // Rectangle height in CSS pixels
+	X      float64 `json:"x"`      // X offset in device independent pixels (dip).
+	Y      float64 `json:"y"`      // Y offset in device independent pixels (dip).
+	Width  float64 `json:"width"`  // Rectangle width in device independent pixels (dip).
+	Height float64 `json:"height"` // Rectangle height in device independent pixels (dip).
 	Scale  float64 `json:"scale"`  // Page scale factor.
 }
 
@@ -417,6 +338,45 @@ func (t *CaptureScreenshotFormat) UnmarshalEasyJSON(in *jlexer.Lexer) {
 
 // UnmarshalJSON satisfies json.Unmarshaler.
 func (t *CaptureScreenshotFormat) UnmarshalJSON(buf []byte) error {
+	return easyjson.Unmarshal(buf, t)
+}
+
+// CaptureSnapshotFormat format (defaults to mhtml).
+type CaptureSnapshotFormat string
+
+// String returns the CaptureSnapshotFormat as string value.
+func (t CaptureSnapshotFormat) String() string {
+	return string(t)
+}
+
+// CaptureSnapshotFormat values.
+const (
+	CaptureSnapshotFormatMhtml CaptureSnapshotFormat = "mhtml"
+)
+
+// MarshalEasyJSON satisfies easyjson.Marshaler.
+func (t CaptureSnapshotFormat) MarshalEasyJSON(out *jwriter.Writer) {
+	out.String(string(t))
+}
+
+// MarshalJSON satisfies json.Marshaler.
+func (t CaptureSnapshotFormat) MarshalJSON() ([]byte, error) {
+	return easyjson.Marshal(t)
+}
+
+// UnmarshalEasyJSON satisfies easyjson.Unmarshaler.
+func (t *CaptureSnapshotFormat) UnmarshalEasyJSON(in *jlexer.Lexer) {
+	switch CaptureSnapshotFormat(in.String()) {
+	case CaptureSnapshotFormatMhtml:
+		*t = CaptureSnapshotFormatMhtml
+
+	default:
+		in.AddError(errors.New("unknown CaptureSnapshotFormat value"))
+	}
+}
+
+// UnmarshalJSON satisfies json.Unmarshaler.
+func (t *CaptureSnapshotFormat) UnmarshalJSON(buf []byte) error {
 	return easyjson.Unmarshal(buf, t)
 }
 

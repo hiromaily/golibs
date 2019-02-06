@@ -22,7 +22,8 @@ import (
 // AddScriptToEvaluateOnNewDocumentParams evaluates given script in every
 // frame upon creation (before loading frame's scripts).
 type AddScriptToEvaluateOnNewDocumentParams struct {
-	Source string `json:"source"`
+	Source    string `json:"source"`
+	WorldName string `json:"worldName,omitempty"` // If specified, creates an isolated world with the given name and evaluates given script in it. This world name will be used as the ExecutionContextDescription::name when the corresponding event is emitted.
 }
 
 // AddScriptToEvaluateOnNewDocument evaluates given script in every frame
@@ -34,6 +35,14 @@ func AddScriptToEvaluateOnNewDocument(source string) *AddScriptToEvaluateOnNewDo
 	return &AddScriptToEvaluateOnNewDocumentParams{
 		Source: source,
 	}
+}
+
+// WithWorldName if specified, creates an isolated world with the given name
+// and evaluates given script in it. This world name will be used as the
+// ExecutionContextDescription::name when the corresponding event is emitted.
+func (p AddScriptToEvaluateOnNewDocumentParams) WithWorldName(worldName string) *AddScriptToEvaluateOnNewDocumentParams {
+	p.WorldName = worldName
+	return &p
 }
 
 // AddScriptToEvaluateOnNewDocumentReturns return values.
@@ -133,6 +142,48 @@ func (p *CaptureScreenshotParams) Do(ctxt context.Context, h cdp.Executor) (data
 		return nil, err
 	}
 	return dec, nil
+}
+
+// CaptureSnapshotParams returns a snapshot of the page as a string. For
+// MHTML format, the serialization includes iframes, shadow DOM, external
+// resources, and element-inline styles.
+type CaptureSnapshotParams struct {
+	Format CaptureSnapshotFormat `json:"format,omitempty"` // Format (defaults to mhtml).
+}
+
+// CaptureSnapshot returns a snapshot of the page as a string. For MHTML
+// format, the serialization includes iframes, shadow DOM, external resources,
+// and element-inline styles.
+//
+// parameters:
+func CaptureSnapshot() *CaptureSnapshotParams {
+	return &CaptureSnapshotParams{}
+}
+
+// WithFormat format (defaults to mhtml).
+func (p CaptureSnapshotParams) WithFormat(format CaptureSnapshotFormat) *CaptureSnapshotParams {
+	p.Format = format
+	return &p
+}
+
+// CaptureSnapshotReturns return values.
+type CaptureSnapshotReturns struct {
+	Data string `json:"data,omitempty"` // Serialized page data.
+}
+
+// Do executes Page.captureSnapshot against the provided context.
+//
+// returns:
+//   data - Serialized page data.
+func (p *CaptureSnapshotParams) Do(ctxt context.Context, h cdp.Executor) (data string, err error) {
+	// execute
+	var res CaptureSnapshotReturns
+	err = h.Execute(ctxt, CommandCaptureSnapshot, p, &res)
+	if err != nil {
+		return "", err
+	}
+
+	return res.Data, nil
 }
 
 // CreateIsolatedWorldParams creates an isolated world for the given frame.
@@ -334,6 +385,20 @@ func (p *GetNavigationHistoryParams) Do(ctxt context.Context, h cdp.Executor) (c
 	}
 
 	return res.CurrentIndex, res.Entries, nil
+}
+
+// ResetNavigationHistoryParams resets navigation history for the current
+// page.
+type ResetNavigationHistoryParams struct{}
+
+// ResetNavigationHistory resets navigation history for the current page.
+func ResetNavigationHistory() *ResetNavigationHistoryParams {
+	return &ResetNavigationHistoryParams{}
+}
+
+// Do executes Page.resetNavigationHistory against the provided context.
+func (p *ResetNavigationHistoryParams) Do(ctxt context.Context, h cdp.Executor) (err error) {
+	return h.Execute(ctxt, CommandResetNavigationHistory, nil, nil)
 }
 
 // GetResourceContentParams returns content of the given resource.
@@ -729,19 +794,6 @@ func RemoveScriptToEvaluateOnNewDocument(identifier ScriptIdentifier) *RemoveScr
 // Do executes Page.removeScriptToEvaluateOnNewDocument against the provided context.
 func (p *RemoveScriptToEvaluateOnNewDocumentParams) Do(ctxt context.Context, h cdp.Executor) (err error) {
 	return h.Execute(ctxt, CommandRemoveScriptToEvaluateOnNewDocument, p, nil)
-}
-
-// RequestAppBannerParams [no description].
-type RequestAppBannerParams struct{}
-
-// RequestAppBanner [no description].
-func RequestAppBanner() *RequestAppBannerParams {
-	return &RequestAppBannerParams{}
-}
-
-// Do executes Page.requestAppBanner against the provided context.
-func (p *RequestAppBannerParams) Do(ctxt context.Context, h cdp.Executor) (err error) {
-	return h.Execute(ctxt, CommandRequestAppBanner, nil, nil)
 }
 
 // ScreencastFrameAckParams acknowledges that a screencast frame has been
@@ -1165,11 +1217,54 @@ func (p *ClearCompilationCacheParams) Do(ctxt context.Context, h cdp.Executor) (
 	return h.Execute(ctxt, CommandClearCompilationCache, nil, nil)
 }
 
+// GenerateTestReportParams generates a report for testing.
+type GenerateTestReportParams struct {
+	Message string `json:"message"`         // Message to be displayed in the report.
+	Group   string `json:"group,omitempty"` // Specifies the endpoint group to deliver the report to.
+}
+
+// GenerateTestReport generates a report for testing.
+//
+// parameters:
+//   message - Message to be displayed in the report.
+func GenerateTestReport(message string) *GenerateTestReportParams {
+	return &GenerateTestReportParams{
+		Message: message,
+	}
+}
+
+// WithGroup specifies the endpoint group to deliver the report to.
+func (p GenerateTestReportParams) WithGroup(group string) *GenerateTestReportParams {
+	p.Group = group
+	return &p
+}
+
+// Do executes Page.generateTestReport against the provided context.
+func (p *GenerateTestReportParams) Do(ctxt context.Context, h cdp.Executor) (err error) {
+	return h.Execute(ctxt, CommandGenerateTestReport, p, nil)
+}
+
+// WaitForDebuggerParams pauses page execution. Can be resumed using generic
+// Runtime.runIfWaitingForDebugger.
+type WaitForDebuggerParams struct{}
+
+// WaitForDebugger pauses page execution. Can be resumed using generic
+// Runtime.runIfWaitingForDebugger.
+func WaitForDebugger() *WaitForDebuggerParams {
+	return &WaitForDebuggerParams{}
+}
+
+// Do executes Page.waitForDebugger against the provided context.
+func (p *WaitForDebuggerParams) Do(ctxt context.Context, h cdp.Executor) (err error) {
+	return h.Execute(ctxt, CommandWaitForDebugger, nil, nil)
+}
+
 // Command names.
 const (
 	CommandAddScriptToEvaluateOnNewDocument    = "Page.addScriptToEvaluateOnNewDocument"
 	CommandBringToFront                        = "Page.bringToFront"
 	CommandCaptureScreenshot                   = "Page.captureScreenshot"
+	CommandCaptureSnapshot                     = "Page.captureSnapshot"
 	CommandCreateIsolatedWorld                 = "Page.createIsolatedWorld"
 	CommandDisable                             = "Page.disable"
 	CommandEnable                              = "Page.enable"
@@ -1177,6 +1272,7 @@ const (
 	CommandGetFrameTree                        = "Page.getFrameTree"
 	CommandGetLayoutMetrics                    = "Page.getLayoutMetrics"
 	CommandGetNavigationHistory                = "Page.getNavigationHistory"
+	CommandResetNavigationHistory              = "Page.resetNavigationHistory"
 	CommandGetResourceContent                  = "Page.getResourceContent"
 	CommandGetResourceTree                     = "Page.getResourceTree"
 	CommandHandleJavaScriptDialog              = "Page.handleJavaScriptDialog"
@@ -1185,7 +1281,6 @@ const (
 	CommandPrintToPDF                          = "Page.printToPDF"
 	CommandReload                              = "Page.reload"
 	CommandRemoveScriptToEvaluateOnNewDocument = "Page.removeScriptToEvaluateOnNewDocument"
-	CommandRequestAppBanner                    = "Page.requestAppBanner"
 	CommandScreencastFrameAck                  = "Page.screencastFrameAck"
 	CommandSearchInResource                    = "Page.searchInResource"
 	CommandSetAdBlockingEnabled                = "Page.setAdBlockingEnabled"
@@ -1204,4 +1299,6 @@ const (
 	CommandSetProduceCompilationCache          = "Page.setProduceCompilationCache"
 	CommandAddCompilationCache                 = "Page.addCompilationCache"
 	CommandClearCompilationCache               = "Page.clearCompilationCache"
+	CommandGenerateTestReport                  = "Page.generateTestReport"
+	CommandWaitForDebugger                     = "Page.waitForDebugger"
 )

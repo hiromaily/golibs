@@ -278,10 +278,12 @@ func (t ButtonType) String() string {
 
 // ButtonType values.
 const (
-	ButtonNone   ButtonType = "none"
-	ButtonLeft   ButtonType = "left"
-	ButtonMiddle ButtonType = "middle"
-	ButtonRight  ButtonType = "right"
+	ButtonNone    ButtonType = "none"
+	ButtonLeft    ButtonType = "left"
+	ButtonMiddle  ButtonType = "middle"
+	ButtonRight   ButtonType = "right"
+	ButtonBack    ButtonType = "back"
+	ButtonForward ButtonType = "forward"
 )
 
 // MarshalEasyJSON satisfies easyjson.Marshaler.
@@ -305,6 +307,10 @@ func (t *ButtonType) UnmarshalEasyJSON(in *jlexer.Lexer) {
 		*t = ButtonMiddle
 	case ButtonRight:
 		*t = ButtonRight
+	case ButtonBack:
+		*t = ButtonBack
+	case ButtonForward:
+		*t = ButtonForward
 
 	default:
 		in.AddError(errors.New("unknown ButtonType value"))
@@ -313,6 +319,48 @@ func (t *ButtonType) UnmarshalEasyJSON(in *jlexer.Lexer) {
 
 // UnmarshalJSON satisfies json.Unmarshaler.
 func (t *ButtonType) UnmarshalJSON(buf []byte) error {
+	return easyjson.Unmarshal(buf, t)
+}
+
+// DispatchMouseEventPointerType pointer type (default: "mouse").
+type DispatchMouseEventPointerType string
+
+// String returns the DispatchMouseEventPointerType as string value.
+func (t DispatchMouseEventPointerType) String() string {
+	return string(t)
+}
+
+// DispatchMouseEventPointerType values.
+const (
+	Mouse DispatchMouseEventPointerType = "mouse"
+	Pen   DispatchMouseEventPointerType = "pen"
+)
+
+// MarshalEasyJSON satisfies easyjson.Marshaler.
+func (t DispatchMouseEventPointerType) MarshalEasyJSON(out *jwriter.Writer) {
+	out.String(string(t))
+}
+
+// MarshalJSON satisfies json.Marshaler.
+func (t DispatchMouseEventPointerType) MarshalJSON() ([]byte, error) {
+	return easyjson.Marshal(t)
+}
+
+// UnmarshalEasyJSON satisfies easyjson.Unmarshaler.
+func (t *DispatchMouseEventPointerType) UnmarshalEasyJSON(in *jlexer.Lexer) {
+	switch DispatchMouseEventPointerType(in.String()) {
+	case Mouse:
+		*t = Mouse
+	case Pen:
+		*t = Pen
+
+	default:
+		in.AddError(errors.New("unknown DispatchMouseEventPointerType value"))
+	}
+}
+
+// UnmarshalJSON satisfies json.Unmarshaler.
+func (t *DispatchMouseEventPointerType) UnmarshalJSON(buf []byte) error {
 	return easyjson.Unmarshal(buf, t)
 }
 

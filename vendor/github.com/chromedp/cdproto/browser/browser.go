@@ -15,6 +15,63 @@ import (
 	"github.com/chromedp/cdproto/target"
 )
 
+// GrantPermissionsParams grant specific permissions to the given origin and
+// reject all others.
+type GrantPermissionsParams struct {
+	Origin           string                  `json:"origin"`
+	Permissions      []PermissionType        `json:"permissions"`
+	BrowserContextID target.BrowserContextID `json:"browserContextId,omitempty"` // BrowserContext to override permissions. When omitted, default browser context is used.
+}
+
+// GrantPermissions grant specific permissions to the given origin and reject
+// all others.
+//
+// parameters:
+//   origin
+//   permissions
+func GrantPermissions(origin string, permissions []PermissionType) *GrantPermissionsParams {
+	return &GrantPermissionsParams{
+		Origin:      origin,
+		Permissions: permissions,
+	}
+}
+
+// WithBrowserContextID browserContext to override permissions. When omitted,
+// default browser context is used.
+func (p GrantPermissionsParams) WithBrowserContextID(browserContextID target.BrowserContextID) *GrantPermissionsParams {
+	p.BrowserContextID = browserContextID
+	return &p
+}
+
+// Do executes Browser.grantPermissions against the provided context.
+func (p *GrantPermissionsParams) Do(ctxt context.Context, h cdp.Executor) (err error) {
+	return h.Execute(ctxt, CommandGrantPermissions, p, nil)
+}
+
+// ResetPermissionsParams reset all permission management for all origins.
+type ResetPermissionsParams struct {
+	BrowserContextID target.BrowserContextID `json:"browserContextId,omitempty"` // BrowserContext to reset permissions. When omitted, default browser context is used.
+}
+
+// ResetPermissions reset all permission management for all origins.
+//
+// parameters:
+func ResetPermissions() *ResetPermissionsParams {
+	return &ResetPermissionsParams{}
+}
+
+// WithBrowserContextID browserContext to reset permissions. When omitted,
+// default browser context is used.
+func (p ResetPermissionsParams) WithBrowserContextID(browserContextID target.BrowserContextID) *ResetPermissionsParams {
+	p.BrowserContextID = browserContextID
+	return &p
+}
+
+// Do executes Browser.resetPermissions against the provided context.
+func (p *ResetPermissionsParams) Do(ctxt context.Context, h cdp.Executor) (err error) {
+	return h.Execute(ctxt, CommandResetPermissions, p, nil)
+}
+
 // CloseParams close browser gracefully.
 type CloseParams struct{}
 
@@ -26,6 +83,19 @@ func Close() *CloseParams {
 // Do executes Browser.close against the provided context.
 func (p *CloseParams) Do(ctxt context.Context, h cdp.Executor) (err error) {
 	return h.Execute(ctxt, CommandClose, nil, nil)
+}
+
+// CrashParams crashes browser on the main thread.
+type CrashParams struct{}
+
+// Crash crashes browser on the main thread.
+func Crash() *CrashParams {
+	return &CrashParams{}
+}
+
+// Do executes Browser.crash against the provided context.
+func (p *CrashParams) Do(ctxt context.Context, h cdp.Executor) (err error) {
+	return h.Execute(ctxt, CommandCrash, nil, nil)
 }
 
 // GetVersionParams returns version information.
@@ -221,18 +291,22 @@ func (p *GetWindowBoundsParams) Do(ctxt context.Context, h cdp.Executor) (bounds
 // GetWindowForTargetParams get the browser window that contains the devtools
 // target.
 type GetWindowForTargetParams struct {
-	TargetID target.ID `json:"targetId"` // Devtools agent host id.
+	TargetID target.ID `json:"targetId,omitempty"` // Devtools agent host id. If called as a part of the session, associated targetId is used.
 }
 
 // GetWindowForTarget get the browser window that contains the devtools
 // target.
 //
 // parameters:
-//   targetID - Devtools agent host id.
-func GetWindowForTarget(targetID target.ID) *GetWindowForTargetParams {
-	return &GetWindowForTargetParams{
-		TargetID: targetID,
-	}
+func GetWindowForTarget() *GetWindowForTargetParams {
+	return &GetWindowForTargetParams{}
+}
+
+// WithTargetID devtools agent host id. If called as a part of the session,
+// associated targetId is used.
+func (p GetWindowForTargetParams) WithTargetID(targetID target.ID) *GetWindowForTargetParams {
+	p.TargetID = targetID
+	return &p
 }
 
 // GetWindowForTargetReturns return values.
@@ -280,9 +354,42 @@ func (p *SetWindowBoundsParams) Do(ctxt context.Context, h cdp.Executor) (err er
 	return h.Execute(ctxt, CommandSetWindowBounds, p, nil)
 }
 
+// SetDockTileParams set dock tile details, platform-specific.
+type SetDockTileParams struct {
+	BadgeLabel string `json:"badgeLabel,omitempty"`
+	Image      string `json:"image,omitempty"` // Png encoded image.
+}
+
+// SetDockTile set dock tile details, platform-specific.
+//
+// parameters:
+func SetDockTile() *SetDockTileParams {
+	return &SetDockTileParams{}
+}
+
+// WithBadgeLabel [no description].
+func (p SetDockTileParams) WithBadgeLabel(badgeLabel string) *SetDockTileParams {
+	p.BadgeLabel = badgeLabel
+	return &p
+}
+
+// WithImage png encoded image.
+func (p SetDockTileParams) WithImage(image string) *SetDockTileParams {
+	p.Image = image
+	return &p
+}
+
+// Do executes Browser.setDockTile against the provided context.
+func (p *SetDockTileParams) Do(ctxt context.Context, h cdp.Executor) (err error) {
+	return h.Execute(ctxt, CommandSetDockTile, p, nil)
+}
+
 // Command names.
 const (
+	CommandGrantPermissions      = "Browser.grantPermissions"
+	CommandResetPermissions      = "Browser.resetPermissions"
 	CommandClose                 = "Browser.close"
+	CommandCrash                 = "Browser.crash"
 	CommandGetVersion            = "Browser.getVersion"
 	CommandGetBrowserCommandLine = "Browser.getBrowserCommandLine"
 	CommandGetHistograms         = "Browser.getHistograms"
@@ -290,4 +397,5 @@ const (
 	CommandGetWindowBounds       = "Browser.getWindowBounds"
 	CommandGetWindowForTarget    = "Browser.getWindowForTarget"
 	CommandSetWindowBounds       = "Browser.setWindowBounds"
+	CommandSetDockTile           = "Browser.setDockTile"
 )

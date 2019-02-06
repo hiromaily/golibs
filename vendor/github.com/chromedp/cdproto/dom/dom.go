@@ -505,14 +505,16 @@ func (p *GetFlattenedDocumentParams) Do(ctxt context.Context, h cdp.Executor) (n
 	return res.Nodes, nil
 }
 
-// GetNodeForLocationParams returns node id at given location.
+// GetNodeForLocationParams returns node id at given location. Depending on
+// whether DOM domain is enabled, nodeId is either returned or not.
 type GetNodeForLocationParams struct {
 	X                         int64 `json:"x"`                                   // X coordinate.
 	Y                         int64 `json:"y"`                                   // Y coordinate.
 	IncludeUserAgentShadowDOM bool  `json:"includeUserAgentShadowDOM,omitempty"` // False to skip to the nearest non-UA shadow root ancestor (default: false).
 }
 
-// GetNodeForLocation returns node id at given location.
+// GetNodeForLocation returns node id at given location. Depending on whether
+// DOM domain is enabled, nodeId is either returned or not.
 //
 // parameters:
 //   x - X coordinate.
@@ -533,22 +535,24 @@ func (p GetNodeForLocationParams) WithIncludeUserAgentShadowDOM(includeUserAgent
 
 // GetNodeForLocationReturns return values.
 type GetNodeForLocationReturns struct {
-	NodeID cdp.NodeID `json:"nodeId,omitempty"` // Id of the node at given coordinates.
+	BackendNodeID cdp.BackendNodeID `json:"backendNodeId,omitempty"` // Resulting node.
+	NodeID        cdp.NodeID        `json:"nodeId,omitempty"`        // Id of the node at given coordinates, only when enabled and requested document.
 }
 
 // Do executes DOM.getNodeForLocation against the provided context.
 //
 // returns:
-//   nodeID - Id of the node at given coordinates.
-func (p *GetNodeForLocationParams) Do(ctxt context.Context, h cdp.Executor) (nodeID cdp.NodeID, err error) {
+//   backendNodeID - Resulting node.
+//   nodeID - Id of the node at given coordinates, only when enabled and requested document.
+func (p *GetNodeForLocationParams) Do(ctxt context.Context, h cdp.Executor) (backendNodeID cdp.BackendNodeID, nodeID cdp.NodeID, err error) {
 	// execute
 	var res GetNodeForLocationReturns
 	err = h.Execute(ctxt, CommandGetNodeForLocation, p, &res)
 	if err != nil {
-		return 0, err
+		return 0, 0, err
 	}
 
-	return res.NodeID, nil
+	return res.BackendNodeID, res.NodeID, nil
 }
 
 // GetOuterHTMLParams returns node's HTML markup.
@@ -1087,9 +1091,10 @@ func (p *RequestNodeParams) Do(ctxt context.Context, h cdp.Executor) (nodeID cdp
 // ResolveNodeParams resolves the JavaScript node object for a given NodeId
 // or BackendNodeId.
 type ResolveNodeParams struct {
-	NodeID        cdp.NodeID        `json:"nodeId,omitempty"`        // Id of the node to resolve.
-	BackendNodeID cdp.BackendNodeID `json:"backendNodeId,omitempty"` // Backend identifier of the node to resolve.
-	ObjectGroup   string            `json:"objectGroup,omitempty"`   // Symbolic group name that can be used to release multiple objects.
+	NodeID             cdp.NodeID                 `json:"nodeId,omitempty"`             // Id of the node to resolve.
+	BackendNodeID      cdp.BackendNodeID          `json:"backendNodeId,omitempty"`      // Backend identifier of the node to resolve.
+	ObjectGroup        string                     `json:"objectGroup,omitempty"`        // Symbolic group name that can be used to release multiple objects.
+	ExecutionContextID runtime.ExecutionContextID `json:"executionContextId,omitempty"` // Execution context in which to resolve the node.
 }
 
 // ResolveNode resolves the JavaScript node object for a given NodeId or
@@ -1116,6 +1121,12 @@ func (p ResolveNodeParams) WithBackendNodeID(backendNodeID cdp.BackendNodeID) *R
 // objects.
 func (p ResolveNodeParams) WithObjectGroup(objectGroup string) *ResolveNodeParams {
 	p.ObjectGroup = objectGroup
+	return &p
+}
+
+// WithExecutionContextID execution context in which to resolve the node.
+func (p ResolveNodeParams) WithExecutionContextID(executionContextID runtime.ExecutionContextID) *ResolveNodeParams {
+	p.ExecutionContextID = executionContextID
 	return &p
 }
 
@@ -1239,6 +1250,41 @@ func (p SetFileInputFilesParams) WithObjectID(objectID runtime.RemoteObjectID) *
 // Do executes DOM.setFileInputFiles against the provided context.
 func (p *SetFileInputFilesParams) Do(ctxt context.Context, h cdp.Executor) (err error) {
 	return h.Execute(ctxt, CommandSetFileInputFiles, p, nil)
+}
+
+// GetFileInfoParams returns file information for the given File wrapper.
+type GetFileInfoParams struct {
+	ObjectID runtime.RemoteObjectID `json:"objectId"` // JavaScript object id of the node wrapper.
+}
+
+// GetFileInfo returns file information for the given File wrapper.
+//
+// parameters:
+//   objectID - JavaScript object id of the node wrapper.
+func GetFileInfo(objectID runtime.RemoteObjectID) *GetFileInfoParams {
+	return &GetFileInfoParams{
+		ObjectID: objectID,
+	}
+}
+
+// GetFileInfoReturns return values.
+type GetFileInfoReturns struct {
+	Path string `json:"path,omitempty"`
+}
+
+// Do executes DOM.getFileInfo against the provided context.
+//
+// returns:
+//   path
+func (p *GetFileInfoParams) Do(ctxt context.Context, h cdp.Executor) (path string, err error) {
+	// execute
+	var res GetFileInfoReturns
+	err = h.Execute(ctxt, CommandGetFileInfo, p, &res)
+	if err != nil {
+		return "", err
+	}
+
+	return res.Path, nil
 }
 
 // SetInspectedNodeParams enables console to refer to the node with given id
@@ -1378,22 +1424,24 @@ func GetFrameOwner(frameID cdp.FrameID) *GetFrameOwnerParams {
 
 // GetFrameOwnerReturns return values.
 type GetFrameOwnerReturns struct {
-	NodeID cdp.NodeID `json:"nodeId,omitempty"`
+	BackendNodeID cdp.BackendNodeID `json:"backendNodeId,omitempty"` // Resulting node.
+	NodeID        cdp.NodeID        `json:"nodeId,omitempty"`        // Id of the node at given coordinates, only when enabled and requested document.
 }
 
 // Do executes DOM.getFrameOwner against the provided context.
 //
 // returns:
-//   nodeID
-func (p *GetFrameOwnerParams) Do(ctxt context.Context, h cdp.Executor) (nodeID cdp.NodeID, err error) {
+//   backendNodeID - Resulting node.
+//   nodeID - Id of the node at given coordinates, only when enabled and requested document.
+func (p *GetFrameOwnerParams) Do(ctxt context.Context, h cdp.Executor) (backendNodeID cdp.BackendNodeID, nodeID cdp.NodeID, err error) {
 	// execute
 	var res GetFrameOwnerReturns
 	err = h.Execute(ctxt, CommandGetFrameOwner, p, &res)
 	if err != nil {
-		return 0, err
+		return 0, 0, err
 	}
 
-	return res.NodeID, nil
+	return res.BackendNodeID, res.NodeID, nil
 }
 
 // Command names.
@@ -1430,6 +1478,7 @@ const (
 	CommandSetAttributeValue               = "DOM.setAttributeValue"
 	CommandSetAttributesAsText             = "DOM.setAttributesAsText"
 	CommandSetFileInputFiles               = "DOM.setFileInputFiles"
+	CommandGetFileInfo                     = "DOM.getFileInfo"
 	CommandSetInspectedNode                = "DOM.setInspectedNode"
 	CommandSetNodeName                     = "DOM.setNodeName"
 	CommandSetNodeValue                    = "DOM.setNodeValue"

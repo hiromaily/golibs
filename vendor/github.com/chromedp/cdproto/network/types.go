@@ -6,13 +6,96 @@ import (
 	"errors"
 
 	"github.com/chromedp/cdproto/cdp"
-	"github.com/chromedp/cdproto/page"
 	"github.com/chromedp/cdproto/runtime"
 	"github.com/chromedp/cdproto/security"
 	"github.com/mailru/easyjson"
 	"github.com/mailru/easyjson/jlexer"
 	"github.com/mailru/easyjson/jwriter"
 )
+
+// ResourceType resource type as it was perceived by the rendering engine.
+type ResourceType string
+
+// String returns the ResourceType as string value.
+func (t ResourceType) String() string {
+	return string(t)
+}
+
+// ResourceType values.
+const (
+	ResourceTypeDocument           ResourceType = "Document"
+	ResourceTypeStylesheet         ResourceType = "Stylesheet"
+	ResourceTypeImage              ResourceType = "Image"
+	ResourceTypeMedia              ResourceType = "Media"
+	ResourceTypeFont               ResourceType = "Font"
+	ResourceTypeScript             ResourceType = "Script"
+	ResourceTypeTextTrack          ResourceType = "TextTrack"
+	ResourceTypeXHR                ResourceType = "XHR"
+	ResourceTypeFetch              ResourceType = "Fetch"
+	ResourceTypeEventSource        ResourceType = "EventSource"
+	ResourceTypeWebSocket          ResourceType = "WebSocket"
+	ResourceTypeManifest           ResourceType = "Manifest"
+	ResourceTypeSignedExchange     ResourceType = "SignedExchange"
+	ResourceTypePing               ResourceType = "Ping"
+	ResourceTypeCSPViolationReport ResourceType = "CSPViolationReport"
+	ResourceTypeOther              ResourceType = "Other"
+)
+
+// MarshalEasyJSON satisfies easyjson.Marshaler.
+func (t ResourceType) MarshalEasyJSON(out *jwriter.Writer) {
+	out.String(string(t))
+}
+
+// MarshalJSON satisfies json.Marshaler.
+func (t ResourceType) MarshalJSON() ([]byte, error) {
+	return easyjson.Marshal(t)
+}
+
+// UnmarshalEasyJSON satisfies easyjson.Unmarshaler.
+func (t *ResourceType) UnmarshalEasyJSON(in *jlexer.Lexer) {
+	switch ResourceType(in.String()) {
+	case ResourceTypeDocument:
+		*t = ResourceTypeDocument
+	case ResourceTypeStylesheet:
+		*t = ResourceTypeStylesheet
+	case ResourceTypeImage:
+		*t = ResourceTypeImage
+	case ResourceTypeMedia:
+		*t = ResourceTypeMedia
+	case ResourceTypeFont:
+		*t = ResourceTypeFont
+	case ResourceTypeScript:
+		*t = ResourceTypeScript
+	case ResourceTypeTextTrack:
+		*t = ResourceTypeTextTrack
+	case ResourceTypeXHR:
+		*t = ResourceTypeXHR
+	case ResourceTypeFetch:
+		*t = ResourceTypeFetch
+	case ResourceTypeEventSource:
+		*t = ResourceTypeEventSource
+	case ResourceTypeWebSocket:
+		*t = ResourceTypeWebSocket
+	case ResourceTypeManifest:
+		*t = ResourceTypeManifest
+	case ResourceTypeSignedExchange:
+		*t = ResourceTypeSignedExchange
+	case ResourceTypePing:
+		*t = ResourceTypePing
+	case ResourceTypeCSPViolationReport:
+		*t = ResourceTypeCSPViolationReport
+	case ResourceTypeOther:
+		*t = ResourceTypeOther
+
+	default:
+		in.AddError(errors.New("unknown ResourceType value"))
+	}
+}
+
+// UnmarshalJSON satisfies json.Unmarshaler.
+func (t *ResourceType) UnmarshalJSON(buf []byte) error {
+	return easyjson.Unmarshal(buf, t)
+}
 
 // RequestID unique request identifier.
 type RequestID string
@@ -477,19 +560,20 @@ type WebSocketResponse struct {
 	RequestHeadersText string  `json:"requestHeadersText,omitempty"` // HTTP request headers text.
 }
 
-// WebSocketFrame webSocket frame data.
+// WebSocketFrame webSocket message data. This represents an entire WebSocket
+// message, not just a fragmented frame as the name suggests.
 type WebSocketFrame struct {
-	Opcode      float64 `json:"opcode"`      // WebSocket frame opcode.
-	Mask        bool    `json:"mask"`        // WebSocke frame mask.
-	PayloadData string  `json:"payloadData"` // WebSocke frame payload data.
+	Opcode      float64 `json:"opcode"`      // WebSocket message opcode.
+	Mask        bool    `json:"mask"`        // WebSocket message mask.
+	PayloadData string  `json:"payloadData"` // WebSocket message payload data. If the opcode is 1, this is a text message and payloadData is a UTF-8 string. If the opcode isn't 1, then payloadData is a base64 encoded string representing binary data.
 }
 
 // CachedResource information about the cached resource.
 type CachedResource struct {
-	URL      string            `json:"url"`                // Resource URL. This is the url of the original network request.
-	Type     page.ResourceType `json:"type"`               // Type of this resource.
-	Response *Response         `json:"response,omitempty"` // Cached response data.
-	BodySize float64           `json:"bodySize"`           // Cached response body size.
+	URL      string       `json:"url"`                // Resource URL. This is the url of the original network request.
+	Type     ResourceType `json:"type"`               // Type of this resource.
+	Response *Response    `json:"response,omitempty"` // Cached response data.
+	BodySize float64      `json:"bodySize"`           // Cached response body size.
 }
 
 // Initiator information about the request initiator.
@@ -589,7 +673,7 @@ func (t *InterceptionStage) UnmarshalJSON(buf []byte) error {
 // RequestPattern request pattern for interception.
 type RequestPattern struct {
 	URLPattern        string            `json:"urlPattern,omitempty"`        // Wildcards ('*' -> zero or more, '?' -> exactly one) are allowed. Escape character is backslash. Omitting is equivalent to "*".
-	ResourceType      page.ResourceType `json:"resourceType,omitempty"`      // If set, only requests for matching resource types will be intercepted.
+	ResourceType      ResourceType      `json:"resourceType,omitempty"`      // If set, only requests for matching resource types will be intercepted.
 	InterceptionStage InterceptionStage `json:"interceptionStage,omitempty"` // Stage at which to begin intercepting requests. Default is Request.
 }
 
@@ -611,7 +695,6 @@ type SignedExchangeSignature struct {
 // https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-impl.html#cbor-representation.
 type SignedExchangeHeader struct {
 	RequestURL      string                     `json:"requestUrl"`      // Signed exchange request URL.
-	RequestMethod   string                     `json:"requestMethod"`   // Signed exchange request method.
 	ResponseCode    int64                      `json:"responseCode"`    // Signed exchange response code.
 	ResponseHeaders Headers                    `json:"responseHeaders"` // Signed exchange response headers.
 	Signatures      []*SignedExchangeSignature `json:"signatures"`      // Signed exchange response signature.

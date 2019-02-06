@@ -14,18 +14,17 @@ import (
 // HighlightConfig configuration data for the highlighting of page elements.
 type HighlightConfig struct {
 	ShowInfo           bool      `json:"showInfo,omitempty"`           // Whether the node info tooltip should be shown (default: false).
+	ShowStyles         bool      `json:"showStyles,omitempty"`         // Whether the node styles in the tooltip (default: false).
 	ShowRulers         bool      `json:"showRulers,omitempty"`         // Whether the rulers should be shown (default: false).
 	ShowExtensionLines bool      `json:"showExtensionLines,omitempty"` // Whether the extension lines from node to the rulers should be shown (default: false).
-	DisplayAsMaterial  bool      `json:"displayAsMaterial,omitempty"`
-	ContentColor       *cdp.RGBA `json:"contentColor,omitempty"`     // The content box highlight fill color (default: transparent).
-	PaddingColor       *cdp.RGBA `json:"paddingColor,omitempty"`     // The padding highlight fill color (default: transparent).
-	BorderColor        *cdp.RGBA `json:"borderColor,omitempty"`      // The border highlight fill color (default: transparent).
-	MarginColor        *cdp.RGBA `json:"marginColor,omitempty"`      // The margin highlight fill color (default: transparent).
-	EventTargetColor   *cdp.RGBA `json:"eventTargetColor,omitempty"` // The event target element highlight fill color (default: transparent).
-	ShapeColor         *cdp.RGBA `json:"shapeColor,omitempty"`       // The shape outside fill color (default: transparent).
-	ShapeMarginColor   *cdp.RGBA `json:"shapeMarginColor,omitempty"` // The shape margin fill color (default: transparent).
-	SelectorList       string    `json:"selectorList,omitempty"`     // Selectors to highlight relevant nodes.
-	CSSGridColor       *cdp.RGBA `json:"cssGridColor,omitempty"`     // The grid layout color (default: transparent).
+	ContentColor       *cdp.RGBA `json:"contentColor,omitempty"`       // The content box highlight fill color (default: transparent).
+	PaddingColor       *cdp.RGBA `json:"paddingColor,omitempty"`       // The padding highlight fill color (default: transparent).
+	BorderColor        *cdp.RGBA `json:"borderColor,omitempty"`        // The border highlight fill color (default: transparent).
+	MarginColor        *cdp.RGBA `json:"marginColor,omitempty"`        // The margin highlight fill color (default: transparent).
+	EventTargetColor   *cdp.RGBA `json:"eventTargetColor,omitempty"`   // The event target element highlight fill color (default: transparent).
+	ShapeColor         *cdp.RGBA `json:"shapeColor,omitempty"`         // The shape outside fill color (default: transparent).
+	ShapeMarginColor   *cdp.RGBA `json:"shapeMarginColor,omitempty"`   // The shape margin fill color (default: transparent).
+	CSSGridColor       *cdp.RGBA `json:"cssGridColor,omitempty"`       // The grid layout color (default: transparent).
 }
 
 // InspectMode [no description].
@@ -38,9 +37,10 @@ func (t InspectMode) String() string {
 
 // InspectMode values.
 const (
-	InspectModeSearchForNode        InspectMode = "searchForNode"
-	InspectModeSearchForUAShadowDOM InspectMode = "searchForUAShadowDOM"
-	InspectModeNone                 InspectMode = "none"
+	InspectModeSearchForNode         InspectMode = "searchForNode"
+	InspectModeSearchForUAShadowDOM  InspectMode = "searchForUAShadowDOM"
+	InspectModeCaptureAreaScreenshot InspectMode = "captureAreaScreenshot"
+	InspectModeNone                  InspectMode = "none"
 )
 
 // MarshalEasyJSON satisfies easyjson.Marshaler.
@@ -60,6 +60,8 @@ func (t *InspectMode) UnmarshalEasyJSON(in *jlexer.Lexer) {
 		*t = InspectModeSearchForNode
 	case InspectModeSearchForUAShadowDOM:
 		*t = InspectModeSearchForUAShadowDOM
+	case InspectModeCaptureAreaScreenshot:
+		*t = InspectModeCaptureAreaScreenshot
 	case InspectModeNone:
 		*t = InspectModeNone
 
