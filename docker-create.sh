@@ -46,19 +46,30 @@ done
 ###############################################################################
 # Docker-compose / build and up
 ###############################################################################
+echo '-------------------------------------------'
+echo '[docker-compose] build'
+echo '-------------------------------------------'
 docker-compose  build
+echo '-------------------------------------------'
+echo '[docker-compose] up'
+echo '-------------------------------------------'
 docker-compose  up -d
 
 # MONGO settings
-sleep 3s
+echo '-------------------------------------------'
+echo '[Mongo] starting mongo now.'
+echo '-------------------------------------------'
+sleep 15s
 MONGO_PORT=30017
 mongo 127.0.0.1:${MONGO_PORT}/admin --eval "var port = ${MONGO_PORT};" ./docker_build/mongo/init.js
 mongorestore -h 127.0.0.1:${MONGO_PORT} --db hiromaily docker_build/mongo/dump/hiromaily
 
 # Cassandra
 #wait to be ready
+echo '-------------------------------------------'
 echo '[cassandra] starting cassandra now.'
-sleep 10s
+echo '-------------------------------------------'
+sleep 15s
 while :
 do
     LOGS=`docker logs lib-cassandra --tail 5 | grep "Starting listening for CQL clients on /0.0.0.0:9042"`
