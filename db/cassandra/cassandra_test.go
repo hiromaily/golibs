@@ -32,7 +32,9 @@ func setup() {
 }
 
 func teardown() {
-	GetCass().Close()
+	if GetCass() != nil {
+		GetCass().Close()
+	}
 }
 
 func TestMain(m *testing.M) {
