@@ -38,11 +38,11 @@ func New(host, dbname, user, pass string, port uint16) error {
 
 		dbInfo.DB, err = dbInfo.Connection()
 	}
-	fmt.Printf("dbInfo.db %#v\n", *dbInfo.DB)
 	if err != nil {
-		//panic(err.Error())
 		return err
 	}
+	//FIXME:call of fmt.Printf copies lock value: github.com/hiromaily/golibs/vendor/github.com/jinzhu/gorm.DB contains sync.Map contains sync.Mutex
+	//fmt.Printf("dbInfo.db %#v\n", *dbInfo.DB)
 
 	return nil
 }
