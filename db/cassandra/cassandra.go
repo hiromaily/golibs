@@ -1,7 +1,6 @@
 package cassandra
 
 import (
-	"fmt"
 	"github.com/gocql/gocql"
 )
 
@@ -25,7 +24,7 @@ func New(hosts []string, port int, keyspace string) (err error) {
 	} else {
 		cluster.Port = port
 	}
-	cluster.ProtoVersion = 4
+	//cluster.ProtoVersion = 4
 	cluster.Consistency = gocql.Quorum
 
 	cassInfo.Session, err = cluster.CreateSession()
@@ -43,10 +42,10 @@ func GetCass() *CassInfo {
 
 // SetKeySpace is to change keyspace(database)
 // TODO:What happened?
-func (cs *CassInfo) SetKeySpace(keyspace string) error {
-	err := cs.Session.Query(fmt.Sprintf("use %s", keyspace)).Exec()
-	return err
-}
+//func (cs *CassInfo) SetKeySpace(keyspace string) error {
+//	err := cs.Session.Query(fmt.Sprintf("use %s", keyspace)).Exec()
+//	return err
+//}
 
 // Close is to close connection
 func (cs *CassInfo) Close() {
