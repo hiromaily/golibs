@@ -50,10 +50,17 @@ echo '-------------------------------------------'
 echo '[docker-compose] build'
 echo '-------------------------------------------'
 docker-compose  build
+if [ $? -gt 0 ]; then
+    exit $?
+fi
+
 echo '-------------------------------------------'
 echo '[docker-compose] up'
 echo '-------------------------------------------'
 docker-compose  up -d
+if [ $? -gt 0 ]; then
+    exit $?
+fi
 
 # MONGO settings
 echo '-------------------------------------------'
@@ -85,6 +92,9 @@ done
 echo '[cassandra] done!'
 
 #kafka
+echo '-------------------------------------------'
+echo '[kafka] starting cassandra now.'
+echo '-------------------------------------------'
 echo '[kafka] starting kafka now.'
 #while :
 #do

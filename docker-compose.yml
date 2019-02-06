@@ -37,8 +37,8 @@ services:
   # PostgreSQL
   pg:
     image: mdillon/postgis:9.6
-    read_only: true
     container_name: lib-pg
+    read_only: true
     ports:
       - "5432"
     environment:
@@ -59,7 +59,7 @@ services:
 
   # Redis
   redis:
-    image: redis:3.2
+    image: redis:5.0
     container_name: lib-redis
     ports:
       - "6379"
@@ -70,27 +70,28 @@ services:
 
   # Mongo
   mongo:
-    image: mongo:3.3
+    image: mongo:4.0
     container_name: lib-mongo
     ports:
       - "27017"
 
   # Cassandra
   cassandra:
-    build:
-      context: ./docker_build/cassandra/
-      dockerfile: Dockerfile
-      #args:
-      #  redisHostName: redis-server
-      #  mysqlHostName: mysql-server
-    image: lib-cassandra:v1.0
+    #build:
+    #  context: ./docker_build/cassandra/
+    #  dockerfile: Dockerfile
+    #  #args:
+    #  #  redisHostName: redis-server
+    #  #  mysqlHostName: mysql-server
+    #image: lib-cassandra:v1.0
+    image: cassandra:3.11
     container_name: lib-cassandra
     ports:
       - "9042"
 
   # NATS
   nats:
-    image: nats:0.9.4
+    image: nats:1.4.0
     container_name: lib-nats1
     ports:
       - "4222:4222"
@@ -99,7 +100,7 @@ services:
 
   # RabbitMQ
   rmq:
-    image: rabbitmq:3.6-management
+    image: rabbitmq:3.7.11-management
     container_name: lib-rmq1
     ports:
       - "4369:4369"
@@ -120,12 +121,14 @@ services:
       - "2181:2181"
 
   kafka:
-    build: ./docker_build/kafka/files/
+    image: wurstmeister/kafka:2.12-2.0.1
+    #build: ./docker_build/kafka/files/
     container_name: lib-kafka1
     ports:
       - "9092"
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: 100.69.18.116
+      KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
+      #KAFKA_ADVERTISED_HOST_NAME: 100.69.18.116
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_CREATE_TOPICS: "Topic1:1:1,Topic2:1:1"
     volumes:
