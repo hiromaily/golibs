@@ -15,8 +15,9 @@ jobs:
             go get -u github.com/gordonklaus/ineffassign
             go get github.com/securego/gosec/cmd/gosec/...
   go-lint:
-    docker: true
     working_directory: /go/src/github.com/hiromaily/golibs
+    docker:
+      - image: circleci/golang:1.11.5
     steps:
       - run:
           name: static analysises
@@ -27,8 +28,9 @@ jobs:
             ineffassign .
             gosec ./...
   test:
-    docker: true
     working_directory: /go/src/github.com/hiromaily/golibs
+    docker:
+      - image: circleci/golang:1.11.5
     steps:
       - run:
           name: set environment variable
