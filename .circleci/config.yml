@@ -39,7 +39,7 @@ workflows:
   version: 2
   build:
     jobs:
-      - build:
+      - build
       - go-lint:
           filters:
             branches:
