@@ -37,14 +37,15 @@ jobs:
             go test -v ./...
 workflows:
   version: 2
-  build:
+  build_and_test:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: /.*/
       - go-lint:
-          filters:
-            branches:
-              only: /.*/
+          requires:
+            - setup
       - test:
-          filters:
-            branches:
-              only: /.*/
+          requires:
+            - setup
