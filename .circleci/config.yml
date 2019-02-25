@@ -1,10 +1,9 @@
 version: 2
 jobs:
   setup:
+    working_directory: /go/src/github.com/hiromaily/golibs
     docker:
       - image: circleci/golang:1.11.5
-  go-lint:
-    working_directory: /go/src/github.com/hiromaily/golibs
     steps:
       - checkout
       - run: git branch -u origin/${CIRCLE_BRANCH}
@@ -15,6 +14,9 @@ jobs:
             go get -u github.com/client9/misspell/cmd/misspell
             go get -u github.com/gordonklaus/ineffassign
             go get github.com/securego/gosec/cmd/gosec/...
+  go-lint:
+    working_directory: /go/src/github.com/hiromaily/golibs
+    steps:
       - run:
           name: static analysises
           command: |
