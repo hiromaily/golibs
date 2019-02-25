@@ -30,3 +30,26 @@ func TestDecimalString(t *testing.T) {
 		fmt.Printf(val.format+"\n", d)
 	}
 }
+
+func TestConvert(t *testing.T) {
+	// 1 wei is 1,000,000,000,000,000,000 wei
+
+	var tests = []struct {
+		amount   string
+		expected string
+	}{
+		{"1", "1000000000000000000"},
+		{"0.35", "350000000000000000"},
+		{"1.35", "1350000000000000000"},
+		{"21.35", "21350000000000000000"},
+		{"21.356", "21356000000000000000"},
+		{"321.35", "321350000000000000000"},     //decimalでは、この桁からうまく返せない。。。
+		{"99999.35", "99999350000000000000000"}, //
+	}
+
+	for _, val := range tests {
+		d, _ := new(dc.Big).SetString(val.amount)
+		fmt.Printf("%30f\n", d.Quantize(-30))
+	}
+
+}
