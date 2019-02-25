@@ -44,7 +44,10 @@ func InitializeTest(prefix string) {
 	}
 
 	//crypt
-	enc.NewCryptWithEnv()
+	_, err := enc.NewCryptWithEnv()
+	if err != nil{
+		panic(err)
+	}
 
 	//conf
 	if *ConfFile == "" {

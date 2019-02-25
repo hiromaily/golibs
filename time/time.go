@@ -25,6 +25,33 @@ var TimeLayouts = []string{
 	time.RFC3339Nano,                  //11
 }
 
+// Track is to track elapsed time
+//  e.g. Caller: defer Track(time.Now(), "parseFile()")
+//  https://medium.com/@2xb/execution-time-tracking-in-golang-9379aebfe20e#.ffxgxejim
+func Track(start time.Time, name string) {
+	elapsed := time.Since(start)
+	fmt.Printf("%s took %s\n", name, elapsed)
+}
+
+// Timeout sample
+func Timeout() {
+	cMsg := make(chan string, 1)
+	go func() {
+		time.Sleep(2 * time.Second)
+		cMsg <- "func is done after 2 second"
+	}()
+
+	select {
+	case res := <-cMsg:
+		fmt.Println(res)
+	case <-time.After(1 * time.Second):
+		fmt.Println("timeout 1")
+	}
+
+	fmt.Println("Done Timeout()")
+}
+
+
 // CheckParseTime is to return accessible format
 func CheckParseTime(s string) []int {
 	s = strings.TrimSpace(s)
@@ -67,14 +94,6 @@ func ParseTimeForRss(str string) (time.Time, error) {
 		t, err = time.Parse(time.RFC1123Z, str)
 	}
 	return t, err
-}
-
-// Track is to track elapsed time
-//  e.g. Caller: defer Track(time.Now(), "parseFile()")
-//  https://medium.com/@2xb/execution-time-tracking-in-golang-9379aebfe20e#.ffxgxejim
-func Track(start time.Time, name string) {
-	elapsed := time.Since(start)
-	fmt.Printf("%s took %s\n", name, elapsed)
 }
 
 // GetCurrentDateTimeByStr is to get current time by string

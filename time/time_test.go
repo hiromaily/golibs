@@ -52,6 +52,18 @@ func TestBasic(t *testing.T) {
 //-----------------------------------------------------------------------------
 // Test
 //-----------------------------------------------------------------------------
+func TestTrack(t *testing.T) {
+	tu.SkipLog(t)
+	defer Track(time.Now(), "TestTrack()")
+
+	//sleep
+	time.Sleep(1000 * time.Millisecond)
+}
+
+func TestTimeout(t *testing.T) {
+	Timeout()
+}
+
 func TestCheckParseTime(t *testing.T) {
 	tu.SkipLog(t)
 
@@ -104,14 +116,6 @@ func TestParseTimeForRss(t *testing.T) {
 		t.Errorf("[01]ParseTimeForRss error: %s", err)
 	}
 	lg.Debugf("time is %v", ti)
-}
-
-func TestTrack(t *testing.T) {
-	tu.SkipLog(t)
-	defer Track(time.Now(), "TestTrack()")
-
-	//sleep
-	time.Sleep(1000 * time.Millisecond)
 }
 
 func TestGetCurrentTimeByStr(t *testing.T) {
