@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  setup:
     docker:
       - image: circleci/golang:1.11.5
   go-lint:
@@ -39,13 +39,13 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build:
+      - setup:
           filters:
             branches:
               only: /.*/
       - go-lint:
           requires:
-            - build
+            - setup
       - test:
           requires:
-            - build
+            - setup
