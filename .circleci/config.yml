@@ -1,9 +1,9 @@
 version: 2
 jobs:
-  go-lint:
+  build:
     docker:
       - image: circleci/golang:1.11.5
-
+  go-lint:
     working_directory: /go/src/github.com/hiromaily/golibs
     steps:
       - checkout
@@ -23,6 +23,9 @@ jobs:
             misspell `find . -name "*.go" | grep -v "/vendor/"`
             ineffassign .
             gosec ./...
+  test:
+    working_directory: /go/src/github.com/hiromaily/golibs
+    steps:
       - run:
           name: set environment variable
           command: |
@@ -34,9 +37,14 @@ jobs:
             go test -v ./...
 workflows:
   version: 2
-  build:
+  run_jobs:
     jobs:
+      - build:
       - go-lint:
+          filters:
+            branches:
+              only: /.*/
+      - test:
           filters:
             branches:
               only: /.*/
