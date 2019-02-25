@@ -21,7 +21,7 @@ jobs:
             go vet `go list ./... | grep -v "/vendor/"`
             misspell `find . -name "*.go" | grep -v "/vendor/"`
             ineffassign .
-            gosec ./...
+            #gosec ./...
       - run:
           name: set environment variable
           command: |
