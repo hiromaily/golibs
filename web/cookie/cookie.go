@@ -27,17 +27,22 @@ import (
 const BlockSize = 16
 
 // This path would be changed by environment even same OS
+//var cookieBaseDir = map[string]string{
+//	"darwin": "%s/Library/Application Support/Google/Chrome/Default/Cookies", //mac
+//	"linux":  "%s/.config/google-chrome/Default/Cookies",
+//}
 var cookieBaseDir = map[string]string{
-	"darwin": "%s/Library/Application Support/Google/Chrome/Default/Cookies", //mac
-	"linux":  "%s/.config/google-chrome/Default/Cookies",
+	"darwin": "%s/Library/Application Support/Google/Chrome/%s/Cookies", //mac
+	"linux":  "%s/.config/google-chrome/%s/Cookies",
 }
 
 // Chromium Mac os_crypt:  http://dacort.me/1ynPMgx
 var (
-	salt       = "saltysalt"
-	iv         = "                "
-	password   = ""
-	iterations = 1003
+	profileName = "Default"
+	salt        = "saltysalt"
+	iv          = "                "
+	password    = ""
+	iterations  = 1003
 )
 
 // Cookie - Items for a cookie
@@ -73,6 +78,10 @@ func init() {
 //
 //	_ = GetValue(domain, "key")
 //}
+
+func SetProfile(name string) {
+	profileName = name
+}
 
 func PrintCookies(url string) error {
 	cookies, err := getCookies(url)
@@ -227,7 +236,7 @@ func getCookies(domain string) ([]Cookie, error) {
 
 	var cookiesFile string
 	if val, ok := cookieBaseDir[runtime.GOOS]; ok {
-		cookiesFile = fmt.Sprintf(val, usr.HomeDir)
+		cookiesFile = fmt.Sprintf(val, usr.HomeDir, profileName)
 	} else {
 		return nil, errors.Errorf("os[%s] is not supported ", runtime.GOOS)
 	}
