@@ -45,7 +45,7 @@ func InitializeTest(prefix string) {
 
 	//crypt
 	_, err := enc.NewCryptWithEnv()
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 

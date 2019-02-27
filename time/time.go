@@ -51,7 +51,6 @@ func Timeout() {
 	fmt.Println("Done Timeout()")
 }
 
-
 // CheckParseTime is to return accessible format
 func CheckParseTime(s string) []int {
 	s = strings.TrimSpace(s)
