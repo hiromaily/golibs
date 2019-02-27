@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  go-lint:
     working_directory: /go/src/github.com/hiromaily/golibs
     docker:
       - image: circleci/golang:1.11.5
@@ -27,10 +27,10 @@ jobs:
           command: |
             echo 'export SOMETHING="$GOPATH/src/github.com/hiromaily/golibs"' >> $BASH_ENV
             source $BASH_ENV
-      - run:
-          name: go test
-          command: |
-            go test -v ./...
+      #- run:
+      #    name: go test
+      #    command: |
+      #      go test -v ./...
 
 #  go-lint:
 #   working_directory: /go/src/github.com/hiromaily/golibs
@@ -62,15 +62,9 @@ jobs:
 
 workflows:
   version: 2
-  build_and_test:
+  build:
     jobs:
-      - build:
+      - go-lint:
           filters:
             branches:
               only: /.*/
-#      - go-lint:
-#          requires:
-#            - build
-#      - test:
-#          requires:
-#            - build
