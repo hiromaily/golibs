@@ -7,18 +7,19 @@ import (
 )
 
 func TestServer(t *testing.T) {
-	//listner
-	listener, _, err := NewListner()
+	//server / listener
+	server := NewServer()
+	err := server.Open()
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	// wait shutdown by signal
 	close := make(chan error)
-	WaitShutdown(listener, close)
+	server.WaitShutdown(close)
 
 	// handle request from client
-	Server(listener)
+	server.Run()
 
 	//wait from shutdown
 	err = <-close

@@ -5,18 +5,19 @@ import (
 )
 
 func main() {
-	//listner
-	listener, _, err := ud.NewListner()
+	//server / listener
+	server := ud.NewServer()
+	err := server.Open()
 	if err != nil {
 		panic(err)
 	}
 
 	// wait shutdown by signal
 	close := make(chan error)
-	ud.WaitShutdown(listener, close)
+	server.WaitShutdown(close)
 
 	// handle request from client
-	ud.Server(listener)
+	server.Run()
 
 	//wait from shutdown
 	err = <-close

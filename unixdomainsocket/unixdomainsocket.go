@@ -7,47 +7,66 @@ import (
 	"os"
 	"os/signal"
 	"path/filepath"
-	"strconv"
 	"syscall"
 )
 
-// NewListner is to return net.listener object
-func NewListner() (net.Listener, string, error) {
+// Server object
+type Server struct {
+	listener   net.Listener
+	pid        int
+	socketPath string
+}
+
+// NewServer is to return server object
+func NewServer() *Server {
+	s := new(Server)
+	return s
+}
+
+// Open is to create net.listener object
+func (s *Server) Open() error {
 
 	// create sock file
-	sockFile := filepath.Join(os.TempDir(), "socketfile")
-	fmt.Printf("socket file: %s\n", sockFile)
+	s.socketPath = filepath.Join(os.TempDir(), "socketfile")
+	fmt.Printf("socket file: %s\n", s.socketPath)
 
 	// pid
-	pid := strconv.Itoa(os.Getpid())
-	fmt.Printf("pid: %s\n", pid)
+	s.pid = os.Getpid()
+	fmt.Printf("pid: %d\n", s.pid)
 
 	// listen
-	listener, err := net.Listen("unix", sockFile)
+	var err error
+	s.listener, err = net.Listen("unix", s.socketPath)
 	if err != nil {
-		return nil, "", err
+		return err
 	}
 
 	// change owner
-	if err := os.Chmod(sockFile, 0700); err != nil {
-		return nil, "", err
+	if err := os.Chmod(s.socketPath, 0700); err != nil {
+		s.Close()
+		return err
 	}
 
-	return listener, sockFile, nil
+	return nil
 }
 
-// Server is to receive request from client
-func Server(listener net.Listener) {
+// Close is to close listener
+func (s *Server) Close() error {
+	return s.listener.Close()
+}
+
+// Run is to receive request from client
+func (s *Server) Run() {
 	for {
-		conn, err := listener.Accept()
+		conn, err := s.listener.Accept()
 		if err != nil {
 			return
 		}
-		go process(conn)
+		go s.process(conn)
 	}
 }
 
-func process(conn net.Conn) {
+func (s *Server) process(conn net.Conn) {
 	defer conn.Close()
 
 	for {
@@ -57,7 +76,7 @@ func process(conn net.Conn) {
 			break
 		}
 		data := buf[0:nr]
-		fmt.Printf("Recieved: %v", string(data))
+		fmt.Printf("Received: %v", string(data))
 		_, err = conn.Write(data)
 		if err != nil {
 			log.Printf("error: %v\n", err)
@@ -67,7 +86,7 @@ func process(conn net.Conn) {
 }
 
 // WaitShutdown to wait shutdown by signal
-func WaitShutdown(listener net.Listener, close chan error) {
+func (s *Server) WaitShutdown(close chan error) {
 	c := make(chan os.Signal, 1)
 	// wait Ctrl+C, kill -SIGTERM xxx
 	signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
@@ -83,7 +102,7 @@ func WaitShutdown(listener net.Listener, close chan error) {
 			}
 			break
 		}
-		if err := listener.Close(); err != nil {
+		if err := s.Close(); err != nil {
 			close <- err
 		}
 		close <- nil
