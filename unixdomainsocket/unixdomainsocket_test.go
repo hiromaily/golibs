@@ -8,7 +8,7 @@ import (
 
 func TestServer(t *testing.T) {
 	//listner
-	listener, tempDir, err := NewListner()
+	listener, _, err := NewListner()
 	if err != nil {
 		t.Fatal(err)
 	}

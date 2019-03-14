@@ -48,6 +48,8 @@ func Server(listener net.Listener) {
 }
 
 func process(conn net.Conn) {
+	defer conn.Close()
+
 	for {
 		buf := make([]byte, 512)
 		nr, err := conn.Read(buf)
@@ -62,7 +64,6 @@ func process(conn net.Conn) {
 			break
 		}
 	}
-	conn.Close()
 }
 
 // WaitShutdown to wait shutdown by signal
