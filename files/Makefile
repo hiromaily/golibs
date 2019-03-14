@@ -1,2 +1,6 @@
 run:
-	go run ./cmd/main.go
+	go run ./cmd/notify/main.go
+
+run2:
+	go run ./cmd/lock/main.go
+	
