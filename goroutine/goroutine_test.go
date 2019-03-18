@@ -2,13 +2,17 @@ package goroutine_test
 
 import (
 	"fmt"
+	"runtime"
+
 	. "github.com/hiromaily/golibs/goroutine"
+
 	//lg "github.com/hiromaily/golibs/log"
-	tu "github.com/hiromaily/golibs/testutil"
-	u "github.com/hiromaily/golibs/utils"
 	"os"
 	"sync"
 	"testing"
+
+	tu "github.com/hiromaily/golibs/testutil"
+	u "github.com/hiromaily/golibs/utils"
 )
 
 type User struct {
@@ -55,9 +59,40 @@ func something2(idx int, data interface{}) {
 	fmt.Printf("apple: %d, banana:%d, lemon:%d\n", result["apple"], result["banana"], result["lemon"])
 }
 
+func loop(count int) int {
+	sum := 0
+	for i := 0; i < count; i++ {
+		sum += i
+	}
+	return sum
+}
+
 //-----------------------------------------------------------------------------
 // Test
 //-----------------------------------------------------------------------------
+func TestGetGOMAXPROCS(t *testing.T) {
+	count := 1000000000
+
+	//1.32s
+	// loop(count)
+	// loop(count)
+	// loop(count)
+	// loop(count)
+
+	//0.64s
+	wg := &sync.WaitGroup{}
+	for i := 0; i < runtime.NumCPU(); i++ {
+		wg.Add(1)
+		go func() {
+			loop(count)
+			wg.Done()
+		}()
+	}
+	wg.Wait()
+
+	t.Log(GetGOMAXPROCS())
+}
+
 func TestSemaphore1(t *testing.T) {
 	//tu.SkipLog(t)
 

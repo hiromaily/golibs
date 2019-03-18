@@ -1,7 +1,9 @@
 package goroutine
 
 import (
+	"fmt"
 	"os"
+	"runtime"
 	"strconv"
 	"sync"
 )
@@ -14,9 +16,10 @@ func GetGOMAXPROCS() int {
 		coreNum, _ := strconv.Atoi(os.Getenv("GOMAXPROCS"))
 		return coreNum
 	}
-	//fmt.Println(runtime.NumCPU())        //number of logical CPUs
+	fmt.Printf("runtime.NumCPU() %d\n", runtime.NumCPU()) //number of logical CPUs
 	//fmt.Println(runtime.GOMAXPROCS(0))   //GOMAXPROCS sets the maximum number of CPUs(Don't need to use)
-	//fmt.Println(runtime.NumGoroutine())  //number of goroutines
+	fmt.Printf("runtime.NumGoroutine() %d\n", runtime.NumGoroutine()) //number of goroutines
+
 	return 0
 }
 
