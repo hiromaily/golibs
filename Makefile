@@ -16,71 +16,106 @@ LOG_ARG='-v'
 ###############################################################################
 # PKG Dependencies
 ###############################################################################
+.PHONY: update
 update:
-	go get -u github.com/golang/dep/...
-	go get -u github.com/rakyll/hey
-	go get -u github.com/davecheney/httpstat
-	go get -u github.com/client9/misspell/cmd/misspell
-	go get -u github.com/gordonklaus/ineffassign
-	go get -u github.com/pilu/fresh
-	go get -u github.com/tools/godep
-
-	go get -u github.com/alecthomas/gometalinter
+	#go get -u github.com/tools/godep
+	#go get -u github.com/golang/dep/...
+	#go get -u github.com/alecthomas/gometalinter
 	#gometalinter --install
+	GO111MODULE=off go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
+	GO111MODULE=off go get -u github.com/rakyll/hey
+	GO111MODULE=off go get -u github.com/davecheney/httpstat
+	GO111MODULE=off go get -u github.com/client9/misspell/cmd/misspell
+	GO111MODULE=off go get -u github.com/gordonklaus/ineffassign
+	GO111MODULE=off go get -u github.com/pilu/fresh
 
-	go get -u -d -v ./...
+	GO111MODULE=on go get -u -d -v ./...
+
+.PHONY: imports-settings
+imports-settings:
+	GO111MODULE=off go get -u github.com/pwaller/goimports-update-ignore
+	goimports-update-ignore -max-depth 5
 
 
 ###############################################################################
 # Managing Dependencies
 ###############################################################################
-godep:
-	rm -rf Godeps
-	rm -rf ./vendor
-	godep save ./...
+#godep:
+#	rm -rf Godeps
+#	rm -rf ./vendor
+#	godep save ./...
 
-dep:
-	dep ensure
+#dep:
+#	dep ensure
 
-dep-update:
-	dep ensure -update
+#dep-update:
+#	dep ensure -update
 
+.PHONY: mod-private-git
+mod-private-git:
+	git config --global --add url."git@github.yourhost.com:".insteadOf "https://github.yourhost.com/"
+
+.PHONY: mod-init
+mod-init:
+	GO111MODULE=on go mod init
+
+.PHONY: mod-update
+mod-update:
+	GO111MODULE=on go get -u -d -v ./...
+	GO111MODULE=on go mod tidy
+
+.PHONY: mod-vendor
+mod-vendor:
+	GO111MODULE=on go mod download
+	GO111MODULE=on go mod vendor
 
 ###############################################################################
 # Clean
 ###############################################################################
-cln:
+.PHONY: clean
+clean:
 	go clean -n
 
-clnok:
+.PHONY: cleanok
+cleanok:
 	go clean
 
 
 ###############################################################################
 # Golang formatter and detection
 ###############################################################################
+
+.PHONY: fmt
 fmt:
 	go fmt `go list ./... | grep -v '/vendor/'`
 
+.PHONY: vet
 vet:
 	go vet `go list ./... | grep -v '/vendor/'`
 
-fix:
-	go fix `go list ./... | grep -v '/vendor/'`
+.PHONY: imports
+imports:
+	./scripts/goimports.sh
 
+.PHONY: lint
 lint:
-	golint ./... | grep -v '^vendor\/' || true
-	misspell `find . -name "*.go" | grep -v '/vendor/'`
-	ineffassign .
+	golangci-lint run
 
+#lint:
+# 	golint ./... | grep -v '^vendor\/' || true
+# 	misspell `find . -name "*.go" | grep -v '/vendor/'`
+# 	ineffassign .
+
+.PHONY: chk
 chk:
 	go fmt `go list ./... | grep -v '/vendor/'`
 	go vet `go list ./... | grep -v '/vendor/'`
-	go fix `go list ./... | grep -v '/vendor/'`
+	#go fix `go list ./... | grep -v '/vendor/'`
 	golint ./... | grep -v '^vendor\/' || true
 	misspell `find . -name "*.go" | grep -v '/vendor/'`
 	ineffassign .
 
+.PHONY: ins
 ins:
 	go install -race -v ./...
 
@@ -88,7 +123,7 @@ ins:
 # Docker
 ###############################################################################
 docker:
-	sh ./docker-create.sh
+	sh ./scripts/create-containers
 
 up:
 	docker-compose up
