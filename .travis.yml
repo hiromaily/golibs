@@ -24,7 +24,7 @@ script:
   - go fmt ./...
   - go vet $(go list ./... | grep -v /vendor/)
   #- go test -v auth/jwt/jwt_test.go -log 0
-  - cd ${PROJ_PATH}; ./coverage.sh
+  - cd ${PROJ_PATH}; ./scripts/coverage.sh
 
 after_success:
   - cd ${PROJ_PATH};goveralls -coverprofile=profile.cov -service=travis-ci
