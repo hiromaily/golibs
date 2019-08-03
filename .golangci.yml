@@ -1,0 +1,48 @@
+run:
+  deadline: 2m
+  skip-dirs:
+    - .circleci
+    - docker_build
+    - scripts
+    - testdata
+    - vendor
+
+linters-settings:
+  gofmt:
+    simplify: false
+  misspell:
+    locale: US
+  goimports:
+    # put imports beginning with prefix after 3rd-party packages;
+    # it's a comma-separated list of prefixes
+    local-prefixes: github.com/hiromaily/golibs
+
+issues:
+  exclude:
+    - type name will be used
+
+linters:
+  disable-all: true
+  enable:
+    #- gofmt
+    - goimports
+    - govet
+    - golint
+    - deadcode
+    - gosimple
+    - ineffassign
+    - staticcheck
+    - structcheck
+    - typecheck
+    - unused
+    - varcheck
+    - misspell
+  presets:
+    - format
+  # This commented out would be removed step by step, for now changes are quite big.
+  #    - errcheck
+  #    - bugs
+  #    - complexity
+  #    - performance
+  #    - style
+  fast: true
