@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/garyburd/redigo/redis"
+
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/redis"
 	lg "github.com/hiromaily/golibs/log"

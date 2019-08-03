@@ -3,8 +3,9 @@ package nats
 import (
 	"fmt"
 
-	lg "github.com/hiromaily/golibs/log"
 	"github.com/nats-io/nats.go"
+
+	lg "github.com/hiromaily/golibs/log"
 )
 
 //https://github.com/nats-io/nats

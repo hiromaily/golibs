@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"time"
 
-	lg "github.com/hiromaily/golibs/log"
 	"github.com/streadway/amqp"
+
+	lg "github.com/hiromaily/golibs/log"
 )
 
 // RM is struct of RabitMQ object

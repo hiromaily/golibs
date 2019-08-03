@@ -5,6 +5,7 @@ import (
 	"sync"
 
 	"github.com/Shopify/sarama"
+
 	lg "github.com/hiromaily/golibs/log"
 )
 

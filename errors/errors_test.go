@@ -4,9 +4,10 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/pkg/errors"
+
 	lg "github.com/hiromaily/golibs/log"
 	r "github.com/hiromaily/golibs/runtimes"
-	"github.com/pkg/errors"
 )
 
 // "github.com/pkg/errors"

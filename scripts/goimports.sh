@@ -9,4 +9,4 @@ for gofile in $gofiles; do
 done
 
 go fmt `go list ./... | grep -v "/vendor/"`
-goimports -local github.com/hiromaily/golinbs/ -w `goimports -local github.com/hiromaily/golinbs/ -l ./ | grep -v "/vendor/"`
+goimports -local github.com/hiromaily/golibs/ -w `goimports -local github.com/hiromaily/golibs/ -l ./ | grep -v "/vendor/"`
