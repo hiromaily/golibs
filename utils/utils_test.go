@@ -2,11 +2,12 @@ package utils_test
 
 import (
 	"fmt"
+	"os"
+	"testing"
+
 	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
 	. "github.com/hiromaily/golibs/utils"
-	"os"
-	"testing"
 )
 
 //-----------------------------------------------------------------------------

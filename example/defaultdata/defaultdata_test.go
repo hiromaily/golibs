@@ -1,10 +1,11 @@
 package defaultdata_test
 
 import (
-	. "github.com/hiromaily/golibs/example/defaultdata"
-	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
+
+	. "github.com/hiromaily/golibs/example/defaultdata"
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 //-----------------------------------------------------------------------------

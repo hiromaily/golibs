@@ -4,10 +4,11 @@ import (
 	//. "github.com/hiromaily/golibs/join"
 	"bytes"
 	"fmt"
-	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"strings"
 	"testing"
+
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 //http://qiita.com/ono_matope/items/d5e70d8a9ff2b54d5c37

@@ -4,10 +4,11 @@ package sqs
 import (
 	"flag"
 	"fmt"
-	conf "github.com/hiromaily/golibs/config"
-	lg "github.com/hiromaily/golibs/log"
 	"os"
 	"runtime"
+
+	conf "github.com/hiromaily/golibs/config"
+	lg "github.com/hiromaily/golibs/log"
 )
 
 // WARNING

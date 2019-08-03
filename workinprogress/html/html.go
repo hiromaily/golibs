@@ -2,10 +2,11 @@ package html
 
 import (
 	"fmt"
-	"golang.org/x/net/html"
-	"golang.org/x/net/html/atom"
 	"io"
 	"strings"
+
+	"golang.org/x/net/html"
+	"golang.org/x/net/html/atom"
 )
 
 //TODO:work in progress

@@ -5,12 +5,14 @@ import (
 	"encoding/xml"
 	"errors"
 	"flag"
+
 	//lg "github.com/hiromaily/golibs/log"
 	//. "github.com/hiromaily/golibs/xml"
-	tu "github.com/hiromaily/golibs/testutil"
 	"io/ioutil"
 	"os"
 	"testing"
+
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 type Rss struct {

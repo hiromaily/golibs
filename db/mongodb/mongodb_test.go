@@ -2,15 +2,18 @@ package mongodb_test
 
 import (
 	"encoding/json"
+
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/mongodb"
 	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
+
 	//r "github.com/hiromaily/golibs/runtimes"
-	"gopkg.in/mgo.v2/bson"
 	"os"
 	"testing"
 	"time"
+
+	"gopkg.in/mgo.v2/bson"
 )
 
 //MongoDB Ver.3.x

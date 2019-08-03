@@ -2,14 +2,15 @@ package exec_test
 
 import (
 	"fmt"
-	. "github.com/hiromaily/golibs/example/exec"
-	lg "github.com/hiromaily/golibs/log"
-	tu "github.com/hiromaily/golibs/testutil"
 	"log"
 	"os"
 	"os/exec"
 	"strings"
 	"testing"
+
+	. "github.com/hiromaily/golibs/example/exec"
+	lg "github.com/hiromaily/golibs/log"
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 //-----------------------------------------------------------------------------

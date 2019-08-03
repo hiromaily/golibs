@@ -3,9 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
-	sig "github.com/hiromaily/golibs/signal"
 	"sync"
 	"time"
+
+	sig "github.com/hiromaily/golibs/signal"
 )
 
 var timeOut = flag.Int("time", 1, "TimeOut(s)")

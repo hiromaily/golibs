@@ -1,14 +1,15 @@
 package cassandra_test
 
 import (
+	"os"
+	"testing"
+	"time"
+
 	"github.com/gocql/gocql"
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/cassandra"
 	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
-	"os"
-	"testing"
-	"time"
 )
 
 var (

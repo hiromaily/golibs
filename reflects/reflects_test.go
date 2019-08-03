@@ -2,14 +2,15 @@ package reflects_test
 
 import (
 	"fmt"
-	lg "github.com/hiromaily/golibs/log"
-	. "github.com/hiromaily/golibs/reflects"
-	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"reflect"
 	"strconv"
 	"testing"
 	"time"
+
+	lg "github.com/hiromaily/golibs/log"
+	. "github.com/hiromaily/golibs/reflects"
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 type TeacherInfo struct {

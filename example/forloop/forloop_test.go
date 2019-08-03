@@ -4,9 +4,10 @@ package forloop_test
 import (
 	//lg "github.com/hiromaily/golibs/log"
 	//. "github.com/hiromaily/golibs/xml"
-	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
+
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 //-----------------------------------------------------------------------------

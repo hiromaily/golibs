@@ -4,7 +4,9 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+
 	"github.com/coopernurse/gorp"
+
 	// mysql driver
 	_ "github.com/go-sql-driver/mysql"
 )

@@ -1,12 +1,13 @@
 package i18n_test
 
 import (
-	. "github.com/hiromaily/golibs/i18n"
-	lg "github.com/hiromaily/golibs/log"
-	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"strings"
 	"testing"
+
+	. "github.com/hiromaily/golibs/i18n"
+	lg "github.com/hiromaily/golibs/log"
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 //-----------------------------------------------------------------------------

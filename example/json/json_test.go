@@ -3,11 +3,12 @@ package json_test
 import (
 	"encoding/json"
 	"fmt"
+	"os"
+	"testing"
+
 	. "github.com/hiromaily/golibs/example/json"
 	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
-	"os"
-	"testing"
 )
 
 //https://scene-si.org/2016/06/13/advanced-go-tips-and-tricks/

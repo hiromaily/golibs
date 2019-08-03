@@ -2,8 +2,9 @@
 package defaultdata
 
 import (
-	lg "github.com/hiromaily/golibs/log"
 	"reflect"
+
+	lg "github.com/hiromaily/golibs/log"
 )
 
 //-----------------------------------------------------------------------------

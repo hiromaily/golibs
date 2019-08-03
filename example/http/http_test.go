@@ -2,11 +2,12 @@ package http_test
 
 import (
 	"encoding/json"
+	"os"
+	"testing"
+
 	. "github.com/hiromaily/golibs/example/http"
 	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
-	"os"
-	"testing"
 )
 
 type MessagesJson struct {

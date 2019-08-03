@@ -1,8 +1,9 @@
 package semaphore_test
 
 import (
-	. "github.com/hiromaily/golibs/semaphore"
 	"testing"
+
+	. "github.com/hiromaily/golibs/semaphore"
 )
 
 func TestSemaphore(t *testing.T) {

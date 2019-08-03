@@ -1,12 +1,13 @@
 package jwt_test
 
 import (
-	. "github.com/hiromaily/golibs/auth/jwt"
-	lg "github.com/hiromaily/golibs/log"
-	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
 	"time"
+
+	. "github.com/hiromaily/golibs/auth/jwt"
+	lg "github.com/hiromaily/golibs/log"
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 //-----------------------------------------------------------------------------

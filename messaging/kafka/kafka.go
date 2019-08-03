@@ -2,9 +2,10 @@ package kafka
 
 import (
 	"fmt"
+	"sync"
+
 	"github.com/Shopify/sarama"
 	lg "github.com/hiromaily/golibs/log"
-	"sync"
 )
 
 // ChReceive is struct of channel for receiver

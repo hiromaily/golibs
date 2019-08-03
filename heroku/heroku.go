@@ -2,9 +2,10 @@ package heroku
 
 import (
 	"fmt"
-	u "github.com/hiromaily/golibs/utils"
 	"os"
 	"strings"
+
+	u "github.com/hiromaily/golibs/utils"
 )
 
 // GetMySQLInfo is to get MySQL information

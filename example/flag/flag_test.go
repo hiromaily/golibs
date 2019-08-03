@@ -2,11 +2,12 @@ package flag_test
 
 import (
 	"flag"
+	"os"
+	"testing"
+
 	. "github.com/hiromaily/golibs/example/flag"
 	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
-	"os"
-	"testing"
 )
 
 var (

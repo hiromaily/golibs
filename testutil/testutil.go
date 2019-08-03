@@ -4,13 +4,14 @@ package testutil
 import (
 	"flag"
 	"fmt"
+	"os"
+	"testing"
+
 	enc "github.com/hiromaily/golibs/cipher/encryption"
 	conf "github.com/hiromaily/golibs/config"
 	lg "github.com/hiromaily/golibs/log"
 	o "github.com/hiromaily/golibs/os"
 	r "github.com/hiromaily/golibs/runtimes"
-	"os"
-	"testing"
 )
 
 var (

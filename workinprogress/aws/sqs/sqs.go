@@ -3,12 +3,13 @@ package sqs
 //TODO:work in progress
 import (
 	"fmt"
+	"strconv"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/sqs"
 	conf "github.com/hiromaily/golibs/config"
 	awslib "github.com/hiromaily/golibs/workinprogress/aws"
-	"strconv"
 )
 
 var svc *sqs.SQS

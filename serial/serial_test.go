@@ -2,10 +2,11 @@ package serial_test
 
 import (
 	"encoding/hex"
-	. "github.com/hiromaily/golibs/serial"
-	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
+
+	. "github.com/hiromaily/golibs/serial"
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 type User struct {

@@ -1,11 +1,12 @@
 package heroku_test
 
 import (
+	"os"
+	"testing"
+
 	. "github.com/hiromaily/golibs/heroku"
 	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
-	"os"
-	"testing"
 )
 
 //-----------------------------------------------------------------------------

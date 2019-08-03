@@ -1,10 +1,12 @@
 package validator_test
 
 import (
+	"os"
+
 	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
 	. "github.com/hiromaily/golibs/validator"
-	"os"
+
 	//"reflect"
 	"sort"
 	"testing"

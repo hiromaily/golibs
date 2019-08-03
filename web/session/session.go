@@ -2,10 +2,11 @@ package session
 
 import (
 	"fmt"
-	lg "github.com/hiromaily/golibs/log"
 	"net/http"
 	"net/http/cookiejar"
 	"time"
+
+	lg "github.com/hiromaily/golibs/log"
 )
 
 //TODO:work in progress

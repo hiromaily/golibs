@@ -1,10 +1,11 @@
 package wrapper_test
 
 import (
-	. "github.com/hiromaily/golibs/example/wrapper"
-	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
+
+	. "github.com/hiromaily/golibs/example/wrapper"
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 //https://golang.org/pkg/strings/

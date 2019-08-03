@@ -3,9 +3,10 @@ package rabbitmq
 import (
 	//"errors"
 	"fmt"
+	"time"
+
 	lg "github.com/hiromaily/golibs/log"
 	"github.com/streadway/amqp"
-	"time"
 )
 
 // RM is struct of RabitMQ object

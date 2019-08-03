@@ -1,13 +1,13 @@
 package pdf
 
 import (
+	"bytes"
 	"fmt"
 	"log"
-
-	"bytes"
-	wk "github.com/SebastiaanKlippert/go-wkhtmltopdf"
 	"os"
 	"strings"
+
+	wk "github.com/SebastiaanKlippert/go-wkhtmltopdf"
 )
 
 // https://godoc.org/github.com/SebastiaanKlippert/go-wkhtmltopdf

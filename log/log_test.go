@@ -1,10 +1,11 @@
 package log_test
 
 import (
-	. "github.com/hiromaily/golibs/log"
-	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
+
+	. "github.com/hiromaily/golibs/log"
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 //-----------------------------------------------------------------------------

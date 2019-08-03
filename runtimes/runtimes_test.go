@@ -2,14 +2,15 @@ package runtimes_test
 
 import (
 	"fmt"
-	lg "github.com/hiromaily/golibs/log"
-	. "github.com/hiromaily/golibs/runtimes"
-	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"runtime"
 	"runtime/debug"
 	"sync"
 	"testing"
+
+	lg "github.com/hiromaily/golibs/log"
+	. "github.com/hiromaily/golibs/runtimes"
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 //-----------------------------------------------------------------------------

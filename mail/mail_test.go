@@ -1,14 +1,15 @@
 package mail_test
 
 import (
+	"os"
+	"testing"
+
 	enc "github.com/hiromaily/golibs/cipher/encryption"
 	conf "github.com/hiromaily/golibs/config"
 	lg "github.com/hiromaily/golibs/log"
 	. "github.com/hiromaily/golibs/mail"
 	tu "github.com/hiromaily/golibs/testutil"
 	tpl "github.com/hiromaily/golibs/tmpl"
-	"os"
-	"testing"
 )
 
 var (

@@ -6,10 +6,12 @@ import (
 	"crypto/sha1"
 	"crypto/sha256"
 	"fmt"
+
 	//lg "github.com/hiromaily/golibs/log"
 	"encoding/base64"
-	"golang.org/x/crypto/scrypt"
 	"io"
+
+	"golang.org/x/crypto/scrypt"
 )
 
 //go -> crypto

@@ -2,9 +2,10 @@ package fuzzysearch_test
 
 import (
 	"fmt"
+	"testing"
+
 	. "github.com/hiromaily/golibs/fuzzysearch"
 	tu "github.com/hiromaily/golibs/testutil"
-	"testing"
 )
 
 var base01 = "/dk/sjaelland/koege"

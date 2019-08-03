@@ -3,12 +3,13 @@ package files_test
 import (
 	"bufio"
 	"fmt"
-	. "github.com/hiromaily/golibs/files"
-	lg "github.com/hiromaily/golibs/log"
-	tu "github.com/hiromaily/golibs/testutil"
 	"io/ioutil"
 	"os"
 	"testing"
+
+	. "github.com/hiromaily/golibs/files"
+	lg "github.com/hiromaily/golibs/log"
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 var basePath = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/testdata/tmpl/pages"

@@ -2,10 +2,11 @@ package main
 
 import (
 	"context"
-	"github.com/chromedp/cdproto/cdp"
-	"github.com/chromedp/chromedp"
 	"io/ioutil"
 	"log"
+
+	"github.com/chromedp/cdproto/cdp"
+	"github.com/chromedp/chromedp"
 )
 
 func main() {

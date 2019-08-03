@@ -1,12 +1,13 @@
 package gorm_test
 
 import (
+	"os"
+	"testing"
+
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/gorm"
 	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
-	"os"
-	"testing"
 )
 
 type MySQL struct {

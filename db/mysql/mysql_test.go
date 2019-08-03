@@ -2,14 +2,15 @@ package mysql_test
 
 import (
 	"encoding/json"
+	"os"
+	"testing"
+
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/mysql"
 	"github.com/hiromaily/golibs/db/redis"
 	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
 	u "github.com/hiromaily/golibs/utils"
-	"os"
-	"testing"
 )
 
 type MySQL struct {

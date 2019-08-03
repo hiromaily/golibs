@@ -2,10 +2,11 @@ package i18n
 
 import (
 	"fmt"
-	"github.com/nicksnyder/go-i18n/i18n"
-	"gopkg.in/guregu/null.v3"
 	ht "html/template"
 	"os"
+
+	"github.com/nicksnyder/go-i18n/i18n"
+	"gopkg.in/guregu/null.v3"
 )
 
 //https://github.com/nicksnyder/go-i18n

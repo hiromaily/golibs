@@ -1,14 +1,15 @@
 package redis_test
 
 import (
+	"os"
+	"testing"
+	"time"
+
 	"github.com/garyburd/redigo/redis"
 	conf "github.com/hiromaily/golibs/config"
 	. "github.com/hiromaily/golibs/db/redis"
 	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
-	"os"
-	"testing"
-	"time"
 )
 
 //http://qiita.com/nabewata07/items/10ab0008cb5e07b81a34

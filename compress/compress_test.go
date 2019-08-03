@@ -2,11 +2,12 @@ package compress_test
 
 import (
 	"encoding/hex"
+	"os"
+	"testing"
+
 	. "github.com/hiromaily/golibs/compress"
 	lg "github.com/hiromaily/golibs/log"
 	tu "github.com/hiromaily/golibs/testutil"
-	"os"
-	"testing"
 )
 
 type User struct {

@@ -2,12 +2,13 @@ package rabbitmq_test
 
 import (
 	"fmt"
-	lg "github.com/hiromaily/golibs/log"
-	. "github.com/hiromaily/golibs/messaging/rabbitmq"
-	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
 	"time"
+
+	lg "github.com/hiromaily/golibs/log"
+	. "github.com/hiromaily/golibs/messaging/rabbitmq"
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 var (

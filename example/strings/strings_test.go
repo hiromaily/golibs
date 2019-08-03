@@ -2,12 +2,13 @@ package strings_test
 
 import (
 	//. "github.com/hiromaily/golibs/example/flag"
-	lg "github.com/hiromaily/golibs/log"
-	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"strings"
 	"testing"
 	"unicode"
+
+	lg "github.com/hiromaily/golibs/log"
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 //https://golang.org/pkg/strings/

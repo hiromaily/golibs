@@ -2,9 +2,10 @@ package color_test
 
 import (
 	"fmt"
+	"testing"
+
 	c "github.com/hiromaily/golibs/color"
 	tu "github.com/hiromaily/golibs/testutil"
-	"testing"
 )
 
 //-----------------------------------------------------------------------------

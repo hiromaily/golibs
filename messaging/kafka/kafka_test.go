@@ -1,12 +1,13 @@
 package kafka_test
 
 import (
+	"os"
+	"testing"
+
 	"github.com/Shopify/sarama"
 	lg "github.com/hiromaily/golibs/log"
 	. "github.com/hiromaily/golibs/messaging/kafka"
 	tu "github.com/hiromaily/golibs/testutil"
-	"os"
-	"testing"
 )
 
 var (

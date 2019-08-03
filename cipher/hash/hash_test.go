@@ -3,9 +3,10 @@ package hash_test
 import (
 	. "github.com/hiromaily/golibs/cipher/hash"
 	//lg "github.com/hiromaily/golibs/log"
-	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
+
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 //-----------------------------------------------------------------------------

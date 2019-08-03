@@ -1,8 +1,9 @@
 package decimal
 
 import (
-	dc "github.com/ericlagergren/decimal"
 	"math/big"
+
+	dc "github.com/ericlagergren/decimal"
 )
 
 // Notes: about scale

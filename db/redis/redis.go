@@ -2,8 +2,9 @@ package redis
 
 import (
 	"fmt"
-	"github.com/garyburd/redigo/redis"
 	"strings"
+
+	"github.com/garyburd/redigo/redis"
 )
 
 // https://godoc.org/github.com/garyburd/redigo/redis

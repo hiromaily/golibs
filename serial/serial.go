@@ -6,10 +6,12 @@ import (
 	"encoding/gob"
 	"encoding/hex"
 	"fmt"
+
 	//lg "github.com/hiromaily/golibs/log"
 	"bufio"
-	"github.com/ugorji/go/codec"
 	"os"
+
+	"github.com/ugorji/go/codec"
 )
 
 //-----------------------------------------------------------------------------

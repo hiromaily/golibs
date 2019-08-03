@@ -2,12 +2,13 @@ package tmpl_test
 
 import (
 	"fmt"
-	lg "github.com/hiromaily/golibs/log"
-	tu "github.com/hiromaily/golibs/testutil"
-	. "github.com/hiromaily/golibs/tmpl"
 	"os"
 	"testing"
 	tt "text/template"
+
+	lg "github.com/hiromaily/golibs/log"
+	tu "github.com/hiromaily/golibs/testutil"
+	. "github.com/hiromaily/golibs/tmpl"
 )
 
 //TODO

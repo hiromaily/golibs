@@ -3,10 +3,11 @@ package regexp_test
 import (
 	//lg "github.com/hiromaily/golibs/log"
 	"fmt"
-	. "github.com/hiromaily/golibs/regexp"
-	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"testing"
+
+	. "github.com/hiromaily/golibs/regexp"
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 //http://ashitani.jp/golangtips/tips_regexp.html

@@ -3,10 +3,11 @@ package mongodb
 import (
 	"errors"
 	"fmt"
-	mgo "gopkg.in/mgo.v2"
-	"gopkg.in/mgo.v2/bson"
 	"io/ioutil"
 	"time"
+
+	mgo "gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 //MongoDB Ver.3.x

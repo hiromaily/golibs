@@ -4,7 +4,6 @@ import (
 	. "github.com/hiromaily/golibs/signal"
 	//lg "github.com/hiromaily/golibs/log"
 	"fmt"
-	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"os/exec"
 	"strconv"
@@ -12,6 +11,8 @@ import (
 	"syscall"
 	"testing"
 	"time"
+
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 const (

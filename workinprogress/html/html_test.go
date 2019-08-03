@@ -4,10 +4,11 @@ import (
 	. "github.com/hiromaily/golibs/workinprogress/html"
 	//ht "github.com/hiromaily/golibs/http"
 	//lg "github.com/hiromaily/golibs/log"
-	tu "github.com/hiromaily/golibs/testutil"
 	"net/http"
 	"os"
 	"testing"
+
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 var htmlData string = `

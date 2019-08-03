@@ -1,15 +1,16 @@
 package time_test
 
 import (
-	lg "github.com/hiromaily/golibs/log"
-	tu "github.com/hiromaily/golibs/testutil"
-	. "github.com/hiromaily/golibs/time"
-	u "github.com/hiromaily/golibs/utils"
 	"math"
 	"os"
 	"strings"
 	"testing"
 	"time"
+
+	lg "github.com/hiromaily/golibs/log"
+	tu "github.com/hiromaily/golibs/testutil"
+	. "github.com/hiromaily/golibs/time"
+	u "github.com/hiromaily/golibs/utils"
 )
 
 //-----------------------------------------------------------------------------

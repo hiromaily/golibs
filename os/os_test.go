@@ -1,12 +1,13 @@
 package os_test
 
 import (
-	lg "github.com/hiromaily/golibs/log"
-	. "github.com/hiromaily/golibs/os"
-	tu "github.com/hiromaily/golibs/testutil"
 	"os"
 	"strings"
 	"testing"
+
+	lg "github.com/hiromaily/golibs/log"
+	. "github.com/hiromaily/golibs/os"
+	tu "github.com/hiromaily/golibs/testutil"
 )
 
 //-----------------------------------------------------------------------------

@@ -1,9 +1,9 @@
 package errors_test
 
 import (
+	"fmt"
 	"testing"
 
-	"fmt"
 	lg "github.com/hiromaily/golibs/log"
 	r "github.com/hiromaily/golibs/runtimes"
 	"github.com/pkg/errors"

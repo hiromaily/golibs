@@ -1,10 +1,11 @@
 package files
 
 import (
-	reg "github.com/hiromaily/golibs/regexp"
 	"io/ioutil"
 	"path/filepath"
 	"sync"
+
+	reg "github.com/hiromaily/golibs/regexp"
 )
 
 var fileNames []string

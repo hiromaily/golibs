@@ -3,11 +3,12 @@ package config
 import (
 	"errors"
 	"fmt"
+	"io/ioutil"
+	"os"
+
 	"github.com/BurntSushi/toml"
 	enc "github.com/hiromaily/golibs/cipher/encryption"
 	u "github.com/hiromaily/golibs/utils"
-	"io/ioutil"
-	"os"
 )
 
 var tomlFileName = os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/config/settings.toml"
