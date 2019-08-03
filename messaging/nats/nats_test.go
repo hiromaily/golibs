@@ -5,7 +5,7 @@ import (
 	lg "github.com/hiromaily/golibs/log"
 	. "github.com/hiromaily/golibs/messaging/nats"
 	tu "github.com/hiromaily/golibs/testutil"
-	"github.com/nats-io/nats"
+	"github.com/nats-io/nats.go"
 	"os"
 	"sync"
 	"testing"

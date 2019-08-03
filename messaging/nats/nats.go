@@ -3,7 +3,7 @@ package nats
 import (
 	"fmt"
 	lg "github.com/hiromaily/golibs/log"
-	"github.com/nats-io/nats"
+	"github.com/nats-io/nats.go"
 )
 
 //https://github.com/nats-io/nats
