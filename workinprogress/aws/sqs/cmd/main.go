@@ -1,4 +1,4 @@
-package sqs
+package main
 
 //TODO:work in progress
 import (
@@ -9,6 +9,7 @@ import (
 
 	conf "github.com/hiromaily/golibs/config"
 	lg "github.com/hiromaily/golibs/log"
+	"github.com/hiromaily/golibs/workinprogress/aws/sqs"
 )
 
 // WARNING
@@ -75,11 +76,11 @@ func setSQSData(num int, msg string) {
 	//conf.Aws.Sqs.QueueName -> test_message
 
 	//1.オブジェクト作成
-	New()
+	sqs.New()
 	//2.sqsにqueueがあるかチェック
 	//3.なければ作成
-	inputParams := CreateInputParam(conf.Aws.Sqs.QueueName)
-	sendMsgRes, err := CreateNewQueue(inputParams)
+	inputParams := sqs.CreateInputParam(conf.Aws.Sqs.QueueName)
+	sendMsgRes, err := sqs.CreateNewQueue(inputParams)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -87,8 +88,8 @@ func setSQSData(num int, msg string) {
 
 	//4.deadMessage用も同じく、
 	//5.なければ作成
-	inputParamsForDead := CreateInputParam(conf.Aws.Sqs.DeadQueueName)
-	deadMsgRes, err := CreateNewQueue(inputParamsForDead)
+	inputParamsForDead := sqs.CreateInputParam(conf.Aws.Sqs.DeadQueueName)
+	deadMsgRes, err := sqs.CreateNewQueue(inputParamsForDead)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -99,10 +100,10 @@ func setSQSData(num int, msg string) {
 	body := getContentBody(msg)
 	acid := ""
 	if num == 1 {
-		sendInputParams := CreateSendMessageInput(sendMsgRes.QueueUrl, &body, &acid, *ot, *ct)
+		sendInputParams := sqs.CreateSendMessageInput(sendMsgRes.QueueUrl, &body, &acid, *ot, *ct)
 
 		//7.メッセージを送信
-		SendMessageToQueue(sendInputParams)
+		sqs.SendMessageToQueue(sendInputParams)
 	} else {
 		var bulkCount = num / 10
 		if bulkCount >= 1 {
@@ -120,40 +121,43 @@ func setSQSData(num int, msg string) {
 
 func sendBulkProcedure(url *string, body *string, acid *string, num int) {
 	//10通まで
-	sendInputBatchParams := CreateSendMessageBatchInput(url, body, acid, *ot, *ct, num)
+	sendInputBatchParams := sqs.CreateSendMessageBatchInput(url, body, acid, *ot, *ct, num)
 
 	//メッセージを送信
-	SendMultipleMessagesToQueue(sendInputBatchParams)
+	sqs.SendMultipleMessagesToQueue(sendInputBatchParams)
 
 }
 
 func purgeSQSData() {
-	New()
+	sqs.New()
 	conf := conf.GetConf()
 
-	inputParams := CreateInputParam(conf.Aws.Sqs.QueueName)
-	sendMsgRes, err := CreateNewQueue(inputParams)
+	inputParams := sqs.CreateInputParam(conf.Aws.Sqs.QueueName)
+	sendMsgRes, err := sqs.CreateNewQueue(inputParams)
 	if err != nil {
 		panic(err.Error())
 	}
 
 	//fmt.Println(*sendMsgRes.QueueUrl)
-	PurgeQueue(sendMsgRes.QueueUrl)
+	sqs.PurgeQueue(sendMsgRes.QueueUrl)
 }
 
 func getSQSAttributes() {
-	New()
+	sqs.New()
 	conf := conf.GetConf()
 
-	inputParams := CreateInputParam(conf.Aws.Sqs.QueueName)
-	sendMsgRes, err := CreateNewQueue(inputParams)
+	inputParams := sqs.CreateInputParam(conf.Aws.Sqs.QueueName)
+	sendMsgRes, err := sqs.CreateNewQueue(inputParams)
 	if err != nil {
 		panic(err.Error())
 	}
 
 	//check attribute
-	params := CreateAttributesParams(sendMsgRes.QueueUrl)
-	resp, err := GetQueueAttributes(params)
+	params := sqs.CreateAttributesParams(sendMsgRes.QueueUrl)
+	resp, err := sqs.GetQueueAttributes(params)
+	if err != nil {
+		panic(err.Error())
+	}
 
 	//fmt.Printf("%s", resp)
 	//fmt.Printf("%v", resp.Attributes)
@@ -194,7 +198,6 @@ func init() {
 	handleCmdline()
 }
 
-// main
 func main() {
 	//Timer Start
 	//t := utils.TimeInfo{}
