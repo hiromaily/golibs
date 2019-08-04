@@ -16,6 +16,7 @@ type GR struct {
 }
 
 // ServerInfo is for database information
+//nolint:structcheck
 type ServerInfo struct {
 	host   string
 	port   uint16

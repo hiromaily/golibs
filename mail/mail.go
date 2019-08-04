@@ -83,7 +83,6 @@ func (ml *Info) sendMail(c chan bool) {
 		return
 	}
 	c <- true
-	return
 }
 
 // SendMail is to send mail
@@ -109,5 +108,4 @@ func (ml *Info) SendMail(timeOut string) {
 		//timeout code
 		fmt.Println("timeout")
 	}
-
 }

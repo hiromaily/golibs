@@ -34,6 +34,7 @@ type MS struct {
 }
 
 // ServerInfo is struct of server information
+//nolint:unused,structcheck
 type ServerInfo struct {
 	host   string
 	port   uint16
@@ -90,14 +91,14 @@ func NewIns(host, dbname, user, pass string, port uint16) *MS {
 
 // GetDB is to get instance. singleton architecture
 func GetDB() *MS {
-	var err error
-	if dbInfo.DB == nil {
-		//dbInfo.DB, err = dbInfo.Connection()
-		return nil
-	}
-	if err != nil {
-		panic(err.Error())
-	}
+	//var err error
+	//if dbInfo.DB == nil {
+	//	//dbInfo.DB, err = dbInfo.Connection()
+	//	return nil
+	//}
+	//if err != nil {
+	//	panic(err.Error())
+	//}
 	return &dbInfo
 }
 
@@ -191,7 +192,6 @@ func scanStruct(values []interface{}, v reflect.Value) {
 			v.Field(i).Set(reflect.ValueOf(values[i]))
 		}
 	}
-	return
 }
 
 // Set data
@@ -222,7 +222,6 @@ func scanValue(value interface{}, v reflect.Value) {
 	default: // reflect.Array, reflect.Struct, reflect.Interface
 		v.Set(reflect.ValueOf(value))
 	}
-	return
 }
 
 //-----------------------------------------------------------------------------
@@ -376,10 +375,7 @@ func (ms *MS) Scan(x interface{}) bool {
 			v.Elem().Set(reflect.Append(v.Elem(), newElem))
 			cnt++
 		}
-		if cnt == 0 {
-			return false
-		}
-		return true
+		return cnt != 0
 	}
 
 	ms.Err = errors.New("parameter is not valid. it should be pointer and not nil")

@@ -58,7 +58,7 @@ func TestCheckInterface(t *testing.T) {
 
 	lg.Debug(CheckInterface([]int{1, 2, 3})) //default
 
-	lg.Debug(CheckInterface(func() { return })) //default
+	lg.Debug(CheckInterface(func() {})) //default
 
 }
 
@@ -79,7 +79,7 @@ func TestCheckInterfaceByIf(t *testing.T) {
 
 	lg.Debug(CheckInterfaceByIf([]int{1, 2, 3})) //slice
 
-	lg.Debug(CheckInterfaceByIf(func() { return })) //func
+	lg.Debug(CheckInterfaceByIf(func() {})) //func
 }
 
 func TestStoType(t *testing.T) {

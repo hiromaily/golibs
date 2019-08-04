@@ -3,10 +3,7 @@ package session
 import (
 	"fmt"
 	"net/http"
-	"net/http/cookiejar"
 	"time"
-
-	lg "github.com/hiromaily/golibs/log"
 )
 
 //TODO:work in progress
@@ -15,11 +12,11 @@ import (
 //2.データの保存スペースを作成
 //3.sessionのグローバルでユニークなIDをクライアントサイドに送信
 
-func cookieJar() {
-	jar, _ := cookiejar.New(nil)
-	client := http.Client{Jar: jar}
-	lg.Debugf("client: %v", client)
-}
+//func cookieJar() {
+//	jar, _ := cookiejar.New(nil)
+//	client := http.Client{Jar: jar}
+//	lg.Debugf("client: %v", client)
+//}
 
 // Set is to set cookie
 func Set(w http.ResponseWriter) {

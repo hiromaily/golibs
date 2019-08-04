@@ -71,7 +71,7 @@ func TestDefault(t *testing.T) {
 	data := []int{1, 2, 3, 4, 5}
 	CheckInterfaceWhenSlice(data)
 
-	var intData int = 1
+	var intData = 1
 	p := &intData
 	CheckInterfaceWhenPointer(p)
 

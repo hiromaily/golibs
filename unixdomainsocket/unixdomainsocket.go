@@ -91,20 +91,24 @@ func (s *Server) WaitShutdown(close chan error) {
 	// wait Ctrl+C, kill -SIGTERM xxx
 	signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
 
+	exitChan := make(chan int)
 	go func() {
 		for {
 			s := <-c
 			switch s {
 			case syscall.SIGINT:
 				fmt.Println("[Signal] interrupt by control + C")
+				exitChan <- 0
 			case syscall.SIGTERM:
 				fmt.Println("[Signal] force stop by kill command")
+				exitChan <- 0
 			}
-			break
 		}
-		if err := s.Close(); err != nil {
-			close <- err
-		}
-		close <- nil
 	}()
+	<-exitChan
+
+	if err := s.Close(); err != nil {
+		close <- err
+	}
+	close <- nil
 }

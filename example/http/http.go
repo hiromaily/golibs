@@ -3,9 +3,6 @@ package http
 
 import (
 	"bytes"
-	"crypto/hmac"
-	"crypto/sha256"
-	"encoding/base64"
 	"fmt"
 
 	lg "github.com/hiromaily/golibs/log"
@@ -25,14 +22,14 @@ import (
 //https://godoc.org/github.com/parnurzeal/gorequest
 
 // create signature for authentication
-func createSignature(data []byte, secret string) string {
-	hash := hmac.New(sha256.New, []byte(secret))
-	hash.Write(data)
-	//signature := url.QueryEscape(base64.StdEncoding.EncodeToString(hash.Sum(nil)))
-	signature := base64.StdEncoding.EncodeToString(hash.Sum(nil))
-
-	return signature
-}
+//func createSignature(data []byte, secret string) string {
+//	hash := hmac.New(sha256.New, []byte(secret))
+//	hash.Write(data)
+//	//signature := url.QueryEscape(base64.StdEncoding.EncodeToString(hash.Sum(nil)))
+//	signature := base64.StdEncoding.EncodeToString(hash.Sum(nil))
+//
+//	return signature
+//}
 
 // debug for http request
 func debugHTTPRequest(data []byte, err error) {

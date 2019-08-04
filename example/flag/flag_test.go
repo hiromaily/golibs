@@ -11,7 +11,9 @@ import (
 )
 
 var (
+	//nolint:deadcode,varcheck,unused
 	intVal = flag.Int("iv", 0, "this is just check val for int")
+	//nolint:deadcode,varcheck,unused
 	strVal = flag.String("sv", "", "this is just check val for string")
 
 	usage = `Usage: %s [options...] <url>

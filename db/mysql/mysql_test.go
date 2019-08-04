@@ -18,13 +18,13 @@ type MySQL struct {
 }
 
 //For embedded type
-type MySQL2 struct {
-	*MS
-}
+//type MySQL2 struct {
+//	*MS
+//}
 
 var (
-	db  MySQL
-	db2 MySQL2
+	db MySQL
+	//db2 MySQL2
 	//cahce
 	cacheData map[string][]map[string]interface{}
 )
@@ -77,15 +77,15 @@ func newMySQL() {
 }
 
 //For embedded type
-func newMySQL2() {
-	conf.SetTOMLPath("../../settings.toml")
-	c := conf.GetConf().MySQL
-
-	New(c.Host, c.DbName, c.User, c.Pass, c.Port)
-
-	db2 = MySQL2{}
-	db2.MS = GetDB()
-}
+//func newMySQL2() {
+//	conf.SetTOMLPath("../../settings.toml")
+//	c := conf.GetConf().MySQL
+//
+//	New(c.Host, c.DbName, c.User, c.Pass, c.Port)
+//
+//	db2 = MySQL2{}
+//	db2.MS = GetDB()
+//}
 
 func newRedis() {
 	r := conf.GetConf().Redis
@@ -102,13 +102,13 @@ func getMySQL() *MySQL {
 	return &db
 }
 
-func getMySQL2() *MySQL2 {
-	if db2.MS == nil {
-		//db2.DB, err = db2.Connection()
-		newMySQL2()
-	}
-	return &db2
-}
+//func getMySQL2() *MySQL2 {
+//	if db2.MS == nil {
+//		//db2.DB, err = db2.Connection()
+//		newMySQL2()
+//	}
+//	return &db2
+//}
 
 // Get User List
 func (ms *MySQL) getUserList() ([]map[string]interface{}, error) {
@@ -125,7 +125,7 @@ func (ms *MySQL) getUserList() ([]map[string]interface{}, error) {
 
 // Get User List(Using Cache)
 func (ms *MySQL) getUserListOnCache() ([]map[string]interface{}, error) {
-	var cacheKey string = "sql001"
+	var cacheKey = "sql001"
 
 	//check cache data
 	if value, ok := cacheData[cacheKey]; ok {
@@ -304,7 +304,7 @@ func TestSelectInsScanOne3(t *testing.T) {
 	tu.SkipLog(t)
 
 	type Person struct {
-		UserId    int    `db:"id"`
+		UserID    int    `db:"id"`
 		FirstName string `db:"first_name"`
 		LastName  string `db:"last_name"`
 		//DateTime  time.Time `db:"create_datetime"`
@@ -348,7 +348,7 @@ func TestSelectInsScanOne4(t *testing.T) {
 	//tu.SkipLog(t)
 
 	type Person struct {
-		UserId    int    `db:"id"`
+		UserID    int    `db:"id"`
 		FirstName string `db:"first_name"`
 		LastName  string `db:"last_name"`
 		//DateTime  time.Time `db:"create_datetime"`
@@ -426,7 +426,7 @@ func TestSelectInsScan3(t *testing.T) {
 	//tu.SkipLog(t)
 
 	type Person struct {
-		UserId    int    `db:"id"`
+		UserID    int    `db:"id"`
 		FirstName string `db:"first_name"`
 		LastName  string `db:"last_name"`
 		//DateTime  time.Time `db:"create_datetime"`
@@ -494,8 +494,8 @@ func TestInsertJSON(t *testing.T) {
 
 	db := getMySQL().Db
 
-	JsonBase := []int{10, 20, 30, 40, 50}
-	retByte, _ := json.Marshal(JsonBase)
+	jsonBase := []int{10, 20, 30, 40, 50}
+	retByte, _ := json.Marshal(jsonBase)
 
 	// Insert
 	sql := "INSERT INTO t_invoices (user_id, memo2) VALUES (1, ?)"
@@ -617,7 +617,7 @@ func BenchmarkSetStruct(b *testing.B) {
 	tu.SkipBLog(b)
 
 	type Person struct {
-		UserId    int    `db:"id"`
+		UserID    int    `db:"id"`
 		FirstName string `db:"first_name"`
 		LastName  string `db:"first_name"`
 	}

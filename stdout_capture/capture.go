@@ -1,4 +1,4 @@
-package stdout_capture
+package stdoutcapture
 
 import (
 	"bytes"

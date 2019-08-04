@@ -45,7 +45,7 @@ func GetErrorStack(e error) string {
 		}
 		//2.source code
 		i++
-		if strings.Index(errs[i], RepoName) != -1 {
+		if strings.Contains(errs[i], RepoName) {
 			tmp := strings.Split(errs[i], RepoName)
 			stacks += fmt.Sprintf("[file].%s", tmp[1])
 		} else {
@@ -84,7 +84,7 @@ func getDirNames(dir string) ([]string, error) {
 
 func isFound(targetStr string, dirNames []string) bool {
 	for _, dir := range dirNames {
-		if strings.Index(targetStr, dir) != -1 {
+		if strings.Contains(targetStr, dir) {
 			return true
 		}
 	}

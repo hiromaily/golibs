@@ -10,7 +10,7 @@ import (
 )
 
 type User struct {
-	Id   int
+	ID   int
 	Name string
 }
 
@@ -48,7 +48,7 @@ func TestMain(m *testing.M) {
 func TestSerializeStruct(t *testing.T) {
 	t.Skip("skipping TestSerializeStruct")
 
-	u := User{Id: 10, Name: "harry dayo"}
+	u := User{ID: 10, Name: "harry dayo"}
 	result, err := ToGOB64(u)
 	if err != nil {
 		t.Errorf("ToGOB64() error: %s", err)
@@ -66,7 +66,7 @@ func TestDeSerializeStruct(t *testing.T) {
 	if err != nil {
 		t.Errorf("FromGOB64 error: %s", err)
 	}
-	if u.Id != 10 {
+	if u.ID != 10 {
 		t.Errorf("FromGOB64 result: %+v", u)
 	}
 }
@@ -194,7 +194,7 @@ func TestDeSerializeMapInterface(t *testing.T) {
 func TestEncodeStruct(t *testing.T) {
 	//t.Skip("skipping TestEncodeStruct")
 	//*
-	u := User{Id: 10, Name: "harry dayo"}
+	u := User{ID: 10, Name: "harry dayo"}
 	byteData := CodecEncode(u)
 
 	//if fmt.Sprintf("%x", byteData) != "82a249640aa44e616d65aa6861727279206461796f" {
@@ -208,7 +208,7 @@ func TestDcodeStruct(t *testing.T) {
 
 	u := User{}
 	_ = CodecDecode("82a249640aa44e616d65aa6861727279206461796f", &u)
-	if u.Id != 10 {
+	if u.ID != 10 {
 		t.Errorf("CodecDecode result: %+v", u)
 	}
 }
@@ -245,7 +245,7 @@ func BenchmarkSerializeStruct(b *testing.B) {
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		u := User{Id: 10, Name: "harry dayo"}
+		u := User{ID: 10, Name: "harry dayo"}
 		ToGOB64(u)
 	}
 	b.StopTimer()
@@ -293,7 +293,7 @@ func BenchmarkEncodeStruct(b *testing.B) {
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		u := User{Id: 10, Name: "harry dayo"}
+		u := User{ID: 10, Name: "harry dayo"}
 		hex.EncodeToString(CodecEncode(u))
 	}
 	b.StopTimer()

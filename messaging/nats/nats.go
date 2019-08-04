@@ -73,8 +73,6 @@ func (ch ChReceive) Subscribe(subject string) {
 
 	ch.Conn.Flush()
 	ch.Error = ch.Conn.LastError()
-
-	return
 }
 
 // Unsubscribe is to unsubscribe to subject

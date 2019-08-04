@@ -96,8 +96,6 @@ func Consumer(c sarama.Consumer, topic string, ch ChReceive) {
 		ch.ChWait <- true
 	}()
 	lg.Debug("Reveiver() finish")
-
-	return
 }
 
 // ConsumerOnMultiplePartitions is is to start consumer in multiple partitions
@@ -119,7 +117,7 @@ func ConsumerOnMultiplePartitions(c sarama.Consumer, topic string) error {
 	for partition := range partitionList {
 		pc, err := c.ConsumePartition("topic.ops.falcon", int32(partition), sarama.OffsetNewest)
 		if err != nil {
-			return fmt.Errorf("failed to start consumer for partition %d: %s\n", partition, err)
+			return fmt.Errorf("failed to start consumer for partition %d: %s \n ", partition, err)
 		}
 
 		wg.Add(1)

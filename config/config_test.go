@@ -9,11 +9,6 @@ import (
 	tu "github.com/hiromaily/golibs/testutil"
 )
 
-type User struct {
-	Id   int
-	Name string
-}
-
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------

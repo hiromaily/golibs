@@ -7,9 +7,9 @@ import (
 )
 
 func TestSyncMap(t *testing.T) {
-	SyncMap()
+	Map()
 }
 
 func TestSyncAtomic(t *testing.T) {
-	SyncAtomic()
+	Atomic()
 }

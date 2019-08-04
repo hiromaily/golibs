@@ -1,12 +1,10 @@
 package main
 
 import (
-	"encoding/base64"
 	"flag"
 	"fmt"
 	"log"
 	"net/url"
-	"os"
 	"runtime"
 	"sync"
 	"time"
@@ -125,7 +123,7 @@ func generatePDF(target *gcd.ChromeTarget) {
 	}
 
 	//data: Base64-encoded pdf data.
-	data, err := page.PrintToPDFWithParams(printPDFParams)
+	data, _, err := page.PrintToPDFWithParams(printPDFParams)
 
 	if err != nil {
 		fmt.Printf("error PrintToPDFWithParams: %s\n", err)
@@ -158,43 +156,43 @@ func generatePDF(target *gcd.ChromeTarget) {
 	debugger.CloseTab(target)
 }
 
-func takeScreenShot(target *gcd.ChromeTarget) {
-	dom := target.DOM
-	page := target.Page
-	doc, err := dom.GetDocument(-1, true)
-	if err != nil {
-		fmt.Printf("error getting doc: %s\n", err)
-		return
-	}
-
-	debugger.ActivateTab(target)
-	time.Sleep(1 * time.Second) // give it a sec to paint
-	u, urlErr := url.Parse(doc.DocumentURL)
-	if urlErr != nil {
-		fmt.Printf("error parsing url: %s\n", urlErr)
-		return
-	}
-
-	fmt.Printf("Taking screen shot of: %s\n", u.Host)
-	screenShotParams := &gcdapi.PageCaptureScreenshotParams{Format: "png", FromSurface: true}
-	img, errCap := page.CaptureScreenshotWithParams(screenShotParams)
-	if errCap != nil {
-		fmt.Printf("error getting doc: %s\n", errCap)
-		return
-	}
-
-	imgBytes, errDecode := base64.StdEncoding.DecodeString(img)
-	if errDecode != nil {
-		fmt.Printf("error decoding image: %s\n", errDecode)
-		return
-	}
-
-	f, errFile := os.Create(u.Host + ".png")
-	defer f.Close()
-	if errFile != nil {
-		fmt.Printf("error creating image file: %s\n", errFile)
-		return
-	}
-	f.Write(imgBytes)
-	debugger.CloseTab(target)
-}
+//func takeScreenShot(target *gcd.ChromeTarget) {
+//	dom := target.DOM
+//	page := target.Page
+//	doc, err := dom.GetDocument(-1, true)
+//	if err != nil {
+//		fmt.Printf("error getting doc: %s\n", err)
+//		return
+//	}
+//
+//	debugger.ActivateTab(target)
+//	time.Sleep(1 * time.Second) // give it a sec to paint
+//	u, urlErr := url.Parse(doc.DocumentURL)
+//	if urlErr != nil {
+//		fmt.Printf("error parsing url: %s\n", urlErr)
+//		return
+//	}
+//
+//	fmt.Printf("Taking screen shot of: %s\n", u.Host)
+//	screenShotParams := &gcdapi.PageCaptureScreenshotParams{Format: "png", FromSurface: true}
+//	img, errCap := page.CaptureScreenshotWithParams(screenShotParams)
+//	if errCap != nil {
+//		fmt.Printf("error getting doc: %s\n", errCap)
+//		return
+//	}
+//
+//	imgBytes, errDecode := base64.StdEncoding.DecodeString(img)
+//	if errDecode != nil {
+//		fmt.Printf("error decoding image: %s\n", errDecode)
+//		return
+//	}
+//
+//	f, errFile := os.Create(u.Host + ".png")
+//	defer f.Close()
+//	if errFile != nil {
+//		fmt.Printf("error creating image file: %s\n", errFile)
+//		return
+//	}
+//	f.Write(imgBytes)
+//	debugger.CloseTab(target)
+//}

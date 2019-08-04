@@ -57,26 +57,26 @@ type TT4 struct {
 
 type EventA struct {
 	Name                string   `yaml:"name"`
-	OrganiserId         int      `yaml:"organiserId"`
+	OrganiserID         int      `yaml:"organiserId"`
 	Start               string   `yaml:"start"`
 	End                 string   `yaml:"end"`
 	Header              string   `yaml:"header"`
-	Descripttion        string   `yaml:"descripttion"`
+	Description         string   `yaml:"description"`
 	CreatedAt           string   `yaml:"createdAt"`
 	UpdatedAt           string   `yaml:"updatedAt"`
 	Genres              string   `yaml:"genres"`
 	Website             string   `yaml:"website"`
 	FacebookPage        string   `yaml:"facebookPage"`
-	InstagramUrl        string   `yaml:"instagramUrl"`
-	SoundcloudUrl       string   `yaml:"soundcloudUrl"`
-	SpotifyUrl          string   `yaml:"spotifyUrl"`
-	TwitterUrl          string   `yaml:"twitterUrl"`
-	VimeoUrl            string   `yaml:"vimeoUrl"`
-	YoutubeUrl          string   `yaml:"youtubeUrl"`
-	FbEventId           string   `yaml:"fbEventId"`
+	InstagramURL        string   `yaml:"instagramUrl"`
+	SoundcloudURL       string   `yaml:"soundcloudUrl"`
+	SpotifyURL          string   `yaml:"spotifyUrl"`
+	TwitterURL          string   `yaml:"twitterUrl"`
+	VimeoURL            string   `yaml:"vimeoUrl"`
+	YoutubeURL          string   `yaml:"youtubeUrl"`
+	FbEventID           string   `yaml:"fbEventId"`
 	YtActive            int      `yaml:"ytActive"`
 	LineUp              string   `yaml:"lineUp"`
-	VenueId             int      `yaml:"venueId"`
+	VenueID             int      `yaml:"venueId"`
 	Logo                string   `yaml:"logo"`
 	ScoreEpicness       int      `yaml:"scoreEpicness"`
 	ScoreLineup         int      `yaml:"scoreLineup"`
@@ -97,7 +97,7 @@ type EventA struct {
 	Source              string   `yaml:"source"`
 	Featured            int      `yaml:"featured"`
 	Demo                int      `yaml:"demo"`
-	TicketUrl           string   `yaml:"ticketUrl"`
+	TicketURL           string   `yaml:"ticketUrl"`
 	TicketMin           string   `yaml:"ticketMin"`
 	TicketMax           string   `yaml:"ticketMax"`
 	Indoor              int      `yaml:"indoor"`
@@ -111,26 +111,26 @@ type EventA struct {
 
 type EventB struct {
 	Name                string     `yaml:"name"`
-	OrganiserId         int        `yaml:"organiserId"`
+	OrganiserID         int        `yaml:"organiserId"`
 	Start               *time.Time `yaml:"start"`
 	End                 *time.Time `yaml:"end"`
 	Header              *string    `yaml:"header"`
-	Descripttion        *string    `yaml:"descripttion"`
+	Description         *string    `yaml:"description"`
 	CreatedAt           *time.Time `yaml:"createdAt"`
 	UpdatedAt           *time.Time `yaml:"updatedAt"`
 	Genres              *string    `yaml:"genres"`
 	Website             *string    `yaml:"website"`
 	FacebookPage        *string    `yaml:"facebookPage"`
-	InstagramUrl        *string    `yaml:"instagramUrl"`
-	SoundcloudUrl       *string    `yaml:"soundcloudUrl"`
-	SpotifyUrl          *string    `yaml:"spotifyUrl"`
-	TwitterUrl          *string    `yaml:"twitterUrl"`
-	VimeoUrl            *string    `yaml:"vimeoUrl"`
-	YoutubeUrl          *string    `yaml:"youtubeUrl"`
-	FbEventId           *string    `yaml:"fbEventId"`
+	InstagramURL        *string    `yaml:"instagramUrl"`
+	SoundcloudURL       *string    `yaml:"soundcloudUrl"`
+	SpotifyURL          *string    `yaml:"spotifyUrl"`
+	TwitterURL          *string    `yaml:"twitterUrl"`
+	VimeoURL            *string    `yaml:"vimeoUrl"`
+	YoutubeURL          *string    `yaml:"youtubeUrl"`
+	FbEventID           *string    `yaml:"fbEventId"`
 	YtActive            int        `yaml:"ytActive"`
 	LineUp              *string    `yaml:"lineUp"`
-	VenueId             int        `yaml:"venueId"`
+	VenueID             int        `yaml:"venueId"`
 	Logo                *string    `yaml:"logo"`
 	ScoreEpicness       int        `yaml:"scoreEpicness"`
 	ScoreLineup         int        `yaml:"scoreLineup"`
@@ -151,7 +151,7 @@ type EventB struct {
 	Source              *string    `yaml:"source"`
 	Featured            int        `yaml:"featured"`
 	Demo                int        `yaml:"demo"`
-	TicketUrl           *string    `yaml:"ticketUrl"`
+	TicketURL           *string    `yaml:"ticketUrl"`
 	TicketMin           *string    `yaml:"ticketMin"`
 	TicketMax           *string    `yaml:"ticketMax"`
 	Indoor              int        `yaml:"indoor"`

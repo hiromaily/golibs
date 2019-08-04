@@ -15,9 +15,9 @@ import (
 )
 
 var (
-	subjectName  string = "msg.hiromaily"
-	subjectName2 string = "msg2.hiromaily"
-	subjectName3 string = "msg3.hiromaily"
+	subjectName  = "msg.hiromaily"
+	subjectName2 = "msg2.hiromaily"
+	subjectName3 = "msg3.hiromaily"
 )
 
 var msgTests = []struct {

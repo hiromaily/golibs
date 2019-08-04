@@ -18,6 +18,7 @@ type GR struct {
 }
 
 // ServerInfo is for database information
+//nolint:structcheck
 type ServerInfo struct {
 	host   string
 	port   uint16
@@ -46,8 +47,6 @@ func New(host, dbname, user, pass string, port uint16) {
 
 		dbInfo.DB = &gorp.DbMap{Db: db, Dialect: gorp.SqliteDialect{}}
 	}
-
-	return
 }
 
 // GetDB is to get instance. singleton architecture

@@ -11,7 +11,7 @@ import (
 	tu "github.com/hiromaily/golibs/testutil"
 )
 
-var htmlData string = `
+var htmlData = `
 <!DOCTYPE html>
 <html>
 <head>

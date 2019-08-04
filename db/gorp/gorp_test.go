@@ -75,7 +75,7 @@ func GetMySQLInstance() *MySQL {
 func TestSelectUser(t *testing.T) {
 
 	type User struct {
-		Id        int    `db:"user_id"`
+		ID        int    `db:"user_id"`
 		FirstName string `db:"first_name"`
 		LastName  string `db:"last_name"`
 	}
@@ -83,7 +83,7 @@ func TestSelectUser(t *testing.T) {
 	rows, _ := GetMySQLInstance().DB.Select(&User{}, "SELECT user_id, first_name, last_name FROM t_users WHERE delete_flg=?", "0")
 	for _, row := range rows {
 		user := *row.(*User)
-		lg.Debugf("%d, %s %s\n", user.Id, user.FirstName, user.LastName)
+		lg.Debugf("%d, %s %s\n", user.ID, user.FirstName, user.LastName)
 	}
 }
 

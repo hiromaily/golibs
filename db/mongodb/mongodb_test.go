@@ -30,13 +30,13 @@ import (
 
 type Company struct {
 	ID        bson.ObjectId `bson:"_id,omitempty"`
-	CompanyId int           `bson:"company_id"`
+	CompanyID int           `bson:"company_id"`
 	Name      string        `bson:"name"`
 }
 
 type Work struct {
 	Occupation string `bson:"occupation"`
-	CompanyId  int    `bson:"company_id"`
+	CompanyID  int    `bson:"company_id"`
 }
 
 type Address struct {
@@ -58,12 +58,12 @@ type User struct {
 
 var (
 	//Database Name For test
-	testDbName string = "testdb01"
+	testDbName = "testdb01"
 
 	//Collection Name For test
-	testColUser    string = "user"
-	testColCompany string = "company"
-	testColTeacher string = "teacher"
+	testColUser    = "user"
+	testColCompany = "company"
+	testColTeacher = "teacher"
 
 	savedUserID string
 )
@@ -109,16 +109,16 @@ func CreateCompanyData() error {
 
 	// test data
 	companies := []Company{
-		{CompanyId: 1, Name: "company01"},
-		{CompanyId: 2, Name: "company02"},
-		{CompanyId: 3, Name: "company03"},
-		{CompanyId: 4, Name: "company04"},
-		{CompanyId: 5, Name: "company05"},
-		{CompanyId: 6, Name: "company06"},
-		{CompanyId: 7, Name: "company07"},
-		{CompanyId: 8, Name: "company08"},
-		{CompanyId: 9, Name: "company09"},
-		{CompanyId: 10, Name: "company10"},
+		{CompanyID: 1, Name: "company01"},
+		{CompanyID: 2, Name: "company02"},
+		{CompanyID: 3, Name: "company03"},
+		{CompanyID: 4, Name: "company04"},
+		{CompanyID: 5, Name: "company05"},
+		{CompanyID: 6, Name: "company06"},
+		{CompanyID: 7, Name: "company07"},
+		{CompanyID: 8, Name: "company08"},
+		{CompanyID: 9, Name: "company09"},
+		{CompanyID: 10, Name: "company10"},
 	}
 
 	bulk := mg.C.Bulk()
@@ -167,7 +167,7 @@ func TestSetExpireOnCollection(t *testing.T) {
 	mg.GetCol(testColUser)
 
 	//var sessionExpire time.Duration = 60 * 1 //one minute
-	var sessionExpire time.Duration = 1 * time.Minute //one minute
+	var sessionExpire = 1 * time.Minute //one minute
 
 	err := mg.SetExpireOnCollection(sessionExpire)
 
@@ -188,7 +188,7 @@ func TestInsertOne(t *testing.T) {
 	mg.GetCol(testColUser)
 
 	// test data
-	works := []Work{{Occupation: "programmer", CompanyId: 1}, {Occupation: "programmer", CompanyId: 2}}
+	works := []Work{{Occupation: "programmer", CompanyID: 1}, {Occupation: "programmer", CompanyID: 2}}
 	address := Address{ZipCode: "1060047", Country: "Japan", City: "Tokyo", Address1: "港区南麻布2-9-7", Address2: "マンション101"}
 	user := User{Name: "Harry", Age: 25, Address: address, Works: works, CreatedAt: time.Now()}
 
@@ -215,15 +215,15 @@ func TestBulkInsert(t *testing.T) {
 	mg.GetCol(testColUser)
 
 	//#1 user data
-	works1 := []Work{{Occupation: "lawyer", CompanyId: 3}, {Occupation: "lawyer", CompanyId: 4}}
+	works1 := []Work{{Occupation: "lawyer", CompanyID: 3}, {Occupation: "lawyer", CompanyID: 4}}
 	address1 := Address{ZipCode: "1530002", Country: "Japan", City: "Tokyo", Address1: "目黒区目黒1-2-3", Address2: "マンションXX"}
 	user1 := User{Name: "Ren", Age: 25, Address: address1, Works: works1, CreatedAt: time.Now()}
 
-	works2 := []Work{{Occupation: "programmer", CompanyId: 5}, {Occupation: "programmer", CompanyId: 6}}
+	works2 := []Work{{Occupation: "programmer", CompanyID: 5}, {Occupation: "programmer", CompanyID: 6}}
 	address2 := Address{ZipCode: "1230001", Country: "Japan", City: "Tokyo", Address1: "杉並区福田5-5-1", Address2: ""}
 	user2 := User{Name: "Shana", Age: 22, Address: address2, Works: works2, CreatedAt: time.Now()}
 
-	works3 := []Work{{Occupation: "programmer", CompanyId: 1}, {Occupation: "programmer", CompanyId: 5}}
+	works3 := []Work{{Occupation: "programmer", CompanyID: 1}, {Occupation: "programmer", CompanyID: 5}}
 	address3 := Address{ZipCode: "2590047", Country: "Japan", City: "Kanagawa", Address1: "逗子適当1-2-3", Address2: ""}
 	user3 := User{Name: "Ken", Age: 31, Address: address3, Works: works3, CreatedAt: time.Now()}
 
@@ -308,11 +308,11 @@ func TestGetOneDataById(t *testing.T) {
 
 	//This value is changeable as processing
 	//userId := "5785f375340e7601939628b5"
-	userId := savedUserID
+	userID := savedUserID
 	user := new(User)
 
 	//find
-	err := mg.C.Find(bson.M{"_id": bson.ObjectIdHex(userId)}).One(user)
+	err := mg.C.Find(bson.M{"_id": bson.ObjectIdHex(userID)}).One(user)
 	t.Logf("result user by find id: %v", *user)
 	//mg.C.Find(bson.M{"name": searchName}).One(user)
 	if err != nil {
@@ -456,9 +456,9 @@ func TestUpdateOneDataById(t *testing.T) {
 	//get top record
 
 	//userId := "57871a3e340e7601939628e1"
-	userId := savedUserID
+	userID := savedUserID
 
-	idQueryier := bson.ObjectIdHex(userId)
+	idQueryier := bson.ObjectIdHex(userID)
 
 	//oids := make([]bson.ObjectId, len(ids))
 	//for i := range ids {
@@ -474,7 +474,7 @@ func TestUpdateOneDataById(t *testing.T) {
 	}
 	// check
 	user := new(User)
-	mg.C.Find(bson.M{"_id": bson.ObjectIdHex(userId)}).One(user)
+	mg.C.Find(bson.M{"_id": bson.ObjectIdHex(userID)}).One(user)
 	lg.Debugf("result user by find id: %v", *user)
 	lg.Debug("- - - - - - - - - - - - - - - - - -")
 
@@ -486,7 +486,7 @@ func TestUpdateOneDataById(t *testing.T) {
 	}
 	// check
 	user2 := new(User)
-	mg.C.Find(bson.M{"_id": bson.ObjectIdHex(userId)}).One(user2)
+	mg.C.Find(bson.M{"_id": bson.ObjectIdHex(userID)}).One(user2)
 	lg.Debugf("result user by find id: %v", *user2)
 	lg.Debug("- - - - - - - - - - - - - - - - - -")
 
@@ -497,7 +497,7 @@ func TestUpdateOneDataById(t *testing.T) {
 		t.Errorf("mg.C.UpdateId(idQueryier, updateData) / error:%s", err)
 	}
 	// check
-	mg.C.Find(bson.M{"_id": bson.ObjectIdHex(userId)}).One(user2)
+	mg.C.Find(bson.M{"_id": bson.ObjectIdHex(userID)}).One(user2)
 	lg.Debugf("result user by find id: %v", *user2)
 	lg.Debug("- - - - - - - - - - - - - - - - - -")
 }
@@ -538,7 +538,7 @@ func TestUpsertOneData(t *testing.T) {
 	mg.GetCol(testColUser)
 
 	// test data
-	works := []Work{{Occupation: "programmer", CompanyId: 5}, {Occupation: "programmer", CompanyId: 10}, {Occupation: "programmer", CompanyId: 11}}
+	works := []Work{{Occupation: "programmer", CompanyID: 5}, {Occupation: "programmer", CompanyID: 10}, {Occupation: "programmer", CompanyID: 11}}
 	address := Address{ZipCode: "1060047", Country: "Japan", City: "Tokyo", Address1: "港区南麻布1-2-3", Address2: "マンション555"}
 	user := User{Name: "NewHarry", Age: 9, Address: address, Works: works, CreatedAt: time.Now()}
 

@@ -129,7 +129,7 @@ func (r *RM) CreateReceiver(name string, chBody chan []byte) {
 
 // Send is for producer
 func (r *RM) Send(body []byte, q *amqp.Queue) {
-	// It is common to use serialisation formats like JSON, Thrift, Protocol Buffers
+	// It is common to use serialization formats like JSON, Thrift, Protocol Buffers
 	// and MessagePack to serialize structured data in order to publish it as the message payload.
 	err := r.Ch.Publish(
 		"",     // exchange

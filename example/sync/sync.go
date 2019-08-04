@@ -29,7 +29,7 @@ func syncMap(smap *sync.Map) {
 	})
 }
 
-func SyncMap() {
+func Map() {
 	smap := new(sync.Map)
 
 	for i := 0; i < 5; i++ {
@@ -43,7 +43,7 @@ func incrementID() {
 	atomic.AddInt64(&id, 1)
 }
 
-func SyncAtomic() {
+func Atomic() {
 	wg := new(sync.WaitGroup)
 
 	for i := 0; i < 5; i++ {

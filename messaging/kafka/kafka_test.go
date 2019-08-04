@@ -12,9 +12,9 @@ import (
 )
 
 var (
-	topicName string = "Topic1"
-	host      string = "127.0.0.1"
-	//port      int    = 32768 //TODO:this port number may change.
+	topicName = "Topic1"
+	host      = "127.0.0.1"
+	//port     = 32768 //TODO:this port number may change.
 )
 
 var msgTests = []struct {

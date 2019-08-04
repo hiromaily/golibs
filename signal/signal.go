@@ -52,6 +52,6 @@ func StartSignal() {
 		}
 	}()
 
-	_ = <-exitChan
+	<-exitChan
 	panic("detected signal") //for all stack trace
 }

@@ -55,7 +55,7 @@ func TestGetTranslationsWithNumberArgument(t *testing.T) {
 	for _, lang := range Languages {
 		text := T("message3", 35).String(lang)
 		lg.Debug(lang, text)
-		if strings.Index(text, "<no value>") != -1 {
+		if strings.Contains(text, "<no value>") {
 			t.Errorf("arguments was not replaced: %s", text)
 		}
 	}
@@ -66,7 +66,7 @@ func TestGetTranslationsWithStringArgument(t *testing.T) {
 	for _, lang := range Languages {
 		text := T("message2", "Mark").String(lang)
 		lg.Debug(lang, text)
-		if strings.Index(text, "<no value>") != -1 {
+		if strings.Contains(text, "<no value>") {
 			t.Errorf("arguments was not replaced: %s", text)
 		}
 	}
@@ -78,7 +78,7 @@ func TestGetTranslationsWithStringArgumentWithMap(t *testing.T) {
 	for _, lang := range Languages {
 		text := T("message2", mapData).String(lang)
 		lg.Debug(lang, text)
-		if strings.Index(text, "<no value>") != -1 {
+		if strings.Contains(text, "<no value>") {
 			t.Errorf("arguments was not replaced: %s", text)
 		}
 	}

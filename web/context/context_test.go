@@ -36,15 +36,15 @@ func TestMain(m *testing.M) {
 //-----------------------------------------------------------------------------
 // Test
 //-----------------------------------------------------------------------------
-func TestContextCancel(t *testing.T) {
-	ContextWithCancel()
+func TestWithCancel(t *testing.T) {
+	WithCancel()
 	//if err != nil {
 	//	t.Errorf("TestContext error: %s", err)
 	//}
 }
 
-func TestContextWithTimeout(t *testing.T) {
-	ContextWithTimeout()
+func TestWithTimeout(t *testing.T) {
+	WithTimeout()
 }
 
 //-----------------------------------------------------------------------------

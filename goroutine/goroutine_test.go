@@ -15,11 +15,6 @@ import (
 	u "github.com/hiromaily/golibs/utils"
 )
 
-type User struct {
-	Id   int
-	Name string
-}
-
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
@@ -59,12 +54,12 @@ func something2(idx int, data interface{}) {
 	fmt.Printf("apple: %d, banana:%d, lemon:%d\n", result["apple"], result["banana"], result["lemon"])
 }
 
-func loop(count int) int {
+func loop(count int) {
 	sum := 0
 	for i := 0; i < count; i++ {
 		sum += i
 	}
-	return sum
+	fmt.Println(sum)
 }
 
 //-----------------------------------------------------------------------------

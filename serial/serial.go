@@ -120,7 +120,7 @@ func RestoreFromFile(filepath string, data interface{}) error {
 // github.com/ugorji/go/codec
 //  it may be faster than go-msgpack
 //-----------------------------------------------------------------------------
-var mh = &codec.MsgpackHandle{RawToString: true}
+var mh = &codec.MsgpackHandle{}
 
 // CodecEncode is encoder using github.com/ugorji/go/codec
 func CodecEncode(data interface{}) []byte {

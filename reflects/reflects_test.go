@@ -14,13 +14,13 @@ import (
 )
 
 type TeacherInfo struct {
-	Id      int    `json:"id"`
+	ID      int    `json:"id"`
 	Name    string `json:"name"`
 	Country string `json:"country"`
 }
 
 type SiteInfo struct {
-	Url      string        `json:"url"`
+	URL      string        `json:"url"`
 	Teachers []TeacherInfo `json:"teachers"`
 }
 
@@ -33,17 +33,17 @@ type LoginRequest struct {
 
 var (
 	//test data
-	dInt   int           = 10
-	dInt64 int64         = 99999
-	dStr   string        = "testdata"
-	dBool  bool          = false
-	dSlice []int         = []int{1, 2, 3, 4, 5}
-	dTime  time.Duration = 1 * time.Nanosecond
-	dMap                 = map[string]int{"apple": 150, "banana": 300, "lemon": 300}
+	dInt         = 10
+	dInt64 int64 = 99999
+	dStr         = "testdata"
+	dBool  bool
+	dSlice = []int{1, 2, 3, 4, 5}
+	dTime  = 1 * time.Nanosecond
+	dMap   = map[string]int{"apple": 150, "banana": 300, "lemon": 300}
 
-	siteInfo SiteInfo = SiteInfo{Url: "http://google.com",
-		Teachers: []TeacherInfo{{Id: 123, Name: "Harry", Country: "Japan"}, {Id: 456, Name: "Taro", Country: "America"}}}
-	tInfo []TeacherInfo = []TeacherInfo{{Id: 123, Name: "Harry", Country: "Japan"}, {Id: 456, Name: "Taro", Country: "America"}}
+	siteInfo = SiteInfo{URL: "http://google.com",
+		Teachers: []TeacherInfo{{ID: 123, Name: "Harry", Country: "Japan"}, {ID: 456, Name: "Taro", Country: "America"}}}
+	tInfo = []TeacherInfo{{ID: 123, Name: "Harry", Country: "Japan"}, {ID: 456, Name: "Taro", Country: "America"}}
 )
 
 //-----------------------------------------------------------------------------

@@ -13,12 +13,6 @@ import (
 	tu "github.com/hiromaily/golibs/testutil"
 )
 
-var (
-	keyspace = "hiromaily"
-)
-
-//Fixme: it doesn't work because of keyspace
-
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
@@ -28,7 +22,6 @@ func init() {
 }
 
 func setup() {
-	//create keyspace
 
 	connection()
 }
@@ -52,9 +45,6 @@ func TestMain(m *testing.M) {
 //-----------------------------------------------------------------------------
 // functions
 //-----------------------------------------------------------------------------
-func createKeySpace() {
-
-}
 
 func connection() {
 	c := conf.GetConf().Cassa

@@ -1,4 +1,4 @@
-package stdout_capture_test
+package stdoutcapture_test
 
 import (
 	"fmt"

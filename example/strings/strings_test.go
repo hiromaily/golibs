@@ -15,7 +15,6 @@ import (
 
 var (
 	data1 = "abcdefghijk"
-	data2 = "ABCDEFGHIJK"
 )
 
 //-----------------------------------------------------------------------------
@@ -101,8 +100,7 @@ func TestContainsAny(t *testing.T) {
 func TestContainsRune(t *testing.T) {
 	tu.SkipLog(t)
 
-	var data3 rune
-	data3 = 'a'
+	var data3 = 'a' //rune
 	ret := strings.ContainsRune(data1, data3)
 	lg.Debugf("[1]strings.ContainsRune():%v", ret) //true
 

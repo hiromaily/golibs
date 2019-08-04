@@ -119,6 +119,7 @@ func ChangeValOnMap(val map[string]int) {
 }
 
 // ChangeValOnInterface is to check when passing interface{}
+//nolint:staticcheck
 func ChangeValOnInterface(val interface{}) {
 	val = "changed"
 	lg.Debugf("CheckInterface: %v", val)

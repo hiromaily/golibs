@@ -14,7 +14,7 @@ import (
 //https://scene-si.org/2016/06/13/advanced-go-tips-and-tricks/
 //Nested structures when parsing JSON data
 type Person struct {
-	Id      int    `json:"id"`
+	ID      int    `json:"id"`
 	Name    string `json:"name"`
 	Address struct {
 		City    string `json:"city"`
@@ -23,13 +23,13 @@ type Person struct {
 }
 
 type TeacherInfo struct {
-	Id      int    `json:"id"`
+	ID      int    `json:"id"`
 	Name    string `json:"name"`
 	Country string `json:"country"`
 }
 
 type SiteInfo struct {
-	Url      string        `json:"url"`
+	URL      string        `json:"url"`
 	Teachers []TeacherInfo `json:"teachers"`
 }
 
@@ -37,7 +37,7 @@ var (
 	fileData []byte
 )
 
-var jsonData string = `
+var jsonData = `
 {
     "id": 1,
     "name": "Tit Petric",
@@ -92,7 +92,7 @@ func TestJsonAsStruct(t *testing.T) {
 		t.Fatalf("[01] Unmarshal error: %s", err)
 	}
 
-	if siteInfo.Url != "http://eikaiwa.dmm.com/" {
+	if siteInfo.URL != "http://eikaiwa.dmm.com/" {
 		t.Errorf("[02] siteInfo: %#v", siteInfo)
 	}
 }
@@ -150,8 +150,8 @@ func TestMarshalJson(t *testing.T) {
 	//person := Person{Id: 1, Name: "Harry", Address: {City: "Tokyo", Country: "Japan"}}
 	//b0, err := json.Marshal(person)
 
-	siteInfo := SiteInfo{Url: "http://google.com",
-		Teachers: []TeacherInfo{{Id: 123, Name: "Harry", Country: "Japan"}, {Id: 456, Name: "Taro", Country: "America"}}}
+	siteInfo := SiteInfo{URL: "http://google.com",
+		Teachers: []TeacherInfo{{ID: 123, Name: "Harry", Country: "Japan"}, {ID: 456, Name: "Taro", Country: "America"}}}
 	b, err := json.Marshal(siteInfo)
 	if err != nil {
 		t.Fatalf("[01] error: %s", err)

@@ -10,7 +10,7 @@ import (
 	tu "github.com/hiromaily/golibs/testutil"
 )
 
-type MessagesJson struct {
+type MessagesJSON struct {
 	ContentType uint8  `json:"contentType"`
 	Text        string `json:"text"`
 }
@@ -74,7 +74,7 @@ func TestPostRequest(t *testing.T) {
 
 	url := "https://www.google.co.jp/"
 
-	message := MessagesJson{
+	message := MessagesJSON{
 		ContentType: 1,
 		Text:        "something code",
 	}

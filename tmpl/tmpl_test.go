@@ -15,24 +15,24 @@ import (
 //http://stackoverflow.com/questions/11467731/is-it-possible-to-have-nested-templates-in-go-using-the-standard-library-googl
 
 type TeachrInfo struct {
-	Id      int
+	ID      int
 	Name    string
 	Country string
 }
 
 type Teachers struct {
-	Url      string
+	URL      string
 	Teachers []TeachrInfo
 }
 
-type Site struct {
-	Name  string
-	Pages []int
-}
+//type Site struct {
+//	Name  string
+//	Pages []int
+//}
 
 var (
 	//test1
-	tmplTeachers string = `
+	tmplTeachers = `
 	//1. use  dot
 	{{.}}
 
@@ -48,7 +48,7 @@ var (
 	-----------------------------------
 `
 	//test2
-	tmplTeachers2 string = `
+	tmplTeachers2 = `
 	//1. range
 	{{range $index, $value := .Teachers}}
 	- Index:{{$index}}
@@ -67,7 +67,7 @@ var (
 	-----------------------------------
 `
 	//test3
-	tmplVariable string = `
+	tmplVariable = `
 	{{$test := "test"}}
 	{{if eq $test "test"}}
 		{{$test}}
@@ -75,23 +75,23 @@ var (
 	{{end}}
 `
 
-	//test4
-	tmplSite string = `
-	{{range .Pages}}
-		<li><a href="{{.}}">{{.}}</a></li>
-	{{end}}
-`
+	//	//test4
+	//	tmplSite = `
+	//	{{range .Pages}}
+	//		<li><a href="{{.}}">{{.}}</a></li>
+	//	{{end}}
+	//`
 
-	//test5
-	innerOuter string = `
-	{{with .Inner}}
-	  Outer: {{$.OuterValue}}
-	  Inner: {{.InnerValue}}
-	{{end}}
-`
+	//	//test5
+	//	innerOuter = `
+	//	{{with .Inner}}
+	//	  Outer: {{$.OuterValue}}
+	//	  Inner: {{.InnerValue}}
+	//	{{end}}
+	//`
 
 	//test6
-	tmplTeachers3 string = `
+	tmplTeachers3 = `
 	//1. range
 	{{range .Teachers}}
 	- Id:{{.Id | plus10}}
@@ -101,7 +101,7 @@ var (
 	-----------------------------------
 `
 	//test7
-	tmplTeachers4 string = `
+	tmplTeachers4 = `
 	//1. range
 	{{range $index, $value := .Teachers}}
 	{{if .Name}}
@@ -176,12 +176,12 @@ func plus10(num int) int {
 }
 
 func getTeathers() *Teachers {
-	teachers := &Teachers{Url: "http://google.com",
-		Teachers: []TeachrInfo{{Id: 1, Name: "Harry", Country: "Japan"},
-			{Id: 2, Name: "Harry", Country: "Japan"},
-			{Id: 3, Name: "Taro", Country: "UK"},
-			{Id: 4, Name: "", Country: "Germany"},
-			{Id: 5, Name: "Saburo", Country: "America"}}}
+	teachers := &Teachers{URL: "http://google.com",
+		Teachers: []TeachrInfo{{ID: 1, Name: "Harry", Country: "Japan"},
+			{ID: 2, Name: "Harry", Country: "Japan"},
+			{ID: 3, Name: "Taro", Country: "UK"},
+			{ID: 4, Name: "", Country: "Germany"},
+			{ID: 5, Name: "Saburo", Country: "America"}}}
 
 	return teachers
 }

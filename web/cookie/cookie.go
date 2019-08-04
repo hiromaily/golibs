@@ -12,6 +12,7 @@ import (
 	"runtime"
 	"strings"
 
+	//nolint:golint
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/pkg/errors"
 	"golang.org/x/crypto/pbkdf2"
@@ -187,7 +188,7 @@ func getPasswordMac() (string, error) {
 	parts := strings.Fields("security find-generic-password -wga Chrome")
 
 	cmd := parts[0]
-	parts = parts[1:len(parts)]
+	parts = parts[1:]
 
 	out, err := exec.Command(cmd, parts...).Output()
 	if err != nil {
@@ -203,7 +204,7 @@ func getPasswordLinux() (string, error) {
 	parts := strings.Fields("secret-tool search application chrome")
 
 	cmd := parts[0]
-	parts = parts[1:len(parts)]
+	parts = parts[1:]
 
 	out, err := exec.Command(cmd, parts...).Output()
 	if err != nil {

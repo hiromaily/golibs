@@ -174,6 +174,7 @@ func validateConfig(conf *Config, md *toml.MetaData) error {
 			default:
 				//invalid check string
 				inValid = true
+				//nolint:gosimple
 				break
 			}
 			keysIfc := u.SliceStrToInterface(keys)
@@ -183,10 +184,10 @@ func validateConfig(conf *Config, md *toml.MetaData) error {
 
 	// Error
 	if inValid {
-		return errors.New("error: Check Text has wrong number of parameter")
+		return errors.New("check text has wrong number of parameter")
 	}
 	if len(errStrings) != 0 {
-		return fmt.Errorf("error: There are lacks of keys : %#v \n", errStrings)
+		return fmt.Errorf("there are lacks of keys : %#v \n ", errStrings)
 	}
 
 	return nil

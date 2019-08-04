@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
+	//nolint:golint
 	_ "github.com/lib/pq"
 )
 

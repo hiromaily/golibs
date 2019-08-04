@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	queueName string = "testQueue99"
+	queueName = "testQueue99"
 )
 
 //-----------------------------------------------------------------------------

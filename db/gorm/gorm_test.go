@@ -82,7 +82,7 @@ func GetMySQLInstance() *MySQL {
 func TestSelectUser(t *testing.T) {
 
 	type User struct {
-		Id        int
+		ID        int
 		FirstName string
 		LastName  string
 	}

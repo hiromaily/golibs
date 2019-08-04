@@ -228,5 +228,7 @@ func New() {
 	conf := conf.GetConf()
 
 	//create client for sqs
+	//nolint:staticcheck
 	svc = sqs.New(session.New(), aws.NewConfig().WithRegion(conf.Aws.Region))
+	fmt.Println(svc)
 }

@@ -61,8 +61,7 @@ func ParseHTMLText(text string) (*html.Node, error) {
 
 // ParseHTMLText2 is to parse HTML text data using html.Node
 func ParseHTMLText2(text string) ([]*html.Node, error) {
-	var context html.Node
-	context = html.Node{
+	context := html.Node{
 		Type:     html.ElementNode,
 		Data:     "body",
 		DataAtom: atom.Body,
