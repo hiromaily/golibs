@@ -1,4 +1,5 @@
 #!/bin/bash
+# format comment `//something` to `// something`
 
 gofiles=$(find . -name "*.go" | grep -v "/vendor/")
 
