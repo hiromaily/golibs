@@ -7,7 +7,9 @@ XMLPATH=${PROJECT_ROOT}/example/xml/rssfeeds/
 
 KAFKA_IP=`docker ps -f name=lib-kafka1 --format "{{.Ports}}" | sed -e 's/0.0.0.0://g' | sed -e 's/->9092\/tcp//g'`
 
-LOGLEVEL=1 #1:Debug, 2:Info, 3:Error, 4:Fatal, 5:No Log
+# These variables can be overriden `make LOGLEVEL=2 target`
+LOGLEVEL ?= 1 #1:Debug, 2:Info, 3:Error, 4:Fatal, 5:No Log
+
 LOG_ARG='-v'
 #if [ $LOGLEVEL -eq 5 ]; then
 #    LOG_ARG=''
@@ -16,6 +18,22 @@ LOG_ARG='-v'
 ###############################################################################
 # PKG Dependencies
 ###############################################################################
+GOLINT = $(GOPATH)/bin/golangci-lint
+MISSPELL = $(GOPATH)/bin/misspell
+INEFFASSIGN = $(GOPATH)/bin/ineffassign
+
+$(GOLINT):
+    GO111MODULE=off go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
+
+$(MISSPELL):
+	GO111MODULE=off go get -u github.com/client9/misspell/cmd/misspell
+
+$(INEFFASSIGN):
+	GO111MODULE=off go get -u github.com/gordonklaus/ineffassign
+
+.PHONY: install
+install: $(GOLINT) $(MISSPELL) $(INEFFASSIGN)
+
 .PHONY: update
 update:
 	#go get -u github.com/tools/godep
@@ -122,22 +140,28 @@ ins:
 ###############################################################################
 # Docker
 ###############################################################################
-docker:
+.PHONY: dc-create
+dc-create:
 	sh ./scripts/create-containers
 
-up:
+.PHONY: dc-up
+dc-up:
 	docker-compose up
 
-up_product:
+.PHONY: dc-up-product
+dc-up-product:
 	docker-compose -f docker-compose.yml up
 
-dcbld:
+.PHONY: dc-bld
+dc-bld:
 	docker-compose build --no-cache
 
-mysql:
+.PHONY: dc-mysql
+dc-mysql:
 	docker-compose up mysql
 
-pg:
+.PHONY: dc-pg
+dc-pg:
 	docker-compose up pg
 
 
