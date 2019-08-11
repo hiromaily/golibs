@@ -31,6 +31,7 @@ func NewServer(conf *config.Config, db *mysql.MS, rd *redis.RD) (*Server, error)
 	//health check
 	hcHandler := handlers.NewHealthChecker(true)
 
+	//http.Handler
 	s.srvMux.Handle("/redis", middlewares.RecoverMiddleware(validations.Redis(redisHandler)))
 	s.srvMux.Handle("/db", middlewares.RecoverMiddleware(validations.DB(dbHandler)))
 	s.srvMux.Handle("/hc", hcHandler)
