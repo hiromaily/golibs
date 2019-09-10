@@ -2,13 +2,13 @@ package main
 
 import (
 	"fmt"
-	"time"
 	"net/http"
+	"time"
 )
 
 var counter int
 
-func subtask(i int){
+func subtask(i int) {
 	fmt.Println(" start subtask:", i)
 	time.Sleep(2 * time.Second)
 	fmt.Println(" end subtask", i)
@@ -17,7 +17,7 @@ func subtask(i int){
 func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("----- get request -----")
 	go subtask(counter)
-	counter+=1
+	counter += 1
 	time.Sleep(1 * time.Second)
 
 	fmt.Println("hello world")

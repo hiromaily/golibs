@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package samplepb;
+
+option java_package = "com.github.hiromaily.golibs.protobuf";
+option java_outer_classname = "Sample";
+
+message SampleBase {
+  string sample_id = 1;
+  int64 time = 2;
+
+  oneof sample_data {
+    Category1Sample category1 = 101;
+    Category2Sample category2 = 102;
+  }
+}
+
+message Category1Sample {
+  Something1 something1 = 1;
+  Something2 something2 = 2;
+  Client client = 3;
+}
+
+message Category2Sample {
+  Something1 something1 = 1;
+
+  uint64 a_id = 3;
+  double b_id = 4;
+  string s_name = 5;
+  bool b_flag = 9;
+}
+
+message Something1 {
+  uint64 id = 1;
+  uint32 u_id = 2;
+  Something1Type type = 3;
+  uint64 ui_id = 4;
+}
+
+message Something2 {
+  string name = 1;
+  int64 p_time = 2;
+}
+
+message Client {
+  string name = 1;
+  uint32 age = 2;
+  uint32 height = 3;
+}
+
+enum Something1Type {
+  SOMETHING_TYPE_A = 0;
+  SOMETHING_TYPE_B = 1;
+  SOMETHING_TYPE_C = 2;
+}
+

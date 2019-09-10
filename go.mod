@@ -10,9 +10,6 @@ require (
 	github.com/Shopify/sarama v1.23.1
 	github.com/aws/aws-sdk-go v1.21.9
 	github.com/boltdb/bolt v1.3.1
-	github.com/bookerzzz/grok v0.0.0
-	github.com/chromedp/cdproto v0.0.0-20190731034908-29ad992845e9
-	github.com/chromedp/chromedp v0.3.1
 	github.com/coopernurse/gorp v1.6.1
 	github.com/creasty/go-levenshtein v0.0.0-20161128082938-38ce641d5030
 	github.com/denisenkom/go-mssqldb v0.0.0-20190724012636-11b2859924c1 // indirect
@@ -25,10 +22,11 @@ require (
 	github.com/fsnotify/fsnotify v1.4.7
 	github.com/garyburd/redigo v1.6.0
 	github.com/go-sql-driver/mysql v1.4.1
-	github.com/gobwas/ws v1.0.2 // indirect
 	github.com/gocql/gocql v0.0.0-20190728105348-76e94bbd190c
+	github.com/gogo/protobuf v1.3.0
 	github.com/jcmturner/gofork v1.0.0 // indirect
 	github.com/jinzhu/gorm v1.9.10
+	github.com/json-iterator/go v1.1.7
 	github.com/lib/pq v1.2.0
 	github.com/mattn/go-sqlite3 v1.11.0
 	github.com/moul/http2curl v1.0.0 // indirect
