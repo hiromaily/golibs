@@ -2,6 +2,9 @@ syntax = "proto3";
 
 package samplepb;
 
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
 option java_package = "com.github.hiromaily.golibs.protobuf";
 option java_outer_classname = "Sample";
 
@@ -9,9 +12,10 @@ message SampleBase {
   string sample_id = 1;
   int64 time = 2;
 
+  // at least one of field should be used
   oneof sample_data {
-    Category1Sample category1 = 101;
-    Category2Sample category2 = 102;
+    Category1Sample category1 = 3;
+    Category2Sample category2 = 4;
   }
 }
 
@@ -19,22 +23,25 @@ message Category1Sample {
   Something1 something1 = 1;
   Something2 something2 = 2;
   Client client = 3;
+  google.protobuf.Timestamp last_updated = 4;
+  google.protobuf.Struct definition = 5;
 }
 
 message Category2Sample {
   Something1 something1 = 1;
 
-  uint64 a_id = 3;
-  double b_id = 4;
-  string s_name = 5;
-  bool b_flag = 9;
+  uint64 a_id = 2;
+  double b_id = 3;
+  string s_name = 4;
+  bool b_flag = 5;
+  bytes bt_data = 6;
 }
 
 message Something1 {
   uint64 id = 1;
   uint32 u_id = 2;
   Something1Type type = 3;
-  uint64 ui_id = 4;
+  repeated string data = 4;
 }
 
 message Something2 {
@@ -54,3 +61,14 @@ enum Something1Type {
   SOMETHING_TYPE_C = 2;
 }
 
+// Sample is the sample service.
+//service Sample {
+//  // UnaryEcho is unary echo.
+//  rpc UnaryEcho(SampleBase) returns (EchoResponse) {}
+//  // ServerStreamingEcho is server side streaming.
+//  rpc ServerStreamingEcho(SampleBase) returns (stream EchoResponse) {}
+//  // ClientStreamingEcho is client side streaming.
+//  rpc ClientStreamingEcho(stream SampleBase) returns (EchoResponse) {}
+//  // BidirectionalStreamingEcho is bidi streaming.
+//  rpc BidirectionalStreamingEcho(stream SampleBase) returns (stream EchoResponse) {}
+//}
