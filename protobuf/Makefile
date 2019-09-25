@@ -9,7 +9,7 @@ GNAME=$(shell id -gn)
 #PROTOC_BIN=docker run --rm -v $(PWD):$(PWD) -w $(PWD) znly/protoc:0.4.0
 PROTOC_BIN=protoc
 
-GOGO_MODULES=Mgoogle/protobuf/timestamp.proto=github.com/gogo/protobuf/types,Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types,Mgoogle/protobuf/empty.proto=github.com/gogo/protobuf/types
+GOGO_MODULES=Mgoogle/protobuf/timestamp.proto=github.com/gogo/protobuf/types,Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types,Mgoogle/protobuf/empty.proto=github.com/gogo/protobuf/types,Mgoogle/protobuf/struct.proto=github.com/gogo/protobuf/types,Mgoogle/protobuf/any.proto=github.com/gogo/protobuf/types
 
 # it doesn't work as expected
 .PHONY:sleep-tech
@@ -24,6 +24,7 @@ init: update
 
 .PHONY:update
 update:
+    go get -u github.com/gogo/protobuf
 	# refer to https://developers.google.com/protocol-buffers/docs/reference/go-generated
 	# provides a protoc-gen-go binary which protoc uses when invoked with the --go_out command-line flag.
 	# The --go_out flag
