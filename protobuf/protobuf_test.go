@@ -1,10 +1,12 @@
 package protobuf_test
 
 import (
+	//"bytes"
 	"log"
 	"testing"
 	"time"
 
+	//"github.com/gogo/protobuf/jsonpb"
 	"github.com/gogo/protobuf/proto"
 	"github.com/gogo/protobuf/types"
 	jsoniter "github.com/json-iterator/go"
@@ -79,7 +81,7 @@ func TestSample(t *testing.T) {
 	// SampleBase
 	var sampleBase = samplepb.SampleBase{
 		SampleName: "sample01",
-		Time: time.Now().Unix(),
+		Time:       time.Now().Unix(),
 		SampleData: &samplepb.SampleBase_Category1{Category1: &cg1Sample},
 	}
 
@@ -110,4 +112,14 @@ func TestSample(t *testing.T) {
 		log.Fatalln("Failed to encode sampleBase:", err)
 	}
 	log.Println(string(js))
+
+	// Unmarshal
+	// https://qiita.com/yugui/items/238dcdb75cd40d0f1ece
+	//var sampleBase2 = samplepb.SampleBase{}
+	////func Unmarshal(r io.Reader, pb proto.Message) error {
+	//if err := jsonpb.Unmarshal(bytes.NewReader(js), &sampleBase2); err != nil {
+	//	log.Fatalln("Failed to parse sampleBase2:", err)
+	//	//unknown field "SampleData" in samplepb.SampleBase
+	//}
+	//log.Println(sampleBase2)
 }

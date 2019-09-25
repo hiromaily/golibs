@@ -47,6 +47,13 @@ build:
 		--gogoslick_out=$(GOGO_MODULES):./pb/ proto/**/*.proto
 	chown -R $(UNAME):$(GNAME) ./pb
 
+.PHONY:grpc
+grpc:
+	# e.g. protoc -I=$SRC_DIR --go_out=$DST_DIR $SRC_DIR/addressbook.proto
+	$(PROTOC_BIN) --proto_path=proto -I=. \
+		--gogoslick_out=plugins=grpc,$(GOGO_MODULES):./pb/ proto/**/*.proto
+	chown -R $(UNAME):$(GNAME) ./pb
+
 #.PHONY:java
 #java:
 #	$(PROTOC_BIN) --proto_path=proto -I=. \
