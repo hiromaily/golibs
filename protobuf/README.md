@@ -9,3 +9,4 @@
 - [grpc-example](https://github.com/gogo/grpc-example)
 - [Proto3 Language Guide（和訳）](https://qiita.com/CyLomw/items/9aa4551bd6bb9c0818b6)
 - [Proto2 vs Proto3](https://qiita.com/ksato9700/items/0eb025b1e2521c1cab79)
+- [Go で実装しながら gRPC を理解する](https://reboooot.net/post/hello-grpc/)

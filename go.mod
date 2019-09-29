@@ -47,6 +47,7 @@ require (
 	golang.org/x/net v0.0.0-20190923162816-aa69164e4478
 	golang.org/x/sys v0.0.0-20190924154521-2837fb4f24fe // indirect
 	google.golang.org/appengine v1.6.3 // indirect
+	google.golang.org/grpc v1.19.0
 	gopkg.in/guregu/null.v3 v3.4.0 // indirect
 	gopkg.in/jcmturner/goidentity.v3 v3.0.0 // indirect
 	gopkg.in/jcmturner/gokrb5.v7 v7.3.0 // indirect

@@ -24,7 +24,7 @@ init: update
 
 .PHONY:update
 update:
-    go get -u github.com/gogo/protobuf
+	go get -u github.com/gogo/protobuf
 	# refer to https://developers.google.com/protocol-buffers/docs/reference/go-generated
 	# provides a protoc-gen-go binary which protoc uses when invoked with the --go_out command-line flag.
 	# The --go_out flag
