@@ -23,7 +23,7 @@ MISSPELL = $(GOPATH)/bin/misspell
 INEFFASSIGN = $(GOPATH)/bin/ineffassign
 
 $(GOLINT):
-    GO111MODULE=off go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
+	GO111MODULE=off go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
 
 $(MISSPELL):
 	GO111MODULE=off go get -u github.com/client9/misspell/cmd/misspell
@@ -257,6 +257,9 @@ test:
 
 
 bench:
+	# for all
+	#go test ./... -bench=. -benchmem
+
 	#cd cast/;go test -bench=. -benchmem;cd ../;
 
 	#cd db/mysql/;go test -bench=. -benchmem;cd ../;
