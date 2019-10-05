@@ -33,52 +33,53 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-type Something1Type int32
+type EnumType int32
 
 const (
-	SOMETHING_TYPE_A Something1Type = 0
-	SOMETHING_TYPE_B Something1Type = 1
-	SOMETHING_TYPE_C Something1Type = 2
+	SOMETHING_TYPE_A EnumType = 0
+	SOMETHING_TYPE_B EnumType = 1
+	SOMETHING_TYPE_C EnumType = 2
 )
 
-var Something1Type_name = map[int32]string{
+var EnumType_name = map[int32]string{
 	0: "SOMETHING_TYPE_A",
 	1: "SOMETHING_TYPE_B",
 	2: "SOMETHING_TYPE_C",
 }
 
-var Something1Type_value = map[string]int32{
+var EnumType_value = map[string]int32{
 	"SOMETHING_TYPE_A": 0,
 	"SOMETHING_TYPE_B": 1,
 	"SOMETHING_TYPE_C": 2,
 }
 
-func (Something1Type) EnumDescriptor() ([]byte, []int) {
+func (EnumType) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_ed182cfb5ecd7537, []int{0}
 }
 
-type SampleBase struct {
-	SampleName string `protobuf:"bytes,1,opt,name=sample_name,json=sampleName,proto3" json:"sample_name,omitempty"`
-	Time       int64  `protobuf:"varint,2,opt,name=time,proto3" json:"time,omitempty"`
-	// at least one of field should be used
-	//
-	// Types that are valid to be assigned to SampleData:
-	//	*SampleBase_Category1
-	//	*SampleBase_Category2
-	SampleData isSampleBase_SampleData `protobuf_oneof:"sample_data"`
+type NormalType struct {
+	I32 int32   `protobuf:"varint,1,opt,name=i32,proto3" json:"i32,omitempty"`
+	I64 int64   `protobuf:"varint,2,opt,name=i64,proto3" json:"i64,omitempty"`
+	U32 uint32  `protobuf:"varint,3,opt,name=u32,proto3" json:"u32,omitempty"`
+	U64 uint64  `protobuf:"varint,4,opt,name=u64,proto3" json:"u64,omitempty"`
+	Fl  float32 `protobuf:"fixed32,5,opt,name=fl,proto3" json:"fl,omitempty"`
+	Db  float64 `protobuf:"fixed64,6,opt,name=db,proto3" json:"db,omitempty"`
+	Bl  bool    `protobuf:"varint,7,opt,name=bl,proto3" json:"bl,omitempty"`
+	St  string  `protobuf:"bytes,8,opt,name=st,proto3" json:"st,omitempty"`
+	Bt  []byte  `protobuf:"bytes,9,opt,name=bt,proto3" json:"bt,omitempty"`
 }
 
-func (m *SampleBase) Reset()      { *m = SampleBase{} }
-func (*SampleBase) ProtoMessage() {}
-func (*SampleBase) Descriptor() ([]byte, []int) {
+func (m *NormalType) Reset()      { *m = NormalType{} }
+func (*NormalType) ProtoMessage() {}
+func (*NormalType) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ed182cfb5ecd7537, []int{0}
 }
-func (m *SampleBase) XXX_Unmarshal(b []byte) error {
+func (m *NormalType) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *SampleBase) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *NormalType) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_SampleBase.Marshal(b, m, deterministic)
+		return xxx_messageInfo_NormalType.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -88,380 +89,233 @@ func (m *SampleBase) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *SampleBase) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SampleBase.Merge(m, src)
+func (m *NormalType) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_NormalType.Merge(m, src)
 }
-func (m *SampleBase) XXX_Size() int {
+func (m *NormalType) XXX_Size() int {
 	return m.Size()
 }
-func (m *SampleBase) XXX_DiscardUnknown() {
-	xxx_messageInfo_SampleBase.DiscardUnknown(m)
+func (m *NormalType) XXX_DiscardUnknown() {
+	xxx_messageInfo_NormalType.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_SampleBase proto.InternalMessageInfo
+var xxx_messageInfo_NormalType proto.InternalMessageInfo
 
-type isSampleBase_SampleData interface {
-	isSampleBase_SampleData()
+func (m *NormalType) GetI32() int32 {
+	if m != nil {
+		return m.I32
+	}
+	return 0
+}
+
+func (m *NormalType) GetI64() int64 {
+	if m != nil {
+		return m.I64
+	}
+	return 0
+}
+
+func (m *NormalType) GetU32() uint32 {
+	if m != nil {
+		return m.U32
+	}
+	return 0
+}
+
+func (m *NormalType) GetU64() uint64 {
+	if m != nil {
+		return m.U64
+	}
+	return 0
+}
+
+func (m *NormalType) GetFl() float32 {
+	if m != nil {
+		return m.Fl
+	}
+	return 0
+}
+
+func (m *NormalType) GetDb() float64 {
+	if m != nil {
+		return m.Db
+	}
+	return 0
+}
+
+func (m *NormalType) GetBl() bool {
+	if m != nil {
+		return m.Bl
+	}
+	return false
+}
+
+func (m *NormalType) GetSt() string {
+	if m != nil {
+		return m.St
+	}
+	return ""
+}
+
+func (m *NormalType) GetBt() []byte {
+	if m != nil {
+		return m.Bt
+	}
+	return nil
+}
+
+type ExtensionType struct {
+	Data   []string         `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	Mp     map[string]int64 `protobuf:"bytes,2,rep,name=mp,proto3" json:"mp,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+	Ts     *types.Timestamp `protobuf:"bytes,3,opt,name=ts,proto3" json:"ts,omitempty"`
+	Struct *types.Struct    `protobuf:"bytes,4,opt,name=struct,proto3" json:"struct,omitempty"`
+	Any    *types.Any       `protobuf:"bytes,5,opt,name=any,proto3" json:"any,omitempty"`
+	// at least one of field should be used
+	//
+	// Types that are valid to be assigned to OneofData:
+	//	*ExtensionType_I32
+	//	*ExtensionType_St
+	OneofData isExtensionType_OneofData `protobuf_oneof:"oneof_data"`
+	Type      EnumType                  `protobuf:"varint,8,opt,name=type,proto3,enum=sample.EnumType" json:"type,omitempty"`
+	Client    *Client                   `protobuf:"bytes,9,opt,name=client,proto3" json:"client,omitempty"`
+}
+
+func (m *ExtensionType) Reset()      { *m = ExtensionType{} }
+func (*ExtensionType) ProtoMessage() {}
+func (*ExtensionType) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ed182cfb5ecd7537, []int{1}
+}
+func (m *ExtensionType) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *ExtensionType) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_ExtensionType.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *ExtensionType) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ExtensionType.Merge(m, src)
+}
+func (m *ExtensionType) XXX_Size() int {
+	return m.Size()
+}
+func (m *ExtensionType) XXX_DiscardUnknown() {
+	xxx_messageInfo_ExtensionType.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ExtensionType proto.InternalMessageInfo
+
+type isExtensionType_OneofData interface {
+	isExtensionType_OneofData()
 	Equal(interface{}) bool
 	MarshalTo([]byte) (int, error)
 	Size() int
 }
 
-type SampleBase_Category1 struct {
-	Category1 *Category1Sample `protobuf:"bytes,3,opt,name=category1,proto3,oneof"`
+type ExtensionType_I32 struct {
+	I32 int32 `protobuf:"varint,6,opt,name=i32,proto3,oneof"`
 }
-type SampleBase_Category2 struct {
-	Category2 *Category2Sample `protobuf:"bytes,4,opt,name=category2,proto3,oneof"`
+type ExtensionType_St struct {
+	St string `protobuf:"bytes,7,opt,name=st,proto3,oneof"`
 }
 
-func (*SampleBase_Category1) isSampleBase_SampleData() {}
-func (*SampleBase_Category2) isSampleBase_SampleData() {}
+func (*ExtensionType_I32) isExtensionType_OneofData() {}
+func (*ExtensionType_St) isExtensionType_OneofData()  {}
 
-func (m *SampleBase) GetSampleData() isSampleBase_SampleData {
+func (m *ExtensionType) GetOneofData() isExtensionType_OneofData {
 	if m != nil {
-		return m.SampleData
+		return m.OneofData
 	}
 	return nil
 }
 
-func (m *SampleBase) GetSampleName() string {
-	if m != nil {
-		return m.SampleName
-	}
-	return ""
-}
-
-func (m *SampleBase) GetTime() int64 {
-	if m != nil {
-		return m.Time
-	}
-	return 0
-}
-
-func (m *SampleBase) GetCategory1() *Category1Sample {
-	if x, ok := m.GetSampleData().(*SampleBase_Category1); ok {
-		return x.Category1
-	}
-	return nil
-}
-
-func (m *SampleBase) GetCategory2() *Category2Sample {
-	if x, ok := m.GetSampleData().(*SampleBase_Category2); ok {
-		return x.Category2
-	}
-	return nil
-}
-
-// XXX_OneofWrappers is for the internal use of the proto package.
-func (*SampleBase) XXX_OneofWrappers() []interface{} {
-	return []interface{}{
-		(*SampleBase_Category1)(nil),
-		(*SampleBase_Category2)(nil),
-	}
-}
-
-type Category1Sample struct {
-	Something1  *Something1      `protobuf:"bytes,1,opt,name=something1,proto3" json:"something1,omitempty"`
-	Something2  *Something2      `protobuf:"bytes,2,opt,name=something2,proto3" json:"something2,omitempty"`
-	Client      *Client          `protobuf:"bytes,3,opt,name=client,proto3" json:"client,omitempty"`
-	Md          map[string]int64 `protobuf:"bytes,4,rep,name=md,proto3" json:"md,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
-	LastUpdated *types.Timestamp `protobuf:"bytes,5,opt,name=last_updated,json=lastUpdated,proto3" json:"last_updated,omitempty"`
-	Definition  *types.Struct    `protobuf:"bytes,6,opt,name=definition,proto3" json:"definition,omitempty"`
-	Details     *types.Any       `protobuf:"bytes,7,opt,name=details,proto3" json:"details,omitempty"`
-}
-
-func (m *Category1Sample) Reset()      { *m = Category1Sample{} }
-func (*Category1Sample) ProtoMessage() {}
-func (*Category1Sample) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ed182cfb5ecd7537, []int{1}
-}
-func (m *Category1Sample) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *Category1Sample) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_Category1Sample.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *Category1Sample) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Category1Sample.Merge(m, src)
-}
-func (m *Category1Sample) XXX_Size() int {
-	return m.Size()
-}
-func (m *Category1Sample) XXX_DiscardUnknown() {
-	xxx_messageInfo_Category1Sample.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Category1Sample proto.InternalMessageInfo
-
-func (m *Category1Sample) GetSomething1() *Something1 {
-	if m != nil {
-		return m.Something1
-	}
-	return nil
-}
-
-func (m *Category1Sample) GetSomething2() *Something2 {
-	if m != nil {
-		return m.Something2
-	}
-	return nil
-}
-
-func (m *Category1Sample) GetClient() *Client {
-	if m != nil {
-		return m.Client
-	}
-	return nil
-}
-
-func (m *Category1Sample) GetMd() map[string]int64 {
-	if m != nil {
-		return m.Md
-	}
-	return nil
-}
-
-func (m *Category1Sample) GetLastUpdated() *types.Timestamp {
-	if m != nil {
-		return m.LastUpdated
-	}
-	return nil
-}
-
-func (m *Category1Sample) GetDefinition() *types.Struct {
-	if m != nil {
-		return m.Definition
-	}
-	return nil
-}
-
-func (m *Category1Sample) GetDetails() *types.Any {
-	if m != nil {
-		return m.Details
-	}
-	return nil
-}
-
-type Category2Sample struct {
-	Something1 *Something1 `protobuf:"bytes,1,opt,name=something1,proto3" json:"something1,omitempty"`
-	AId        uint64      `protobuf:"varint,2,opt,name=a_id,json=aId,proto3" json:"a_id,omitempty"`
-	BId        float64     `protobuf:"fixed64,3,opt,name=b_id,json=bId,proto3" json:"b_id,omitempty"`
-	SName      string      `protobuf:"bytes,4,opt,name=s_name,json=sName,proto3" json:"s_name,omitempty"`
-	BFlag      bool        `protobuf:"varint,5,opt,name=b_flag,json=bFlag,proto3" json:"b_flag,omitempty"`
-	BtData     []byte      `protobuf:"bytes,6,opt,name=bt_data,json=btData,proto3" json:"bt_data,omitempty"`
-}
-
-func (m *Category2Sample) Reset()      { *m = Category2Sample{} }
-func (*Category2Sample) ProtoMessage() {}
-func (*Category2Sample) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ed182cfb5ecd7537, []int{2}
-}
-func (m *Category2Sample) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *Category2Sample) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_Category2Sample.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *Category2Sample) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Category2Sample.Merge(m, src)
-}
-func (m *Category2Sample) XXX_Size() int {
-	return m.Size()
-}
-func (m *Category2Sample) XXX_DiscardUnknown() {
-	xxx_messageInfo_Category2Sample.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Category2Sample proto.InternalMessageInfo
-
-func (m *Category2Sample) GetSomething1() *Something1 {
-	if m != nil {
-		return m.Something1
-	}
-	return nil
-}
-
-func (m *Category2Sample) GetAId() uint64 {
-	if m != nil {
-		return m.AId
-	}
-	return 0
-}
-
-func (m *Category2Sample) GetBId() float64 {
-	if m != nil {
-		return m.BId
-	}
-	return 0
-}
-
-func (m *Category2Sample) GetSName() string {
-	if m != nil {
-		return m.SName
-	}
-	return ""
-}
-
-func (m *Category2Sample) GetBFlag() bool {
-	if m != nil {
-		return m.BFlag
-	}
-	return false
-}
-
-func (m *Category2Sample) GetBtData() []byte {
-	if m != nil {
-		return m.BtData
-	}
-	return nil
-}
-
-type Something1 struct {
-	Id   uint64         `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	UId  uint32         `protobuf:"varint,2,opt,name=u_id,json=uId,proto3" json:"u_id,omitempty"`
-	Type Something1Type `protobuf:"varint,3,opt,name=type,proto3,enum=sample.Something1Type" json:"type,omitempty"`
-	Data []string       `protobuf:"bytes,4,rep,name=data,proto3" json:"data,omitempty"`
-}
-
-func (m *Something1) Reset()      { *m = Something1{} }
-func (*Something1) ProtoMessage() {}
-func (*Something1) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ed182cfb5ecd7537, []int{3}
-}
-func (m *Something1) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *Something1) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_Something1.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *Something1) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Something1.Merge(m, src)
-}
-func (m *Something1) XXX_Size() int {
-	return m.Size()
-}
-func (m *Something1) XXX_DiscardUnknown() {
-	xxx_messageInfo_Something1.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Something1 proto.InternalMessageInfo
-
-func (m *Something1) GetId() uint64 {
-	if m != nil {
-		return m.Id
-	}
-	return 0
-}
-
-func (m *Something1) GetUId() uint32 {
-	if m != nil {
-		return m.UId
-	}
-	return 0
-}
-
-func (m *Something1) GetType() Something1Type {
-	if m != nil {
-		return m.Type
-	}
-	return SOMETHING_TYPE_A
-}
-
-func (m *Something1) GetData() []string {
+func (m *ExtensionType) GetData() []string {
 	if m != nil {
 		return m.Data
 	}
 	return nil
 }
 
-type Something2 struct {
-	Name  string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	PTime int64  `protobuf:"varint,2,opt,name=p_time,json=pTime,proto3" json:"p_time,omitempty"`
-}
-
-func (m *Something2) Reset()      { *m = Something2{} }
-func (*Something2) ProtoMessage() {}
-func (*Something2) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ed182cfb5ecd7537, []int{4}
-}
-func (m *Something2) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *Something2) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_Something2.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *Something2) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Something2.Merge(m, src)
-}
-func (m *Something2) XXX_Size() int {
-	return m.Size()
-}
-func (m *Something2) XXX_DiscardUnknown() {
-	xxx_messageInfo_Something2.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Something2 proto.InternalMessageInfo
-
-func (m *Something2) GetName() string {
+func (m *ExtensionType) GetMp() map[string]int64 {
 	if m != nil {
-		return m.Name
+		return m.Mp
 	}
-	return ""
+	return nil
 }
 
-func (m *Something2) GetPTime() int64 {
+func (m *ExtensionType) GetTs() *types.Timestamp {
 	if m != nil {
-		return m.PTime
+		return m.Ts
+	}
+	return nil
+}
+
+func (m *ExtensionType) GetStruct() *types.Struct {
+	if m != nil {
+		return m.Struct
+	}
+	return nil
+}
+
+func (m *ExtensionType) GetAny() *types.Any {
+	if m != nil {
+		return m.Any
+	}
+	return nil
+}
+
+func (m *ExtensionType) GetI32() int32 {
+	if x, ok := m.GetOneofData().(*ExtensionType_I32); ok {
+		return x.I32
 	}
 	return 0
 }
 
+func (m *ExtensionType) GetSt() string {
+	if x, ok := m.GetOneofData().(*ExtensionType_St); ok {
+		return x.St
+	}
+	return ""
+}
+
+func (m *ExtensionType) GetType() EnumType {
+	if m != nil {
+		return m.Type
+	}
+	return SOMETHING_TYPE_A
+}
+
+func (m *ExtensionType) GetClient() *Client {
+	if m != nil {
+		return m.Client
+	}
+	return nil
+}
+
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*ExtensionType) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
+		(*ExtensionType_I32)(nil),
+		(*ExtensionType_St)(nil),
+	}
+}
+
 type Client struct {
-	Name   string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Age    uint32 `protobuf:"varint,2,opt,name=age,proto3" json:"age,omitempty"`
-	Height uint32 `protobuf:"varint,3,opt,name=height,proto3" json:"height,omitempty"`
+	QuestionCode int64  `protobuf:"varint,1,opt,name=question_code,json=questionCode,proto3" json:"question_code,omitempty"`
+	Name         string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 }
 
 func (m *Client) Reset()      { *m = Client{} }
 func (*Client) ProtoMessage() {}
 func (*Client) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ed182cfb5ecd7537, []int{5}
+	return fileDescriptor_ed182cfb5ecd7537, []int{2}
 }
 func (m *Client) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -490,6 +344,13 @@ func (m *Client) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Client proto.InternalMessageInfo
 
+func (m *Client) GetQuestionCode() int64 {
+	if m != nil {
+		return m.QuestionCode
+	}
+	return 0
+}
+
 func (m *Client) GetName() string {
 	if m != nil {
 		return m.Name
@@ -497,36 +358,21 @@ func (m *Client) GetName() string {
 	return ""
 }
 
-func (m *Client) GetAge() uint32 {
-	if m != nil {
-		return m.Age
-	}
-	return 0
+type ManyClients struct {
+	Client *Client `protobuf:"bytes,1,opt,name=client,proto3" json:"client,omitempty"`
 }
 
-func (m *Client) GetHeight() uint32 {
-	if m != nil {
-		return m.Height
-	}
-	return 0
+func (m *ManyClients) Reset()      { *m = ManyClients{} }
+func (*ManyClients) ProtoMessage() {}
+func (*ManyClients) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ed182cfb5ecd7537, []int{3}
 }
-
-type SampleResponse struct {
-	Code   int64  `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
-	Answer string `protobuf:"bytes,2,opt,name=answer,proto3" json:"answer,omitempty"`
-}
-
-func (m *SampleResponse) Reset()      { *m = SampleResponse{} }
-func (*SampleResponse) ProtoMessage() {}
-func (*SampleResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ed182cfb5ecd7537, []int{6}
-}
-func (m *SampleResponse) XXX_Unmarshal(b []byte) error {
+func (m *ManyClients) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *SampleResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *ManyClients) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_SampleResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_ManyClients.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -536,114 +382,197 @@ func (m *SampleResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, erro
 		return b[:n], nil
 	}
 }
-func (m *SampleResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SampleResponse.Merge(m, src)
+func (m *ManyClients) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ManyClients.Merge(m, src)
 }
-func (m *SampleResponse) XXX_Size() int {
+func (m *ManyClients) XXX_Size() int {
 	return m.Size()
 }
-func (m *SampleResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_SampleResponse.DiscardUnknown(m)
+func (m *ManyClients) XXX_DiscardUnknown() {
+	xxx_messageInfo_ManyClients.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_SampleResponse proto.InternalMessageInfo
+var xxx_messageInfo_ManyClients proto.InternalMessageInfo
 
-func (m *SampleResponse) GetCode() int64 {
+func (m *ManyClients) GetClient() *Client {
+	if m != nil {
+		return m.Client
+	}
+	return nil
+}
+
+type Answer struct {
+	Code   int64  `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Answer string `protobuf:"bytes,2,opt,name=answer,proto3" json:"answer,omitempty"`
+}
+
+func (m *Answer) Reset()      { *m = Answer{} }
+func (*Answer) ProtoMessage() {}
+func (*Answer) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ed182cfb5ecd7537, []int{4}
+}
+func (m *Answer) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Answer) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Answer.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Answer) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Answer.Merge(m, src)
+}
+func (m *Answer) XXX_Size() int {
+	return m.Size()
+}
+func (m *Answer) XXX_DiscardUnknown() {
+	xxx_messageInfo_Answer.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Answer proto.InternalMessageInfo
+
+func (m *Answer) GetCode() int64 {
 	if m != nil {
 		return m.Code
 	}
 	return 0
 }
 
-func (m *SampleResponse) GetAnswer() string {
+func (m *Answer) GetAnswer() string {
 	if m != nil {
 		return m.Answer
 	}
 	return ""
 }
 
+type ManyAnswers struct {
+	Result *Answer `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+}
+
+func (m *ManyAnswers) Reset()      { *m = ManyAnswers{} }
+func (*ManyAnswers) ProtoMessage() {}
+func (*ManyAnswers) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ed182cfb5ecd7537, []int{5}
+}
+func (m *ManyAnswers) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *ManyAnswers) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_ManyAnswers.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *ManyAnswers) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ManyAnswers.Merge(m, src)
+}
+func (m *ManyAnswers) XXX_Size() int {
+	return m.Size()
+}
+func (m *ManyAnswers) XXX_DiscardUnknown() {
+	xxx_messageInfo_ManyAnswers.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ManyAnswers proto.InternalMessageInfo
+
+func (m *ManyAnswers) GetResult() *Answer {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
 func init() {
-	proto.RegisterEnum("sample.Something1Type", Something1Type_name, Something1Type_value)
-	proto.RegisterType((*SampleBase)(nil), "sample.SampleBase")
-	proto.RegisterType((*Category1Sample)(nil), "sample.Category1Sample")
-	proto.RegisterMapType((map[string]int64)(nil), "sample.Category1Sample.MdEntry")
-	proto.RegisterType((*Category2Sample)(nil), "sample.Category2Sample")
-	proto.RegisterType((*Something1)(nil), "sample.Something1")
-	proto.RegisterType((*Something2)(nil), "sample.Something2")
+	proto.RegisterEnum("sample.EnumType", EnumType_name, EnumType_value)
+	proto.RegisterType((*NormalType)(nil), "sample.NormalType")
+	proto.RegisterType((*ExtensionType)(nil), "sample.ExtensionType")
+	proto.RegisterMapType((map[string]int64)(nil), "sample.ExtensionType.MpEntry")
 	proto.RegisterType((*Client)(nil), "sample.Client")
-	proto.RegisterType((*SampleResponse)(nil), "sample.SampleResponse")
+	proto.RegisterType((*ManyClients)(nil), "sample.ManyClients")
+	proto.RegisterType((*Answer)(nil), "sample.Answer")
+	proto.RegisterType((*ManyAnswers)(nil), "sample.ManyAnswers")
 }
 
 func init() { proto.RegisterFile("sample/sample.proto", fileDescriptor_ed182cfb5ecd7537) }
 
 var fileDescriptor_ed182cfb5ecd7537 = []byte{
-	// 781 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x54, 0x4f, 0x8f, 0xdb, 0x44,
-	0x14, 0xf7, 0xc4, 0x8e, 0xb7, 0x79, 0xe9, 0x86, 0x30, 0x6c, 0xb7, 0x26, 0x42, 0xde, 0x55, 0x84,
-	0x50, 0xd4, 0x83, 0xa3, 0x1a, 0xa1, 0x05, 0x04, 0x87, 0xa6, 0xa4, 0x34, 0x48, 0x2d, 0x68, 0x92,
-	0x1e, 0xe0, 0x12, 0x8d, 0xe3, 0x59, 0x67, 0x84, 0xff, 0xc9, 0x9e, 0x14, 0xf9, 0xc6, 0x47, 0xe0,
-	0x63, 0x70, 0x85, 0x8f, 0xc0, 0x89, 0xe3, 0x1e, 0x7b, 0x64, 0xb3, 0x17, 0x8e, 0xfd, 0x08, 0xc8,
-	0x33, 0x76, 0x92, 0xcd, 0x86, 0x53, 0x4f, 0x9e, 0x79, 0xef, 0xf7, 0x9b, 0xf7, 0x7b, 0xf3, 0x7e,
-	0x63, 0xf8, 0x20, 0xa7, 0x51, 0x1a, 0xb2, 0xa1, 0xfa, 0x38, 0x69, 0x96, 0x88, 0x04, 0x9b, 0x6a,
-	0xd7, 0xfb, 0x28, 0x48, 0x92, 0x20, 0x64, 0x43, 0x19, 0xf5, 0x56, 0x97, 0xc3, 0x5c, 0x64, 0xab,
-	0x85, 0x50, 0xa8, 0xde, 0xd9, 0x7e, 0x56, 0xf0, 0x88, 0xe5, 0x82, 0x46, 0x69, 0x05, 0xf8, 0x70,
-	0x1f, 0x40, 0xe3, 0x42, 0xa5, 0xfa, 0x7f, 0x21, 0x80, 0xa9, 0x2c, 0x32, 0xa2, 0x39, 0xc3, 0x67,
-	0xd0, 0x56, 0x25, 0xe7, 0x31, 0x8d, 0x98, 0x85, 0xce, 0xd1, 0xa0, 0x45, 0x40, 0x85, 0x5e, 0xd2,
-	0x88, 0x61, 0x0c, 0x46, 0x79, 0xba, 0xd5, 0x38, 0x47, 0x03, 0x9d, 0xc8, 0x35, 0xbe, 0x80, 0xd6,
-	0x82, 0x0a, 0x16, 0x24, 0x59, 0xf1, 0xd8, 0xd2, 0xcf, 0xd1, 0xa0, 0xed, 0x3e, 0x74, 0xaa, 0x3e,
-	0x9e, 0xd6, 0x09, 0x55, 0xe4, 0xb9, 0x46, 0xb6, 0xd8, 0x5d, 0xa2, 0x6b, 0x19, 0x87, 0x89, 0xee,
-	0x5d, 0xa2, 0x3b, 0x3a, 0xde, 0xc8, 0xf4, 0xa9, 0xa0, 0xfd, 0x3f, 0x74, 0x78, 0x6f, 0xaf, 0x10,
-	0x76, 0x01, 0xf2, 0x24, 0x62, 0x62, 0xc9, 0xe3, 0xe0, 0xb1, 0x6c, 0xa4, 0xed, 0xe2, 0xfa, 0xf0,
-	0xe9, 0x26, 0x43, 0x76, 0x50, 0xb7, 0x38, 0xae, 0x6c, 0xf1, 0x10, 0xc7, 0xdd, 0xe1, 0xb8, 0xf8,
-	0x13, 0x30, 0x17, 0x21, 0x67, 0xb1, 0xa8, 0x3a, 0xef, 0x6c, 0x1a, 0x90, 0x51, 0x52, 0x65, 0xf1,
-	0x10, 0x1a, 0x91, 0x6f, 0x19, 0xe7, 0xfa, 0xa0, 0xed, 0x9e, 0xfd, 0xcf, 0xed, 0x38, 0x2f, 0xfc,
-	0x71, 0x2c, 0xb2, 0x82, 0x34, 0x22, 0x1f, 0x7f, 0x0d, 0xf7, 0x43, 0x9a, 0x8b, 0xf9, 0x2a, 0xf5,
-	0xa9, 0x60, 0xbe, 0xd5, 0x94, 0xc7, 0xf7, 0x1c, 0x35, 0x4b, 0xa7, 0x9e, 0xa5, 0x33, 0xab, 0x87,
-	0x4d, 0xda, 0x25, 0xfe, 0x95, 0x82, 0xe3, 0x0b, 0x00, 0x9f, 0x5d, 0xf2, 0x98, 0x0b, 0x9e, 0xc4,
-	0x96, 0x59, 0x5d, 0xee, 0x3e, 0x79, 0x2a, 0x7d, 0x44, 0x76, 0xa0, 0xd8, 0x81, 0x23, 0x9f, 0x09,
-	0xca, 0xc3, 0xdc, 0x3a, 0x92, 0xac, 0x93, 0x3b, 0xac, 0x27, 0x71, 0x41, 0x6a, 0x50, 0xef, 0x33,
-	0x38, 0xaa, 0x64, 0xe3, 0x2e, 0xe8, 0x3f, 0xb3, 0xa2, 0x72, 0x4d, 0xb9, 0xc4, 0x27, 0xd0, 0x7c,
-	0x4d, 0xc3, 0x55, 0xed, 0x17, 0xb5, 0xf9, 0xb2, 0xf1, 0x39, 0xea, 0xff, 0x89, 0xb6, 0x33, 0x73,
-	0xdf, 0x61, 0x66, 0xef, 0x83, 0x41, 0xe7, 0xdc, 0x97, 0x05, 0x0c, 0xa2, 0xd3, 0x89, 0x5f, 0x86,
-	0xbc, 0x32, 0x54, 0x0e, 0x04, 0x11, 0xdd, 0x9b, 0xf8, 0xf8, 0x01, 0x98, 0xb9, 0xb2, 0xb4, 0x21,
-	0xc5, 0x35, 0x73, 0xe9, 0xe6, 0x07, 0x60, 0x7a, 0xf3, 0xcb, 0x90, 0x06, 0xf2, 0x76, 0xef, 0x91,
-	0xa6, 0xf7, 0x2c, 0xa4, 0x01, 0x7e, 0x08, 0x47, 0x9e, 0x90, 0xd6, 0x92, 0x17, 0x77, 0x9f, 0x98,
-	0x9e, 0xf8, 0xa6, 0x34, 0x5a, 0x02, 0xb0, 0x95, 0x81, 0x3b, 0xd0, 0xe0, 0xbe, 0x94, 0x69, 0x90,
-	0x06, 0x97, 0x75, 0x57, 0xb5, 0x94, 0x63, 0xa2, 0xaf, 0x26, 0x3e, 0x7e, 0x04, 0x86, 0x28, 0x52,
-	0x26, 0xa5, 0x74, 0xdc, 0xd3, 0xbb, 0xbd, 0xcc, 0x8a, 0x94, 0x11, 0x89, 0x29, 0x9f, 0x96, 0x2c,
-	0x59, 0x7a, 0xa4, 0x45, 0xe4, 0xba, 0x7f, 0xb1, 0x53, 0xd0, 0x2d, 0x11, 0x3b, 0xcf, 0x52, 0xae,
-	0xcb, 0x16, 0xd2, 0xf9, 0xce, 0x93, 0x6c, 0xa6, 0xa5, 0x21, 0xfa, 0xcf, 0xc0, 0x54, 0x06, 0x3c,
-	0x48, 0xea, 0x82, 0x4e, 0x03, 0x56, 0x0b, 0xa5, 0x01, 0xc3, 0xa7, 0x60, 0x2e, 0x19, 0x0f, 0x96,
-	0xca, 0xc6, 0xc7, 0xa4, 0xda, 0xf5, 0xbf, 0x82, 0x8e, 0x1a, 0x0e, 0x61, 0x79, 0x9a, 0xc4, 0xb9,
-	0x94, 0xb9, 0x48, 0x7c, 0x75, 0x9e, 0x4e, 0xe4, 0xba, 0x64, 0xd3, 0x38, 0xff, 0x85, 0x65, 0xf2,
-	0xc8, 0x16, 0xa9, 0x76, 0x8f, 0x08, 0x74, 0x6e, 0xb7, 0x8a, 0x4f, 0xa0, 0x3b, 0xfd, 0xfe, 0xc5,
-	0x78, 0xf6, 0x7c, 0xf2, 0xf2, 0xdb, 0xf9, 0xec, 0xc7, 0x1f, 0xc6, 0xf3, 0x27, 0x5d, 0xed, 0x40,
-	0x74, 0xd4, 0x45, 0x07, 0xa2, 0x4f, 0xbb, 0x0d, 0xf7, 0x3b, 0x38, 0x56, 0x8a, 0xa6, 0x2c, 0x7b,
-	0xcd, 0x17, 0x0c, 0x7f, 0x01, 0xad, 0x57, 0x31, 0xcd, 0x8a, 0xf1, 0x62, 0x99, 0xe0, 0xad, 0x5d,
-	0x36, 0x3f, 0xb5, 0xde, 0xe9, 0xed, 0x58, 0xdd, 0x49, 0x5f, 0x1b, 0x85, 0x57, 0xd7, 0xb6, 0xf6,
-	0xe6, 0xda, 0xd6, 0xde, 0x5e, 0xdb, 0xe8, 0xd7, 0xb5, 0x8d, 0x7e, 0x5f, 0xdb, 0xe8, 0xef, 0xb5,
-	0x8d, 0xae, 0xd6, 0x36, 0xfa, 0x67, 0x6d, 0xa3, 0x7f, 0xd7, 0xb6, 0xf6, 0x76, 0x6d, 0xa3, 0xdf,
-	0x6e, 0x6c, 0xed, 0xea, 0xc6, 0xd6, 0xde, 0xdc, 0xd8, 0x1a, 0x7c, 0xbc, 0x48, 0x22, 0x27, 0xe0,
-	0x62, 0xb9, 0xf2, 0x9c, 0x25, 0xcf, 0x92, 0x88, 0xf2, 0xb0, 0x70, 0x82, 0x24, 0xe4, 0x5e, 0xbe,
-	0x79, 0x24, 0x23, 0x53, 0x55, 0xfb, 0xe9, 0x9e, 0x2a, 0x9e, 0x7a, 0x9e, 0x29, 0x73, 0x9f, 0xfe,
-	0x17, 0x00, 0x00, 0xff, 0xff, 0x54, 0x52, 0xdc, 0x9c, 0xeb, 0x05, 0x00, 0x00,
+	// 732 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x93, 0xcf, 0x4f, 0xdb, 0x48,
+	0x14, 0xc7, 0x3d, 0x76, 0x62, 0x92, 0x09, 0x41, 0xd1, 0x80, 0x76, 0xbd, 0xd9, 0x5d, 0xaf, 0x95,
+	0x45, 0xc8, 0x42, 0xbb, 0xce, 0xca, 0xfc, 0xd0, 0xaa, 0xb7, 0x04, 0x45, 0xa5, 0x6a, 0xa1, 0xd5,
+	0x24, 0x3d, 0xb4, 0x97, 0xc8, 0x4e, 0x26, 0xc1, 0xc2, 0xbf, 0x6a, 0x8f, 0x69, 0x7d, 0xeb, 0xb9,
+	0x27, 0xfe, 0x88, 0x1e, 0xfa, 0xa7, 0xf4, 0xc8, 0x91, 0x63, 0x09, 0x97, 0x1e, 0xf9, 0x13, 0xaa,
+	0x99, 0xb1, 0x11, 0x04, 0xd4, 0x53, 0xde, 0x7b, 0xdf, 0xef, 0xbc, 0x37, 0xef, 0x33, 0x31, 0x5c,
+	0x4f, 0x9d, 0x20, 0xf6, 0x49, 0x57, 0xfc, 0x58, 0x71, 0x12, 0xd1, 0x08, 0xa9, 0x22, 0x6b, 0xff,
+	0x31, 0x8f, 0xa2, 0xb9, 0x4f, 0xba, 0xbc, 0xea, 0x66, 0xb3, 0x6e, 0x4a, 0x93, 0x6c, 0x42, 0x85,
+	0xab, 0xfd, 0xd7, 0xb2, 0x4a, 0xbd, 0x80, 0xa4, 0xd4, 0x09, 0xe2, 0xc2, 0xf0, 0xdb, 0xb2, 0xc1,
+	0x09, 0x73, 0x21, 0x75, 0x3e, 0x03, 0x08, 0x8f, 0xa3, 0x24, 0x70, 0xfc, 0x51, 0x1e, 0x13, 0xd4,
+	0x82, 0x8a, 0xb7, 0x63, 0x6b, 0xc0, 0x00, 0x66, 0x15, 0xb3, 0x90, 0x57, 0xf6, 0x77, 0x35, 0xd9,
+	0x00, 0xa6, 0x82, 0x59, 0xc8, 0x2a, 0xd9, 0x8e, 0xad, 0x29, 0x06, 0x30, 0x9b, 0x98, 0x85, 0xbc,
+	0xb2, 0xbf, 0xab, 0x55, 0x0c, 0x60, 0x56, 0x30, 0x0b, 0xd1, 0x1a, 0x94, 0x67, 0xbe, 0x56, 0x35,
+	0x80, 0x29, 0x63, 0x79, 0xe6, 0xb3, 0x7c, 0xea, 0x6a, 0xaa, 0x01, 0x4c, 0x80, 0xe5, 0xa9, 0xcb,
+	0x72, 0xd7, 0xd7, 0x56, 0x0c, 0x60, 0xd6, 0xb0, 0xec, 0x72, 0x3d, 0xa5, 0x5a, 0xcd, 0x00, 0x66,
+	0x1d, 0xcb, 0x29, 0xe5, 0x3a, 0xd5, 0xea, 0x06, 0x30, 0x57, 0xb1, 0xec, 0xd2, 0xce, 0xb9, 0x02,
+	0x9b, 0x83, 0x0f, 0x94, 0x84, 0xa9, 0x17, 0x85, 0xfc, 0xa6, 0x08, 0x56, 0xa6, 0x0e, 0x75, 0x34,
+	0x60, 0x28, 0x66, 0x1d, 0xf3, 0x18, 0xfd, 0x0b, 0xe5, 0x20, 0xd6, 0x64, 0x43, 0x31, 0x1b, 0xf6,
+	0x9f, 0x56, 0x41, 0xf2, 0xde, 0x31, 0xeb, 0x28, 0x1e, 0x84, 0x34, 0xc9, 0xb1, 0x1c, 0xc4, 0x68,
+	0x1b, 0xca, 0x34, 0xe5, 0x7b, 0x34, 0xec, 0xb6, 0x25, 0x18, 0x59, 0x25, 0x23, 0x6b, 0x54, 0x42,
+	0xc4, 0x32, 0x4d, 0x51, 0x17, 0xaa, 0x82, 0x39, 0xdf, 0xb2, 0x61, 0xff, 0xfa, 0xc0, 0x3f, 0xe4,
+	0x32, 0x2e, 0x6c, 0x68, 0x0b, 0x2a, 0x4e, 0x98, 0x73, 0x04, 0x0d, 0x7b, 0xe3, 0x81, 0xbb, 0x17,
+	0xe6, 0x98, 0x19, 0x10, 0x12, 0xc4, 0x19, 0x9a, 0xea, 0xa1, 0x54, 0x32, 0x67, 0x34, 0x18, 0x9d,
+	0xfa, 0xa1, 0xc4, 0x79, 0x6c, 0xc2, 0x0a, 0xcd, 0x63, 0xc2, 0x09, 0xad, 0xd9, 0xad, 0xdb, 0xdd,
+	0xc2, 0x2c, 0x60, 0x6b, 0x61, 0xae, 0xa2, 0x2d, 0xa8, 0x4e, 0x7c, 0x8f, 0x84, 0x82, 0x5c, 0xc3,
+	0x5e, 0x2b, 0x7d, 0x07, 0xbc, 0x8a, 0x0b, 0xb5, 0xbd, 0x07, 0x57, 0x0a, 0x0e, 0xec, 0xe9, 0x4e,
+	0x49, 0xce, 0x1f, 0xbc, 0x8e, 0x59, 0x88, 0x36, 0x60, 0xf5, 0xcc, 0xf1, 0x33, 0x52, 0x3c, 0xb9,
+	0x48, 0x9e, 0xc8, 0xff, 0x83, 0xfe, 0x2a, 0x84, 0x51, 0x48, 0xa2, 0xd9, 0x98, 0xc1, 0xee, 0xf4,
+	0xa0, 0x2a, 0xda, 0xa2, 0xbf, 0x61, 0xf3, 0x5d, 0x46, 0x52, 0xea, 0x45, 0xe1, 0x78, 0x12, 0x4d,
+	0x09, 0xef, 0xa6, 0xe0, 0xd5, 0xb2, 0x78, 0x10, 0x4d, 0xf9, 0x7b, 0x85, 0x4e, 0x20, 0xba, 0xd6,
+	0x31, 0x8f, 0x3b, 0x7b, 0xb0, 0x71, 0xe4, 0x84, 0xb9, 0x68, 0x93, 0xde, 0xb9, 0x3e, 0xf8, 0xd9,
+	0xf5, 0x3b, 0xbb, 0x50, 0xed, 0x85, 0xe9, 0x7b, 0x92, 0xb0, 0xa6, 0x77, 0x06, 0xf2, 0x18, 0xfd,
+	0x02, 0x55, 0x87, 0xab, 0xc5, 0xa8, 0x22, 0x2b, 0x87, 0x89, 0x93, 0x7c, 0x58, 0x42, 0xd2, 0xcc,
+	0x7f, 0x30, 0x4c, 0x18, 0x70, 0xa1, 0x6e, 0xbf, 0x80, 0xb5, 0x92, 0x32, 0xda, 0x80, 0xad, 0xe1,
+	0xcb, 0xa3, 0xc1, 0xe8, 0xf0, 0xd9, 0xf1, 0xd3, 0xf1, 0xe8, 0xcd, 0xab, 0xc1, 0xb8, 0xd7, 0x92,
+	0x1e, 0xa9, 0xf6, 0x5b, 0xe0, 0x91, 0xea, 0x41, 0x4b, 0xb6, 0x3f, 0x01, 0xd8, 0x1c, 0xf2, 0x39,
+	0x43, 0x92, 0x9c, 0x79, 0x13, 0x82, 0xfe, 0x81, 0xb5, 0xd7, 0xa1, 0x93, 0xe4, 0xbd, 0xf4, 0x14,
+	0x2d, 0x2d, 0xdc, 0x5e, 0xba, 0x53, 0x47, 0x42, 0xcf, 0xe1, 0xef, 0xec, 0x20, 0x49, 0x86, 0x34,
+	0x21, 0x4e, 0xe0, 0x85, 0xf3, 0x5e, 0x7a, 0xca, 0xd6, 0xe2, 0x9f, 0x3c, 0x5a, 0x2f, 0x0f, 0xdc,
+	0xc1, 0xda, 0xbe, 0x57, 0x2c, 0xd6, 0xef, 0x48, 0xff, 0x81, 0xbe, 0x7f, 0x71, 0xa5, 0x4b, 0x97,
+	0x57, 0xba, 0x74, 0x73, 0xa5, 0x83, 0x8f, 0x0b, 0x1d, 0x7c, 0x59, 0xe8, 0xe0, 0xeb, 0x42, 0x07,
+	0x17, 0x0b, 0x1d, 0x7c, 0x5b, 0xe8, 0xe0, 0xfb, 0x42, 0x97, 0x6e, 0x16, 0x3a, 0x38, 0xbf, 0xd6,
+	0xa5, 0x8b, 0x6b, 0x5d, 0xba, 0xbc, 0xd6, 0x25, 0xb8, 0x39, 0x89, 0x02, 0x6b, 0xee, 0xd1, 0x93,
+	0xcc, 0xb5, 0x4e, 0xbc, 0x24, 0x0a, 0x1c, 0xcf, 0xcf, 0xad, 0x79, 0xe4, 0x7b, 0x6e, 0x7a, 0xfb,
+	0xff, 0xee, 0xab, 0x62, 0xcb, 0xb7, 0x35, 0x31, 0x3b, 0x76, 0x5d, 0x95, 0x6b, 0x3b, 0x3f, 0x02,
+	0x00, 0x00, 0xff, 0xff, 0x6a, 0x01, 0x36, 0x49, 0xe9, 0x04, 0x00, 0x00,
 }
 
-func (x Something1Type) String() string {
-	s, ok := Something1Type_name[int32(x)]
+func (x EnumType) String() string {
+	s, ok := EnumType_name[int32(x)]
 	if ok {
 		return s
 	}
 	return strconv.Itoa(int(x))
 }
-func (this *SampleBase) Equal(that interface{}) bool {
+func (this *NormalType) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*SampleBase)
+	that1, ok := that.(*NormalType)
 	if !ok {
-		that2, ok := that.(SampleBase)
+		that2, ok := that.(NormalType)
 		if ok {
 			that1 = &that2
 		} else {
@@ -655,31 +584,43 @@ func (this *SampleBase) Equal(that interface{}) bool {
 	} else if this == nil {
 		return false
 	}
-	if this.SampleName != that1.SampleName {
+	if this.I32 != that1.I32 {
 		return false
 	}
-	if this.Time != that1.Time {
+	if this.I64 != that1.I64 {
 		return false
 	}
-	if that1.SampleData == nil {
-		if this.SampleData != nil {
-			return false
-		}
-	} else if this.SampleData == nil {
+	if this.U32 != that1.U32 {
 		return false
-	} else if !this.SampleData.Equal(that1.SampleData) {
+	}
+	if this.U64 != that1.U64 {
+		return false
+	}
+	if this.Fl != that1.Fl {
+		return false
+	}
+	if this.Db != that1.Db {
+		return false
+	}
+	if this.Bl != that1.Bl {
+		return false
+	}
+	if this.St != that1.St {
+		return false
+	}
+	if !bytes.Equal(this.Bt, that1.Bt) {
 		return false
 	}
 	return true
 }
-func (this *SampleBase_Category1) Equal(that interface{}) bool {
+func (this *ExtensionType) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*SampleBase_Category1)
+	that1, ok := that.(*ExtensionType)
 	if !ok {
-		that2, ok := that.(SampleBase_Category1)
+		that2, ok := that.(ExtensionType)
 		if ok {
 			that1 = &that2
 		} else {
@@ -689,149 +630,6 @@ func (this *SampleBase_Category1) Equal(that interface{}) bool {
 	if that1 == nil {
 		return this == nil
 	} else if this == nil {
-		return false
-	}
-	if !this.Category1.Equal(that1.Category1) {
-		return false
-	}
-	return true
-}
-func (this *SampleBase_Category2) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*SampleBase_Category2)
-	if !ok {
-		that2, ok := that.(SampleBase_Category2)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if !this.Category2.Equal(that1.Category2) {
-		return false
-	}
-	return true
-}
-func (this *Category1Sample) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Category1Sample)
-	if !ok {
-		that2, ok := that.(Category1Sample)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if !this.Something1.Equal(that1.Something1) {
-		return false
-	}
-	if !this.Something2.Equal(that1.Something2) {
-		return false
-	}
-	if !this.Client.Equal(that1.Client) {
-		return false
-	}
-	if len(this.Md) != len(that1.Md) {
-		return false
-	}
-	for i := range this.Md {
-		if this.Md[i] != that1.Md[i] {
-			return false
-		}
-	}
-	if !this.LastUpdated.Equal(that1.LastUpdated) {
-		return false
-	}
-	if !this.Definition.Equal(that1.Definition) {
-		return false
-	}
-	if !this.Details.Equal(that1.Details) {
-		return false
-	}
-	return true
-}
-func (this *Category2Sample) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Category2Sample)
-	if !ok {
-		that2, ok := that.(Category2Sample)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if !this.Something1.Equal(that1.Something1) {
-		return false
-	}
-	if this.AId != that1.AId {
-		return false
-	}
-	if this.BId != that1.BId {
-		return false
-	}
-	if this.SName != that1.SName {
-		return false
-	}
-	if this.BFlag != that1.BFlag {
-		return false
-	}
-	if !bytes.Equal(this.BtData, that1.BtData) {
-		return false
-	}
-	return true
-}
-func (this *Something1) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Something1)
-	if !ok {
-		that2, ok := that.(Something1)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Id != that1.Id {
-		return false
-	}
-	if this.UId != that1.UId {
-		return false
-	}
-	if this.Type != that1.Type {
 		return false
 	}
 	if len(this.Data) != len(that1.Data) {
@@ -842,16 +640,48 @@ func (this *Something1) Equal(that interface{}) bool {
 			return false
 		}
 	}
+	if len(this.Mp) != len(that1.Mp) {
+		return false
+	}
+	for i := range this.Mp {
+		if this.Mp[i] != that1.Mp[i] {
+			return false
+		}
+	}
+	if !this.Ts.Equal(that1.Ts) {
+		return false
+	}
+	if !this.Struct.Equal(that1.Struct) {
+		return false
+	}
+	if !this.Any.Equal(that1.Any) {
+		return false
+	}
+	if that1.OneofData == nil {
+		if this.OneofData != nil {
+			return false
+		}
+	} else if this.OneofData == nil {
+		return false
+	} else if !this.OneofData.Equal(that1.OneofData) {
+		return false
+	}
+	if this.Type != that1.Type {
+		return false
+	}
+	if !this.Client.Equal(that1.Client) {
+		return false
+	}
 	return true
 }
-func (this *Something2) Equal(that interface{}) bool {
+func (this *ExtensionType_I32) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*Something2)
+	that1, ok := that.(*ExtensionType_I32)
 	if !ok {
-		that2, ok := that.(Something2)
+		that2, ok := that.(ExtensionType_I32)
 		if ok {
 			that1 = &that2
 		} else {
@@ -863,10 +693,31 @@ func (this *Something2) Equal(that interface{}) bool {
 	} else if this == nil {
 		return false
 	}
-	if this.Name != that1.Name {
+	if this.I32 != that1.I32 {
 		return false
 	}
-	if this.PTime != that1.PTime {
+	return true
+}
+func (this *ExtensionType_St) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*ExtensionType_St)
+	if !ok {
+		that2, ok := that.(ExtensionType_St)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.St != that1.St {
 		return false
 	}
 	return true
@@ -890,25 +741,46 @@ func (this *Client) Equal(that interface{}) bool {
 	} else if this == nil {
 		return false
 	}
+	if this.QuestionCode != that1.QuestionCode {
+		return false
+	}
 	if this.Name != that1.Name {
-		return false
-	}
-	if this.Age != that1.Age {
-		return false
-	}
-	if this.Height != that1.Height {
 		return false
 	}
 	return true
 }
-func (this *SampleResponse) Equal(that interface{}) bool {
+func (this *ManyClients) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*SampleResponse)
+	that1, ok := that.(*ManyClients)
 	if !ok {
-		that2, ok := that.(SampleResponse)
+		that2, ok := that.(ManyClients)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.Client.Equal(that1.Client) {
+		return false
+	}
+	return true
+}
+func (this *Answer) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*Answer)
+	if !ok {
+		that2, ok := that.(Answer)
 		if ok {
 			that1 = &that2
 		} else {
@@ -928,137 +800,146 @@ func (this *SampleResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *SampleBase) GoString() string {
+func (this *ManyAnswers) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*ManyAnswers)
+	if !ok {
+		that2, ok := that.(ManyAnswers)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !this.Result.Equal(that1.Result) {
+		return false
+	}
+	return true
+}
+func (this *NormalType) GoString() string {
 	if this == nil {
 		return "nil"
 	}
-	s := make([]string, 0, 8)
-	s = append(s, "&samplepb.SampleBase{")
-	s = append(s, "SampleName: "+fmt.Sprintf("%#v", this.SampleName)+",\n")
-	s = append(s, "Time: "+fmt.Sprintf("%#v", this.Time)+",\n")
-	if this.SampleData != nil {
-		s = append(s, "SampleData: "+fmt.Sprintf("%#v", this.SampleData)+",\n")
-	}
+	s := make([]string, 0, 13)
+	s = append(s, "&samplepb.NormalType{")
+	s = append(s, "I32: "+fmt.Sprintf("%#v", this.I32)+",\n")
+	s = append(s, "I64: "+fmt.Sprintf("%#v", this.I64)+",\n")
+	s = append(s, "U32: "+fmt.Sprintf("%#v", this.U32)+",\n")
+	s = append(s, "U64: "+fmt.Sprintf("%#v", this.U64)+",\n")
+	s = append(s, "Fl: "+fmt.Sprintf("%#v", this.Fl)+",\n")
+	s = append(s, "Db: "+fmt.Sprintf("%#v", this.Db)+",\n")
+	s = append(s, "Bl: "+fmt.Sprintf("%#v", this.Bl)+",\n")
+	s = append(s, "St: "+fmt.Sprintf("%#v", this.St)+",\n")
+	s = append(s, "Bt: "+fmt.Sprintf("%#v", this.Bt)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *SampleBase_Category1) GoString() string {
+func (this *ExtensionType) GoString() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&samplepb.SampleBase_Category1{` +
-		`Category1:` + fmt.Sprintf("%#v", this.Category1) + `}`}, ", ")
-	return s
-}
-func (this *SampleBase_Category2) GoString() string {
-	if this == nil {
-		return "nil"
+	s := make([]string, 0, 13)
+	s = append(s, "&samplepb.ExtensionType{")
+	s = append(s, "Data: "+fmt.Sprintf("%#v", this.Data)+",\n")
+	keysForMp := make([]string, 0, len(this.Mp))
+	for k, _ := range this.Mp {
+		keysForMp = append(keysForMp, k)
 	}
-	s := strings.Join([]string{`&samplepb.SampleBase_Category2{` +
-		`Category2:` + fmt.Sprintf("%#v", this.Category2) + `}`}, ", ")
-	return s
-}
-func (this *Category1Sample) GoString() string {
-	if this == nil {
-		return "nil"
+	github_com_gogo_protobuf_sortkeys.Strings(keysForMp)
+	mapStringForMp := "map[string]int64{"
+	for _, k := range keysForMp {
+		mapStringForMp += fmt.Sprintf("%#v: %#v,", k, this.Mp[k])
 	}
-	s := make([]string, 0, 11)
-	s = append(s, "&samplepb.Category1Sample{")
-	if this.Something1 != nil {
-		s = append(s, "Something1: "+fmt.Sprintf("%#v", this.Something1)+",\n")
+	mapStringForMp += "}"
+	if this.Mp != nil {
+		s = append(s, "Mp: "+mapStringForMp+",\n")
 	}
-	if this.Something2 != nil {
-		s = append(s, "Something2: "+fmt.Sprintf("%#v", this.Something2)+",\n")
+	if this.Ts != nil {
+		s = append(s, "Ts: "+fmt.Sprintf("%#v", this.Ts)+",\n")
 	}
+	if this.Struct != nil {
+		s = append(s, "Struct: "+fmt.Sprintf("%#v", this.Struct)+",\n")
+	}
+	if this.Any != nil {
+		s = append(s, "Any: "+fmt.Sprintf("%#v", this.Any)+",\n")
+	}
+	if this.OneofData != nil {
+		s = append(s, "OneofData: "+fmt.Sprintf("%#v", this.OneofData)+",\n")
+	}
+	s = append(s, "Type: "+fmt.Sprintf("%#v", this.Type)+",\n")
 	if this.Client != nil {
 		s = append(s, "Client: "+fmt.Sprintf("%#v", this.Client)+",\n")
 	}
-	keysForMd := make([]string, 0, len(this.Md))
-	for k, _ := range this.Md {
-		keysForMd = append(keysForMd, k)
-	}
-	github_com_gogo_protobuf_sortkeys.Strings(keysForMd)
-	mapStringForMd := "map[string]int64{"
-	for _, k := range keysForMd {
-		mapStringForMd += fmt.Sprintf("%#v: %#v,", k, this.Md[k])
-	}
-	mapStringForMd += "}"
-	if this.Md != nil {
-		s = append(s, "Md: "+mapStringForMd+",\n")
-	}
-	if this.LastUpdated != nil {
-		s = append(s, "LastUpdated: "+fmt.Sprintf("%#v", this.LastUpdated)+",\n")
-	}
-	if this.Definition != nil {
-		s = append(s, "Definition: "+fmt.Sprintf("%#v", this.Definition)+",\n")
-	}
-	if this.Details != nil {
-		s = append(s, "Details: "+fmt.Sprintf("%#v", this.Details)+",\n")
-	}
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *Category2Sample) GoString() string {
+func (this *ExtensionType_I32) GoString() string {
 	if this == nil {
 		return "nil"
 	}
-	s := make([]string, 0, 10)
-	s = append(s, "&samplepb.Category2Sample{")
-	if this.Something1 != nil {
-		s = append(s, "Something1: "+fmt.Sprintf("%#v", this.Something1)+",\n")
-	}
-	s = append(s, "AId: "+fmt.Sprintf("%#v", this.AId)+",\n")
-	s = append(s, "BId: "+fmt.Sprintf("%#v", this.BId)+",\n")
-	s = append(s, "SName: "+fmt.Sprintf("%#v", this.SName)+",\n")
-	s = append(s, "BFlag: "+fmt.Sprintf("%#v", this.BFlag)+",\n")
-	s = append(s, "BtData: "+fmt.Sprintf("%#v", this.BtData)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
+	s := strings.Join([]string{`&samplepb.ExtensionType_I32{` +
+		`I32:` + fmt.Sprintf("%#v", this.I32) + `}`}, ", ")
+	return s
 }
-func (this *Something1) GoString() string {
+func (this *ExtensionType_St) GoString() string {
 	if this == nil {
 		return "nil"
 	}
-	s := make([]string, 0, 8)
-	s = append(s, "&samplepb.Something1{")
-	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
-	s = append(s, "UId: "+fmt.Sprintf("%#v", this.UId)+",\n")
-	s = append(s, "Type: "+fmt.Sprintf("%#v", this.Type)+",\n")
-	s = append(s, "Data: "+fmt.Sprintf("%#v", this.Data)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *Something2) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 6)
-	s = append(s, "&samplepb.Something2{")
-	s = append(s, "Name: "+fmt.Sprintf("%#v", this.Name)+",\n")
-	s = append(s, "PTime: "+fmt.Sprintf("%#v", this.PTime)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
+	s := strings.Join([]string{`&samplepb.ExtensionType_St{` +
+		`St:` + fmt.Sprintf("%#v", this.St) + `}`}, ", ")
+	return s
 }
 func (this *Client) GoString() string {
 	if this == nil {
 		return "nil"
 	}
-	s := make([]string, 0, 7)
+	s := make([]string, 0, 6)
 	s = append(s, "&samplepb.Client{")
+	s = append(s, "QuestionCode: "+fmt.Sprintf("%#v", this.QuestionCode)+",\n")
 	s = append(s, "Name: "+fmt.Sprintf("%#v", this.Name)+",\n")
-	s = append(s, "Age: "+fmt.Sprintf("%#v", this.Age)+",\n")
-	s = append(s, "Height: "+fmt.Sprintf("%#v", this.Height)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *SampleResponse) GoString() string {
+func (this *ManyClients) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 5)
+	s = append(s, "&samplepb.ManyClients{")
+	if this.Client != nil {
+		s = append(s, "Client: "+fmt.Sprintf("%#v", this.Client)+",\n")
+	}
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *Answer) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 6)
-	s = append(s, "&samplepb.SampleResponse{")
+	s = append(s, "&samplepb.Answer{")
 	s = append(s, "Code: "+fmt.Sprintf("%#v", this.Code)+",\n")
 	s = append(s, "Answer: "+fmt.Sprintf("%#v", this.Answer)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *ManyAnswers) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 5)
+	s = append(s, "&samplepb.ManyAnswers{")
+	if this.Result != nil {
+		s = append(s, "Result: "+fmt.Sprintf("%#v", this.Result)+",\n")
+	}
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -1083,8 +964,10 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type SampleServiceClient interface {
-	// UnaryEcho is unary echo.
-	UnaryEcho(ctx context.Context, in *SampleBase, opts ...grpc.CallOption) (*SampleResponse, error)
+	// UnaryAsk is unary ask.
+	UnaryAsk(ctx context.Context, in *Client, opts ...grpc.CallOption) (*Answer, error)
+	// ServerStreamingAsk is server side streaming.
+	ServerStreamingAskManytimes(ctx context.Context, in *ManyClients, opts ...grpc.CallOption) (SampleService_ServerStreamingAskManytimesClient, error)
 }
 
 type sampleServiceClient struct {
@@ -1095,49 +978,107 @@ func NewSampleServiceClient(cc *grpc.ClientConn) SampleServiceClient {
 	return &sampleServiceClient{cc}
 }
 
-func (c *sampleServiceClient) UnaryEcho(ctx context.Context, in *SampleBase, opts ...grpc.CallOption) (*SampleResponse, error) {
-	out := new(SampleResponse)
-	err := c.cc.Invoke(ctx, "/sample.SampleService/UnaryEcho", in, out, opts...)
+func (c *sampleServiceClient) UnaryAsk(ctx context.Context, in *Client, opts ...grpc.CallOption) (*Answer, error) {
+	out := new(Answer)
+	err := c.cc.Invoke(ctx, "/sample.SampleService/UnaryAsk", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
+func (c *sampleServiceClient) ServerStreamingAskManytimes(ctx context.Context, in *ManyClients, opts ...grpc.CallOption) (SampleService_ServerStreamingAskManytimesClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_SampleService_serviceDesc.Streams[0], "/sample.SampleService/ServerStreamingAskManytimes", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &sampleServiceServerStreamingAskManytimesClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type SampleService_ServerStreamingAskManytimesClient interface {
+	Recv() (*ManyAnswers, error)
+	grpc.ClientStream
+}
+
+type sampleServiceServerStreamingAskManytimesClient struct {
+	grpc.ClientStream
+}
+
+func (x *sampleServiceServerStreamingAskManytimesClient) Recv() (*ManyAnswers, error) {
+	m := new(ManyAnswers)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // SampleServiceServer is the server API for SampleService service.
 type SampleServiceServer interface {
-	// UnaryEcho is unary echo.
-	UnaryEcho(context.Context, *SampleBase) (*SampleResponse, error)
+	// UnaryAsk is unary ask.
+	UnaryAsk(context.Context, *Client) (*Answer, error)
+	// ServerStreamingAsk is server side streaming.
+	ServerStreamingAskManytimes(*ManyClients, SampleService_ServerStreamingAskManytimesServer) error
 }
 
 // UnimplementedSampleServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedSampleServiceServer struct {
 }
 
-func (*UnimplementedSampleServiceServer) UnaryEcho(ctx context.Context, req *SampleBase) (*SampleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UnaryEcho not implemented")
+func (*UnimplementedSampleServiceServer) UnaryAsk(ctx context.Context, req *Client) (*Answer, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnaryAsk not implemented")
+}
+func (*UnimplementedSampleServiceServer) ServerStreamingAskManytimes(req *ManyClients, srv SampleService_ServerStreamingAskManytimesServer) error {
+	return status.Errorf(codes.Unimplemented, "method ServerStreamingAskManytimes not implemented")
 }
 
 func RegisterSampleServiceServer(s *grpc.Server, srv SampleServiceServer) {
 	s.RegisterService(&_SampleService_serviceDesc, srv)
 }
 
-func _SampleService_UnaryEcho_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SampleBase)
+func _SampleService_UnaryAsk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Client)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SampleServiceServer).UnaryEcho(ctx, in)
+		return srv.(SampleServiceServer).UnaryAsk(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/sample.SampleService/UnaryEcho",
+		FullMethod: "/sample.SampleService/UnaryAsk",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SampleServiceServer).UnaryEcho(ctx, req.(*SampleBase))
+		return srv.(SampleServiceServer).UnaryAsk(ctx, req.(*Client))
 	}
 	return interceptor(ctx, in, info, handler)
+}
+
+func _SampleService_ServerStreamingAskManytimes_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ManyClients)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(SampleServiceServer).ServerStreamingAskManytimes(m, &sampleServiceServerStreamingAskManytimesServer{stream})
+}
+
+type SampleService_ServerStreamingAskManytimesServer interface {
+	Send(*ManyAnswers) error
+	grpc.ServerStream
+}
+
+type sampleServiceServerStreamingAskManytimesServer struct {
+	grpc.ServerStream
+}
+
+func (x *sampleServiceServerStreamingAskManytimesServer) Send(m *ManyAnswers) error {
+	return x.ServerStream.SendMsg(m)
 }
 
 var _SampleService_serviceDesc = grpc.ServiceDesc{
@@ -1145,15 +1086,21 @@ var _SampleService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*SampleServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "UnaryEcho",
-			Handler:    _SampleService_UnaryEcho_Handler,
+			MethodName: "UnaryAsk",
+			Handler:    _SampleService_UnaryAsk_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "ServerStreamingAskManytimes",
+			Handler:       _SampleService_ServerStreamingAskManytimes_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "sample/sample.proto",
 }
 
-func (m *SampleBase) Marshal() (dAtA []byte, err error) {
+func (m *NormalType) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1163,81 +1110,76 @@ func (m *SampleBase) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *SampleBase) MarshalTo(dAtA []byte) (int, error) {
+func (m *NormalType) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *SampleBase) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *NormalType) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.SampleData != nil {
-		{
-			size := m.SampleData.Size()
-			i -= size
-			if _, err := m.SampleData.MarshalTo(dAtA[i:]); err != nil {
-				return 0, err
-			}
-		}
+	if len(m.Bt) > 0 {
+		i -= len(m.Bt)
+		copy(dAtA[i:], m.Bt)
+		i = encodeVarintSample(dAtA, i, uint64(len(m.Bt)))
+		i--
+		dAtA[i] = 0x4a
 	}
-	if m.Time != 0 {
-		i = encodeVarintSample(dAtA, i, uint64(m.Time))
+	if len(m.St) > 0 {
+		i -= len(m.St)
+		copy(dAtA[i:], m.St)
+		i = encodeVarintSample(dAtA, i, uint64(len(m.St)))
+		i--
+		dAtA[i] = 0x42
+	}
+	if m.Bl {
+		i--
+		if m.Bl {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x38
+	}
+	if m.Db != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.Db))))
+		i--
+		dAtA[i] = 0x31
+	}
+	if m.Fl != 0 {
+		i -= 4
+		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(m.Fl))))
+		i--
+		dAtA[i] = 0x2d
+	}
+	if m.U64 != 0 {
+		i = encodeVarintSample(dAtA, i, uint64(m.U64))
+		i--
+		dAtA[i] = 0x20
+	}
+	if m.U32 != 0 {
+		i = encodeVarintSample(dAtA, i, uint64(m.U32))
+		i--
+		dAtA[i] = 0x18
+	}
+	if m.I64 != 0 {
+		i = encodeVarintSample(dAtA, i, uint64(m.I64))
 		i--
 		dAtA[i] = 0x10
 	}
-	if len(m.SampleName) > 0 {
-		i -= len(m.SampleName)
-		copy(dAtA[i:], m.SampleName)
-		i = encodeVarintSample(dAtA, i, uint64(len(m.SampleName)))
+	if m.I32 != 0 {
+		i = encodeVarintSample(dAtA, i, uint64(m.I32))
 		i--
-		dAtA[i] = 0xa
+		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
 
-func (m *SampleBase_Category1) MarshalTo(dAtA []byte) (int, error) {
-	return m.MarshalToSizedBuffer(dAtA[:m.Size()])
-}
-
-func (m *SampleBase_Category1) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.Category1 != nil {
-		{
-			size, err := m.Category1.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintSample(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x1a
-	}
-	return len(dAtA) - i, nil
-}
-func (m *SampleBase_Category2) MarshalTo(dAtA []byte) (int, error) {
-	return m.MarshalToSizedBuffer(dAtA[:m.Size()])
-}
-
-func (m *SampleBase_Category2) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.Category2 != nil {
-		{
-			size, err := m.Category2.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintSample(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x22
-	}
-	return len(dAtA) - i, nil
-}
-func (m *Category1Sample) Marshal() (dAtA []byte, err error) {
+func (m *ExtensionType) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1247,19 +1189,19 @@ func (m *Category1Sample) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *Category1Sample) MarshalTo(dAtA []byte) (int, error) {
+func (m *ExtensionType) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *Category1Sample) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *ExtensionType) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.Details != nil {
+	if m.Client != nil {
 		{
-			size, err := m.Details.MarshalToSizedBuffer(dAtA[:i])
+			size, err := m.Client.MarshalToSizedBuffer(dAtA[:i])
 			if err != nil {
 				return 0, err
 			}
@@ -1267,23 +1209,25 @@ func (m *Category1Sample) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 			i = encodeVarintSample(dAtA, i, uint64(size))
 		}
 		i--
-		dAtA[i] = 0x3a
+		dAtA[i] = 0x4a
 	}
-	if m.Definition != nil {
+	if m.Type != 0 {
+		i = encodeVarintSample(dAtA, i, uint64(m.Type))
+		i--
+		dAtA[i] = 0x40
+	}
+	if m.OneofData != nil {
 		{
-			size, err := m.Definition.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
+			size := m.OneofData.Size()
+			i -= size
+			if _, err := m.OneofData.MarshalTo(dAtA[i:]); err != nil {
 				return 0, err
 			}
-			i -= size
-			i = encodeVarintSample(dAtA, i, uint64(size))
 		}
-		i--
-		dAtA[i] = 0x32
 	}
-	if m.LastUpdated != nil {
+	if m.Any != nil {
 		{
-			size, err := m.LastUpdated.MarshalToSizedBuffer(dAtA[:i])
+			size, err := m.Any.MarshalToSizedBuffer(dAtA[:i])
 			if err != nil {
 				return 0, err
 			}
@@ -1293,9 +1237,33 @@ func (m *Category1Sample) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x2a
 	}
-	if len(m.Md) > 0 {
-		for k := range m.Md {
-			v := m.Md[k]
+	if m.Struct != nil {
+		{
+			size, err := m.Struct.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintSample(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x22
+	}
+	if m.Ts != nil {
+		{
+			size, err := m.Ts.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintSample(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Mp) > 0 {
+		for k := range m.Mp {
+			v := m.Mp[k]
 			baseI := i
 			i = encodeVarintSample(dAtA, i, uint64(v))
 			i--
@@ -1307,200 +1275,45 @@ func (m *Category1Sample) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 			dAtA[i] = 0xa
 			i = encodeVarintSample(dAtA, i, uint64(baseI-i))
 			i--
-			dAtA[i] = 0x22
+			dAtA[i] = 0x12
 		}
 	}
-	if m.Client != nil {
-		{
-			size, err := m.Client.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintSample(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x1a
-	}
-	if m.Something2 != nil {
-		{
-			size, err := m.Something2.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintSample(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x12
-	}
-	if m.Something1 != nil {
-		{
-			size, err := m.Something1.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintSample(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *Category2Sample) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *Category2Sample) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *Category2Sample) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.BtData) > 0 {
-		i -= len(m.BtData)
-		copy(dAtA[i:], m.BtData)
-		i = encodeVarintSample(dAtA, i, uint64(len(m.BtData)))
-		i--
-		dAtA[i] = 0x32
-	}
-	if m.BFlag {
-		i--
-		if m.BFlag {
-			dAtA[i] = 1
-		} else {
-			dAtA[i] = 0
-		}
-		i--
-		dAtA[i] = 0x28
-	}
-	if len(m.SName) > 0 {
-		i -= len(m.SName)
-		copy(dAtA[i:], m.SName)
-		i = encodeVarintSample(dAtA, i, uint64(len(m.SName)))
-		i--
-		dAtA[i] = 0x22
-	}
-	if m.BId != 0 {
-		i -= 8
-		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.BId))))
-		i--
-		dAtA[i] = 0x19
-	}
-	if m.AId != 0 {
-		i = encodeVarintSample(dAtA, i, uint64(m.AId))
-		i--
-		dAtA[i] = 0x10
-	}
-	if m.Something1 != nil {
-		{
-			size, err := m.Something1.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintSample(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *Something1) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *Something1) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *Something1) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
 	if len(m.Data) > 0 {
 		for iNdEx := len(m.Data) - 1; iNdEx >= 0; iNdEx-- {
 			i -= len(m.Data[iNdEx])
 			copy(dAtA[i:], m.Data[iNdEx])
 			i = encodeVarintSample(dAtA, i, uint64(len(m.Data[iNdEx])))
 			i--
-			dAtA[i] = 0x22
+			dAtA[i] = 0xa
 		}
 	}
-	if m.Type != 0 {
-		i = encodeVarintSample(dAtA, i, uint64(m.Type))
-		i--
-		dAtA[i] = 0x18
-	}
-	if m.UId != 0 {
-		i = encodeVarintSample(dAtA, i, uint64(m.UId))
-		i--
-		dAtA[i] = 0x10
-	}
-	if m.Id != 0 {
-		i = encodeVarintSample(dAtA, i, uint64(m.Id))
-		i--
-		dAtA[i] = 0x8
-	}
 	return len(dAtA) - i, nil
 }
 
-func (m *Something2) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
+func (m *ExtensionType_I32) MarshalTo(dAtA []byte) (int, error) {
+	return m.MarshalToSizedBuffer(dAtA[:m.Size()])
 }
 
-func (m *Something2) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *Something2) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *ExtensionType_I32) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.PTime != 0 {
-		i = encodeVarintSample(dAtA, i, uint64(m.PTime))
-		i--
-		dAtA[i] = 0x10
-	}
-	if len(m.Name) > 0 {
-		i -= len(m.Name)
-		copy(dAtA[i:], m.Name)
-		i = encodeVarintSample(dAtA, i, uint64(len(m.Name)))
-		i--
-		dAtA[i] = 0xa
-	}
+	i = encodeVarintSample(dAtA, i, uint64(m.I32))
+	i--
+	dAtA[i] = 0x30
 	return len(dAtA) - i, nil
 }
+func (m *ExtensionType_St) MarshalTo(dAtA []byte) (int, error) {
+	return m.MarshalToSizedBuffer(dAtA[:m.Size()])
+}
 
+func (m *ExtensionType_St) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	i -= len(m.St)
+	copy(dAtA[i:], m.St)
+	i = encodeVarintSample(dAtA, i, uint64(len(m.St)))
+	i--
+	dAtA[i] = 0x3a
+	return len(dAtA) - i, nil
+}
 func (m *Client) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -1521,27 +1334,22 @@ func (m *Client) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Height != 0 {
-		i = encodeVarintSample(dAtA, i, uint64(m.Height))
-		i--
-		dAtA[i] = 0x18
-	}
-	if m.Age != 0 {
-		i = encodeVarintSample(dAtA, i, uint64(m.Age))
-		i--
-		dAtA[i] = 0x10
-	}
 	if len(m.Name) > 0 {
 		i -= len(m.Name)
 		copy(dAtA[i:], m.Name)
 		i = encodeVarintSample(dAtA, i, uint64(len(m.Name)))
 		i--
-		dAtA[i] = 0xa
+		dAtA[i] = 0x12
+	}
+	if m.QuestionCode != 0 {
+		i = encodeVarintSample(dAtA, i, uint64(m.QuestionCode))
+		i--
+		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
 
-func (m *SampleResponse) Marshal() (dAtA []byte, err error) {
+func (m *ManyClients) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1551,12 +1359,47 @@ func (m *SampleResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *SampleResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *ManyClients) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *SampleResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *ManyClients) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Client != nil {
+		{
+			size, err := m.Client.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintSample(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *Answer) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Answer) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Answer) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1576,6 +1419,41 @@ func (m *SampleResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *ManyAnswers) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *ManyAnswers) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *ManyAnswers) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Result != nil {
+		{
+			size, err := m.Result.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintSample(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintSample(dAtA []byte, offset int, v uint64) int {
 	offset -= sovSample(v)
 	base := offset
@@ -1587,180 +1465,138 @@ func encodeVarintSample(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *SampleBase) Size() (n int) {
+func (m *NormalType) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = len(m.SampleName)
-	if l > 0 {
-		n += 1 + l + sovSample(uint64(l))
+	if m.I32 != 0 {
+		n += 1 + sovSample(uint64(m.I32))
 	}
-	if m.Time != 0 {
-		n += 1 + sovSample(uint64(m.Time))
+	if m.I64 != 0 {
+		n += 1 + sovSample(uint64(m.I64))
 	}
-	if m.SampleData != nil {
-		n += m.SampleData.Size()
+	if m.U32 != 0 {
+		n += 1 + sovSample(uint64(m.U32))
 	}
-	return n
-}
-
-func (m *SampleBase_Category1) Size() (n int) {
-	if m == nil {
-		return 0
+	if m.U64 != 0 {
+		n += 1 + sovSample(uint64(m.U64))
 	}
-	var l int
-	_ = l
-	if m.Category1 != nil {
-		l = m.Category1.Size()
-		n += 1 + l + sovSample(uint64(l))
+	if m.Fl != 0 {
+		n += 5
 	}
-	return n
-}
-func (m *SampleBase_Category2) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Category2 != nil {
-		l = m.Category2.Size()
-		n += 1 + l + sovSample(uint64(l))
-	}
-	return n
-}
-func (m *Category1Sample) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Something1 != nil {
-		l = m.Something1.Size()
-		n += 1 + l + sovSample(uint64(l))
-	}
-	if m.Something2 != nil {
-		l = m.Something2.Size()
-		n += 1 + l + sovSample(uint64(l))
-	}
-	if m.Client != nil {
-		l = m.Client.Size()
-		n += 1 + l + sovSample(uint64(l))
-	}
-	if len(m.Md) > 0 {
-		for k, v := range m.Md {
-			_ = k
-			_ = v
-			mapEntrySize := 1 + len(k) + sovSample(uint64(len(k))) + 1 + sovSample(uint64(v))
-			n += mapEntrySize + 1 + sovSample(uint64(mapEntrySize))
-		}
-	}
-	if m.LastUpdated != nil {
-		l = m.LastUpdated.Size()
-		n += 1 + l + sovSample(uint64(l))
-	}
-	if m.Definition != nil {
-		l = m.Definition.Size()
-		n += 1 + l + sovSample(uint64(l))
-	}
-	if m.Details != nil {
-		l = m.Details.Size()
-		n += 1 + l + sovSample(uint64(l))
-	}
-	return n
-}
-
-func (m *Category2Sample) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Something1 != nil {
-		l = m.Something1.Size()
-		n += 1 + l + sovSample(uint64(l))
-	}
-	if m.AId != 0 {
-		n += 1 + sovSample(uint64(m.AId))
-	}
-	if m.BId != 0 {
+	if m.Db != 0 {
 		n += 9
 	}
-	l = len(m.SName)
+	if m.Bl {
+		n += 2
+	}
+	l = len(m.St)
 	if l > 0 {
 		n += 1 + l + sovSample(uint64(l))
 	}
-	if m.BFlag {
-		n += 2
-	}
-	l = len(m.BtData)
+	l = len(m.Bt)
 	if l > 0 {
 		n += 1 + l + sovSample(uint64(l))
 	}
 	return n
 }
 
-func (m *Something1) Size() (n int) {
+func (m *ExtensionType) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if m.Id != 0 {
-		n += 1 + sovSample(uint64(m.Id))
-	}
-	if m.UId != 0 {
-		n += 1 + sovSample(uint64(m.UId))
-	}
-	if m.Type != 0 {
-		n += 1 + sovSample(uint64(m.Type))
-	}
 	if len(m.Data) > 0 {
 		for _, s := range m.Data {
 			l = len(s)
 			n += 1 + l + sovSample(uint64(l))
 		}
 	}
+	if len(m.Mp) > 0 {
+		for k, v := range m.Mp {
+			_ = k
+			_ = v
+			mapEntrySize := 1 + len(k) + sovSample(uint64(len(k))) + 1 + sovSample(uint64(v))
+			n += mapEntrySize + 1 + sovSample(uint64(mapEntrySize))
+		}
+	}
+	if m.Ts != nil {
+		l = m.Ts.Size()
+		n += 1 + l + sovSample(uint64(l))
+	}
+	if m.Struct != nil {
+		l = m.Struct.Size()
+		n += 1 + l + sovSample(uint64(l))
+	}
+	if m.Any != nil {
+		l = m.Any.Size()
+		n += 1 + l + sovSample(uint64(l))
+	}
+	if m.OneofData != nil {
+		n += m.OneofData.Size()
+	}
+	if m.Type != 0 {
+		n += 1 + sovSample(uint64(m.Type))
+	}
+	if m.Client != nil {
+		l = m.Client.Size()
+		n += 1 + l + sovSample(uint64(l))
+	}
 	return n
 }
 
-func (m *Something2) Size() (n int) {
+func (m *ExtensionType_I32) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = len(m.Name)
-	if l > 0 {
-		n += 1 + l + sovSample(uint64(l))
-	}
-	if m.PTime != 0 {
-		n += 1 + sovSample(uint64(m.PTime))
-	}
+	n += 1 + sovSample(uint64(m.I32))
 	return n
 }
-
+func (m *ExtensionType_St) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.St)
+	n += 1 + l + sovSample(uint64(l))
+	return n
+}
 func (m *Client) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
+	if m.QuestionCode != 0 {
+		n += 1 + sovSample(uint64(m.QuestionCode))
+	}
 	l = len(m.Name)
 	if l > 0 {
 		n += 1 + l + sovSample(uint64(l))
 	}
-	if m.Age != 0 {
-		n += 1 + sovSample(uint64(m.Age))
+	return n
+}
+
+func (m *ManyClients) Size() (n int) {
+	if m == nil {
+		return 0
 	}
-	if m.Height != 0 {
-		n += 1 + sovSample(uint64(m.Height))
+	var l int
+	_ = l
+	if m.Client != nil {
+		l = m.Client.Size()
+		n += 1 + l + sovSample(uint64(l))
 	}
 	return n
 }
 
-func (m *SampleResponse) Size() (n int) {
+func (m *Answer) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1776,105 +1612,86 @@ func (m *SampleResponse) Size() (n int) {
 	return n
 }
 
+func (m *ManyAnswers) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Result != nil {
+		l = m.Result.Size()
+		n += 1 + l + sovSample(uint64(l))
+	}
+	return n
+}
+
 func sovSample(x uint64) (n int) {
 	return (math_bits.Len64(x|1) + 6) / 7
 }
 func sozSample(x uint64) (n int) {
 	return sovSample(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (this *SampleBase) String() string {
+func (this *NormalType) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&SampleBase{`,
-		`SampleName:` + fmt.Sprintf("%v", this.SampleName) + `,`,
-		`Time:` + fmt.Sprintf("%v", this.Time) + `,`,
-		`SampleData:` + fmt.Sprintf("%v", this.SampleData) + `,`,
+	s := strings.Join([]string{`&NormalType{`,
+		`I32:` + fmt.Sprintf("%v", this.I32) + `,`,
+		`I64:` + fmt.Sprintf("%v", this.I64) + `,`,
+		`U32:` + fmt.Sprintf("%v", this.U32) + `,`,
+		`U64:` + fmt.Sprintf("%v", this.U64) + `,`,
+		`Fl:` + fmt.Sprintf("%v", this.Fl) + `,`,
+		`Db:` + fmt.Sprintf("%v", this.Db) + `,`,
+		`Bl:` + fmt.Sprintf("%v", this.Bl) + `,`,
+		`St:` + fmt.Sprintf("%v", this.St) + `,`,
+		`Bt:` + fmt.Sprintf("%v", this.Bt) + `,`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *SampleBase_Category1) String() string {
+func (this *ExtensionType) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&SampleBase_Category1{`,
-		`Category1:` + strings.Replace(fmt.Sprintf("%v", this.Category1), "Category1Sample", "Category1Sample", 1) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *SampleBase_Category2) String() string {
-	if this == nil {
-		return "nil"
+	keysForMp := make([]string, 0, len(this.Mp))
+	for k, _ := range this.Mp {
+		keysForMp = append(keysForMp, k)
 	}
-	s := strings.Join([]string{`&SampleBase_Category2{`,
-		`Category2:` + strings.Replace(fmt.Sprintf("%v", this.Category2), "Category2Sample", "Category2Sample", 1) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Category1Sample) String() string {
-	if this == nil {
-		return "nil"
+	github_com_gogo_protobuf_sortkeys.Strings(keysForMp)
+	mapStringForMp := "map[string]int64{"
+	for _, k := range keysForMp {
+		mapStringForMp += fmt.Sprintf("%v: %v,", k, this.Mp[k])
 	}
-	keysForMd := make([]string, 0, len(this.Md))
-	for k, _ := range this.Md {
-		keysForMd = append(keysForMd, k)
-	}
-	github_com_gogo_protobuf_sortkeys.Strings(keysForMd)
-	mapStringForMd := "map[string]int64{"
-	for _, k := range keysForMd {
-		mapStringForMd += fmt.Sprintf("%v: %v,", k, this.Md[k])
-	}
-	mapStringForMd += "}"
-	s := strings.Join([]string{`&Category1Sample{`,
-		`Something1:` + strings.Replace(this.Something1.String(), "Something1", "Something1", 1) + `,`,
-		`Something2:` + strings.Replace(this.Something2.String(), "Something2", "Something2", 1) + `,`,
-		`Client:` + strings.Replace(this.Client.String(), "Client", "Client", 1) + `,`,
-		`Md:` + mapStringForMd + `,`,
-		`LastUpdated:` + strings.Replace(fmt.Sprintf("%v", this.LastUpdated), "Timestamp", "types.Timestamp", 1) + `,`,
-		`Definition:` + strings.Replace(fmt.Sprintf("%v", this.Definition), "Struct", "types.Struct", 1) + `,`,
-		`Details:` + strings.Replace(fmt.Sprintf("%v", this.Details), "Any", "types.Any", 1) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Category2Sample) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Category2Sample{`,
-		`Something1:` + strings.Replace(this.Something1.String(), "Something1", "Something1", 1) + `,`,
-		`AId:` + fmt.Sprintf("%v", this.AId) + `,`,
-		`BId:` + fmt.Sprintf("%v", this.BId) + `,`,
-		`SName:` + fmt.Sprintf("%v", this.SName) + `,`,
-		`BFlag:` + fmt.Sprintf("%v", this.BFlag) + `,`,
-		`BtData:` + fmt.Sprintf("%v", this.BtData) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Something1) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Something1{`,
-		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
-		`UId:` + fmt.Sprintf("%v", this.UId) + `,`,
-		`Type:` + fmt.Sprintf("%v", this.Type) + `,`,
+	mapStringForMp += "}"
+	s := strings.Join([]string{`&ExtensionType{`,
 		`Data:` + fmt.Sprintf("%v", this.Data) + `,`,
+		`Mp:` + mapStringForMp + `,`,
+		`Ts:` + strings.Replace(fmt.Sprintf("%v", this.Ts), "Timestamp", "types.Timestamp", 1) + `,`,
+		`Struct:` + strings.Replace(fmt.Sprintf("%v", this.Struct), "Struct", "types.Struct", 1) + `,`,
+		`Any:` + strings.Replace(fmt.Sprintf("%v", this.Any), "Any", "types.Any", 1) + `,`,
+		`OneofData:` + fmt.Sprintf("%v", this.OneofData) + `,`,
+		`Type:` + fmt.Sprintf("%v", this.Type) + `,`,
+		`Client:` + strings.Replace(this.Client.String(), "Client", "Client", 1) + `,`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *Something2) String() string {
+func (this *ExtensionType_I32) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&Something2{`,
-		`Name:` + fmt.Sprintf("%v", this.Name) + `,`,
-		`PTime:` + fmt.Sprintf("%v", this.PTime) + `,`,
+	s := strings.Join([]string{`&ExtensionType_I32{`,
+		`I32:` + fmt.Sprintf("%v", this.I32) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *ExtensionType_St) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&ExtensionType_St{`,
+		`St:` + fmt.Sprintf("%v", this.St) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -1884,20 +1701,39 @@ func (this *Client) String() string {
 		return "nil"
 	}
 	s := strings.Join([]string{`&Client{`,
+		`QuestionCode:` + fmt.Sprintf("%v", this.QuestionCode) + `,`,
 		`Name:` + fmt.Sprintf("%v", this.Name) + `,`,
-		`Age:` + fmt.Sprintf("%v", this.Age) + `,`,
-		`Height:` + fmt.Sprintf("%v", this.Height) + `,`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *SampleResponse) String() string {
+func (this *ManyClients) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&SampleResponse{`,
+	s := strings.Join([]string{`&ManyClients{`,
+		`Client:` + strings.Replace(this.Client.String(), "Client", "Client", 1) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *Answer) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&Answer{`,
 		`Code:` + fmt.Sprintf("%v", this.Code) + `,`,
 		`Answer:` + fmt.Sprintf("%v", this.Answer) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *ManyAnswers) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&ManyAnswers{`,
+		`Result:` + strings.Replace(this.Result.String(), "Answer", "Answer", 1) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -1910,7 +1746,7 @@ func valueToStringSample(v interface{}) string {
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("*%v", pv)
 }
-func (m *SampleBase) Unmarshal(dAtA []byte) error {
+func (m *NormalType) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1933,15 +1769,133 @@ func (m *SampleBase) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: SampleBase: wiretype end group for non-group")
+			return fmt.Errorf("proto: NormalType: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: SampleBase: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: NormalType: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field I32", wireType)
+			}
+			m.I32 = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSample
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.I32 |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field I64", wireType)
+			}
+			m.I64 = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSample
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.I64 |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field U32", wireType)
+			}
+			m.U32 = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSample
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.U32 |= uint32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field U64", wireType)
+			}
+			m.U64 = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSample
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.U64 |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 5:
+			if wireType != 5 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Fl", wireType)
+			}
+			var v uint32
+			if (iNdEx + 4) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint32(encoding_binary.LittleEndian.Uint32(dAtA[iNdEx:]))
+			iNdEx += 4
+			m.Fl = float32(math.Float32frombits(v))
+		case 6:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Db", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.Db = float64(math.Float64frombits(v))
+		case 7:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Bl", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSample
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Bl = bool(v != 0)
+		case 8:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field SampleName", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field St", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1969,32 +1923,13 @@ func (m *SampleBase) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.SampleName = string(dAtA[iNdEx:postIndex])
+			m.St = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Time", wireType)
-			}
-			m.Time = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSample
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Time |= int64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
+		case 9:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Category1", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Bt", wireType)
 			}
-			var msglen int
+			var byteLen int
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowSample
@@ -2004,61 +1939,25 @@ func (m *SampleBase) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				msglen |= int(b&0x7F) << shift
+				byteLen |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			if msglen < 0 {
+			if byteLen < 0 {
 				return ErrInvalidLengthSample
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx + byteLen
 			if postIndex < 0 {
 				return ErrInvalidLengthSample
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			v := &Category1Sample{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
+			m.Bt = append(m.Bt[:0], dAtA[iNdEx:postIndex]...)
+			if m.Bt == nil {
+				m.Bt = []byte{}
 			}
-			m.SampleData = &SampleBase_Category1{v}
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Category2", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSample
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthSample
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthSample
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &Category2Sample{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.SampleData = &SampleBase_Category2{v}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -2084,7 +1983,7 @@ func (m *SampleBase) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *Category1Sample) Unmarshal(dAtA []byte) error {
+func (m *ExtensionType) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -2107,17 +2006,17 @@ func (m *Category1Sample) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: Category1Sample: wiretype end group for non-group")
+			return fmt.Errorf("proto: ExtensionType: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: Category1Sample: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: ExtensionType: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Something1", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Data", wireType)
 			}
-			var msglen int
+			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowSample
@@ -2127,31 +2026,27 @@ func (m *Category1Sample) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				msglen |= int(b&0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			if msglen < 0 {
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
 				return ErrInvalidLengthSample
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx + intStringLen
 			if postIndex < 0 {
 				return ErrInvalidLengthSample
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Something1 == nil {
-				m.Something1 = &Something1{}
-			}
-			if err := m.Something1.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			m.Data = append(m.Data, string(dAtA[iNdEx:postIndex]))
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Something2", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Mp", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -2178,80 +2073,8 @@ func (m *Category1Sample) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Something2 == nil {
-				m.Something2 = &Something2{}
-			}
-			if err := m.Something2.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Client", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSample
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthSample
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthSample
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Client == nil {
-				m.Client = &Client{}
-			}
-			if err := m.Client.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Md", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSample
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthSample
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthSample
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Md == nil {
-				m.Md = make(map[string]int64)
+			if m.Mp == nil {
+				m.Mp = make(map[string]int64)
 			}
 			var mapkey string
 			var mapvalue int64
@@ -2332,11 +2155,11 @@ func (m *Category1Sample) Unmarshal(dAtA []byte) error {
 					iNdEx += skippy
 				}
 			}
-			m.Md[mapkey] = mapvalue
+			m.Mp[mapkey] = mapvalue
 			iNdEx = postIndex
-		case 5:
+		case 3:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field LastUpdated", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Ts", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -2363,18 +2186,90 @@ func (m *Category1Sample) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.LastUpdated == nil {
-				m.LastUpdated = &types.Timestamp{}
+			if m.Ts == nil {
+				m.Ts = &types.Timestamp{}
 			}
-			if err := m.LastUpdated.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.Ts.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Struct", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSample
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthSample
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthSample
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Struct == nil {
+				m.Struct = &types.Struct{}
+			}
+			if err := m.Struct.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Any", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSample
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthSample
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthSample
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Any == nil {
+				m.Any = &types.Any{}
+			}
+			if err := m.Any.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
 		case 6:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Definition", wireType)
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field I32", wireType)
 			}
-			var msglen int
+			var v int32
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowSample
@@ -2384,186 +2279,15 @@ func (m *Category1Sample) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				msglen |= int(b&0x7F) << shift
+				v |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			if msglen < 0 {
-				return ErrInvalidLengthSample
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthSample
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Definition == nil {
-				m.Definition = &types.Struct{}
-			}
-			if err := m.Definition.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
+			m.OneofData = &ExtensionType_I32{v}
 		case 7:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Details", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSample
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthSample
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthSample
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Details == nil {
-				m.Details = &types.Any{}
-			}
-			if err := m.Details.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipSample(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthSample
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthSample
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *Category2Sample) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowSample
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: Category2Sample: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: Category2Sample: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Something1", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSample
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthSample
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthSample
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Something1 == nil {
-				m.Something1 = &Something1{}
-			}
-			if err := m.Something1.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field AId", wireType)
-			}
-			m.AId = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSample
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.AId |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
-			if wireType != 1 {
-				return fmt.Errorf("proto: wrong wireType = %d for field BId", wireType)
-			}
-			var v uint64
-			if (iNdEx + 8) > l {
-				return io.ErrUnexpectedEOF
-			}
-			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
-			iNdEx += 8
-			m.BId = float64(math.Float64frombits(v))
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field SName", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field St", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -2591,154 +2315,9 @@ func (m *Category2Sample) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.SName = string(dAtA[iNdEx:postIndex])
+			m.OneofData = &ExtensionType_St{string(dAtA[iNdEx:postIndex])}
 			iNdEx = postIndex
-		case 5:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field BFlag", wireType)
-			}
-			var v int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSample
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				v |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.BFlag = bool(v != 0)
-		case 6:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field BtData", wireType)
-			}
-			var byteLen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSample
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				byteLen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if byteLen < 0 {
-				return ErrInvalidLengthSample
-			}
-			postIndex := iNdEx + byteLen
-			if postIndex < 0 {
-				return ErrInvalidLengthSample
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.BtData = append(m.BtData[:0], dAtA[iNdEx:postIndex]...)
-			if m.BtData == nil {
-				m.BtData = []byte{}
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipSample(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthSample
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthSample
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *Something1) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowSample
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: Something1: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: Something1: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
-			}
-			m.Id = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSample
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Id |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field UId", wireType)
-			}
-			m.UId = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSample
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.UId |= uint32(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
+		case 8:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Type", wireType)
 			}
@@ -2752,16 +2331,16 @@ func (m *Something1) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Type |= Something1Type(b&0x7F) << shift
+				m.Type |= EnumType(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-		case 4:
+		case 9:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Data", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Client", wireType)
 			}
-			var stringLen uint64
+			var msglen int
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowSample
@@ -2771,128 +2350,28 @@ func (m *Something1) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
+				msglen |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
+			if msglen < 0 {
 				return ErrInvalidLengthSample
 			}
-			postIndex := iNdEx + intStringLen
+			postIndex := iNdEx + msglen
 			if postIndex < 0 {
 				return ErrInvalidLengthSample
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Data = append(m.Data, string(dAtA[iNdEx:postIndex]))
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipSample(dAtA[iNdEx:])
-			if err != nil {
+			if m.Client == nil {
+				m.Client = &Client{}
+			}
+			if err := m.Client.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
-			if skippy < 0 {
-				return ErrInvalidLengthSample
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthSample
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *Something2) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowSample
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: Something2: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: Something2: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSample
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthSample
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthSample
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Name = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field PTime", wireType)
-			}
-			m.PTime = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSample
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.PTime |= int64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipSample(dAtA[iNdEx:])
@@ -2947,6 +2426,25 @@ func (m *Client) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field QuestionCode", wireType)
+			}
+			m.QuestionCode = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSample
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.QuestionCode |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
 			}
@@ -2978,44 +2476,6 @@ func (m *Client) Unmarshal(dAtA []byte) error {
 			}
 			m.Name = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Age", wireType)
-			}
-			m.Age = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSample
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Age |= uint32(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Height", wireType)
-			}
-			m.Height = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSample
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Height |= uint32(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipSample(dAtA[iNdEx:])
@@ -3040,7 +2500,7 @@ func (m *Client) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *SampleResponse) Unmarshal(dAtA []byte) error {
+func (m *ManyClients) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -3063,10 +2523,99 @@ func (m *SampleResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: SampleResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: ManyClients: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: SampleResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: ManyClients: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Client", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSample
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthSample
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthSample
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Client == nil {
+				m.Client = &Client{}
+			}
+			if err := m.Client.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipSample(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthSample
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthSample
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Answer) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowSample
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Answer: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Answer: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -3119,6 +2668,95 @@ func (m *SampleResponse) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.Answer = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipSample(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthSample
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthSample
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *ManyAnswers) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowSample
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: ManyAnswers: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: ManyAnswers: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Result", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSample
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthSample
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthSample
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Result == nil {
+				m.Result = &Answer{}
+			}
+			if err := m.Result.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

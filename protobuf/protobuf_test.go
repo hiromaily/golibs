@@ -15,99 +15,77 @@ import (
 )
 
 func TestSample(t *testing.T) {
-	// For samplepb.Category1Sample
-	var cg1Sample = samplepb.Category1Sample{
-		Something1: &samplepb.Something1{
-			Id:   10,
-			UId:  20,
-			Type: samplepb.SOMETHING_TYPE_A,
-			Data: []string{"abc", "def", "ghi"},
-		},
-		Something2: &samplepb.Something2{
-			Name:  "Ron",
-			PTime: 10000,
-		},
-		Client: &samplepb.Client{
-			Name:   "Mike",
-			Age:    30,
-			Height: 170,
-		},
-		Md: map[string]int64{
+	// For NormalType
+	normal := &samplepb.NormalType{
+		I32: 1,
+		I64: time.Now().Unix(),
+		U32: 3,
+		U64: 4,
+		Fl:  1.2,
+		Db:  123.123,
+		Bl:  true,
+		St:  "foobar",
+		Bt:  []byte{0x00, 0x01, 0x02, 0x03},
+	}
+
+	client := &samplepb.Client{
+		QuestionCode: 1,
+		Name:         "Mike",
+	}
+
+	extension := &samplepb.ExtensionType{
+		Data: []string{"hello", "friend"},
+		Mp: map[string]int64{
 			"a": 123,
 			"b": 125,
 			"c": 127,
 		},
-		LastUpdated: &types.Timestamp{Seconds: 1296000000, Nanos: 0},
-		//Definition:
-		Details: &types.Any{TypeUrl: "", Value: []byte{}},
+		Ts:     &types.Timestamp{Seconds: 1296000000, Nanos: 0}, //*types.Timestamp
+		Struct: &types.Struct{},                                 //*types.Struct
+		Any:    &types.Any{TypeUrl: "", Value: []byte{}},        //*types.Any
+		//OneofData: &samplepb.ExtensionType_I32{I32: 12345},
+		OneofData: &samplepb.ExtensionType_St{St: "12345"},
+		Type:      samplepb.SOMETHING_TYPE_A,
+		Client:    client,
 	}
 
 	// Marshal
-	out, err := proto.Marshal(&cg1Sample)
+	out, err := proto.Marshal(normal)
 	if err != nil {
-		log.Fatalln("Failed to encode address cg1Sample:", err)
+		log.Fatalln("Failed to encode normal:", err)
 	}
 	log.Println(out)
 
 	// Unmarshal
-	cg1Sample2 := &samplepb.Category1Sample{}
-	if err := proto.Unmarshal(out, cg1Sample2); err != nil {
-		log.Fatalln("Failed to parse cg1Sample2:", err)
+	normal2 := &samplepb.NormalType{}
+	if err := proto.Unmarshal(out, normal2); err != nil {
+		log.Fatalln("Failed to parse normal2:", err)
 	}
-	log.Println(cg1Sample2)
-
-	// For samplepb.Category2Sample
-	var cg2Sample = samplepb.Category2Sample{
-		Something1: &samplepb.Something1{
-			Id:   10,
-			UId:  20,
-			Type: samplepb.SOMETHING_TYPE_B,
-			Data: []string{"abc", "def", "ghi"},
-		},
-		AId:    999,
-		BId:    0.62,
-		SName:  "something-name",
-		BFlag:  true,
-		BtData: []byte{},
-	}
+	log.Println(normal2)
 
 	// Marshal
-	out, err = proto.Marshal(&cg2Sample)
+	out, err = proto.Marshal(extension)
 	if err != nil {
-		log.Fatalln("Failed to encode address cg2Sample:", err)
+		log.Fatalln("Failed to encode extension:", err)
 	}
 	log.Println(out)
 
-	// SampleBase
-	var sampleBase = samplepb.SampleBase{
-		SampleName: "sample01",
-		Time:       time.Now().Unix(),
-		SampleData: &samplepb.SampleBase_Category1{Category1: &cg1Sample},
-	}
-
-	// Marshal
-	out, err = proto.Marshal(&sampleBase)
-	if err != nil {
-		log.Fatalln("Failed to encode sampleBase:", err)
-	}
-	log.Println(sampleBase)
-
 	// condition for oneof value
-	switch sampleBase.SampleData.(type) {
-	case *samplepb.SampleBase_Category1:
-		log.Println("type of oneof is SampleBase_Category1")
-		if v, ok := sampleBase.SampleData.(*samplepb.SampleBase_Category1); ok {
-			log.Println(v.Category1)
+	switch extension.OneofData.(type) {
+	case *samplepb.ExtensionType_I32:
+		log.Println("type of oneof is ExtensionType_I32")
+		if v, ok := extension.OneofData.(*samplepb.ExtensionType_I32); ok {
+			log.Println(v.I32)
 		}
-	case *samplepb.SampleBase_Category2:
-		log.Println("type of oneof is SampleBase_Category2")
-		if v, ok := sampleBase.SampleData.(*samplepb.SampleBase_Category2); ok {
-			log.Println(v.Category2)
+	case *samplepb.ExtensionType_St:
+		log.Println("type of oneof is ExtensionType_St")
+		if v, ok := extension.OneofData.(*samplepb.ExtensionType_St); ok {
+			log.Println(v.St)
 		}
 	}
 
 	// Marshal as JSON
-	js, err := jsoniter.Marshal(&sampleBase)
+	js, err := jsoniter.Marshal(&extension)
 	if err != nil {
 		log.Fatalln("Failed to encode sampleBase:", err)
 	}
@@ -121,5 +99,5 @@ func TestSample(t *testing.T) {
 	//	log.Fatalln("Failed to parse sampleBase2:", err)
 	//	//unknown field "SampleData" in samplepb.SampleBase
 	//}
-	//log.Println(sampleBase2)
+	//log.Println(extension)
 }

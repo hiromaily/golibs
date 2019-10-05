@@ -10,72 +10,63 @@ option java_package = "com.github.hiromaily.golibs.protobuf";
 option java_outer_classname = "Sample";
 option go_package = "samplepb";
 
-message SampleBase {
-  string sample_name = 1;
-  int64 time = 2;
-
-  // at least one of field should be used
-  oneof sample_data {
-    Category1Sample category1 = 3;
-    Category2Sample category2 = 4;
-  }
-}
-
-message Category1Sample {
-  Something1 something1 = 1;
-  Something2 something2 = 2;
-  Client client = 3;
-  map<string, int64> md = 4;
-  google.protobuf.Timestamp last_updated = 5;
-  google.protobuf.Struct definition = 6;
-  google.protobuf.Any details = 7;
-}
-
-message Category2Sample {
-  Something1 something1 = 1;
-
-  uint64 a_id = 2;
-  double b_id = 3;
-  string s_name = 4;
-  bool b_flag = 5;
-  bytes bt_data = 6;
-}
-
-message Something1 {
-  uint64 id = 1;
-  uint32 u_id = 2;
-  Something1Type type = 3;
-  repeated string data = 4;
-}
-
-message Something2 {
-  string name = 1;
-  int64 p_time = 2;
-}
-
-message Client {
-  string name = 1;
-  uint32 age = 2;
-  uint32 height = 3;
-}
-
-enum Something1Type {
+enum EnumType {
   SOMETHING_TYPE_A = 0;
   SOMETHING_TYPE_B = 1;
   SOMETHING_TYPE_C = 2;
 }
 
-message SampleResponse {
+message NormalType {
+  int32 i32 = 1;
+  int64 i64 = 2;
+  uint32 u32 = 3;
+  uint64 u64 = 4;
+  float fl = 5;
+  double db = 6;
+  bool bl = 7;
+  string st = 8;
+  bytes bt = 9;
+}
+
+message ExtensionType {
+  repeated string data = 1;
+  map<string, int64> mp = 2;
+  google.protobuf.Timestamp ts = 3;
+  google.protobuf.Struct struct = 4;
+  google.protobuf.Any any = 5;
+  // at least one of field should be used
+  oneof oneof_data {
+    int32 i32 = 6;
+    string st = 7;
+  }
+  EnumType type = 8;
+  Client client = 9;
+}
+
+message Client {
+  int64 question_code = 1;
+  string name = 2;
+}
+
+message ManyClients {
+  Client client = 1;
+}
+
+message Answer {
   int64 code = 1;
   string answer = 2;
 }
 
+message ManyAnswers {
+  Answer result = 1;
+}
+
 // Sample is the sample service.
 service SampleService {
-  // UnaryEcho is unary echo.
-  rpc UnaryEcho(SampleBase) returns (SampleResponse) {}
-  // ServerStreamingEcho is server side streaming.
-  //rpc ServerStreamingEcho(SampleBase) returns (stream SampleResponse) {}
+  // UnaryAsk is unary ask.
+  rpc UnaryAsk(Client) returns (Answer) {}
+  // ServerStreamingAsk is server side streaming.
+  rpc ServerStreamingAskManytimes(ManyClients) returns (stream ManyAnswers) {}
   // ClientStreamingEcho is client side streaming.
   //rpc ClientStreamingEcho(stream SampleBase) returns (SampleResponse) {}
   // BidirectionalStreamingEcho is bidi streaming.

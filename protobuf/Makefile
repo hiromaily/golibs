@@ -18,6 +18,7 @@ sleep-tech:
 	@$(shell sleep 3)
 	echo end
 
+# protoc command
 .PHONY:init
 init: update
 	brew install protobuf

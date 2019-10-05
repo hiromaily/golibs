@@ -5,9 +5,10 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"time"
 
-	"google.golang.org/grpc"
 	samplepb "github.com/hiromaily/golibs/protobuf/pb/sample"
+	"google.golang.org/grpc"
 )
 
 const (
@@ -16,33 +17,51 @@ const (
 
 type server struct{}
 
-// SayHello implements helloworld.GreeterServer
-func (s *server) UnaryEcho(ctx context.Context, in *samplepb.SampleBase) (*samplepb.SampleResponse, error) {
-	log.Printf("Received: %v", in.SampleName)
-	return &samplepb.SampleResponse{
+//TODO: check `SampleServiceServer interface` in pb.go
+
+func (s *server) UnaryAsk(ctx context.Context, in *samplepb.Client) (*samplepb.Answer, error) {
+	log.Printf("[UnaryAsk] Received: name: %s, question code: %d", in.Name, in.QuestionCode)
+
+	return &samplepb.Answer{
 		Code:   200,
-		Answer: fmt.Sprintf("accept %s", in.SampleName),
+		Answer: fmt.Sprintf("Hi %s, ", in.Name),
 	}, nil
 }
 
-//type SrvSampleServer interface {
-//	// UnaryEcho is unary echo.
-//	UnaryEcho(context.Context, *SampleBase) (*SampleResponse, error)
-//	// ServerStreamingEcho is server side streaming.
-//	ServerStreamingEcho(*SampleBase, SrvSample_ServerStreamingEchoServer) error
-//	// ClientStreamingEcho is client side streaming.
-//	ClientStreamingEcho(SrvSample_ClientStreamingEchoServer) error
-//	// BidirectionalStreamingEcho is bidi streaming.
-//	BidirectionalStreamingEcho(SrvSample_BidirectionalStreamingEchoServer) error
-//}
+func (s *server) ServerStreamingAskManytimes(req *samplepb.ManyClients, stream samplepb.SampleService_ServerStreamingAskManytimesServer) error {
+	log.Printf("[ServerStreamingAskManytimes] Received: name: %s, question code: %d", req.Client.Name, req.Client.QuestionCode)
+	log.Printf("[ServerStreamingAskManytimes] Received: name: %s, question code: %d", req.GetClient().GetName(), req.GetClient().GetQuestionCode())
+
+	// create response
+	for i := 0; i < 10; i++ {
+		answer := &samplepb.Answer{
+			Code:   200,
+			Answer: fmt.Sprintf("[%d]Hi %s", i, req.GetClient().GetName()),
+		}
+		answers := &samplepb.ManyAnswers{
+			Result: answer,
+		}
+		// send
+		if err := stream.Send(answers); err != nil {
+			return err
+		}
+		time.Sleep(200 * time.Millisecond)
+	}
+	return nil
+}
 
 func main() {
+	//
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
+
+	//register services
 	s := grpc.NewServer()
-	samplepb.RegisterSrvSampleServer(s, &server{})
+	samplepb.RegisterSampleServiceServer(s, &server{})
+
+	//serve
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
