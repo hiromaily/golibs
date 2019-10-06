@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"google.golang.org/grpc/credentials"
+	"google.golang.org/grpc/metadata"
 	"io"
 	"log"
 	"net"
@@ -32,6 +33,12 @@ type server struct{}
 
 func (s *server) UnaryAsk(ctx context.Context, in *samplepb.Client) (*samplepb.Answer, error) {
 	log.Printf("[UnaryAsk] Received: name: %s, question code: %d", in.Name, in.QuestionCode)
+
+	//metadata
+	if md, ok := metadata.FromIncomingContext(ctx); ok {
+		log.Println(md.Get("key1"))
+		log.Println(md.Get("key2"))
+	}
 
 	//validate
 	if in.QuestionCode >= 100 {

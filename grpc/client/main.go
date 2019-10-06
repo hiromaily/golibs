@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"google.golang.org/grpc/credentials"
+	"google.golang.org/grpc/metadata"
 	"io"
 	"log"
 	"net"
@@ -19,7 +20,7 @@ import (
 )
 
 const (
-	address = ":50051"
+	address = "localhost:50051"
 )
 
 var (
@@ -108,6 +109,11 @@ func main() {
 }
 
 func doUnary(ctx context.Context, cli samplepb.SampleServiceClient) {
+	//grpc metadata
+	//https://github.com/grpc/grpc-go/blob/master/Documentation/grpc-metadata.md
+	md := metadata.New(map[string]string{"key1": "val1", "key2": "val2"})
+	ctx = metadata.NewOutgoingContext(ctx, md)
+
 	res, err := cli.UnaryAsk(ctx, &samplepb.Client{
 		QuestionCode: *question,
 		Name:         *name,
