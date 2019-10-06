@@ -50,40 +50,106 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 1000*time.Millisecond)
 	defer cancel()
 
+	//TODO: check `SampleServiceClient interface` in pb.go
+
 	switch *mode {
 	case 1:
 		//Unary
-		res, err := cli.UnaryAsk(ctx, &samplepb.Client{
-			QuestionCode: *question,
-			Name:         *name,
-		})
-		if err != nil {
-			log.Fatalf("fail to call cli.UnaryAsk(): %v", err)
-		}
-		log.Printf("Response: [code] %d, [answer] %s", res.Code, res.Answer)
+		doUnary(ctx, cli)
 	case 2:
 		//ServerStreaming
-		req := &samplepb.ManyClients{
-			Client: &samplepb.Client{
+		doServerStreaming(ctx, cli)
+	case 3:
+		//ClientStreaming
+		doClientStreaming(ctx, cli)
+	default:
+		log.Fatal("-mode is out of range")
+	}
+}
+
+func doUnary(ctx context.Context, cli samplepb.SampleServiceClient) {
+	res, err := cli.UnaryAsk(ctx, &samplepb.Client{
+		QuestionCode: *question,
+		Name:         *name,
+	})
+	if err != nil {
+		log.Fatalf("fail to call cli.UnaryAsk(): %v", err)
+	}
+	log.Printf("Response: [code] %d, [answer] %s", res.Code, res.Answer)
+}
+
+func doServerStreaming(ctx context.Context, cli samplepb.SampleServiceClient) {
+	req := &samplepb.ManyClients{
+		Clients: []*samplepb.Client{
+			{
 				QuestionCode: *question,
 				Name:         *name,
 			},
+			{
+				QuestionCode: *question + 1,
+				Name:         *name + "2",
+			},
+			{
+				QuestionCode: *question + 2,
+				Name:         *name + "3",
+			},
+		},
+	}
+	resStream, err := cli.ServerStreamingRespondManytimes(ctx, req)
+	if err != nil {
+		log.Fatalf("fail to call cli.ServerStreamingRespondManytimes(): %v", err)
+	}
+	for {
+		res, err := resStream.Recv()
+		if isError(err) {
+			//rpc error: code = DeadlineExceeded desc = context deadline exceeded
+			log.Fatalf("fail to receive response from Recv(): %v", err)
+			break
 		}
-		resStream, err := cli.ServerStreamingAskManytimes(ctx, req)
-		if err != nil {
-			log.Fatalf("fail to call cli.ServerStreamingAskManytimes(): %v", err)
-		}
-		for {
-			res, err := resStream.Recv()
-			if isError(err){
-				//rpc error: code = DeadlineExceeded desc = context deadline exceeded
-				log.Fatalf("fail to receive response from Recv(): %v", err)
-				break
-			}
-			log.Printf("Response: %v", res.GetResult())
-		}
-	default:
-		log.Fatal("-mode is out of range")
+		log.Printf("Response: [code] %d, [answer] %s", res.Code, res.Answer)
+	}
+}
+
+func doClientStreaming(ctx context.Context, cli samplepb.SampleServiceClient) {
+	stream, err := cli.ClientStreamingAskManytimes(ctx)
+	if err != nil {
+		log.Fatalf("fail to call cli.ClientStreamingAskManytimes(): %v", err)
+	}
+
+	//req := &samplepb.Client{
+	//	QuestionCode: *question,
+	//	Name:         *name,
+	//}
+
+	reqs := &samplepb.ManyClients{
+		Clients: []*samplepb.Client{
+			{
+				QuestionCode: *question,
+				Name:         *name,
+			},
+			{
+				QuestionCode: *question + 1,
+				Name:         *name + "2",
+			},
+			{
+				QuestionCode: *question + 2,
+				Name:         *name + "3",
+			},
+		},
+	}
+
+	for _, req := range reqs.Clients {
+		stream.Send(req)
+		time.Sleep(200 * time.Millisecond)
+	}
+
+	res, err := stream.CloseAndRecv()
+	if err != nil {
+		log.Fatalf("fail to receive response from CloseAndRecv(): %v", err)
+	}
+
+	for idx, answer := range res.Answers {
+		log.Printf("Response: [%d][code] %d, [answer] %s", idx, answer.Code, answer.Answer)
 	}
 }
 
@@ -93,12 +159,12 @@ func isError(err error) bool {
 		log.Println("server was closed")
 		return true
 	case context.DeadlineExceeded:
-		//FIXME: this code doesn't run
+		//FIXME: this would not return by grpc error
 		log.Println("timeout by context.DeadlineExceeded")
 		return true
 	default:
 		e, ok := err.(net.Error)
-		if ok && e.Timeout(){
+		if ok && e.Timeout() {
 			log.Println("timeout by net.Error")
 			return true
 		}

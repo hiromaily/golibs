@@ -49,7 +49,7 @@ message Client {
 }
 
 message ManyClients {
-  Client client = 1;
+  repeated Client clients = 1;
 }
 
 message Answer {
@@ -58,17 +58,17 @@ message Answer {
 }
 
 message ManyAnswers {
-  Answer result = 1;
+  repeated Answer answers = 1;
 }
 
 // Sample is the sample service.
 service SampleService {
   // UnaryAsk is unary ask.
   rpc UnaryAsk(Client) returns (Answer) {}
-  // ServerStreamingAsk is server side streaming.
-  rpc ServerStreamingAskManytimes(ManyClients) returns (stream ManyAnswers) {}
-  // ClientStreamingEcho is client side streaming.
-  //rpc ClientStreamingEcho(stream SampleBase) returns (SampleResponse) {}
+  // ServerStreamingRespondManytimes is server side streaming. 1 to many
+  rpc ServerStreamingRespondManytimes(ManyClients) returns (stream Answer) {}
+  // ClientStreamingAskManytimes is client side streaming.
+  rpc ClientStreamingAskManytimes(stream Client) returns (ManyAnswers) {}
   // BidirectionalStreamingEcho is bidi streaming.
   //rpc BidirectionalStreamingEcho(stream SampleBase) returns (stream SampleResponse) {}
 }

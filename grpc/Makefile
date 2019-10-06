@@ -12,3 +12,4 @@ build:
 run:
 	grpc-server
 	grpc-client -mode 1 -name Mike -q 1
+	grpc-client -mode 2 -name Mike -q 1
