@@ -8,8 +8,17 @@ build:
 	go build -i -v -o ${GOPATH}/bin/grpc-server ./server/
 	go build -i -v -o ${GOPATH}/bin/grpc-client ./client/
 
-.PHONY:run
-run:
+.PHONY:server
+server:
 	grpc-server
+
+.PHONY:client
+client:
 	grpc-client -mode 1 -name Mike -q 1
-	grpc-client -mode 2 -name Mike -q 1
+	grpc-client -mode 1 -name Mike -q 10
+	grpc-client -mode 1 -name Mike -q 100
+
+	grpc-client -mode 2
+	grpc-client -mode 3 -name Mike -q 1
+	grpc-client -mode 4 -name Mike -q 1
+

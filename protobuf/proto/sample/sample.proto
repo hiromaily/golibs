@@ -70,5 +70,5 @@ service SampleService {
   // ClientStreamingAskManytimes is client side streaming.
   rpc ClientStreamingAskManytimes(stream Client) returns (ManyAnswers) {}
   // BidirectionalStreamingEcho is bidi streaming.
-  //rpc BidirectionalStreamingEcho(stream SampleBase) returns (stream SampleResponse) {}
+  rpc BidirectionalStreaming(stream Client) returns (stream Answer) {}
 }
