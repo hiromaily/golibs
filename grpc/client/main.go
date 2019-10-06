@@ -3,9 +3,12 @@ package main
 import (
 	"context"
 	"flag"
+	"fmt"
+	"google.golang.org/grpc/credentials"
 	"io"
 	"log"
 	"net"
+	"os"
 	"time"
 
 	"google.golang.org/grpc"
@@ -16,13 +19,14 @@ import (
 )
 
 const (
-	address = "0.0.0.0:50051"
+	address = ":50051"
 )
 
 var (
 	mode     = flag.Int("mode", 1, "mode")
 	name     = flag.String("name", "", "name")
 	question = flag.Int64("q", 0, "question code")
+	certFile = fmt.Sprintf("%s/src/github.com/hiromaily/golibs/grpc/key/ca.crt", os.Getenv("GOPATH"))
 )
 
 var clients = []*samplepb.Client{
@@ -67,7 +71,13 @@ func validate() {
 func main() {
 
 	// Set up a connection to the server.
-	conn, err := grpc.Dial(address, grpc.WithInsecure())
+	creds, err := credentials.NewClientTLSFromFile(certFile, "")
+	if err != nil {
+		log.Fatalf("fail to call credentials.NewClientTLSFromFile(): %v", err)
+	}
+
+	//conn, err := grpc.Dial(address, grpc.WithInsecure())
+	conn, err := grpc.Dial(address, grpc.WithTransportCredentials(creds))
 	if err != nil {
 		log.Fatalf("fail to connect: %v", err)
 	}
@@ -109,6 +119,8 @@ func doUnary(ctx context.Context, cli samplepb.SampleServiceClient) {
 				log.Println("parameter is invalid")
 			case codes.DeadlineExceeded:
 				log.Println("timeout")
+			case codes.Unavailable:
+				log.Println("authentication handshake failed")
 			default:
 				log.Printf("something grpc error: %d, %s", respErr.Code(), respErr.Message())
 			}

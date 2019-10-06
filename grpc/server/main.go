@@ -3,9 +3,11 @@ package main
 import (
 	"context"
 	"fmt"
+	"google.golang.org/grpc/credentials"
 	"io"
 	"log"
 	"net"
+	"os"
 	"time"
 
 	"google.golang.org/grpc"
@@ -17,6 +19,11 @@ import (
 
 const (
 	port = ":50051"
+)
+
+var (
+	certFile = fmt.Sprintf("%s/src/github.com/hiromaily/golibs/grpc/key/server.crt", os.Getenv("GOPATH"))
+	keyFile  = fmt.Sprintf("%s/src/github.com/hiromaily/golibs/grpc/key/server.pem", os.Getenv("GOPATH"))
 )
 
 type server struct{}
@@ -130,8 +137,14 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
+	creds, err := credentials.NewServerTLSFromFile(certFile, keyFile)
+	if err != nil {
+		log.Fatalf("fail to call credentials.NewServerTLSFromFile() %v", err)
+	}
+
 	//register services
-	s := grpc.NewServer()
+	//s := grpc.NewServer()
+	s := grpc.NewServer(grpc.Creds(creds))
 	samplepb.RegisterSampleServiceServer(s, &server{})
 
 	//serve
