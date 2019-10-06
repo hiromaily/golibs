@@ -9,5 +9,6 @@ profile.cov
 db/boltdb/boltdb
 
 example/exec/sh/*.sh
-
+grpc/key/*
+!grpc/key/*.sh
 docker_build/rmq/
