@@ -39,7 +39,7 @@ func handler2(w http.ResponseWriter, r *http.Request) {
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		chResult <- []int{1,2,3}
+		chResult <- []int{1, 2, 3}
 	}()
 
 	wg.Add(1)
@@ -60,7 +60,7 @@ func handler2(w http.ResponseWriter, r *http.Request) {
 			if !isOpen {
 				isDone = true
 			}
-			if ret == nil{
+			if ret == nil {
 				fmt.Println("ret == nil")
 			}
 			sum = append(sum, ret...)
@@ -77,7 +77,6 @@ func handler2(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("hello world: %d\n", len(sum))
 	fmt.Fprintf(w, "Hello, World")
 }
-
 
 func faviconHandler(w http.ResponseWriter, r *http.Request) {
 }

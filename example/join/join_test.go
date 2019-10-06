@@ -168,7 +168,7 @@ func BenchmarkStringBuilder(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		var sb strings.Builder
 		for _, v := range m {
-			sb.WriteString(","+v)
+			sb.WriteString("," + v)
 		}
 	}
 	//2482 ns/op
