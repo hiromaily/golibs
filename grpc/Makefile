@@ -22,3 +22,13 @@ client:
 	grpc-client -mode 3 -name Mike -q 1
 	grpc-client -mode 4 -name Mike -q 1
 
+# Evans
+.PHONY:setup-evans
+setup-evans:
+	brew tap ktr0731/evans
+	brew install evans
+
+# TLS mode should be disabled
+.PHONY:connect-server
+connect-server:
+    evans ../protobuf/proto/sample/sample.proto

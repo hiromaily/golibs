@@ -4,13 +4,14 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"google.golang.org/grpc/credentials"
-	"google.golang.org/grpc/metadata"
 	"io"
 	"log"
 	"net"
 	"os"
 	"time"
+
+	"google.golang.org/grpc/credentials"
+	"google.golang.org/grpc/metadata"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
@@ -27,6 +28,7 @@ var (
 	mode     = flag.Int("mode", 1, "mode")
 	name     = flag.String("name", "", "name")
 	question = flag.Int64("q", 0, "question code")
+	isTLS    = flag.Bool("tls", false, "tls mode")
 	certFile = fmt.Sprintf("%s/src/github.com/hiromaily/golibs/grpc/key/ca.crt", os.Getenv("GOPATH"))
 )
 
@@ -72,16 +74,22 @@ func validate() {
 func main() {
 
 	// Set up a connection to the server.
-	creds, err := credentials.NewClientTLSFromFile(certFile, "")
-	if err != nil {
-		log.Fatalf("fail to call credentials.NewClientTLSFromFile(): %v", err)
-	}
+	var err error
+	var conn = new(grpc.ClientConn)
 
-	//conn, err := grpc.Dial(address, grpc.WithInsecure())
-	conn, err := grpc.Dial(address, grpc.WithTransportCredentials(creds))
+	if *isTLS {
+		creds, err := credentials.NewClientTLSFromFile(certFile, "")
+		if err != nil {
+			log.Fatalf("fail to call credentials.NewClientTLSFromFile(): %v", err)
+		}
+		conn, err = grpc.Dial(address, grpc.WithTransportCredentials(creds))
+	}else{
+		conn, err = grpc.Dial(address, grpc.WithInsecure())
+	}
 	if err != nil {
 		log.Fatalf("fail to connect: %v", err)
 	}
+
 	defer conn.Close()
 	cli := samplepb.NewSampleServiceClient(conn)
 

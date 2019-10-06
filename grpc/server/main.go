@@ -2,9 +2,8 @@ package main
 
 import (
 	"context"
+	"flag"
 	"fmt"
-	"google.golang.org/grpc/credentials"
-	"google.golang.org/grpc/metadata"
 	"io"
 	"log"
 	"net"
@@ -13,6 +12,9 @@ import (
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/credentials"
+	"google.golang.org/grpc/metadata"
+	"google.golang.org/grpc/reflection"
 	"google.golang.org/grpc/status"
 
 	samplepb "github.com/hiromaily/golibs/protobuf/pb/sample"
@@ -23,6 +25,7 @@ const (
 )
 
 var (
+	isTLS    = flag.Bool("tls", false, "tls mode")
 	certFile = fmt.Sprintf("%s/src/github.com/hiromaily/golibs/grpc/key/server.crt", os.Getenv("GOPATH"))
 	keyFile  = fmt.Sprintf("%s/src/github.com/hiromaily/golibs/grpc/key/server.pem", os.Getenv("GOPATH"))
 )
@@ -144,15 +147,23 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	creds, err := credentials.NewServerTLSFromFile(certFile, keyFile)
-	if err != nil {
-		log.Fatalf("fail to call credentials.NewServerTLSFromFile() %v", err)
+	s := new(grpc.Server)
+
+	if *isTLS{
+		creds, err := credentials.NewServerTLSFromFile(certFile, keyFile)
+		if err != nil {
+			log.Fatalf("fail to call credentials.NewServerTLSFromFile() %v", err)
+		}
+		s = grpc.NewServer(grpc.Creds(creds))
+	}else{
+		s = grpc.NewServer()
 	}
 
 	//register services
-	//s := grpc.NewServer()
-	s := grpc.NewServer(grpc.Creds(creds))
 	samplepb.RegisterSampleServiceServer(s, &server{})
+
+	// Register reflection service on gRPC server.
+	reflection.Register(s)
 
 	//serve
 	log.Println("server is running")
