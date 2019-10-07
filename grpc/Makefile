@@ -31,4 +31,4 @@ setup-evans:
 # TLS mode should be disabled
 .PHONY:connect-server
 connect-server:
-    evans ../protobuf/proto/sample/sample.proto
+	evans ../protobuf/proto/sample/sample.proto
