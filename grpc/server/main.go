@@ -149,13 +149,13 @@ func main() {
 
 	s := new(grpc.Server)
 
-	if *isTLS{
+	if *isTLS {
 		creds, err := credentials.NewServerTLSFromFile(certFile, keyFile)
 		if err != nil {
 			log.Fatalf("fail to call credentials.NewServerTLSFromFile() %v", err)
 		}
 		s = grpc.NewServer(grpc.Creds(creds))
-	}else{
+	} else {
 		s = grpc.NewServer()
 	}
 

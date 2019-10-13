@@ -83,7 +83,7 @@ func main() {
 			log.Fatalf("fail to call credentials.NewClientTLSFromFile(): %v", err)
 		}
 		conn, err = grpc.Dial(address, grpc.WithTransportCredentials(creds))
-	}else{
+	} else {
 		conn, err = grpc.Dial(address, grpc.WithInsecure())
 	}
 	if err != nil {
