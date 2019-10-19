@@ -1,48 +1,50 @@
 run:
-  deadline: 2m
+  deadline: 10m
+  build-tags:
+    - integration
   skip-dirs:
+    - vendor
+    - testdata
+    - scripts
+    - build
     - .circleci
     - docker_build
-    - scripts
-    - testdata
-    - vendor
 
 linters-settings:
-  gofmt:
-    simplify: false
   misspell:
     locale: US
   goimports:
     # put imports beginning with prefix after 3rd-party packages;
     # it's a comma-separated list of prefixes
-    local-prefixes: github.com/hiromaily/golibs
+    local-prefixes: github.com/hiromaily
+  #unused:
+  #  check-exported: true
+  golint:
+    min-confidence: 0.8
 
 issues:
   exclude:
     - type name will be used
+    - "HeaderMap is deprecated: HeaderMap exists"
+  exclude-use-default: false
 
 linters:
   disable-all: true
   enable:
-    #- gofmt
-    - goimports
-    - govet
-    - golint
     - deadcode
     - gosimple
+    - govet
     - ineffassign
     - staticcheck
     - structcheck
     - typecheck
     - unused
     - varcheck
+    - goimports
     - misspell
+    - golint
   presets:
+    # only next presets exist: (bugs|complexity|format|performance|style|unused)
     - format
-  # This commented out would be removed step by step, for now changes are quite big.
-  #    - errcheck
-  #    - bugs
-  #    - complexity
-  #    - performance
-  #    - style
-  fast: true
+    - unused
+  fast: false

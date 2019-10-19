@@ -105,9 +105,9 @@ func TestSemaphore2(t *testing.T) {
 
 	concurrencyCnt := 10
 	data := []map[string]int{
-		map[string]int{"apple": 150, "banana": 300, "lemon": 300},
-		map[string]int{"apple": 180, "banana": 400, "lemon": 350},
-		map[string]int{"apple": 220, "banana": 500, "lemon": 380},
+		{"apple": 150, "banana": 300, "lemon": 300},
+		{"apple": 180, "banana": 400, "lemon": 350},
+		{"apple": 220, "banana": 500, "lemon": 380},
 	}
 
 	//cannot use data (type []map[string]int) as type []interface {} in argument to goroutine.Semaphore2
