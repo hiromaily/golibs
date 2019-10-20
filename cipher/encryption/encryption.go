@@ -52,7 +52,7 @@ func NewCrypt(key, iv string) (*Crypt, error) {
 	return &cryptInfo, nil
 }
 
-// NewCryptDefault is setup with default settings.
+// NewCryptWithEnv is setup with default settings.
 func NewCryptWithEnv() (*Crypt, error) {
 	key := os.Getenv("ENC_KEY")
 	iv := os.Getenv("ENC_IV")

@@ -7,8 +7,10 @@ import (
 	"strings"
 )
 
+// RepoName is repository name, but should be dynamic
 const RepoName = "hiromaiy"
 
+// GetErrorStack is to return formatted error stack as string
 func GetErrorStack(e error) string {
 	goPath := fmt.Sprintf("%s/src/", os.Getenv("GOPATH"))
 	//get directory names
@@ -61,6 +63,7 @@ func GetErrorStack(e error) string {
 	return stacks
 }
 
+// ErrorStack is to return formatted error stack as string
 func ErrorStack(err error) string {
 	stacks := GetErrorStack(err)
 	return fmt.Sprintf("%s%s", err.Error(), stacks)

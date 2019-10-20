@@ -154,7 +154,7 @@ func SetDataToStructForDev(values [][]interface{}, x interface{}) error {
 }
 
 // scan is to set data to container
-func scan(values []interface{}, v reflect.Value) error {
+func scan(values []interface{}, v reflect.Value) {
 	structType := v.Type()
 	for i := 0; i < structType.NumField(); i++ {
 		v.Field(i).Set(reflect.ValueOf(values[i]))
@@ -176,5 +176,4 @@ func scan(values []interface{}, v reflect.Value) error {
 			}
 		*/
 	}
-	return nil
 }

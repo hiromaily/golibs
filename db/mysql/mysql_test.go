@@ -170,10 +170,11 @@ func (ms *MySQL) getSimpleSQL1() ([]map[string]interface{}, error) {
 	return data, nil
 }
 
+// nolint: unparam
 func (ms *MySQL) getSimpleSQL2(id int) ([]map[string]interface{}, error) {
 	sql := `SELECT user_id, first_name, last_name, create_datetime FROM t_users WHERE delete_flg=?`
 
-	data, _, err := ms.Db.Select(sql, 1)
+	data, _, err := ms.Db.Select(sql, id)
 	if err != nil {
 		return nil, err
 	} else if len(data) == 0 {

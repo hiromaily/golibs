@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// Col is color string
 type Col string
 
 //https://misc.flogisoft.com/bash/tip_colors_and_formatting
@@ -25,14 +26,17 @@ var (
 	White       Col = "\x1B[38;5;15m"
 )
 
+// Addf is string with color
 func Addf(c Col, format string, a ...interface{}) string {
 	return Add(c, fmt.Sprintf(format, a...))
 }
 
+// Add is string with color
 func Add(c Col, str string) string {
 	return string(c) + str + string(Reset)
 }
 
+// Check is for debug
 func Check() {
 	for i := 1; i < 256; i++ {
 		fmt.Println(Add(Col(fmt.Sprintf("\x1B[38;5;%dm", i)), fmt.Sprintf("Number %d:", i)))

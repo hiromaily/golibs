@@ -7,11 +7,13 @@ import (
 	"github.com/pkg/errors"
 )
 
+// FileLock is FileLock object
 type FileLock struct {
 	l  sync.Mutex
 	fd int
 }
 
+// NewFileLock is to open file with filelock
 func NewFileLock(fileName string) (*FileLock, error) {
 	if fileName == "" {
 		return nil, errors.New("fileName is empty")
@@ -24,6 +26,7 @@ func NewFileLock(fileName string) (*FileLock, error) {
 	return &FileLock{fd: fd}, nil
 }
 
+// Lock is to lock file
 func (m *FileLock) Lock() error {
 	m.l.Lock()
 	//排他ロック
@@ -33,6 +36,7 @@ func (m *FileLock) Lock() error {
 	return nil
 }
 
+// Unlock is to unlock file
 func (m *FileLock) Unlock() error {
 	//ロック解除
 	if err := syscall.Flock(m.fd, syscall.LOCK_UN); err != nil {

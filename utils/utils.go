@@ -243,7 +243,7 @@ func ItoUI(val interface{}) uint {
 	return 0
 }
 
-// ItoMsi is to convert map[string] of interface{} to map[string]int
+// ItoSI is to convert map[string] of interface{} to map[string]int
 func ItoSI(val interface{}) []interface{} {
 	si, ok := val.([]interface{})
 	if !ok {
@@ -311,6 +311,7 @@ func Itoa(num int) (ret string) {
 // https://github.com/golang/go/wiki/SliceTricks
 //**********************************************************
 //---Interface---
+
 // Pop is to remove element from end of slice
 func Pop(val []interface{}) []interface{} {
 	return val[:len(val)-1]
@@ -332,65 +333,67 @@ func Unshift(base []interface{}, val interface{}) []interface{} {
 }
 
 //---Int---
-// Pop is to remove element from end of slice
+
+// PopInt is to remove element from end of slice
 func PopInt(val []int) []int {
 	return val[:len(val)-1]
 }
 
-// Push is to add element to end of slice
+// PushInt is to add element to end of slice
 func PushInt(base []int, val int) []int {
 	return append(base, val)
 }
 
-// Shift is to remove element from first of slice
+// ShiftInt is to remove element from first of slice
 func ShiftInt(val []int) []int {
 	return val[1:]
 }
 
-// Unshift is to add element to first of slice
+// UnshiftInt is to add element to first of slice
 func UnshiftInt(base []int, val int) []int {
 	return append([]int{val}, base...)
 }
 
-// Splice is to add element to designated index
+// SpliceInt is to add element to designated index
 // This is like `Insert`
 func SpliceInt(base []int, idx, val int) []int {
 	return append(base[:idx], append([]int{val}, base[idx:]...)...)
 }
 
-// same to Slice
+// DeleteInt is delete element from array
 func DeleteInt(data []int, from, to int) []int {
 	return append(data[:from], data[to+1:]...)
 }
 
 //---String---
-// Pop is to remove element from end of slice
+
+// PopStr is to remove element from end of slice
 func PopStr(val string) string {
 	return val[:len(val)-1]
 }
 
-// Push is to add element to end of slice
+// PushStr is to add element to end of slice
 func PushStr(base, val string) string {
 	return base + val
 }
 
-// Shift is to remove element from first of slice
+// ShiftStr is to remove element from first of slice
 func ShiftStr(val string) string {
 	return val[1:]
 }
 
-// Unshift is to add element to first of slice
+// UnshiftStr is to add element to first of slice
 func UnshiftStr(base, val string) string {
 	return val + base
 }
 
-// Splice is to add element to designated index
+// SpliceStr is to add element to designated index
 // This is like `Insert`
 func SpliceStr(base, val string, idx int) string {
 	return base[:idx] + val + base[idx:]
 }
 
-// same to Slice
+// DeleteStr is delete element from array
 func DeleteStr(data string, from, to int) string {
 	return data[:from] + data[to+1:]
 }
@@ -417,14 +420,28 @@ func SearchString(ary []string, str string) int {
 }
 
 // SearchStringLower is to search string converted as lower case
+//func SearchStringLower(ary []string, str string) int {
+//
+//	retIdx := -1
+//	if len(ary) == 0 {
+//		return retIdx
+//	}
+//	for i, val := range ary {
+//		if strings.ToLower(val) == strings.ToLower(str) {
+//			retIdx = i
+//			break
+//		}
+//	}
+//
+//	return retIdx
+//}
 func SearchStringLower(ary []string, str string) int {
-
 	retIdx := -1
 	if len(ary) == 0 {
 		return retIdx
 	}
 	for i, val := range ary {
-		if strings.ToLower(val) == strings.ToLower(str) {
+		if strings.EqualFold(val, str) {
 			retIdx = i
 			break
 		}
@@ -436,6 +453,8 @@ func SearchStringLower(ary []string, str string) int {
 //**********************************************************
 // Slice Struct Sort
 //**********************************************************
+
+// SortStructSlice is to sort struct slice
 func SortStructSlice() {
 	type ExamResult struct {
 		Name  string
@@ -460,7 +479,8 @@ func SortStructSlice() {
 //**********************************************************
 // Slice Convert
 //**********************************************************
-// Convet string array into int array
+
+// ConvertToInt string array into int array
 func ConvertToInt(arr []string) []int {
 	arrint := make([]int, len(arr))
 
@@ -503,6 +523,7 @@ func SliceMapToInterface(dataSlice []map[string]int) []interface{} {
 //**********************************************************
 // Slice Copy
 //**********************************************************
+
 // CopySlice is to copy slice
 func CopySlice(arr []int) []int {
 	//ret := arr[:] //これは参照コピーだった。。。
@@ -511,6 +532,7 @@ func CopySlice(arr []int) []int {
 	return ret
 }
 
+// CopySlice32 is to copy slice
 func CopySlice32(arr []int32) []int32 {
 	//ret := arr[:] //これは参照コピーだった。。。
 	ret := make([]int32, len(arr))
@@ -521,6 +543,7 @@ func CopySlice32(arr []int32) []int32 {
 //**********************************************************
 // Slice: Remove overlapped element
 //**********************************************************
+
 // UniqueStringSlice is to remove overlapped element
 func UniqueStringSlice(arr []string) (uniq []string) {
 	m := make(map[string]bool)
@@ -537,10 +560,12 @@ func UniqueStringSlice(arr []string) (uniq []string) {
 //**********************************************************
 // Slice Generate random data
 //**********************************************************
-func CheckRandam() {
+
+// CheckRandom is to display generated random number
+func CheckRandom() {
 	rand.Seed(time.Now().UnixNano())
 
-	// create randam array
+	// create random array
 	for i := 0; i < 100; i++ {
 		fmt.Printf("generated number is %d\n", rand.Intn(10))
 		//range is 0 to 9
@@ -564,17 +589,20 @@ func GenerateIntData(num int, max int) (values []int) {
 	return
 }
 
-func GenerateRandam(min, max int) int {
+// GenerateRandom is to generate random number
+func GenerateRandom(min, max int) int {
 	//TODO:max may need to add 1 more.
 	max++
 	rand.Seed(time.Now().Unix())
 	return rand.Intn(max-min) + min
 }
 
+// GenerateUniquieArray is to generate unique array
+// GenerateUniquieArray(5, 1, 10) may return []{4,7,1,3,9}
 func GenerateUniquieArray(num, min, max int) []int {
 	ret := []int{}
 	for i := 0; ; {
-		n := GenerateRandam(min, max)
+		n := GenerateRandom(min, max)
 		if !searchNumber(ret, n) {
 			ret = append(ret, n)
 			i++
@@ -595,6 +623,7 @@ func searchNumber(arr []int, n int) bool {
 	return false
 }
 
+// DeleteElement is to delete number of 2nd parameter from array
 func DeleteElement(arr []int, n int) []int {
 	ret := []int{}
 	for _, value := range arr {
@@ -605,6 +634,7 @@ func DeleteElement(arr []int, n int) []int {
 	return ret
 }
 
+// PickOneFromEnum is pick one element up from array
 func PickOneFromEnum(arr []string) string {
 	rand.Seed(time.Now().UnixNano())
 	idx := rand.Intn(len(arr))
@@ -615,10 +645,13 @@ func PickOneFromEnum(arr []string) string {
 //**********************************************************
 // Swap
 //**********************************************************
+
+// SwapString is to swap parameters
 func SwapString(x, y string) (string, string) {
 	return y, x
 }
 
+// SwapInt is to swap parameters
 func SwapInt(x, y int) (int, int) {
 	return y, x
 }
@@ -626,6 +659,8 @@ func SwapInt(x, y int) (int, int) {
 //**********************************************************
 // Strings (these model javascript)
 //**********************************************************
+
+// Slice is to extract sliced characters
 //str: target string, idx[0]: start index, idx[1]: end index
 func Slice(str string, idx ...int) string {
 	//var str = "0123456789";
@@ -648,6 +683,7 @@ func Slice(str string, idx ...int) string {
 	return str[idx[0] : idx[1]+1]
 }
 
+// Substr is to subtract from str
 //str: target string, idx[0]: start index, idx[1]: length
 func Substr(str string, idx ...int) string {
 	//str.substr(3); //"3456789"

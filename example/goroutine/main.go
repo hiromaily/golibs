@@ -19,7 +19,7 @@ func subtask(i int) {
 func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("----- get request -----")
 	go subtask(counter)
-	counter += 1
+	counter++
 	time.Sleep(1 * time.Second)
 
 	fmt.Println("hello world")

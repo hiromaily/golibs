@@ -9,6 +9,7 @@ import (
 //http://deeeet.com/writing/2016/07/22/context/
 //https://medium.com/@cep21/how-to-correctly-use-context-context-in-go-1-7-8f2c0fafdf39#.whnyr85ju
 
+// WithCancel is context.WithCancel
 func WithCancel() {
 	ctx := context.Background()
 	ctx, cancel := context.WithCancel(ctx)
@@ -22,6 +23,7 @@ func WithCancel() {
 	sleepAndTalk(ctx, 5*time.Second, "hello!")
 }
 
+// WithTimeout is context.WithTimeout
 func WithTimeout() {
 	ctx := context.Background()
 	ctx, cancel := context.WithTimeout(ctx, time.Second)

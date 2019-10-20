@@ -8,11 +8,13 @@ import (
 
 var companies []WellKnownCompany
 
+// WellKnownCompany is company's name and country
 type WellKnownCompany struct {
 	Name    string
 	Country string
 }
 
+// Display is to display members of WellKnownCompany
 func (w WellKnownCompany) Display() {
 	fmt.Printf("Name: %s, Country: %s\n", w.Name, w.Country)
 }
@@ -33,10 +35,7 @@ func init() {
 	}
 }
 
-//func NoSemaphore() {
-//
-//}
-
+// Semaphore is semaphone
 func Semaphore(n int) {
 	wg := &sync.WaitGroup{}
 	chanSemaphore := make(chan bool, n)
@@ -61,6 +60,7 @@ func Semaphore(n int) {
 	wg.Wait()
 }
 
+// Semaphore2 is semaphone
 func Semaphore2(n int) {
 	wg := &sync.WaitGroup{}
 	chanSemaphore := make(chan bool, n)

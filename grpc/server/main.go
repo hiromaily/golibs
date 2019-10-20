@@ -147,7 +147,7 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	s := new(grpc.Server)
+	var s *grpc.Server
 
 	if *isTLS {
 		creds, err := credentials.NewServerTLSFromFile(certFile, keyFile)

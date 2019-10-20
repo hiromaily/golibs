@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-// not thread safe
+// CaptureStdout is not thread safe
 func CaptureStdout(f func()) string {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
@@ -22,7 +22,7 @@ func CaptureStdout(f func()) string {
 	return buf.String()
 }
 
-// not thread safe
+// ContinuousCaptureStdout is not thread safe
 func ContinuousCaptureStdout() string {
 	old := os.Stdout
 	r, w, _ := os.Pipe()

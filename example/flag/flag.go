@@ -23,8 +23,8 @@ func SetUsage(msg string) {
 // ShowUsageAndExit is show usage and exit program.
 func ShowUsageAndExit(msg string) {
 	if msg != "" {
-		fmt.Fprintf(os.Stderr, msg)
-		fmt.Fprintf(os.Stderr, "\n")
+		fmt.Fprint(os.Stderr, msg)
+		fmt.Fprint(os.Stderr, "\n")
 	}
 
 	flag.Usage()

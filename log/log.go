@@ -55,9 +55,13 @@ const (
 type LogFmt int
 
 const (
-	NoDateNoFile      LogFmt = 0
-	OnlyTime          LogFmt = log.Ltime
-	TimeShortFile     LogFmt = log.Ltime | log.Lshortfile //should be default
+	// NoDateNoFile is no date no file
+	NoDateNoFile LogFmt = 0
+	// OnlyTime is only time
+	OnlyTime LogFmt = log.Ltime
+	// TimeShortFile is time with short file name
+	TimeShortFile LogFmt = log.Ltime | log.Lshortfile //should be default
+	// DateTimeShortFile is date time with short file name
 	DateTimeShortFile LogFmt = log.LstdFlags | log.Lshortfile
 )
 
@@ -81,7 +85,9 @@ func (lf LogFmt) Int() int {
 type LogType uint8
 
 const (
+	// File is output as file
 	File LogType = iota + 1
+	// Console is output as console
 	Console
 )
 
@@ -174,6 +180,7 @@ func openFile(logger *log.Logger, fileName string) {
 }
 
 // currentFunc is to get current func name
+// nolint: unparam
 func currentFunc(skip int) string {
 	programCounter, _, _, ok := runtime.Caller(skip)
 	if !ok {

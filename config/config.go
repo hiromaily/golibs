@@ -150,7 +150,7 @@ var checkTomlKeys = [][]string{
 }
 
 //check validation of config
-func validateConfig(conf *Config, md *toml.MetaData) error {
+func validateConfig(md *toml.MetaData) error {
 	//for protection when debugging on non production environment
 	var errStrings []string
 
@@ -213,7 +213,7 @@ func loadConfig(path string) (*Config, error) {
 	}
 
 	//check validation of config
-	err = validateConfig(&config, &md)
+	err = validateConfig(&md)
 	if err != nil {
 		return nil, err
 	}

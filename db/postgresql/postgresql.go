@@ -8,6 +8,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
+// New is to create connection
 func New(dbname, user, pass string) {
 	db, err := sql.Open("postgres", fmt.Sprintf("dbname=%s user=%s password=%s sslmode=disable", dbname, user, pass))
 	if err != nil {

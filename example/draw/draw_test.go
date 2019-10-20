@@ -45,6 +45,7 @@ func vgradAlpha(alpha int) image.Image {
 	return m
 }
 
+// nolint: unparam
 func vgradGreenNRGBA(alpha int) image.Image {
 	m := image.NewNRGBA(image.Rect(0, 0, 16, 16))
 	for y := 0; y < 16; y++ {
@@ -260,14 +261,14 @@ func TestDraw(t *testing.T) {
 		for _, test := range drawTests {
 			dst := hgradRed(255).(*image.RGBA).SubImage(r).(draw.Image)
 			// Draw the (src, mask, op) onto a copy of dst using a slow but obviously correct implementation.
-			golden := makeGolden(dst, image.Rect(0, 0, 16, 16), test.src, image.ZP, test.mask, image.ZP, test.op)
+			golden := makeGolden(dst, image.Rect(0, 0, 16, 16), test.src, image.Point{}, test.mask, image.Point{}, test.op)
 			b := dst.Bounds()
 			if !b.Eq(golden.Bounds()) {
 				t.Errorf("draw %v %s: bounds %v versus %v", r, test.desc, dst.Bounds(), golden.Bounds())
 				continue
 			}
 			// Draw the same combination onto the actual dst using the optimized DrawMask implementation.
-			draw.DrawMask(dst, image.Rect(0, 0, 16, 16), test.src, image.ZP, test.mask, image.ZP, test.op)
+			draw.DrawMask(dst, image.Rect(0, 0, 16, 16), test.src, image.Point{}, test.mask, image.Point{}, test.op)
 			if image.Pt(8, 8).In(r) {
 				// Check that the resultant pixel at (8, 8) matches what we expect
 				// (the expected value can be verified by hand).
@@ -299,7 +300,7 @@ func TestDrawOverlap(t *testing.T) {
 				src := m.SubImage(image.Rect(5+xoff, 5+yoff, 10+xoff, 10+yoff)).(*image.RGBA)
 				b := dst.Bounds()
 				// Draw the (src, mask, op) onto a copy of dst using a slow but obviously correct implementation.
-				golden := makeGolden(dst, b, src, src.Bounds().Min, nil, image.ZP, op)
+				golden := makeGolden(dst, b, src, src.Bounds().Min, nil, image.Point{}, op)
 				if !b.Eq(golden.Bounds()) {
 					t.Errorf("drawOverlap xoff=%d,yoff=%d: bounds %v versus %v", xoff, yoff, dst.Bounds(), golden.Bounds())
 					continue

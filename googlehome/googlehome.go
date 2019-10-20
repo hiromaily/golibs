@@ -33,6 +33,7 @@ func post(reqURL string, body *strings.Reader) (int, error) {
 	return resp.StatusCode, nil
 }
 
+// SendMessage is to post message to google home server
 func SendMessage(reqURL, text string) (int, error) {
 	//application/x-www-form-urlencoded
 	values := url.Values{}

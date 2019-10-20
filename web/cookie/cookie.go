@@ -23,21 +23,18 @@ import (
 // https://gist.github.com/dacort/bd6a5116224c594b14db
 // https://stackoverflow.com/questions/23153159/decrypting-chromium-cookies/23727331#23727331
 
-// This code works on only Mac OS
-
+// BlockSize is block size fro encryption
 const BlockSize = 16
 
 // This path would be changed by environment even same OS
-//var cookieBaseDir = map[string]string{
-//	"darwin": "%s/Library/Application Support/Google/Chrome/Default/Cookies", //mac
-//	"linux":  "%s/.config/google-chrome/Default/Cookies",
-//}
 var cookieBaseDir = map[string]string{
+	//%s would be `Default`
 	"darwin": "%s/Library/Application Support/Google/Chrome/%s/Cookies", //mac
 	"linux":  "%s/.config/google-chrome/%s/Cookies",
 }
 
 // Chromium Mac os_crypt:  http://dacort.me/1ynPMgx
+
 var (
 	profileName = "Default"
 	salt        = "saltysalt"
@@ -48,9 +45,13 @@ var (
 
 // Cookie - Items for a cookie
 type Cookie struct {
-	Domain         string
-	Key            string
-	Value          string
+	// Domain is domain
+	Domain string
+	// Key is key
+	Key string
+	// Value is value of key
+	Value string
+	// EncryptedValue is encryption value
 	EncryptedValue []byte
 }
 
@@ -80,10 +81,12 @@ func init() {
 //	_ = GetValue(domain, "key")
 //}
 
+// SetProfile is set profile like Default depending on environment
 func SetProfile(name string) {
 	profileName = name
 }
 
+// PrintCookies is to print cookies information
 func PrintCookies(url string) error {
 	cookies, err := getCookies(url)
 	if err != nil {
@@ -103,6 +106,7 @@ func PrintCookies(url string) error {
 	return nil
 }
 
+// GetValue is to get value by key and url
 func GetValue(url, key string) (string, error) {
 	cookies, err := getCookies(url)
 	if err != nil {
@@ -117,6 +121,7 @@ func GetValue(url, key string) (string, error) {
 	return "", nil
 }
 
+// GetAllValue is to get all values by url
 func GetAllValue(url string) (map[string]string, error) {
 	decryptedCookies := make(map[string]string)
 

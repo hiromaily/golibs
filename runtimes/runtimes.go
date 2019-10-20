@@ -14,6 +14,7 @@ var (
 	re = regexp.MustCompile(`^(\S.+)\.(\S.+)$`)
 )
 
+// CallerInfo is caller information
 type CallerInfo struct {
 	PackageName  string
 	FunctionName string
@@ -55,15 +56,18 @@ func dumpStackTrace(separator string) (callerInfo []*CallerInfo) {
 	return callerInfo[1:]
 }
 
+// GetOS is to return os name
 func GetOS() string {
 	return runtime.GOOS
 }
 
+// GetStackTrace is to return caller info array
 func GetStackTrace(separator string) []*CallerInfo {
 	info := dumpStackTrace(separator)
 	return info
 }
 
+// TraceAllHistory is to display(depending on io.Write) stack trace
 func TraceAllHistory(w io.Writer, separator string) {
 	info := dumpStackTrace(separator)
 	for i := len(info) - 1; i > -1; i-- {
@@ -103,12 +107,14 @@ func CurrentFuncV2() []byte {
 	return b[:i]
 }
 
+// DebugStack is to return a formatted stack trace of the goroutine that calls it
 func DebugStack() {
 	// Stack returns a formatted stack trace of the goroutine that calls it.
 	// It calls runtime.Stack with a large enough buffer to capture the entire trace.
 	fmt.Println(string(debug.Stack()))
 }
 
+// DebugPrintStack is to print to standard error the stack trace returned by runtime.Stack
 func DebugPrintStack() {
 	// PrintStack prints to standard error the stack trace returned by runtime.Stack.
 	debug.PrintStack()

@@ -46,6 +46,7 @@ func IsBenchTest(target string) bool {
 	return CheckRegexp(`^-test.bench`, target)
 }
 
+// Replace is replace from to
 func Replace(path, from, to string) string {
 	//reg := re.MustCompile(from)
 	//return reg.ReplaceAllString(path, to)
@@ -56,6 +57,7 @@ func Replace(path, from, to string) string {
 	return "error"
 }
 
+// Replace2 is replace from to
 func Replace2(path, from, to string) string {
 	reg := re.MustCompile(from)
 	return reg.ReplaceAllString(path, to)

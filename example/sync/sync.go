@@ -29,6 +29,7 @@ func syncMap(smap *sync.Map) {
 	})
 }
 
+// Map is to call sync.Map methods
 func Map() {
 	smap := new(sync.Map)
 
@@ -43,6 +44,7 @@ func incrementID() {
 	atomic.AddInt64(&id, 1)
 }
 
+// Atomic is call atomic.AddInt64()
 func Atomic() {
 	wg := new(sync.WaitGroup)
 

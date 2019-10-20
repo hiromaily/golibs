@@ -147,7 +147,7 @@ func TestOperateSlice2(t *testing.T) {
 
 func TestRandom(t *testing.T) {
 	//tu.SkipLog(t)
-	CheckRandam()
+	CheckRandom()
 }
 
 func TestGenerateIntData(t *testing.T) {
@@ -155,7 +155,7 @@ func TestGenerateIntData(t *testing.T) {
 
 	lg.Debug(GenerateIntData(4, 10))         //[9,1,9,4]
 	lg.Debug(GenerateUniquieArray(3, 5, 10)) //[7,6,10]
-	lg.Debug(GenerateRandam(6, 9))           //7
+	lg.Debug(GenerateRandom(6, 9))           //7
 
 	arr := []int{1, 2, 3, 4, 5}
 	lg.Debug(DeleteElement(arr, 3)) //1,2,4,5

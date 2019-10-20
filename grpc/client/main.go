@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"log"
-	"net"
 	"os"
 	"time"
 
@@ -74,7 +73,6 @@ func validate() {
 func main() {
 
 	// Set up a connection to the server.
-	var err error
 	var conn = new(grpc.ClientConn)
 
 	if *isTLS {
@@ -83,11 +81,15 @@ func main() {
 			log.Fatalf("fail to call credentials.NewClientTLSFromFile(): %v", err)
 		}
 		conn, err = grpc.Dial(address, grpc.WithTransportCredentials(creds))
+		if err != nil {
+			log.Fatalf("fail to connect: %v", err)
+		}
 	} else {
+		var err error
 		conn, err = grpc.Dial(address, grpc.WithInsecure())
-	}
-	if err != nil {
-		log.Fatalf("fail to connect: %v", err)
+		if err != nil {
+			log.Fatalf("fail to connect: %v", err)
+		}
 	}
 
 	defer conn.Close()
@@ -272,48 +274,48 @@ func doBidirectionalStreaming(ctx context.Context, cli samplepb.SampleServiceCli
 	<-waitc
 }
 
-func isError(err error) bool {
-	switch err {
-	case io.EOF:
-		log.Println("server was closed")
-		return true
-	case context.DeadlineExceeded:
-		//FIXME: this would not return by grpc error
-		log.Println("timeout by context.DeadlineExceeded")
-		return true
-	default:
-		e, ok := err.(net.Error)
-		if ok && e.Timeout() {
-			log.Println("timeout by net.Error")
-			return true
-		}
-	}
-
-	switch status.Code(err) {
-	case codes.DeadlineExceeded:
-		log.Println("timeout by grpc.DeadlineExceeded")
-		return true
-	case codes.InvalidArgument:
-		log.Println("invalid error")
-		return true
-	case
-		codes.Canceled,
-		codes.Unknown,
-		codes.NotFound,
-		codes.AlreadyExists,
-		codes.PermissionDenied,
-		codes.ResourceExhausted,
-		codes.FailedPrecondition,
-		codes.Aborted,
-		codes.OutOfRange,
-		codes.Unimplemented,
-		codes.Internal,
-		codes.Unavailable,
-		codes.DataLoss,
-		codes.Unauthenticated:
-
-		log.Println("grpc error")
-	}
-
-	return false
-}
+//func isError(err error) bool {
+//	switch err {
+//	case io.EOF:
+//		log.Println("server was closed")
+//		return true
+//	case context.DeadlineExceeded:
+//		//FIXME: this would not return by grpc error
+//		log.Println("timeout by context.DeadlineExceeded")
+//		return true
+//	default:
+//		e, ok := err.(net.Error)
+//		if ok && e.Timeout() {
+//			log.Println("timeout by net.Error")
+//			return true
+//		}
+//	}
+//
+//	switch status.Code(err) {
+//	case codes.DeadlineExceeded:
+//		log.Println("timeout by grpc.DeadlineExceeded")
+//		return true
+//	case codes.InvalidArgument:
+//		log.Println("invalid error")
+//		return true
+//	case
+//		codes.Canceled,
+//		codes.Unknown,
+//		codes.NotFound,
+//		codes.AlreadyExists,
+//		codes.PermissionDenied,
+//		codes.ResourceExhausted,
+//		codes.FailedPrecondition,
+//		codes.Aborted,
+//		codes.OutOfRange,
+//		codes.Unimplemented,
+//		codes.Internal,
+//		codes.Unavailable,
+//		codes.DataLoss,
+//		codes.Unauthenticated:
+//
+//		log.Println("grpc error")
+//	}
+//
+//	return false
+//}
