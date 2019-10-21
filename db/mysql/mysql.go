@@ -69,24 +69,23 @@ func New(host, dbname, user, pass string, port uint16) error {
 	return nil
 }
 
-// NewIns make a new instance
-func NewIns(host, dbname, user, pass string, port uint16) *MS {
-	ms := &MS{}
+// NewInstance makes a new instance
+func NewInstance(host, dbname, user, pass string, port uint16) (*MS, error) {
 	var err error
-	if ms.DB == nil {
-		ms.host = host
-		ms.port = port
-		ms.dbname = dbname
-		ms.user = user
-		ms.pass = pass
-
-		ms.DB, err = dbInfo.Connection()
+	ms := &MS{
+		ServerInfo: ServerInfo{
+			host:   host,
+			port:   port,
+			dbname: dbname,
+			user:   user,
+			pass:   pass,
+		},
 	}
+	ms.DB, err = ms.Connection()
 	if err != nil {
-		panic(err.Error())
+		return nil, err
 	}
-
-	return ms
+	return ms, nil
 }
 
 // GetDB is to get instance. singleton architecture

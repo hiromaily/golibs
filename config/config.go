@@ -222,18 +222,32 @@ func loadConfig(path string) (*Config, error) {
 }
 
 // New is to create config instance
-func New(file string, cipherFlg bool) *Config {
+func New(file string, cipherFlg bool) (*Config, error) {
 	var err error
 	conf, err = loadConfig(file)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	if cipherFlg {
 		Cipher()
 	}
 
-	return conf
+	return conf, nil
+}
+
+// NewInstance is to return new config instance
+func NewInstance(file string, cipherFlg bool) (*Config, error) {
+	conf, err := loadConfig(file)
+	if err != nil {
+		return nil, err
+	}
+
+	if cipherFlg {
+		Cipher()
+	}
+
+	return conf, nil
 }
 
 // GetConf is to get config instance. singleton architecture

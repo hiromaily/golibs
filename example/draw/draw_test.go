@@ -306,7 +306,7 @@ func TestDrawOverlap(t *testing.T) {
 					continue
 				}
 				// Draw the same combination onto the actual dst using the optimized DrawMask implementation.
-				draw.DrawMask(dst, b, src, src.Bounds().Min, nil, image.ZP, op)
+				draw.DrawMask(dst, b, src, src.Bounds().Min, nil, image.Point{}, op)
 				// Check that the resultant dst image matches the golden output.
 				for y := b.Min.Y; y < b.Max.Y; y++ {
 					for x := b.Min.X; x < b.Max.X; x++ {
@@ -369,7 +369,7 @@ func TestFill(t *testing.T) {
 		// Draw 1 pixel at a time.
 		for y := b.Min.Y; y < b.Max.Y; y++ {
 			for x := b.Min.X; x < b.Max.X; x++ {
-				draw.DrawMask(m, image.Rect(x, y, x+1, y+1), src, image.ZP, nil, image.ZP, draw.Src)
+				draw.DrawMask(m, image.Rect(x, y, x+1, y+1), src, image.Point{}, nil, image.Point{}, draw.Src)
 			}
 		}
 		check("pixel")
@@ -377,7 +377,7 @@ func TestFill(t *testing.T) {
 		c = color.RGBA{0, 22, 0, 255}
 		src = &image.Uniform{C: c}
 		for y := b.Min.Y; y < b.Max.Y; y++ {
-			draw.DrawMask(m, image.Rect(b.Min.X, y, b.Max.X, y+1), src, image.ZP, nil, image.ZP, draw.Src)
+			draw.DrawMask(m, image.Rect(b.Min.X, y, b.Max.X, y+1), src, image.Point{}, nil, image.Point{}, draw.Src)
 		}
 		check("row")
 		// Draw 1 column at a time.
