@@ -23,11 +23,11 @@ type MongoInfo struct {
 	Session *mgo.Session
 	Db      *mgo.Database
 	C       *mgo.Collection
+	mongoURL string
 }
 
 var (
 	mgInfo      MongoInfo
-	mongoURL    string
 	savedDbName string
 )
 
@@ -40,26 +40,29 @@ func New(host, db, user, pass string, port uint16) {
 	if mgInfo.Session == nil {
 		//[mongodb://][user:pass@]host1[:port1][,host2[:port2],...][/database][?options]
 		//mgInfo.session, _ = mgo.Dial("mongodb://user:pass@localhost:port/test")
-		createMongoURL(host, db, user, pass, port)
+		mgInfo.mongoURL = createMongoURL(host, db, user, pass, port)
 
-		getMongoSession(0)
+		mgInfo.getMongoSession(0)
 		//mgInfo.Session.SetMode(mgo.Monotonic, true)
 	}
 }
 
-// NewIns make a new instance
-func NewIns(host, db, user, pass string, port uint16) {
+// NewInsance makes a new instance
+func NewInsance(host, db, user, pass string, port uint16) (*MongoInfo, error){
 	var err error
 	mg := &MongoInfo{}
-	createMongoURL(host, db, user, pass, port)
 
-	mg.Session, err = mgo.Dial(mongoURL)
+	mg.mongoURL = createMongoURL(host, db, user, pass, port)
+
+	mg.Session, err = mgo.Dial(mg.mongoURL)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
+	return mg, nil
 }
 
-func createMongoURL(host, db, user, pass string, port uint16) {
+func createMongoURL(host, db, user, pass string, port uint16) string{
+	var mongoURL string
 	if db == "" {
 		mongoURL = fmt.Sprintf("mongodb://%s:%d", host, port)
 	} else {
@@ -70,15 +73,15 @@ func createMongoURL(host, db, user, pass string, port uint16) {
 			mongoURL = fmt.Sprintf("mongodb://%s:%d/%s", host, port, db)
 		}
 	}
+	return mongoURL
 }
 
-func getMongoSession(rtnSession uint8) *mgo.Session {
+func (mi *MongoInfo) getMongoSession(rtnSession uint8) *mgo.Session {
 	if mgInfo.Session == nil {
 		var err error
-		mgInfo.Session, err = mgo.Dial(mongoURL)
+		mgInfo.Session, err = mgo.Dial(mi.mongoURL)
 		if err != nil {
 			panic(err)
-			//log.Fatal("Failed to start the Mongo session")
 		}
 	}
 	if rtnSession == 1 {
@@ -92,7 +95,7 @@ func getMongoSession(rtnSession uint8) *mgo.Session {
 func GetMongo() *MongoInfo {
 	if mgInfo.Session == nil {
 		//panic("Before call this, call New in addition to arguments")
-		getMongoSession(0)
+		mgInfo.getMongoSession(0)
 	}
 	return &mgInfo
 }
@@ -111,14 +114,14 @@ func (mi *MongoInfo) GetDB(dbName string) *mgo.Database {
 	savedDbName = dbName
 	//mi.db = mi.session.DB("test")
 	//mi.Db = mi.Session.DB(dbName)
-	mi.Db = getMongoSession(1).DB(dbName)
+	mi.Db = mi.getMongoSession(1).DB(dbName)
 	return mi.Db
 }
 
 // DropDB is to drop database
 func (mi *MongoInfo) DropDB(dbName string) error {
 	//err := mi.Session.DB(dbName).DropDatabase()
-	err := getMongoSession(1).DB(dbName).DropDatabase()
+	err := mi.getMongoSession(1).DB(dbName).DropDatabase()
 	return err
 }
 
@@ -158,7 +161,7 @@ func (mi *MongoInfo) CreateCol(colName string) error {
 func (mi *MongoInfo) GetCol(colName string) *mgo.Collection {
 	if mi.Db == nil {
 		if savedDbName == "" {
-			mi.Db = getMongoSession(1).DB(savedDbName)
+			mi.Db = mi.getMongoSession(1).DB(savedDbName)
 		} else {
 			panic("mongo db instance is nil.")
 		}
