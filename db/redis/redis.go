@@ -28,8 +28,8 @@ func New(host string, port uint16, pass string, dbNo int) *RD {
 	return &rdInfo
 }
 
-// NewIns make a new instance
-func NewIns(host string, port uint16, pass string) *RD {
+// NewInstance makes a new instance
+func NewInstance(host string, port uint16, pass string) *RD {
 	rd := &RD{}
 	rd.setPool(host, port, pass)
 	return rd

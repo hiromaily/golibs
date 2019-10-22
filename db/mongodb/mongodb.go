@@ -20,9 +20,9 @@ import (
 
 // MongoInfo is for MongoDB instance
 type MongoInfo struct {
-	Session *mgo.Session
-	Db      *mgo.Database
-	C       *mgo.Collection
+	Session  *mgo.Session
+	Db       *mgo.Database
+	C        *mgo.Collection
 	mongoURL string
 }
 
@@ -47,8 +47,8 @@ func New(host, db, user, pass string, port uint16) {
 	}
 }
 
-// NewInsance makes a new instance
-func NewInsance(host, db, user, pass string, port uint16) (*MongoInfo, error){
+// NewInstance makes a new instance
+func NewInstance(host, db, user, pass string, port uint16) (*MongoInfo, error) {
 	var err error
 	mg := &MongoInfo{}
 
@@ -61,7 +61,7 @@ func NewInsance(host, db, user, pass string, port uint16) (*MongoInfo, error){
 	return mg, nil
 }
 
-func createMongoURL(host, db, user, pass string, port uint16) string{
+func createMongoURL(host, db, user, pass string, port uint16) string {
 	var mongoURL string
 	if db == "" {
 		mongoURL = fmt.Sprintf("mongodb://%s:%d", host, port)
