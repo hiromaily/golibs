@@ -132,6 +132,9 @@ json:
 regex:
 	go test -v regexp/regexp_test.go -run TestReplace -log 1
 
+goflag:
+	go run ./example/go-flag/cmd/main.go cmd1 -i -path abc
+
 
 test:
 	#
