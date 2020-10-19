@@ -11,12 +11,9 @@ import (
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[LOG]")
-}
 
 func setup() {
+	tu.InitializeTest("[LOG]")
 }
 
 func teardown() {

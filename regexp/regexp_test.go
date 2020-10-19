@@ -68,12 +68,9 @@ var regExpData = []struct {
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[Regexp]")
-}
 
 func setup() {
+	tu.InitializeTest("[Regexp]")
 }
 
 func teardown() {

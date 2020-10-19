@@ -21,12 +21,9 @@ var (
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[Gorm]")
-}
 
 func setup() {
+	tu.InitializeTest("[Gorm]")
 	if !tu.BenchFlg {
 		//New("localhost", "hiromaily", "root", "", 3306)
 		NewMySQL()

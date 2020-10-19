@@ -147,12 +147,9 @@ var tmpleTests2 = []struct {
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[TMPL]")
-}
 
 func setup() {
+	tu.InitializeTest("[TMPL]")
 }
 
 func teardown() {

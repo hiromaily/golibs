@@ -179,12 +179,9 @@ var yamlTests = []struct {
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[YAML]")
-}
 
 func setup() {
+	tu.InitializeTest("[YAML]")
 }
 
 func teardown() {

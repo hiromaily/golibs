@@ -22,12 +22,10 @@ import (
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[REDIS]")
-}
 
 func setup() {
+	tu.InitializeTest("[REDIS]")
+
 	c := conf.GetConf().Redis
 
 	//New("localhost", 6379)

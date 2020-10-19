@@ -45,12 +45,9 @@ var validTests = []struct {
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[Validator]")
-}
 
 func setup() {
+	tu.InitializeTest("[Validator]")
 }
 
 func teardown() {

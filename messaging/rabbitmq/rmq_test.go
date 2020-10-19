@@ -18,12 +18,9 @@ var (
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[RabitMQ]")
-}
 
 func setup() {
+	tu.InitializeTest("[RabitMQ]")
 }
 
 func teardown() {

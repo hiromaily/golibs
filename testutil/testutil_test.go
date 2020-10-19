@@ -10,12 +10,9 @@ import (
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	InitializeTest("[TestUtil]")
-}
 
 func setup() {
+	InitializeTest("[TestUtil]")
 }
 
 func teardown() {

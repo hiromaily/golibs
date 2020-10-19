@@ -13,12 +13,9 @@ import (
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[Compress]")
-}
 
 func setup() {
+	tu.InitializeTest("[Compress]")
 }
 
 func teardown() {

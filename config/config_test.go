@@ -12,12 +12,10 @@ import (
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[Config]")
-}
 
 func setup() {
+	tu.InitializeTest("[Config]")
+
 	ResetConf()
 }
 

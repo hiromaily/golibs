@@ -24,13 +24,11 @@ var fileName string
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[Signal]")
-	fileName = fmt.Sprintf("/tmp/childprocess-%d", time.Now().Unix())
-}
 
 func setup() {
+	tu.InitializeTest("[Signal]")
+	fileName = fmt.Sprintf("/tmp/childprocess-%d", time.Now().Unix())
+
 	//build test/childprocess.go
 	curPath, _ := os.Getwd()
 	codePath := fmt.Sprintf("%s/test/childprocess.go", curPath)

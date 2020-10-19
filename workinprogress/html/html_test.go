@@ -27,12 +27,9 @@ var htmlData = `
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[HTML]")
-}
 
 func setup() {
+	tu.InitializeTest("[HTML]")
 }
 
 func teardown() {

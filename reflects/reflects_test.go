@@ -49,12 +49,9 @@ var (
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[Reflects]")
-}
 
 func setup() {
+	tu.InitializeTest("[Reflects]")
 }
 
 func teardown() {

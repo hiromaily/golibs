@@ -1,8 +1,9 @@
 package go_flag
 
 import (
-	"github.com/jessevdk/go-flags"
 	"testing"
+
+	"github.com/jessevdk/go-flags"
 )
 
 // Options is command line options

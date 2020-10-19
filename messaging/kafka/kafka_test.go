@@ -31,12 +31,9 @@ var msgTests = []struct {
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[KAFKA]")
-}
 
 func setup() {
+	tu.InitializeTest("[KAFKA]")
 }
 
 func teardown() {

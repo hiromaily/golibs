@@ -2,6 +2,7 @@ package fuzzysearch_test
 
 import (
 	"fmt"
+	"os"
 	"testing"
 
 	. "github.com/hiromaily/golibs/fuzzysearch"
@@ -26,15 +27,30 @@ var testData01 = []struct {
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[Color]")
+
+func setup() {
+	tu.InitializeTest("[FuzzySearch]")
+}
+
+func teardown() {
+}
+
+func TestMain(m *testing.M) {
+	setup()
+
+	code := m.Run()
+
+	teardown()
+
+	os.Exit(code)
 }
 
 //-----------------------------------------------------------------------------
 // Test
 //-----------------------------------------------------------------------------
 func TestGetRank(t *testing.T) {
+	tu.InitializeTest("[Color]")
+
 	for _, val := range testData01 {
 		fmt.Println(GetDistance(val.base, val.compared))
 	}

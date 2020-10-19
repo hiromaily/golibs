@@ -16,12 +16,9 @@ import (
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[Cassandra]")
-}
 
 func setup() {
+	tu.InitializeTest("[Cassandra]")
 
 	connection()
 }

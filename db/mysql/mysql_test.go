@@ -32,12 +32,9 @@ var (
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[MySQL]")
-}
 
 func setup() {
+	tu.InitializeTest("[MySQL]")
 	if !tu.BenchFlg {
 		newMySQL()
 

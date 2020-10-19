@@ -71,12 +71,10 @@ var (
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[MongoDB]")
-}
 
 func setup() {
+	tu.InitializeTest("[MongoDB]")
+
 	c := conf.GetConf().Mongo
 
 	New(c.Host, c.DbName, c.User, c.Pass, c.Port)

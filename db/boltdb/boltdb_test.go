@@ -16,12 +16,9 @@ var (
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[BoltDB]")
-}
 
 func setup() {
+	tu.InitializeTest("[BoltDB]")
 	if !tu.BenchFlg {
 		New(path)
 	}

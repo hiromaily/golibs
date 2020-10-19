@@ -12,12 +12,9 @@ import (
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[Session]")
-}
 
 func setup() {
+	tu.InitializeTest("[Session]")
 }
 
 func teardown() {

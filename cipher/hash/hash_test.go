@@ -1,23 +1,19 @@
 package hash_test
 
 import (
-	. "github.com/hiromaily/golibs/cipher/hash"
-	//lg "github.com/hiromaily/golibs/log"
 	"os"
 	"testing"
 
+	. "github.com/hiromaily/golibs/cipher/hash"
 	tu "github.com/hiromaily/golibs/testutil"
 )
 
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[HASH]")
-}
 
 func setup() {
+	tu.InitializeTest("[HASH]")
 }
 
 func teardown() {

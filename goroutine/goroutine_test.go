@@ -3,27 +3,25 @@ package goroutine_test
 import (
 	"fmt"
 	"runtime"
+	"time"
 
 	. "github.com/hiromaily/golibs/goroutine"
+	tu "github.com/hiromaily/golibs/testutil"
 
 	//lg "github.com/hiromaily/golibs/log"
 	"os"
 	"sync"
 	"testing"
 
-	tu "github.com/hiromaily/golibs/testutil"
 	u "github.com/hiromaily/golibs/utils"
 )
 
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[GOROUTINE]")
-}
 
 func setup() {
+	tu.InitializeTest("[GOROUTINE]")
 }
 
 func teardown() {
@@ -112,4 +110,19 @@ func TestSemaphore2(t *testing.T) {
 
 	//cannot use data (type []map[string]int) as type []interface {} in argument to goroutine.Semaphore2
 	Semaphore2(something2, concurrencyCnt, u.SliceMapToInterface(data), wg)
+}
+
+func TestSelect(t *testing.T) {
+	start := time.Now()
+	c := make(chan interface{})
+	go func() {
+		time.Sleep(5 * time.Second)
+		close(c)
+	}()
+
+	fmt.Printf("Blocking on read...")
+	select {
+	case <-c:
+		fmt.Printf("Unblocked %v later.\n", time.Since(start))
+	}
 }

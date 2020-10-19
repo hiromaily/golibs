@@ -33,12 +33,9 @@ var msgTests = []struct {
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[NATS]")
-}
 
 func setup() {
+	tu.InitializeTest("[NATS]")
 }
 
 func teardown() {

@@ -9,11 +9,10 @@ import (
 	"os"
 	"time"
 
-	"google.golang.org/grpc/credentials"
-	"google.golang.org/grpc/metadata"
-
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/credentials"
+	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
 
 	samplepb "github.com/hiromaily/golibs/protobuf/pb/sample"

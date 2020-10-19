@@ -13,12 +13,8 @@ import (
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[JWT]")
-}
-
 func setup() {
+	tu.InitializeTest("[JWT]")
 	//
 	path := os.Getenv("GOPATH") + "/src/github.com/hiromaily/golibs/testdata/key/"
 

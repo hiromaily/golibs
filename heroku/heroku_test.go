@@ -12,12 +12,9 @@ import (
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[HEROKU]")
-}
 
 func setup() {
+	tu.InitializeTest("[HEROKU]")
 }
 
 func teardown() {

@@ -19,16 +19,13 @@ var (
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
+
+func setup() {
 	tu.InitializeTest("[Mail]")
 
 	//encrypt
 	crypt := enc.GetCrypt()
 	mailTo, _ = crypt.DecryptBase64(mailTo)
-}
-
-func setup() {
 }
 
 func teardown() {

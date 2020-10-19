@@ -1,11 +1,10 @@
 package cast_test
 
 import (
-	. "github.com/hiromaily/golibs/cast"
-	//lg "github.com/hiromaily/golibs/log"
 	"os"
 	"testing"
 
+	. "github.com/hiromaily/golibs/cast"
 	tu "github.com/hiromaily/golibs/testutil"
 )
 
@@ -17,12 +16,9 @@ var (
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[Cast]")
-}
 
 func setup() {
+	tu.InitializeTest("[Cast]")
 }
 
 func teardown() {

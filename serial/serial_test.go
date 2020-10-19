@@ -17,12 +17,9 @@ type User struct {
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[Serial]")
-}
 
 func setup() {
+	tu.InitializeTest("[Serial]")
 }
 
 func teardown() {

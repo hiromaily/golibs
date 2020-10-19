@@ -12,12 +12,9 @@ import (
 //-----------------------------------------------------------------------------
 // Test Framework
 //-----------------------------------------------------------------------------
-// Initialize
-func init() {
-	tu.InitializeTest("[Context]")
-}
 
 func setup() {
+	tu.InitializeTest("[Context]")
 }
 
 func teardown() {
