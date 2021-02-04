@@ -41,6 +41,7 @@ require (
 	github.com/parnurzeal/gorequest v0.2.16
 	github.com/pkg/errors v0.9.1
 	github.com/posener/complete v1.2.3 // indirect
+	github.com/shirou/gopsutil v3.21.1+incompatible
 	github.com/smartystreets/goconvey v0.0.0-20190731233626-505e41936337 // indirect
 	github.com/streadway/amqp v1.0.0
 	github.com/ugorji/go/codec v1.1.8
