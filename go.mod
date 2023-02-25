@@ -9,7 +9,6 @@ require (
 	github.com/armon/go-radix v1.0.0 // indirect
 	github.com/aws/aws-sdk-go v1.34.27
 	github.com/boltdb/bolt v1.3.1
-	github.com/bookerzzz/grok v0.0.0
 	github.com/coopernurse/gorp v1.6.1
 	github.com/creasty/go-levenshtein v0.0.0-20161128082938-38ce641d5030
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
@@ -41,7 +40,6 @@ require (
 	github.com/parnurzeal/gorequest v0.2.16
 	github.com/pkg/errors v0.9.1
 	github.com/posener/complete v1.2.3 // indirect
-	github.com/shirou/gopsutil v3.21.1+incompatible
 	github.com/smartystreets/goconvey v0.0.0-20190731233626-505e41936337 // indirect
 	github.com/streadway/amqp v1.0.0
 	github.com/ugorji/go/codec v1.1.8
@@ -49,12 +47,9 @@ require (
 	github.com/ziutek/mymysql v1.5.4 // indirect
 	go.uber.org/multierr v1.5.0 // indirect
 	go.uber.org/zap v1.14.0
-	golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a
+	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519
 	golang.org/x/lint v0.0.0-20200130185559-910be7a94367 // indirect
-	golang.org/x/net v0.0.0-20200904194848-62affa334b73
-	golang.org/x/sys v0.0.0-20200918174421-af09f7315aff // indirect
-	golang.org/x/text v0.3.3 // indirect
-	golang.org/x/tools v0.0.0-20200225022059-a0ec867d517c // indirect
+	golang.org/x/net v0.7.0
 	google.golang.org/genproto v0.0.0-20200918140846-d0d605568037 // indirect
 	google.golang.org/grpc v1.32.0
 	google.golang.org/protobuf v1.25.0 // indirect
